@@ -35,6 +35,7 @@
   services.xserver = {
     layout = "us,ru";
     xkbVariant = "";
+    xkbOptions = "grp:alt_shift_toggle";
   };
   # Enable CUPS to print documents.
   services.printing.enable = false;
@@ -55,47 +56,45 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.neg = {
     isNormalUser = true;
     description = "neg";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "video" "systemd-journal" ];
     packages = with pkgs; [
       firefox
       i3
       mpd
       mpv
       ncmpcpp
+      emacs
+      telegram-desktop
     ];
   };
 
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh = { enable = true; };
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
   services.xserver.displayManager.autoLogin.user = "neg";
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
+    flatpak
     git
     neovim
     wget
     zsh
   ];
+  environment.shells = with pkgs; [ zsh ];
 
   # programs.mtr.enable = true;
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
   };
-
   services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # networking.firewall.enable = false;
-
   # (man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.11"; # Did you read the comment?
 }
