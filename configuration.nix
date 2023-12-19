@@ -168,6 +168,15 @@
         iotop
     ];
 
+    # Boot optimizations regarding filesystem:
+    # Journald was taking too long to copy from runtime memory to disk at boot
+    # set storage to "auto" if you're trying to troubleshoot a boot issue
+    journald.extraConfig = ''
+      Storage=auto
+      SystemMaxFileSize=300M
+      SystemMaxFiles=50
+    '';
+
     environment.shells = with pkgs; [ zsh ];
     programs.dconf.enable = true;
     programs.mtr.enable = true;
