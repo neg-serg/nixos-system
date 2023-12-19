@@ -183,6 +183,8 @@
     programs.zsh = { enable = true; };
     services.openssh.enable = true;
     services.flatpak.enable = true;
+    # gnome daemons
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
