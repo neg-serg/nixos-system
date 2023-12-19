@@ -171,7 +171,7 @@
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
     # set storage to "auto" if you're trying to troubleshoot a boot issue
-    journald.extraConfig = ''
+    services.journald.extraConfig = ''
       Storage=auto
       SystemMaxFileSize=300M
       SystemMaxFiles=50
@@ -184,7 +184,7 @@
     services.openssh.enable = true;
     services.flatpak.enable = true;
     # gnome daemons
-    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
