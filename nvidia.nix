@@ -13,7 +13,7 @@
 
     environment={
         systemPackages=with pkgs; [glxinfo];
-        variables={ __GL_GSYNC_ALLOWED="1"; };
+        variables={ __GL_GSYNC_ALLOWED="0"; };
     };
 
     services.xserver={screenSection=''Option         "metamodes" "3440x1440_175 +0+0 {AllowGSYNCCompatible=On}"'';};
