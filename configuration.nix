@@ -46,17 +46,16 @@
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
 
         displayManager = {
+            defaultSession = "negwm";
+            session = [{
+                manage="desktop";
+                name="negwm";
+                start=''$HOME/.xsession'';
+            }];
             lightdm = {
                 enable = true;
                 greeters.gtk = {
                     enable = true;
-                    windowManager = { i3.enable = true; };
-                    displayManager.defaultSession = "negi3";
-                    displayManager.session = [{
-                        manage="desktop";
-                        name="negi3";
-                        start=''exec $HOME/.xsession'';
-                    }];
                     theme.package = pkgs.flat-remix-gtk;
                     iconTheme.package = pkgs.flat-remix-icon-theme;
                     theme.name = "Flat-Remix-GTK-Dark-Blue";
@@ -138,15 +137,18 @@
         bibata-cursors
 
         curl
+        wget
+
         gcc
         gdb
+
         git
+        git-extras
+
         neovim
         nix-index
-        python3
         tig
         tmux
-        wget
         zsh
     ];
 
