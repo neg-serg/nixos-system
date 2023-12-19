@@ -145,11 +145,17 @@
         git
         git-extras
 
+        delta
+        fd
         neovim
         nix-index
+        ripgrep
         tig
         tmux
         zsh
+
+        htop
+        iotop
     ];
 
     environment.shells = with pkgs; [ zsh ];
