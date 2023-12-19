@@ -127,6 +127,7 @@
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.neg = {
+        packages = with pkgs; [python3-lto];
         isNormalUser = true;
         description = "Neg";
         extraGroups = [ 
@@ -169,7 +170,21 @@
 
         htop
         iotop
+
+        terminus-nerdfont
+
+        keyd
     ];
+
+    nixpkgs.config.packageOverrides = super: {
+      python3-lto = super.python3.override {
+        packageOverrides = python-self: python-super: {
+            enableOptimizations = true;
+            enableLTO = true;
+            reproducibleBuild = false;
+        };
+      };
+    };
 
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
@@ -187,7 +202,7 @@
     services.openssh.enable = true;
     services.flatpak.enable = true;
     # gnome daemons
-    services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
