@@ -114,6 +114,8 @@
 
     services.printing.enable = false;
     hardware.pulseaudio.enable = false;
+    # Enable the OpenRazer driver for my Razer stuff
+    hardware.openrazer.enable = true;
     security.rtkit.enable = true; # rtkit is optional but recommended
         services.pipewire = {
             enable = true;
