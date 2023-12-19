@@ -7,6 +7,7 @@
         ./filesystems.nix
         ./networking.nix
         ./nvidia.nix
+        ./udev-rules.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     boot.loader.systemd-boot.enable = true;
