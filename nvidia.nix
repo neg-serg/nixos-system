@@ -16,7 +16,7 @@
         variables={ __GL_GSYNC_ALLOWED="0"; };
     };
 
-    services.xserver={screenSection=''Option         "metamodes" "3440x1440_175 +0+0 {AllowGSYNCCompatible=On}"'';};
+    services.xserver={screenSection=''Option         "metamodes" "3440x1440_175 +0+0 {AllowGSYNCCompatible=Off}"'';};
     services.xserver.videoDrivers=["nvidia"];
     hardware.nvidia={
         modesetting.enable=true; # Modesetting is required.
