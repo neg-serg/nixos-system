@@ -75,9 +75,7 @@
     services.kmscon = {
       enable = true;
       hwRender = true;
-      fonts = [{ name = "Terminus NerdFont"; package = pkgs.terminus-nerdfont; }
-                { name = "Powerline Fonts"; package = pkgs.powerline-fonts; }];
-      extraOptions = "--term xterm-256color --font-size 16";
+      extraOptions = "--term xterm-256color --font-size 12 --font-name Iosevka";
     };
 
     systemd.packages = [pkgs.packagekit];
