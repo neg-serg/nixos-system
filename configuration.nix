@@ -79,6 +79,36 @@
     };
 
     systemd.packages = [pkgs.packagekit];
+    systemd.services.keyd = {
+        description = "key remapping daemon";
+        requires = ["local-fs.target"];
+        after = ["local-fs.target"];
+        serviceConfig = {
+            Type = "simple";
+            ExecStart = "${pkgs.keyd}/bin/keyd";
+        };
+        wantedBy = ["sysinit.target"];
+    };
+
+    environment.etc."keyd/keyd.conf".text = lib.mkForce ''
+        [ids]
+        *
+
+        [main]
+        capslock = layer(capslock)
+
+        [capslock:C]
+        0 = M-0
+        h = left
+        j = down
+        k = up
+        l = right
+        2 = down
+        3 = up
+        [ = escape
+        ] = insert
+        q = escape
+        '';
 
     security.polkit.enable = true;
     security.sudo.extraRules= [ {
