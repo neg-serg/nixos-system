@@ -10,17 +10,28 @@
         ./udev-rules.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
+
+    nixpkgs = {
+        hostPlatform = lib.mkDefault "x86_64-linux";
+        config.allowUnfree = true;
+        config.packageOverrides = super: {
+          python3-lto = super.python3.override {
+            packageOverrides = python-self: python-super: {
+                enableOptimizations = true;
+                enableLTO = true;
+                reproducibleBuild = false;
+            };
+          };
+        };
+    };
+
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
     boot.initrd.kernelModules = ["dm-snapshot"];
     boot.kernelModules = ["kvm-amd"];
     boot.extraModulePackages = [];
-    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    networking.hostName = "telfir"; # Define your hostname.
-    networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
-    networking.networkmanager.enable = true;
     time.timeZone = "Europe/Moscow";
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
@@ -36,9 +47,6 @@
     };
 
     services.xserver = {
-        # services.xserver.displayManager.startx.enable = true;
-        # services.xserver.displayManager.autoLogin.enable = true;
-        # services.xserver.displayManager.autoLogin.user = "neg";
         enable = true; # Enable the X11 windowing system.
         exportConfiguration = true;
         layout = "us,ru";
@@ -48,11 +56,7 @@
 
         displayManager = {
             defaultSession = "negwm";
-            session = [{
-                manage="desktop";
-                name="negwm";
-                start=''$HOME/.xsession'';
-            }];
+            session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
             lightdm = {
                 enable = true;
                 greeters.gtk = {
@@ -170,7 +174,6 @@
 
     users.defaultUserShell = pkgs.zsh;
     users.groups.neg.gid = 1000;
-    nixpkgs.config.allowUnfree = true;
     environment.systemPackages = with pkgs; [
         flat-remix-gtk
         flat-remix-icon-theme
@@ -202,16 +205,6 @@
         keyd
     ];
 
-    nixpkgs.config.packageOverrides = super: {
-      python3-lto = super.python3.override {
-        packageOverrides = python-self: python-super: {
-            enableOptimizations = true;
-            enableLTO = true;
-            reproducibleBuild = false;
-        };
-      };
-    };
-
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
     # set storage to "auto" if you're trying to troubleshoot a boot issue
@@ -230,9 +223,11 @@
     # gnome daemons
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
-    xdg.portal.enable = true;
-    xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    xdg.portal.config.common.default = "gtk";
+    xdg.portal = {
+        enable = true;
+        extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        config.common.default = "gtk";
+    };
 
     # (man configuration.nix or on https://nixos.org/nixos/options.html).
     system.stateVersion = "23.11"; # Did you read the comment?
