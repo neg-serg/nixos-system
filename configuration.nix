@@ -70,10 +70,8 @@
         };
     };
 
-    # Enable the much fancier kmscon virtual console instead of gettys.
-    # ...I'm not actually sure if this is working as advertised. Needs to be tested.
     services.kmscon = {
-      enable = true;
+      enable = false;
       hwRender = true;
       extraOptions = "--term xterm-256color --font-size 12 --font-name Iosevka";
     };
