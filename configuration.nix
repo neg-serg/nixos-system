@@ -166,7 +166,10 @@
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.neg = {
-        packages = with pkgs; [python3-lto];
+        packages = with pkgs; [
+            python3-lto
+            pinentry-gnome
+        ];
         isNormalUser = true;
         description = "Neg";
         extraGroups = [
@@ -233,16 +236,19 @@
     environment.shells = with pkgs; [ zsh ];
     programs.dconf.enable = true;
     programs.mtr.enable = true;
-    programs.ssh.startAgent = true;
     programs.zsh = { enable = true; };
-    services.dbus.packages = [ pkgs.gcr ];
+    services.dbus.packages = [ pkgs.gcr pkgs.gnome.gnome-keyring ];
     services.flatpak.enable = true;
     services.openssh.enable = true;
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
+    programs.ssh.startAgent = false;
+    services.gnome.gnome-keyring.enable = true;
+    security.pam.services.lightdm.enableGnomeKeyring = true;
+
     xdg.portal = {
         enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gnome];
+        extraPortals = [pkgs.xdg-desktop-portal-gnome pkgs.gnome.gnome-keyring];
         config.common.default = "gnome";
     };
 
