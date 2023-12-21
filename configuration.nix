@@ -211,13 +211,6 @@
         pass-secret-service
     ];
 
-    # security.wrappers.gnome-keyring-daemon = {
-    #     owner = "root";
-    #     group = "root";
-    #     capabilities = "cap_ipc_lock=ep";
-    #     source = "${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon";
-    # };
-
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
     # set storage to "auto" if you're trying to troubleshoot a boot issue
