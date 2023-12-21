@@ -241,10 +241,7 @@
     services.flatpak.enable = true;
     services.openssh.enable = true;
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-
-    programs.ssh.startAgent = false;
     services.gnome.gnome-keyring.enable = true;
-    security.pam.services.lightdm.enableGnomeKeyring = true;
 
     xdg.portal = {
         enable = true;
