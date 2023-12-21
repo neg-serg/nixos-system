@@ -47,7 +47,6 @@
         LC_TIME = "ru_RU.UTF-8";
     };
 
-    services.envfs.enable = true;
     services.xserver = {
         enable = true; # Enable the X11 windowing system.
         exportConfiguration = true;
