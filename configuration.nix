@@ -134,6 +134,7 @@
         XDG_STATE_HOME  = "$HOME/.local/state";
         XDG_BIN_HOME    = "$HOME/.local/bin";
         PATH = [ "${XDG_BIN_HOME}" ];
+        ZDOTDIR = "$HOME/.config/zsh";
     };
 
     fonts.packages = with pkgs; [
