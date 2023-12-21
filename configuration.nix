@@ -8,7 +8,7 @@
         ./networking.nix
         ./nvidia.nix
         ./udev-rules.nix
-        ./gnome-keyring.nix
+        # ./gnome-keyring.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
 
@@ -227,8 +227,8 @@
 
     xdg.portal = {
         enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
-        config.common.default = "gtk";
+        extraPortals = [pkgs.xdg-desktop-portal-gnome];
+        config.common.default = "gnome";
     };
 
     # (man configuration.nix or on https://nixos.org/nixos/options.html).
