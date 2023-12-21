@@ -168,6 +168,7 @@
             "networkmanager"
             "systemd-journal" 
             "video" 
+            "openrazer"
             "wheel" 
             "tty"
             "input"
@@ -208,6 +209,13 @@
         keyd
     ];
 
+    # security.wrappers.gnome-keyring-daemon = { 
+    #     owner = "root"; 
+    #     group = "root"; 
+    #     capabilities = "cap_ipc_lock=ep"; 
+    #     source = "${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon"; 
+    # }; 
+
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
     # set storage to "auto" if you're trying to troubleshoot a boot issue
@@ -223,7 +231,6 @@
     programs.zsh = { enable = true; };
     services.openssh.enable = true;
     services.flatpak.enable = true;
-    # gnome daemons
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
     xdg.portal = {
