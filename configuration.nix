@@ -193,6 +193,7 @@
 
         delta
         fd
+        file
         neovim
         nix-index
         ripgrep
