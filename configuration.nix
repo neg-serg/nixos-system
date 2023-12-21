@@ -29,7 +29,7 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.initrd.availableKernelModules = [
-        "nvme" 
+        "nvme"
         "sd_mod"
         "usbhid"
         "usb_storage"
@@ -61,33 +61,41 @@
         xkbOptions = "grp:alt_shift_toggle";
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
 
+        displayManager.gdm.enable = true;
+        desktopManager.gnome.enable = true;
+
+        # displayManager.autoLogin.enable = true;
+        # displayManager.autoLogin.user = "account";
+
         displayManager = {
             defaultSession = "negwm";
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
-            lightdm = {
-                enable = true;
-                greeters.gtk = {
-                    enable = true;
-                    theme.package = pkgs.flat-remix-gtk;
-                    iconTheme.package = pkgs.flat-remix-icon-theme;
-                    theme.name = "Flat-Remix-GTK-Dark-Blue";
-                    iconTheme.name = "Flat-Remix-Dark-Blue";
-                    cursorTheme = {
-                        package = pkgs.bibata-cursors;
-                        name = "Bibata-Modern-Ice";
-                    };
-                };
-            };
+            # lightdm = {
+            #     enable = true;
+            #     greeters.gtk = {
+            #         enable = true;
+            #         theme.package = pkgs.flat-remix-gtk;
+            #         iconTheme.package = pkgs.flat-remix-icon-theme;
+            #         theme.name = "Flat-Remix-GTK-Dark-Blue";
+            #         iconTheme.name = "Flat-Remix-Dark-Blue";
+            #         cursorTheme = {
+            #             package = pkgs.bibata-cursors;
+            #             name = "Bibata-Modern-Ice";
+            #         };
+            #     };
+            # };
         };
     };
 
     services.kmscon = {
-      enable = false;
-      hwRender = true;
-      extraOptions = "--term xterm-256color --font-size 12 --font-name Iosevka";
+        enable = false;
+        hwRender = true;
+        extraOptions = "--term xterm-256color --font-size 12 --font-name Iosevka";
     };
 
     systemd.packages = [pkgs.packagekit];
+    systemd.services."getty@tty1".enable = false;
+    systemd.services."autovt@tty1".enable = false;
     systemd.services.keyd = {
         description = "key remapping daemon";
         requires = ["local-fs.target"];
@@ -215,6 +223,9 @@
         keyd
 
         pass-secret-service
+
+        gnomeExtensions.appindicator
+        gnome.gnome-settings-daemon
     ];
 
     # Boot optimizations regarding filesystem:
@@ -234,6 +245,7 @@
     services.flatpak.enable = true;
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
+    services.dbus.packages = [ pkgs.gcr ];
     xdg.portal = {
         enable = true;
         extraPortals = [pkgs.xdg-desktop-portal-gnome];
