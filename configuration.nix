@@ -60,30 +60,23 @@
         xkbVariant = "";
         xkbOptions = "grp:alt_shift_toggle";
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
-
-        displayManager.gdm.enable = true;
-        desktopManager.gnome.enable = true;
-
-        # displayManager.autoLogin.enable = true;
-        # displayManager.autoLogin.user = "account";
-
         displayManager = {
             defaultSession = "negwm";
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
-            # lightdm = {
-            #     enable = true;
-            #     greeters.gtk = {
-            #         enable = true;
-            #         theme.package = pkgs.flat-remix-gtk;
-            #         iconTheme.package = pkgs.flat-remix-icon-theme;
-            #         theme.name = "Flat-Remix-GTK-Dark-Blue";
-            #         iconTheme.name = "Flat-Remix-Dark-Blue";
-            #         cursorTheme = {
-            #             package = pkgs.bibata-cursors;
-            #             name = "Bibata-Modern-Ice";
-            #         };
-            #     };
-            # };
+            lightdm = {
+                enable = true;
+                greeters.gtk = {
+                    enable = true;
+                    theme.package = pkgs.flat-remix-gtk;
+                    iconTheme.package = pkgs.flat-remix-icon-theme;
+                    theme.name = "Flat-Remix-GTK-Dark-Blue";
+                    iconTheme.name = "Flat-Remix-Dark-Blue";
+                    cursorTheme = {
+                        package = pkgs.bibata-cursors;
+                        name = "Bibata-Modern-Ice";
+                    };
+                };
+            };
         };
     };
 
@@ -240,12 +233,13 @@
     environment.shells = with pkgs; [ zsh ];
     programs.dconf.enable = true;
     programs.mtr.enable = true;
+    programs.ssh.startAgent = true;
     programs.zsh = { enable = true; };
-    services.openssh.enable = true;
+    services.dbus.packages = [ pkgs.gcr ];
     services.flatpak.enable = true;
+    services.openssh.enable = true;
     services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
 
-    services.dbus.packages = [ pkgs.gcr ];
     xdg.portal = {
         enable = true;
         extraPortals = [pkgs.xdg-desktop-portal-gnome];
