@@ -28,7 +28,13 @@
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
-    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
+    boot.initrd.availableKernelModules = [
+        "nvme" 
+        "sd_mod"
+        "usbhid"
+        "usb_storage"
+        "xhci_pci"
+    ];
     boot.initrd.kernelModules = ["dm-snapshot"];
     boot.kernelModules = ["kvm-amd"];
     boot.extraModulePackages = [];
