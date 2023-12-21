@@ -8,7 +8,6 @@
         ./networking.nix
         ./nvidia.nix
         ./udev-rules.nix
-        # ./gnome-keyring.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
 
