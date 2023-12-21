@@ -162,14 +162,14 @@
         packages = with pkgs; [python3-lto];
         isNormalUser = true;
         description = "Neg";
-        extraGroups = [ 
-            "audio" 
+        extraGroups = [
+            "audio"
             "neg"
             "networkmanager"
-            "systemd-journal" 
-            "video" 
+            "systemd-journal"
+            "video"
             "openrazer"
-            "wheel" 
+            "wheel"
             "tty"
             "input"
         ];
@@ -207,14 +207,16 @@
         terminus-nerdfont
 
         keyd
+
+        pass-secret-service
     ];
 
-    # security.wrappers.gnome-keyring-daemon = { 
-    #     owner = "root"; 
-    #     group = "root"; 
-    #     capabilities = "cap_ipc_lock=ep"; 
-    #     source = "${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon"; 
-    # }; 
+    # security.wrappers.gnome-keyring-daemon = {
+    #     owner = "root";
+    #     group = "root";
+    #     capabilities = "cap_ipc_lock=ep";
+    #     source = "${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon";
+    # };
 
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
