@@ -211,6 +211,7 @@
 
         nix-index
         nix-output-monitor
+        nvd
 
         ripgrep
         tig
