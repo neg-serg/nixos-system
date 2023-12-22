@@ -16,6 +16,7 @@
 
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader.systemd-boot.consoleMode = "auto";
     boot.initrd.availableKernelModules = [
         "nvidia"
         "nvidia_drm"
