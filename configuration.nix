@@ -128,9 +128,7 @@
         }
     ];
     security.pam = {
-        services.lightdm.enableGnomeKeyring = services.xserver.displayManager.lightdm.enable;
-        services.sddm.enableGnomeKeyring = services.xserver.displayManager.sddm.enable;
-        services.gdm.enableGnomeKeyring = services.xserver.displayManager.gdm.enable;
+        services.lightdm.enableGnomeKeyring = true;
         loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}];
     };
 
