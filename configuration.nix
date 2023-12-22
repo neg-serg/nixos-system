@@ -222,8 +222,8 @@
     environment.shells = with pkgs; [zsh];
 
     programs = {
-        dconf.enable = true;
-        mtr.enable = true;
+        dconf = { enable = true; };
+        mtr = { enable = true; };
         zsh = { enable = true; };
     };
 
