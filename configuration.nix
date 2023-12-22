@@ -254,6 +254,7 @@
 
         htop
         iotop
+        btop
 
         terminus-nerdfont
 
