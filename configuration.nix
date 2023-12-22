@@ -71,6 +71,7 @@
         "threadirqs"
         "tsc=reliable"
         "vt.global_cursor_default=0"
+        "preempt=full"
     ];
     boot.extraModulePackages = [];
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
