@@ -293,8 +293,8 @@
 
     xdg.portal = {
         enable = true;
-        # extraPortals = [pkgs.xdg-desktop-portal-gnome pkgs.gnome.gnome-keyring];
-        # config.common.default = "gnome";
+        extraPortals = [pkgs.xdg-desktop-portal-gnome];
+        config.common.default = "gnome";
     };
 
     # (man configuration.nix or on https://nixos.org/nixos/options.html).
