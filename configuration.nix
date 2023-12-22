@@ -105,6 +105,7 @@
     fonts.packages = with pkgs; [];
 
     hardware.pulseaudio.enable = false;
+    powerManagement.cpuFreqGovernor = "performance";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     # Enable the OpenRazer driver for my Razer stuff
     hardware.openrazer.enable = true;
