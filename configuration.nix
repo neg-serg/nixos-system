@@ -191,6 +191,8 @@
         gcc
         gdb
 
+        expect
+
         git
         git-extras
 
