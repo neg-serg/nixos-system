@@ -127,9 +127,10 @@
             commands=[{command="ALL" ; options= ["NOPASSWD"];}];
         }
     ];
-    security.pam.loginLimits = [
-        {domain = "@users"; item = "rtprio"; type = "-"; value = 1;}
-    ];
+    security.pam = {
+        services.lightdm.enableGnomeKeyring = true;
+        loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}];
+    };
 
     # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
     # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
@@ -233,15 +234,21 @@
       SystemMaxFiles=50
     '';
 
-    environment.shells = with pkgs; [ zsh ];
-    programs.dconf.enable = true;
-    programs.mtr.enable = true;
-    programs.zsh = { enable = true; };
-    services.dbus.packages = [ pkgs.gcr pkgs.gnome.gnome-keyring ];
-    services.flatpak.enable = true;
-    services.openssh.enable = true;
-    services.udev.packages = with pkgs; [gnome.gnome-settings-daemon];
-    services.gnome.gnome-keyring.enable = true;
+    environment.shells = with pkgs; [zsh];
+
+    programs = {
+        dconf.enable = true;
+        mtr.enable = true;
+        zsh = { enable = true; };
+    };
+
+    services = {
+        dbus.packages = [ pkgs.gcr pkgs.gnome.gnome-keyring ];
+        flatpak.enable = true;
+        openssh.enable = true;
+        udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+        gnome.gnome-keyring.enable = true;
+    };
 
     xdg.portal = {
         enable = true;
