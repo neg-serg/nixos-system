@@ -286,7 +286,7 @@
         dbus.packages = [ pkgs.gcr pkgs.gnome.gnome-keyring ];
         flatpak.enable = true;
         openssh.enable = true;
-        udev.packages = with pkgs; [gnome.gnome-settings-daemon];
+        udev.packages = with pkgs; [gnome.gnome-settings-daemon yubikey-personalization];
         gnome.gnome-keyring.enable = true;
     };
 
