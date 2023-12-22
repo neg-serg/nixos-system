@@ -59,7 +59,7 @@
         "no_stf_barrier"
         "no_timer_check"
         "nowatchdog"
-        "nvidia-drm.modeset=1 "
+        "nvidia-drm.modeset=1"
         "page_alloc.shuffle=1"
         "pcie_aspm=off"
         "quiet"
@@ -70,8 +70,7 @@
         "threadirqs"
         "tsc=reliable"
         "vt.global_cursor_default=0"
-        
-    ]
+    ];
     boot.extraModulePackages = [];
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     time.timeZone = "Europe/Moscow";
