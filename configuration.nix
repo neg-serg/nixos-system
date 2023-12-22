@@ -206,7 +206,10 @@
         fd
         file
         neovim
+
         nix-index
+        nix-output-monitor
+
         ripgrep
         tig
         tmux
