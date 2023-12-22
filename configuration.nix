@@ -15,7 +15,6 @@
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     nixpkgs.config.allowUnfree = true;
-    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
     services.xserver = {
         enable = true; # Enable the X11 windowing system.
@@ -105,8 +104,8 @@
 
     fonts.packages = with pkgs; [];
 
-    services.printing.enable = false;
     hardware.pulseaudio.enable = false;
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     # Enable the OpenRazer driver for my Razer stuff
     hardware.openrazer.enable = true;
     security.rtkit.enable = true; # rtkit is optional but recommended
