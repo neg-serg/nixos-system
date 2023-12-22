@@ -17,10 +17,15 @@
     boot.loader.systemd-boot.enable = true;
     boot.loader.efi.canTouchEfiVariables = true;
     boot.initrd.availableKernelModules = [
+        "nvidia"
+        "nvidia_drm"
+        "nvidia_modeset"
+        "nvidia_uvm"
         "nvme"
         "sd_mod"
         "usbhid"
         "usb_storage"
+        "xhci_hcd"
         "xhci_pci"
     ];
     boot.initrd.kernelModules = ["dm-snapshot"];
