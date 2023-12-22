@@ -117,13 +117,7 @@
         ZDOTDIR = "$HOME/.config/zsh";
     };
 
-    fonts.packages = with pkgs; [
-        noto-fonts
-        noto-fonts-cjk
-        noto-fonts-emoji
-        liberation_ttf
-        iosevka
-    ];
+    fonts.packages = with pkgs; [];
 
     services.printing.enable = false;
     hardware.pulseaudio.enable = false;
