@@ -14,22 +14,26 @@
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (builtins.parseDrvName pkg.name).name ["steam"]);
 
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.systemd-boot.consoleMode = "auto";
-    boot.initrd.availableKernelModules = [
-        "nvidia"
-        "nvidia_drm"
-        "nvidia_modeset"
-        "nvidia_uvm"
-        "nvme"
-        "sd_mod"
-        "usbhid"
-        "usb_storage"
-        "xhci_hcd"
-        "xhci_pci"
-    ];
-    boot.initrd.kernelModules = ["dm-snapshot"];
+    boot.loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+        systemd-boot.consoleMode = "auto";
+    };
+    boot.initrd = {
+        availableKernelModules = [
+            "nvidia"
+                "nvidia_drm"
+                "nvidia_modeset"
+                "nvidia_uvm"
+                "nvme"
+                "sd_mod"
+                "usbhid"
+                "usb_storage"
+                "xhci_hcd"
+                "xhci_pci"
+        ];
+        kernelModules = ["dm-snapshot"];
+    };
     boot.kernelModules = ["kvm-amd"];
     boot.extraModulePackages = [];
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
