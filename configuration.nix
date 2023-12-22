@@ -12,7 +12,7 @@
         #./kmscon.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
-    nixpkgs.config.allowUnfreePredicate = (pkg: builtins.elem (builtins.parseDrvName pkg.name).name ["steam"]);
+    nixpkgs.config.allowUnfree = true;
 
     boot.loader = {
         systemd-boot.enable = true;
