@@ -22,15 +22,15 @@
     boot.initrd = {
         availableKernelModules = [
             "nvidia"
-                "nvidia_drm"
-                "nvidia_modeset"
-                "nvidia_uvm"
-                "nvme"
-                "sd_mod"
-                "usbhid"
-                "usb_storage"
-                "xhci_hcd"
-                "xhci_pci"
+            "nvidia_drm"
+            "nvidia_modeset"
+            "nvidia_uvm"
+            "nvme"
+            "sd_mod"
+            "usbhid"
+            "usb_storage"
+            "xhci_hcd"
+            "xhci_pci"
         ];
         kernelModules = ["dm-snapshot"];
     };
@@ -127,12 +127,12 @@
     # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
     # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
     environment.sessionVariables = rec {
-        XDG_CACHE_HOME  = "$HOME/.cache";
+        XDG_CACHE_HOME = "$HOME/.cache";
         XDG_CONFIG_HOME = "$HOME/.config";
-        XDG_DATA_HOME   = "$HOME/.local/share";
-        XDG_STATE_HOME  = "$HOME/.local/state";
-        XDG_BIN_HOME    = "$HOME/.local/bin";
-        PATH = [ "${XDG_BIN_HOME}" ];
+        XDG_DATA_HOME = "$HOME/.local/share";
+        XDG_STATE_HOME = "$HOME/.local/state";
+        XDG_BIN_HOME = "$HOME/.local/bin";
+        PATH = ["${XDG_BIN_HOME}"];
         ZDOTDIR = "$HOME/.config/zsh";
     };
 
