@@ -190,6 +190,7 @@
 
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
         nix-index
+        nix-update
         nix-output-monitor
         nvd
 
