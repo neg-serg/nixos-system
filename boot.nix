@@ -2,9 +2,9 @@
 {
     boot.kernelPackages = pkgs.linuxPackages_latest;
     boot.loader = {
-        systemd-boot.enable = true;
         efi.canTouchEfiVariables = true;
-        systemd-boot.consoleMode = "auto";
+        systemd-boot.consoleMode = "max";
+        systemd-boot.enable = true;
     };
     boot.initrd = {
         availableKernelModules = [
