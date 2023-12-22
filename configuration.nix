@@ -195,6 +195,7 @@
         nix-output-monitor
         nvd
 
+        abduco
         ripgrep
         tig
         tmux
