@@ -120,11 +120,7 @@
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.neg = {
-        packages = with pkgs; [
-            pam_u2f
-            python3-lto
-            pinentry-gnome
-        ];
+        packages = with pkgs; [pam_u2f python3-lto];
         isNormalUser = true;
         description = "Neg";
         extraGroups = [
