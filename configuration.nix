@@ -132,8 +132,10 @@
         git-extras
 
         delta
+        exa
         fd
         file
+
         neovim
 
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
