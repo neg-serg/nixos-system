@@ -11,7 +11,12 @@
             defaultSession = "negwm";
             autoLogin.enable = true;
             autoLogin.user = "neg";
+            sx.enable = true;
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
+            gdm = {
+                enable = false;
+                wayland = true;
+            };
             lightdm = {
                 enable = true;
                 greeters.gtk = {
