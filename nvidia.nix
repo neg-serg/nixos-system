@@ -62,5 +62,6 @@
     hardware.nvidia={
         open=false; # Currently alpha-quality/buggy, so false is currently the recommended setting.
         nvidiaSettings=true;
+        package=config.boot.kernelPackages.nvidiaPackages.production;
     };
 }
