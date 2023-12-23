@@ -173,17 +173,17 @@
     environment.shells = with pkgs; [zsh];
 
     programs = {
-        dconf = { enable = true; };
+        # dconf = { enable = true; };
         mtr = { enable = true; };
         zsh = { enable = true; };
     };
 
     services = {
-        dbus.packages = [];
+        # dbus.packages = [];
         flatpak.enable = true;
         openssh.enable = true;
         udev.packages = with pkgs; [gnome.gnome-settings-daemon yubikey-personalization];
-        gnome.gnome-keyring.enable = true;
+        # gnome.gnome-keyring.enable = true;
     };
 
     xdg.portal = {
