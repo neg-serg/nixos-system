@@ -14,11 +14,11 @@
             sx.enable = true;
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
             gdm = {
-                enable = false;
+                enable = true;
                 wayland = true;
             };
             lightdm = {
-                enable = true;
+                enable = false;
                 greeters.gtk = {
                     enable = true;
                     theme.package = pkgs.flat-remix-gtk;
