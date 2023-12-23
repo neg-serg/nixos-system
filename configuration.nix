@@ -62,7 +62,6 @@
         }
     ];
     security.pam = {
-        services.lightdm.enableGnomeKeyring = true;
         loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}];
     };
 
