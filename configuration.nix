@@ -15,18 +15,6 @@
         #./kmscon.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
-    # nix.registry = {
-    #     nixpkgs = {
-    #         from = {
-    #             type = "indirect";
-    #             id = "nixpkgs";
-    #         };
-    #         to = {
-    #             type = "path";
-    #             path = inputs.nixpkgs.outPath;
-    #         };
-    #     };
-    # };
     nixpkgs.config.allowUnfree = true;
 
     systemd.packages = [pkgs.packagekit];
@@ -122,24 +110,6 @@
         ];
     };
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.shit = {
-        # packages = with pkgs; [pam_u2f python3-lto];
-        isNormalUser = true;
-        description = "Shit";
-        extraGroups = [
-            "audio"
-            # "neg"
-            # "networkmanager"
-            "systemd-journal"
-            "video"
-            # "openrazer"
-            "wheel"
-            # "tty"
-            # "input"
-        ];
-    };
-
     users.defaultUserShell = pkgs.zsh;
     users.groups.neg.gid = 1000;
     environment.systemPackages = with pkgs; [
@@ -209,11 +179,9 @@
     };
 
     services = {
-        # dbus.packages = [];
         flatpak.enable = true;
         openssh.enable = true;
         udev.packages = with pkgs; [gnome.gnome-settings-daemon yubikey-personalization];
-        # gnome.gnome-keyring.enable = true;
     };
 
     xdg.portal = {
