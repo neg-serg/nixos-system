@@ -11,37 +11,11 @@
         ./nvidia.nix
         ./udev-rules.nix
         ./python-lto.nix
+        ./session.nix
         #./kmscon.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     nixpkgs.config.allowUnfree = true;
-
-    services.xserver = {
-        enable = true; # Enable the X11 windowing system.
-        exportConfiguration = true;
-        layout = "us,ru";
-        xkbVariant = "";
-        xkbOptions = "grp:alt_shift_toggle";
-        libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
-        displayManager = {
-            defaultSession = "negwm";
-            session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
-            lightdm = {
-                enable = true;
-                greeters.gtk = {
-                    enable = true;
-                    theme.package = pkgs.flat-remix-gtk;
-                    iconTheme.package = pkgs.flat-remix-icon-theme;
-                    theme.name = "Flat-Remix-GTK-Dark-Blue";
-                    iconTheme.name = "Flat-Remix-Dark-Blue";
-                    cursorTheme = {
-                        package = pkgs.bibata-cursors;
-                        name = "Bibata-Modern-Ice";
-                    };
-                };
-            };
-        };
-    };
 
     systemd.packages = [pkgs.packagekit];
     services.pcscd.enable = true;
