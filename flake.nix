@@ -8,30 +8,22 @@
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     };
-    outputs = { self, nixpkgs, nix
+    outputs = { self
+        , nix
         , nixos-hardware
-        , nixpkgs-r2211 , nixpkgs-unstable
-        , nix-gaming, kde2nix
-        , nixtheplanet }@inputs: {
+        , nixpkgs
+        , nixpkgs-stable
+        , nixpkgs-r2211
+        , nix-gaming
+        , nixtheplanet
+        , chaotic }@inputs: {
         nixosConfigurations = {
-            hostname = nixpkgs.lib.nixosSystem {
+            telfir = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
-                specialArgs = {
-                    pkgs-unstable = import nixpkgs-unstable {
-                        inherit system;
-                        config.allowUnfree = true;
-                    };
-                    pkgs-r2211 = import nixpkgs-r2211 {
-                        inherit system;
-                        config.allowUnfree = true;
-                    };
-                    inherit nixos-hardware nix-gaming system inputs kde2nix;
-                };
                 modules = [
-                    ./configuration.nix # Your system configuration.
-                    chaotic.nixosModules.default # OUR DEFAULT MODULE
+                    ./configuration.nix
+                    chaotic.nixosModules.default
                 ];
-                specialArgs.inputs = inputs;
             };
         };
     };
