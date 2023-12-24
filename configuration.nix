@@ -13,7 +13,7 @@
         ./python-lto.nix
         ./session.nix
         ./keyd.nix
-        #./kmscon.nix
+        ./kmscon.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     nixpkgs.config.allowUnfree = true;
