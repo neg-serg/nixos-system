@@ -1,6 +1,6 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, lib, pkgs, modulesPath, packageOverrides, inputs, ... }:
+{ config, lib, pkgs, modulesPath, packageOverrides, ... }:
 {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
@@ -16,7 +16,6 @@
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     nixpkgs.config.allowUnfree = true;
-    nixpkgs.overlays = [ inputs.nur.overlay ];
 
     systemd.packages = [pkgs.packagekit];
     services.pcscd.enable = true;
