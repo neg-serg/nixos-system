@@ -108,11 +108,14 @@
 
         neovim
 
+        deadnix # scan for dead nix code
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
         nix-index
-        nix-update
         nix-output-monitor
+        nix-tree # Interactive scan current system / derivations for what-why-how depends
+        nix-update
         nvd
+        statix # static analyzer for nix
 
         abduco
         ripgrep
