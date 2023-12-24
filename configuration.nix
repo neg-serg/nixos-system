@@ -59,16 +59,7 @@
         packages = with pkgs; [pam_u2f python3-lto];
         isNormalUser = true;
         description = "Neg";
-        extraGroups = [
-            "audio"
-            "neg"
-            "networkmanager"
-            "systemd-journal"
-            "video"
-            "openrazer"
-            "wheel"
-            "input"
-        ];
+        extraGroups = ["audio" "neg" "networkmanager" "systemd-journal" "video" "openrazer" "wheel" "input"];
     };
 
     users.defaultUserShell = pkgs.zsh;
