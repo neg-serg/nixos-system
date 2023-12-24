@@ -123,6 +123,10 @@
         telegram-desktop_git
     ];
 
+    systemd.extraConfig = ''
+        DefaultTimeoutStopSec=10s
+    '';
+
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
     # set storage to "auto" if you're trying to troubleshoot a boot issue
