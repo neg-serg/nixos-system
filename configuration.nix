@@ -1,6 +1,6 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, lib, pkgs, modulesPath, packageOverrides, ... }:
+{ config, lib, pkgs, modulesPath, packageOverrides, inputs, ... }:
 {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
