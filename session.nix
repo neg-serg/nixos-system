@@ -16,7 +16,7 @@
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
             gdm = {
                 enable = true;
-                wayland = true;
+                wayland = false;
             };
             lightdm = {
                 enable = false;
