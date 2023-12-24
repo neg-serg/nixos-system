@@ -24,14 +24,7 @@
     services.udisks2.enable = true;
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
-
     security.polkit.enable = true;
-    security.sudo.extraRules= [ {
-        users = [ "privileged_user" ];
-            # "SETENV" # Adding the following could be a good idea
-            commands=[{command="ALL" ; options= ["NOPASSWD"];}];
-        }
-    ];
     security.pam = {
         loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}];
     };
@@ -48,14 +41,11 @@
         ZDOTDIR = "$HOME/.config/zsh";
     };
 
-    fonts.packages = with pkgs; [];
-
     hardware.pulseaudio.enable = false;
     hardware.bluetooth.enable = true;
     powerManagement.cpuFreqGovernor = "performance";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    # Enable the OpenRazer driver for my Razer stuff
-    hardware.openrazer.enable = true;
+    hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
     security.rtkit.enable = true; # rtkit is optional but recommended
         services.pipewire = {
             enable = true;
@@ -65,7 +55,6 @@
             jack.enable = true;
         };
 
-    # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.neg = {
         packages = with pkgs; [pam_u2f python3-lto];
         isNormalUser = true;
