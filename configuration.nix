@@ -16,6 +16,7 @@
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     nixpkgs.config.allowUnfree = true;
+    nixpkgs.overlays = [ inputs.nur.overlay ];
 
     systemd.packages = [pkgs.packagekit];
     services.pcscd.enable = true;
