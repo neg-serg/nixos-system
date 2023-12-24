@@ -114,7 +114,7 @@
         nix-output-monitor
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nix-update
-        nvd
+        nvd # compare versions: nvd diff /run/current-system result
         statix # static analyzer for nix
 
         abduco
