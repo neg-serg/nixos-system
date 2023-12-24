@@ -12,6 +12,7 @@
         ./udev-rules.nix
         ./python-lto.nix
         ./session.nix
+        ./keyd.nix
         #./kmscon.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
@@ -23,30 +24,6 @@
     services.udisks2.enable = true;
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
-
-    services.keyd.enable = true;
-    services.keyd.keyboards = {
-        default = {
-            ids = ["*"];
-            settings = {
-                main = {
-                    capslock = "layer(capslock)";
-                };
-                "capslock:C" = {
-                    "0" = "M-0";
-                    "h" = "left";
-                    "j" = "down";
-                    "k" = "up";
-                    "l" = "right";
-                    "2" = "down";
-                    "3" = "up";
-                    "[" = "escape";
-                    "]" = "insert";
-                    "q" = "escape";
-                };
-            };
-        };
-    };
 
     security.polkit.enable = true;
     security.sudo.extraRules= [ {
