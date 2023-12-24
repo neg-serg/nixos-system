@@ -47,13 +47,13 @@
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
     security.rtkit.enable = true; # rtkit is optional but recommended
-        services.pipewire = {
-            enable = true;
-            alsa.enable = true;
-            alsa.support32Bit = true;
-            pulse.enable = true;
-            jack.enable = true;
-        };
+    services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        jack.enable = true;
+    };
 
     users.users.neg = {
         packages = with pkgs; [pam_u2f python3-lto];
