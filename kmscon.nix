@@ -3,6 +3,6 @@
     services.kmscon = {
         enable = false;
         hwRender = true;
-        extraOptions = "--term xterm-256color --font-size 12 --font-name Iosevka";
+        extraOptions = "--term xterm-256color --font-size 10 --font-name Iosevka";
     };
 }
