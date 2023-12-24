@@ -35,25 +35,25 @@
         wantedBy = ["sysinit.target"];
     };
 
-    environment.etc."keyd/keyd.conf".text = lib.mkForce ''
-        [ids]
-        *
-
-        [main]
-        capslock = layer(capslock)
-
-        [capslock:C]
-        0 = M-0
-        h = left
-        j = down
-        k = up
-        l = right
-        2 = down
-        3 = up
-        [ = escape
-        ] = insert
-        q = escape
-        '';
+    services.keyd.enable = true;
+    services.keyd.settings = {
+        ids = '*';
+        main = {
+            capslock = "layer(capslock)";
+        };
+        "capslock:C" = {
+            0 = M-0
+            h = left
+            j = down
+            k = up
+            l = right
+            2 = down
+            3 = up
+            "[" = escape
+            "]" = insert
+                    q = escape
+        };
+    };
 
     security.polkit.enable = true;
     security.sudo.extraRules= [ {
