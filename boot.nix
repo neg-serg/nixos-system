@@ -1,6 +1,6 @@
 { config, lib, pkgs, modulesPath, packageOverrides, ... }:
 {
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages_cachyos-sched-ext;
     boot.loader = {
         efi.canTouchEfiVariables = true;
         systemd-boot.consoleMode = "max";

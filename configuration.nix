@@ -131,6 +131,7 @@
         pass-secret-service
 
         linuxKernel.packages.linux_6_6.perf
+        scx # for cachyos sched
 
         gnomeExtensions.appindicator
         gnome.gnome-settings-daemon
