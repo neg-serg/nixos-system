@@ -125,7 +125,7 @@
         git-extras
 
         delta
-        exa
+        eza
         fd
         file
 
