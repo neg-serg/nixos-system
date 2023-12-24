@@ -18,20 +18,6 @@
                 enable = true;
                 wayland = false;
             };
-            lightdm = {
-                enable = false;
-                greeters.gtk = {
-                    enable = true;
-                    theme.package = pkgs.flat-remix-gtk;
-                    iconTheme.package = pkgs.flat-remix-icon-theme;
-                    theme.name = "Flat-Remix-GTK-Dark-Blue";
-                    iconTheme.name = "Flat-Remix-Dark-Blue";
-                    cursorTheme = {
-                        package = pkgs.bibata-cursors;
-                        name = "Bibata-Modern-Ice";
-                    };
-                };
-            };
         };
     };
 }
