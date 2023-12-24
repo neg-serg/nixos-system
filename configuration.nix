@@ -67,7 +67,6 @@
             "video"
             "openrazer"
             "wheel"
-            "tty"
             "input"
         ];
     };
