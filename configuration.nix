@@ -80,6 +80,7 @@
         git
         git-extras
 
+        patchelf # for fixing up binaries in nix
         delta
         eza
         fd
@@ -96,11 +97,12 @@
         nvd # compare versions: nvd diff /run/current-system result
         statix # static analyzer for nix
 
-        abduco
-        ripgrep
-        tig
-        tmux
-        zsh
+        abduco # cli session detach
+        ripgrep # better grep
+        tig # git viewer
+        tmux # better screen
+        parallel # parallel xargs
+        zsh # better shell
 
         htop
         iotop
