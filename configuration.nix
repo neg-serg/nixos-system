@@ -24,34 +24,24 @@
     services.udisks2.enable = true;
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
-    systemd.services.keyd = {
-        description = "key remapping daemon";
-        requires = ["local-fs.target"];
-        after = ["local-fs.target"];
-        serviceConfig = {
-            Type = "simple";
-            ExecStart = "${pkgs.keyd}/bin/keyd";
-        };
-        wantedBy = ["sysinit.target"];
-    };
 
     services.keyd.enable = true;
     services.keyd.settings = {
-        ids = '*';
+        ids = "*";
         main = {
             capslock = "layer(capslock)";
         };
         "capslock:C" = {
-            0 = M-0
-            h = left
-            j = down
-            k = up
-            l = right
-            2 = down
-            3 = up
-            "[" = escape
-            "]" = insert
-                    q = escape
+            "0" = "M-0";
+            "h" = "left";
+            "j" = "down";
+            "k" = "up";
+            "l" = "right";
+            "2" = "down";
+            "3" = "up";
+            "[" = "escape";
+            "]" = "insert";
+            "q" = "escape";
         };
     };
 
