@@ -7,7 +7,6 @@
         xkbVariant = "";
         xkbOptions = "grp:alt_shift_toggle";
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
-        desktopManager.plasma5.enable = true;
         displayManager = {
             defaultSession = "negwm";
             autoLogin.enable = true;
