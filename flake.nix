@@ -19,7 +19,7 @@
         , nixtheplanet
         , chaotic
         , nh
-        }@inputs: {
+        } @inputs: {
         nixosConfigurations = {
             telfir = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
