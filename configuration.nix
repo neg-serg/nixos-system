@@ -16,6 +16,7 @@
         ./kmscon.nix
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
+    nix.settings.trusted-users = ["root" "neg"];
     nixpkgs.config.allowUnfree = true;
 
     systemd.packages = [pkgs.packagekit];
