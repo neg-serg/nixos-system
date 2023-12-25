@@ -7,6 +7,7 @@
         nix-gaming.url = "github:fufexan/nix-gaming";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+        nh.url = "github:viperML/nh";
     };
     outputs = { self
         , nix
@@ -16,7 +17,9 @@
         , nixpkgs-r2211
         , nix-gaming
         , nixtheplanet
-        , chaotic }@inputs: {
+        , chaotic
+        , nh
+        }@inputs: {
         nixosConfigurations = {
             telfir = nixpkgs.lib.nixosSystem {
                 system = "x86_64-linux";
