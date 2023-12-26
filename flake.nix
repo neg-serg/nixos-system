@@ -9,7 +9,8 @@
         chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
         nh.url = "github:viperML/nh";
     };
-    outputs = { self
+    outputs = {
+        self
         , nix
         , nixos-hardware
         , nixpkgs
