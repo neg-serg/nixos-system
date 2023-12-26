@@ -17,6 +17,13 @@
     ];
     nix.extraOptions = ''experimental-features = nix-command flakes'';
     nix.settings.trusted-users = ["root" "neg"];
+    # Cachix
+    nix.settings = {
+        substituters = ["https://ezkea.cachix.org" "https://nix-gaming.cachix.org"];
+        trusted-public-keys = [
+            "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
+            "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+    ];};
     nixpkgs.config.allowUnfree = true;
 
     systemd.packages = [pkgs.packagekit];
