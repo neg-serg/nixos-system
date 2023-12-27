@@ -1,177 +1,134 @@
-# Help is available in the configuration.nix(5) man page
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, lib, pkgs, modulesPath, packageOverrides, inputs, ... }:
+
+{ config, pkgs, ... }:
+
 {
-    imports = [
-        (modulesPath + "/installer/scan/not-detected.nix")
-        ./boot.nix
-        ./filesystems.nix
-        ./locale.nix
-        ./networking.nix
-        ./nvidia.nix
-        ./udev-rules.nix
-        ./python-lto.nix
-        ./session.nix
-        ./keyd.nix
-        ./kmscon.nix
-    ];
-    nix.extraOptions = ''experimental-features = nix-command flakes'';
-    nix.settings.trusted-users = ["root" "neg"];
-    # Cachix
-    nix.settings = {
-        substituters = ["https://ezkea.cachix.org" "https://nix-gaming.cachix.org"];
-        trusted-public-keys = [
-            "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-            "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-    ];};
-    nixpkgs.config.allowUnfree = true;
-
-    systemd.packages = [pkgs.packagekit];
-    services.pcscd.enable = true;
-    services.gvfs.enable = true;
-    services.udisks2.enable = true;
-    systemd.services."getty@tty1".enable = false;
-    systemd.services."autovt@tty1".enable = false;
-    security.polkit.enable = true;
-    security.pam = {
-        loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}];
-    };
-
-    # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
-    # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
-    environment.sessionVariables = rec {
-        XDG_CACHE_HOME = "$HOME/.cache";
-        XDG_CONFIG_HOME = "$HOME/.config";
-        XDG_DATA_HOME = "$HOME/.local/share";
-        XDG_STATE_HOME = "$HOME/.local/state";
-        XDG_BIN_HOME = "$HOME/.local/bin";
-        PATH = ["${XDG_BIN_HOME}"];
-        ZDOTDIR = "$HOME/.config/zsh";
-    };
-
-    hardware.pulseaudio.enable = false;
-    hardware.bluetooth.enable = true;
-    powerManagement.cpuFreqGovernor = "performance";
-    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
-    security.rtkit.enable = true; # rtkit is optional but recommended
-    services.pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        jack.enable = true;
-    };
-
-    users.users.neg = {
-        packages = with pkgs; [pam_u2f python3-lto];
-        isNormalUser = true;
-        description = "Neg";
-        extraGroups = ["audio" "neg" "networkmanager" "systemd-journal" "video" "openrazer" "wheel" "input"];
-    };
-
-    users.defaultUserShell = pkgs.zsh;
-    users.groups.neg.gid = 1000;
-    environment.systemPackages = with pkgs; [
-        flat-remix-gtk
-        flat-remix-icon-theme
-        bibata-cursors
-
-        curl
-        wget
-
-        gcc
-        gdb
-
-        expect
-
-        git
-        git-extras
-
-        patchelf # for fixing up binaries in nix
-        delta
-        eza
-        fd
-        file
-
-        neovim
-
-        deadnix # scan for dead nix code
-        nh # some nice nix commands
-        nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
-        nix-index
-        nix-output-monitor
-        nix-tree # Interactive scan current system / derivations for what-why-how depends
-        nix-update
-        nvd # compare versions: nvd diff /run/current-system result
-        statix # static analyzer for nix
-
-        abduco # cli session detach
-        ripgrep # better grep
-        tig # git viewer
-        tmux # better screen
-        parallel # parallel xargs
-        zsh # better shell
-
-        htop
-        iotop
-        btop
-
-        terminus-nerdfont
-
-        keyd
-
-        pass-secret-service
-
-        linuxKernel.packages.linux_6_6.perf
-        scx # for cachyos sched
-
-        gnomeExtensions.appindicator
-        gnome.gnome-settings-daemon
-
-        telegram-desktop_git
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
     ];
 
-    systemd.extraConfig = ''
-        DefaultTimeoutStopSec=10s
-    '';
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-    # Boot optimizations regarding filesystem:
-    # Journald was taking too long to copy from runtime memory to disk at boot
-    # set storage to "auto" if you're trying to troubleshoot a boot issue
-    services.journald.extraConfig = ''
-        Storage=auto
-        SystemMaxFileSize=300M
-        SystemMaxFiles=50
-    '';
+  networking.hostName = "nixos"; # Define your hostname.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-    environment.shells = with pkgs; [zsh];
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-    programs = {
-        dconf = { enable = true; };
-        mtr = { enable = true; };
-        zsh = { enable = true; };
-        steam = {
-            enable = true;
-            remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-            dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-        };
-    };
+  # Enable networking
+  networking.networkmanager.enable = true;
 
-    services = {
-        flatpak.enable = true;
-        openssh.enable = true;
-        udev.packages = with pkgs; [gnome.gnome-settings-daemon yubikey-personalization];
-    };
+  # Set your time zone.
+  time.timeZone = "Europe/Moscow";
 
-    xdg.portal = {
-        enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
-        config.common.default = "gtk";
-    };
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
 
-    # (man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "23.11"; # Did you read the comment?
-    system.autoUpgrade.enable = true;
-    system.autoUpgrade.allowReboot = true;
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "ru_RU.UTF-8";
+    LC_IDENTIFICATION = "ru_RU.UTF-8";
+    LC_MEASUREMENT = "ru_RU.UTF-8";
+    LC_MONETARY = "ru_RU.UTF-8";
+    LC_NAME = "ru_RU.UTF-8";
+    LC_NUMERIC = "ru_RU.UTF-8";
+    LC_PAPER = "ru_RU.UTF-8";
+    LC_TELEPHONE = "ru_RU.UTF-8";
+    LC_TIME = "ru_RU.UTF-8";
+  };
+
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+
+  # Enable the KDE Plasma Desktop Environment.
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
+
+  # Configure keymap in X11
+  services.xserver = {
+    layout = "us";
+    xkbVariant = "";
+  };
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  # services.xserver.libinput.enable = true;
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.neg = {
+    isNormalUser = true;
+    description = "neg";
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [
+      firefox
+      kate
+    #  thunderbird
+    ];
+  };
+
+  # # Enable automatic login for the user.
+  # services.xserver.displayManager.autoLogin.enable = false;
+  # services.xserver.displayManager.autoLogin.user = "neg";
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+  ];
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  # services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  # networking.firewall.enable = false;
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "23.11"; # Did you read the comment?
+
 }
