@@ -11,13 +11,13 @@
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
         displayManager = {
             defaultSession = "negwm";
-            autoLogin.enable = true;
-            autoLogin.user = "neg";
+           #autoLogin.enable = true;
+           #autoLogin.user = "neg";
             sx.enable = true;
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
             gdm = {
                 enable = true;
-                wayland = false;
+                wayland = true;
                 autoSuspend = false;
             };
         };
