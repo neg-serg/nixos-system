@@ -4,6 +4,8 @@
         enable = true; # Enable the X11 windowing system.
         exportConfiguration = true;
         layout = "us,ru";
+        autoRepeatDelay = 250;
+        autoRepeatInterval = 20;
         xkbVariant = "";
         xkbOptions = "grp:alt_shift_toggle";
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
