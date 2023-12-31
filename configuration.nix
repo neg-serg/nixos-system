@@ -80,6 +80,7 @@
         curl
         wget
 
+        libgcc.lib
         gcc
         gdb
 
