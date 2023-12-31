@@ -83,16 +83,16 @@
         gcc
         gdb
 
-        expect
+        expect # do tty stuff noninteractively
 
         git
         git-extras
 
         patchelf # for fixing up binaries in nix
         delta
-        eza
-        fd
-        file
+        eza # more modern version of exa ls replacer
+        fd # better find
+        file # get filetype from content
 
         neovim
 
@@ -113,13 +113,13 @@
         parallel # parallel xargs
         zsh # better shell
 
-        htop
-        iotop
-        btop
+        htop # fancy top
+        iotop # top for iops
+        btop # even more fancy top
 
-        terminus-nerdfont
+        terminus-nerdfont # font for console
 
-        keyd
+        keyd # systemwide key manager
 
         pass-secret-service
 
@@ -128,6 +128,7 @@
 
         gnomeExtensions.appindicator
         gnome.gnome-settings-daemon
+        gparted # gtk frontend for parted disk manager
 
         telegram-desktop_git
     ];
