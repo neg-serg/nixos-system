@@ -88,6 +88,8 @@
         git
         git-extras
 
+        openvpn # gnu/gpl vpn
+
         patchelf # for fixing up binaries in nix
         delta
         eza # more modern version of exa ls replacer
