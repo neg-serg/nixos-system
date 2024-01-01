@@ -109,10 +109,11 @@
         statix # static analyzer for nix
 
         abduco # cli session detach
+        parallel # parallel xargs
+        psmisc # killall and friends
         ripgrep # better grep
         tig # git viewer
         tmux # better screen
-        parallel # parallel xargs
         zsh # better shell
 
         htop # fancy top
