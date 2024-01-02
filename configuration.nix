@@ -133,6 +133,7 @@
         gnome.gnome-settings-daemon
 
         gparted # gtk frontend for parted disk manager
+        exfat
 
         telegram-desktop_git
     ];
