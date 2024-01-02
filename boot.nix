@@ -59,5 +59,5 @@
         "vt.global_cursor_default=0"
         "preempt=full"
     ];
-    boot.extraModulePackages = [config.boot.kernelPackages.exfat-nofuse];
+    boot.extraModulePackages = [];
 }
