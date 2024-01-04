@@ -62,7 +62,11 @@
     };
 
     hardware.pulseaudio.enable = false;
-    hardware.bluetooth.enable = true;
+    hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = false;
+        settings = {General.Enable = "Source,Sink,Media,Socket";};
+    }
     powerManagement.cpuFreqGovernor = "performance";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
