@@ -34,14 +34,11 @@
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
     security.polkit.enable = true;
-    security.pam = {
-        loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}];
-    };
+    security.pam = { loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}]; };
 
     # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
     # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
     environment.sessionVariables = rec {
-
         XDG_CACHE_HOME = "$HOME/.cache";
         XDG_CONFIG_HOME = "$HOME/.config";
         XDG_DATA_HOME = "$HOME/.local/share";
@@ -59,7 +56,6 @@
 
         PATH = ["${XDG_BIN_HOME}"];
         ZDOTDIR = "$HOME/.config/zsh";
-
     };
 
     hardware.pulseaudio.enable = false;
