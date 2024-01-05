@@ -24,6 +24,7 @@
             "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
     };
+    nix.gc = {automatic = true; dates = "weekly"; options = "--delete-older-than 21d";};
     nixpkgs.config.allowUnfree = true;
 
     systemd.packages = [pkgs.packagekit];
