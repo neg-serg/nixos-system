@@ -108,7 +108,7 @@
         curl
         wget
 
-        gcc
+        gcc # gnu compiler collection
         gdb
 
         expect # do tty stuff noninteractively
@@ -124,7 +124,7 @@
         fd # better find
         file # get filetype from content
 
-        neovim
+        neovim # better vim
 
         deadnix # scan for dead nix code
         hydra # nix build system
