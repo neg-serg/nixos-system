@@ -153,7 +153,8 @@
 
         keyd # systemwide key manager
 
-        pass-secret-service
+        pass-secret-service # gnome-keyring alternative via paste
+        pwgen # generate passwords
 
         linuxKernel.packages.linux_6_6.perf
         scx # for cachyos sched
