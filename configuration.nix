@@ -58,6 +58,21 @@
         ZDOTDIR = "$HOME/.config/zsh";
     };
 
+    # systemwide xdg-ninja
+    environment.variables = {
+        __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+        ASPELL_CONF = ''
+            per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
+        personal $XDG_CONFIG_HOME/aspell/en_US.pws;
+        repl $XDG_CONFIG_HOME/aspell/en.prepl;
+        '';
+        CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+        HISTFILE = "$XDG_DATA_HOME/bash/history";
+        INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";
+        LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
+        WGETRC = "$XDG_CONFIG_HOME/wgetrc";
+    };
+
     hardware.pulseaudio.enable = false;
     hardware.bluetooth = {
         enable = true;
