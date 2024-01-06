@@ -127,7 +127,6 @@
         neovim # better vim
 
         deadnix # scan for dead nix code
-        hydra # nix build system
         nh # some nice nix commands
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
         nix-index # index for nix-locate
