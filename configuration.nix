@@ -130,7 +130,7 @@
         hydra # nix build system
         nh # some nice nix commands
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
-        nix-index
+        nix-index # index for nix-locate
         nix-output-monitor
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nix-update
