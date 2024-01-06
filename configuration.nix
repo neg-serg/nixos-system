@@ -180,8 +180,6 @@
 
         lm_sensors # sensors
         ddcutil # rule monitor params
-
-        telegram-desktop_git
     ];
 
     systemd.extraConfig = ''
