@@ -137,6 +137,7 @@
         statix # static analyzer for nix
 
         abduco # cli session detach
+        lsof # list open something
         parallel # parallel xargs
         psmisc # killall and friends
         ripgrep # better grep
