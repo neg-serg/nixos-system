@@ -33,6 +33,8 @@
     services.udisks2.enable = true;
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
+    security.sudo.execWheelOnly = true;
+    security.sudo.wheelNeedsPassword = false;
     security.polkit.enable = true;
     security.pam = { loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}]; };
 
