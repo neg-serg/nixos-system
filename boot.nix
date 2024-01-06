@@ -87,7 +87,8 @@
         "nospectre_v2"
         "no_stf_barrier"
         "no_timer_check"
-        "nowatchdog"
+        # https://wiki.archlinux.org/title/improving_performance#Watchdogs
+        "nowatchdog" "kernel.nmi_watchdog=0"
         "nvidia-drm.modeset=1"
         "page_alloc.shuffle=1"
         "pcie_aspm=off"
