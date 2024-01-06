@@ -5,50 +5,51 @@
         driSupport=true;
         driSupport32Bit=true;
     };
-    boot.blacklistedKernelModules=[ "nouveau" ];
-    boot.extraModprobeConfig=''
-        blacklist nouveau
+    boot.blacklistedKernelModules=[
+        "nouveau"
         # blacklist nvidiafb
-        blacklist snd_hda_intel
-        blacklist snd_hda_codec_hdmi
-        blacklist snd_hda_codec
-        blacklist snd_hda_core
+        "snd_hda_intel"
+        "snd_hda_codec_hdmi"
+        "snd_hda_codec"
+        "snd_hda_core"
         # Obscure network protocols
-        blacklist ax25
-        blacklist netrom
-        blacklist rose
+        "ax25"
+        "netrom"
+        "rose"
         # Old or rare or insufficiently audited filesystems
-        blacklist adfs
-        blacklist affs
-        blacklist bfs
-        blacklist befs
-        blacklist cramfs
-        blacklist efs
-        blacklist erofs
-        blacklist exofs
-        blacklist freevxfs
-        blacklist vivid
-        blacklist gfs2
-        blacklist ksmbd
-        blacklist cramfs
-        blacklist freevxfs
-        blacklist jffs2
-        blacklist hfs
-        blacklist hfsplus
-        blacklist squashfs
-        blacklist udf
-        blacklist hpfs
-        blacklist jfs
-        blacklist minix
-        blacklist nilfs2
-        blacklist omfs
-        blacklist qnx4
-        blacklist qnx6
-        blacklist sysv
-        blacklist ufs
-        
-        options nouveau modeset=0
-        '';
+        "adfs"
+        "affs"
+        "bfs"
+        "befs"
+        "cramfs"
+        "efs"
+        "erofs"
+        "exofs"
+        "freevxfs"
+        "vivid"
+        "gfs2"
+        "ksmbd"
+        "cramfs"
+        "freevxfs"
+        "jffs2"
+        "hfs"
+        "hfsplus"
+        "squashfs"
+        "udf"
+        "hpfs"
+        "jfs"
+        "minix"
+        "nilfs2"
+        "omfs"
+        "qnx4"
+        "qnx6"
+        "sysv"
+        "ufs"
+        # Disable watchdog for better performance
+        # wiki.archlinux.org/title/improving_performance#Watchdogs
+        "sp5100_tco"
+    ];
+    boot.extraModprobeConfig='' options nouveau modeset=0 '';
 
     environment={
         systemPackages=with pkgs; [glxinfo];
