@@ -75,6 +75,7 @@
         WGETRC = "$XDG_CONFIG_HOME/wgetrc";
     };
 
+    hardware.i2c.enable = true;
     hardware.pulseaudio.enable = false;
     hardware.bluetooth = {
         enable = true;
@@ -97,7 +98,17 @@
         packages = with pkgs; [pam_u2f python3-lto];
         isNormalUser = true;
         description = "Neg";
-        extraGroups = ["audio" "neg" "networkmanager" "systemd-journal" "video" "openrazer" "wheel" "input"];
+        extraGroups = [
+            "audio"
+            "i2c"
+            "input"
+            "neg"
+            "networkmanager" 
+            "openrazer"
+            "systemd-journal" 
+            "video" 
+            "wheel" 
+        ];
     };
 
     users.defaultUserShell = pkgs.zsh;
@@ -166,6 +177,9 @@
 
         gparted # gtk frontend for parted disk manager
         exfat
+
+        lm_sensors # sensors
+        ddcutil # rule monitor params
 
         telegram-desktop_git
     ];
