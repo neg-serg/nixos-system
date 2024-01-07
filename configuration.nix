@@ -97,12 +97,7 @@
         alsa.support32Bit = true;
         pulse.enable = true;
         jack.enable = true;
-        lowLatency = {
-            enable = true;
-            # defaults (no need to be set unless modified)
-            quantum = 64;
-            rate = 48000;
-        };
+        lowLatency = { enable = true; quantum = 64; rate = 48000; };
     };
 
     users.users.neg = {
