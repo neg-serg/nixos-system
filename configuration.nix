@@ -232,6 +232,7 @@
     programs = {
         atop = { enable = true; };
         dconf = { enable = true; };
+        gamemode = { enable = true; };
         mtr = { enable = true; };
         zsh = { enable = true; };
         steam = {
