@@ -135,6 +135,7 @@
         android-tools # android debug stuff
         gcc # gnu compiler collection
         gdb # gnu debugger
+        hyperfine # command-line benchmarking tool
         ltrace # trace functions
         strace # trace system-calls
 
