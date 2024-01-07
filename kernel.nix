@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, ... }:
+{ config, lib, ... }:
 {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
