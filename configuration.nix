@@ -198,6 +198,7 @@
     environment.shells = with pkgs; [zsh];
 
     programs = {
+        atop = { enable = true; };
         dconf = { enable = true; };
         mtr = { enable = true; };
         zsh = { enable = true; };
