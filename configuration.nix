@@ -152,6 +152,7 @@
         fd # better find
         file # get filetype from content
 
+        vis # minimal editor
         neovim # better vim
 
         deadnix # scan for dead nix code
