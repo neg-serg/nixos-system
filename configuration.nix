@@ -141,8 +141,6 @@
         ltrace # trace functions
         strace # trace system-calls
 
-        expect # do tty stuff noninteractively
-
         git
         git-extras
 
