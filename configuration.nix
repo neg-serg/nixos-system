@@ -29,6 +29,7 @@
 
     systemd.packages = [pkgs.packagekit];
     services.pcscd.enable = true;
+    services.psd.enable = true;
     services.gvfs.enable = true;
     services.udisks2.enable = true;
     systemd.services."getty@tty1".enable = false;
