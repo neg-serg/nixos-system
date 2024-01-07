@@ -118,11 +118,25 @@
         flat-remix-icon-theme
         bibata-cursors
 
+        aircrack-ng # stuff for wifi security
         curl
+        hcxdumptool # wpa scanner
+        netdiscover # another network scan
+        netsniff-ng # sniffer
+        sshfs # ssh mount
+        tcpdump # best friend to show network stuff
+        tshark # sniffer tui
         wget
 
+        foremost # files extact from structure
+        hashcat # password recovery
+        qFlipper # desktop stuff for flipper zero
+
+        android-tools # android debug stuff
         gcc # gnu compiler collection
-        gdb
+        gdb # gnu debugger
+        ltrace # trace functions
+        strace # trace system-calls
 
         expect # do tty stuff noninteractively
 
