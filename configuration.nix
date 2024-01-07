@@ -15,7 +15,7 @@
         ./keyd.nix
         ./kmscon.nix
     ];
-    nix.extraOptions = ''experimental-features = nix-command flakes'';
+    nix.extraOptions = ''experimental-features = nix-command flakes repl-flake'';
     nix.settings = {
         trusted-users = ["root" "neg"];
         substituters = ["https://ezkea.cachix.org" "https://nix-gaming.cachix.org"];
