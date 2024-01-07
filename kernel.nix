@@ -42,6 +42,50 @@
         "net.core.default_qdisc" = "cake";
     };
     boot.kernelModules = ["kvm-amd" "tcp_bbr"];
+    boot.blacklistedKernelModules=[
+        "nouveau"
+        # blacklist nvidiafb
+        "snd_hda_intel"
+        "snd_hda_codec_hdmi"
+        "snd_hda_codec"
+        "snd_hda_core"
+        # Obscure network protocols
+        "ax25"
+        "netrom"
+        "rose"
+        # Old or rare or insufficiently audited filesystems
+        "adfs"
+        "affs"
+        "bfs"
+        "befs"
+        "cramfs"
+        "efs"
+        "erofs"
+        "exofs"
+        "freevxfs"
+        "vivid"
+        "gfs2"
+        "ksmbd"
+        "cramfs"
+        "freevxfs"
+        "jffs2"
+        "hfs"
+        "hfsplus"
+        "squashfs"
+        "udf"
+        "hpfs"
+        "jfs"
+        "minix"
+        "nilfs2"
+        "omfs"
+        "qnx4"
+        "qnx6"
+        "sysv"
+        "ufs"
+        # Disable watchdog for better performance
+        # wiki.archlinux.org/title/improving_performance#Watchdogs
+        "sp5100_tco"
+    ];
     boot.kernelParams = [
         "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
 
