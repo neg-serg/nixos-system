@@ -101,6 +101,8 @@
         "tsc=reliable"
         "vt.global_cursor_default=0"
         "preempt=full"
+        "pti=off"
+        "scsi_mod.use_blk_mq=1"
     ];
     boot.extraModulePackages = [];
 }
