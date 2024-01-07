@@ -18,7 +18,10 @@
     nix.extraOptions = ''experimental-features = nix-command flakes repl-flake'';
     nix.settings = {
         trusted-users = ["root" "neg"];
-        substituters = ["https://ezkea.cachix.org" "https://nix-gaming.cachix.org"];
+        substituters = [
+            "https://ezkea.cachix.org"
+            "https://nix-gaming.cachix.org"
+        ];
         trusted-public-keys = [
             "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
             "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
