@@ -31,6 +31,7 @@
                 modules = [
                     ./configuration.nix
                     chaotic.nixosModules.default
+                    nix-gaming.nixosModules.pipewireLowLatency
                 ];
             };
         };
