@@ -163,6 +163,10 @@
         nvd # compare versions: nvd diff /run/current-system result
         statix # static analyzer for nix
 
+        bash-completion
+        nix-bash-completions
+        nix-zsh-completions
+
         abduco # cli session detach
         lsof # list open something
         parallel # parallel xargs
