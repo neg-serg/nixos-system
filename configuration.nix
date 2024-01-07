@@ -131,11 +131,11 @@
         aircrack-ng # stuff for wifi security
         curl
         hcxdumptool # wpa scanner
-        nmap # port scanner
         httpie # fancy curl
         httpstat # fancy curl -v
         netdiscover # another network scan
         netsniff-ng # sniffer
+        nmap # port scanner
         sshfs # ssh mount
         tcpdump # best friend to show network stuff
         tshark # sniffer tui
