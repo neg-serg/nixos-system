@@ -121,6 +121,8 @@
         aircrack-ng # stuff for wifi security
         curl
         hcxdumptool # wpa scanner
+        httpie # fancy curl
+        httpstat # fancy curl -v
         netdiscover # another network scan
         netsniff-ng # sniffer
         sshfs # ssh mount
