@@ -36,6 +36,7 @@
     services.psd.enable = true;
     services.gvfs.enable = true;
     services.udisks2.enable = true;
+    services.icqbalance.enable = true;
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
     security.sudo.execWheelOnly = true;
