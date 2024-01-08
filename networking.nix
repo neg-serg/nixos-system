@@ -14,7 +14,7 @@
         # Unconditionally disable this Removes the time in the startup where the system waits for a connection
         NetworkManager-wait-online.enable = false;
     };
-    networking.search = [(builtins.readFile ./domains)];
+    # networking.search = [(builtins.readFile ./domains)];
     networking.nameservers = [
         "1.1.1.1"
         # OpenVPN defined name servers
