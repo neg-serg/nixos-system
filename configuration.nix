@@ -37,6 +37,7 @@
     services.gvfs.enable = true;
     services.udisks2.enable = true;
     services.irqbalance.enable = true;
+    services.vnstat.enable = true;
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
     security.sudo.execWheelOnly = true;
