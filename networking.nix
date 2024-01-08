@@ -2,7 +2,16 @@
 {
     networking.hostName = "telfir"; # Define your hostname.
     networking.wireless.enable = false;  # Enables wireless support via wpa_supplicant.
-    networking.useDHCP = lib.mkDefault true;
+    systemd.network.enable = true;
+    systemd.network.networks."10-lan" = {
+        matchConfig.Name = "net0";
+        networkConfig.DHCP = "ipv4";
+    };
+    systemd.network.networks."11-lan" = {
+        matchConfig.Name = "net1";
+        networkConfig.DHCP = "ipv4";
+    };
+
     services.udev.extraRules = ''
         KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0e", NAME="net0"
         KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0f", NAME="net1"
