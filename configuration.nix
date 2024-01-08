@@ -231,7 +231,6 @@
         atop = { enable = true; };
         dconf = { enable = true; };
         gamemode = { enable = true; };
-        mangohud = { enable = true; };
         mtr = { enable = true; };
         nix-ld = { enable = true; };
         zsh = { enable = true; };
