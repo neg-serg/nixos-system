@@ -232,6 +232,7 @@
         gamemode = { enable = true; };
         mtr = { enable = true; };
         zsh = { enable = true; };
+        nix-ld = { enable = true; };
         steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
