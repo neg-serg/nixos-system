@@ -14,4 +14,8 @@
         # Unconditionally disable this Removes the time in the startup where the system waits for a connection
         NetworkManager-wait-online.enable = false;
     };
+    services.udev.extraRules = ''
+        KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0e", NAME="net0"
+        KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0f", NAME="net1"
+    '';
 }
