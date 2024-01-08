@@ -17,10 +17,8 @@
     # networking.search = [(builtins.readFile ./domains)];
     networking.nameservers = [
         "1.1.1.1"
-        # OpenVPN defined name servers
-        "172.20.64.1"
-        # System defined name servers
-        "127.0.0.53"
+        "172.20.64.1" # OpenVPN defined name servers
+        "127.0.0.53" # System defined name servers
     ];
     services.udev.extraRules = ''
         KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0e", NAME="net0"
