@@ -189,9 +189,10 @@
         tmux # better screen
         zsh # better shell
 
+        btop # even more fancy top
         htop # fancy top
         iotop # top for iops
-        btop # even more fancy top
+        nvtop-amd # nvidia top
 
         terminus-nerdfont # font for console
 
