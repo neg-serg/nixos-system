@@ -164,6 +164,7 @@
         vis # minimal editor
         neovim # better vim
 
+        dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
         nh # some nice nix commands
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
