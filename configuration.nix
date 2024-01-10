@@ -206,6 +206,7 @@
 
         gnomeExtensions.appindicator
         gnome.gnome-settings-daemon
+        gnome.gnome-color-manager
 
         exfat
         fio # disk test
