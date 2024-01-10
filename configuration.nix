@@ -142,6 +142,7 @@
         iftop # display bandwidth
         magic-wormhole # secure transfer between computers
         netcat-openbsd # openbsd netcat variant
+        ipcalc # calculate ip addr stuff
         netdiscover # another network scan
         netsniff-ng # sniffer
         nmap # port scanner
@@ -165,6 +166,7 @@
         hyperfine # command-line benchmarking tool
         ltrace # trace functions
         pkgconf # package compiler and linker metadata toolkit (wrapper script)
+        radare2 # free disassembler
         strace # trace system-calls
 
         git
@@ -175,7 +177,7 @@
         chrpath # adjust rpath for ELF
         debugedit # debug info rewrite
         delta
-        elftutils # set of utilities to handle ELF objects
+        elfutils # set of utilities to handle ELF objects
         eza # more modern version of exa ls replacer
         fd # better find
         file # get filetype from content
@@ -212,6 +214,7 @@
         pv # pipe viewer
         reptyr # move app to another pty, tmux as an example
         ripgrep # better grep
+        rlwrap # readline wrapper for everything
         tig # git viewer
         tmux # better screen
         zsh # better shell
@@ -252,6 +255,8 @@
         ddccontrol # ddc control
         ddcutil # rule monitor params
         edid-decode # edid decoder and tester
+        xcalib # stuff for icc profiles
+
         lm_sensors # sensors
         pciutils # manipulate pci devices
         read-edid # tool to read and parse edid from monitors
