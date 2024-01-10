@@ -125,18 +125,26 @@
         flat-remix-gtk
         flat-remix-icon-theme
         bibata-cursors
+        
+        efibootmgr # rule efi boot
+        efivar # manipulate efi vars
 
         aircrack-ng # stuff for wifi security
         curl
+        fping # like ping -c1
         hcxdumptool # wpa scanner
         httpie # fancy curl
         httpstat # fancy curl -v
         netdiscover # another network scan
         netsniff-ng # sniffer
         nmap # port scanner
+        socat # multipurpose relay
         sshfs # ssh mount
         tcpdump # best friend to show network stuff
+        tcptraceroute # traceroute without icmp
+        traceroute # basic traceroute
         tshark # sniffer tui
+        w3m # cli browser
         wget
 
         foremost # files extact from structure
@@ -184,6 +192,8 @@
         lsof # list open something
         parallel # parallel xargs
         psmisc # killall and friends
+        pv # pipe viewer
+        reptyr # move app to another pty, tmux as an example
         ripgrep # better grep
         tig # git viewer
         tmux # better screen
@@ -192,7 +202,9 @@
         btop # even more fancy top
         htop # fancy top
         iotop # top for iops
+        nethogs # network traffic per process
         nvtop-amd # nvidia top
+        powertop # watch for power events
 
         terminus-nerdfont # font for console
 
@@ -212,8 +224,9 @@
         fio # disk test
         gparted # gtk frontend for parted disk manager
 
-        lm_sensors # sensors
+        ddccontrol # ddc control
         ddcutil # rule monitor params
+        lm_sensors # sensors
     ];
 
     systemd.extraConfig = ''
