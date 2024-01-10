@@ -208,6 +208,7 @@
         gnome.gnome-settings-daemon
 
         gparted # gtk frontend for parted disk manager
+        fio # disk test
         exfat
 
         lm_sensors # sensors
