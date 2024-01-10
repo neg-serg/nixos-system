@@ -207,9 +207,9 @@
         gnomeExtensions.appindicator
         gnome.gnome-settings-daemon
 
-        gparted # gtk frontend for parted disk manager
-        fio # disk test
         exfat
+        fio # disk test
+        gparted # gtk frontend for parted disk manager
 
         lm_sensors # sensors
         ddcutil # rule monitor params
