@@ -130,6 +130,7 @@
         efivar # manipulate efi vars
 
         aircrack-ng # stuff for wifi security
+        bandwhich # display network utilization per process
         curl
         fping # like ping -c1
         hcxdumptool # wpa scanner
@@ -147,6 +148,7 @@
         w3m # cli browser
         wget
 
+        ddrescue # data recovery tool
         foremost # files extact from structure
         hashcat # password recovery
         qFlipper # desktop stuff for flipper zero
@@ -163,11 +165,14 @@
 
         openvpn # gnu/gpl vpn
 
-        patchelf # for fixing up binaries in nix
+        chrpath # adjust rpath for ELF
+        debugedit # debug info rewrite
         delta
+        elftuils # set of utilities to handle ELF objects
         eza # more modern version of exa ls replacer
         fd # better find
         file # get filetype from content
+        patchelf # for fixing up binaries in nix
 
         vis # minimal editor
         neovim # better vim
@@ -220,6 +225,7 @@
         gnome.gnome-settings-daemon
         gnome.gnome-color-manager
 
+        blktrace # another disk test
         exfat
         fio # disk test
         gparted # gtk frontend for parted disk manager
