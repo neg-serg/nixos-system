@@ -123,6 +123,7 @@
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
         fwupd fwupd-efi # firmware update
+        os-prober # utility to detect other OSs on a set of drives
 
         aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
@@ -140,6 +141,7 @@
         netcat-openbsd # openbsd netcat variant
         netdiscover # another network scan
         netsniff-ng # sniffer
+        nettools # controlling the network subsystem in Linux
         nmap # port scanner
         socat # multipurpose relay
         sshfs # ssh mount
@@ -172,6 +174,7 @@
         chrpath # adjust rpath for ELF
         debugedit # debug info rewrite
         delta
+        dump_syms # parsing the debugging information
         elfutils # set of utilities to handle ELF objects
         eza # more modern version of exa ls replacer
         fd # better find
@@ -217,16 +220,25 @@
         btop # even more fancy top
         htop # fancy top
         iotop # top for iops
+        iperf iperf2 # IP bandwidth measurement
         nethogs # network traffic per process
+        nvitop # yet another nvidia top
         nvtop-amd # nvidia top
         powertop # watch for power events
         procdump # procdump for linux
+        sysstat # sar and friends
+        vmtouch # portable file system cache diagnostics and control
 
         terminus-nerdfont # font for console
 
         keyd # systemwide key manager
 
+        opensc # libraries and utilities to access smart cards
+        p11-kit # loading and sharing PKCS#11 modules
         pass-secret-service # gnome-keyring alternative via paste
+        pcscliteWithPolkit # middleware to access a smart card using SCard API (PC/SC)
+        pcsctools # tools used to test a PC/SC driver, card or reader
+        pkcs11helper # library that simplifies the interaction with PKCS#11 providers
         pwgen # generate passwords
 
         linuxKernel.packages.linux_6_6.perf
@@ -237,6 +249,7 @@
         gnome.gnome-color-manager
 
         blktrace # another disk test
+        dmraid # Old-style RAID configuration utility
         exfat
         fio # disk test
         gparted # gtk frontend for parted disk manager
@@ -251,11 +264,12 @@
         ddccontrol # ddc control
         ddcutil # rule monitor params
         edid-decode # edid decoder and tester
+        read-edid # tool to read and parse edid from monitors
         xcalib # stuff for icc profiles
 
         lm_sensors # sensors
         pciutils # manipulate pci devices
-        read-edid # tool to read and parse edid from monitors
+        schedtool # CPU scheduling
 
     ];
 
