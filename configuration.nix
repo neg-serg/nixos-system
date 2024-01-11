@@ -32,12 +32,6 @@
     nixpkgs.config.allowUnfree = true;
 
     systemd.packages = [pkgs.packagekit];
-    services.pcscd.enable = true;
-    services.psd.enable = true;
-    services.gvfs.enable = true;
-    services.udisks2.enable = true;
-    services.irqbalance.enable = true;
-    services.vnstat.enable = true;
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
     security.sudo.execWheelOnly = true;
@@ -269,15 +263,6 @@
         DefaultTimeoutStopSec=10s
     '';
 
-    # Boot optimizations regarding filesystem:
-    # Journald was taking too long to copy from runtime memory to disk at boot
-    # set storage to "auto" if you're trying to troubleshoot a boot issue
-    services.journald.extraConfig = ''
-        Storage=auto
-        SystemMaxFileSize=300M
-        SystemMaxFiles=50
-    '';
-
     environment.shells = with pkgs; [zsh];
 
     programs = {
@@ -296,8 +281,23 @@
 
     services = {
         flatpak.enable = true;
+        gvfs.enable = true;
+        irqbalance.enable = true;
         openssh.enable = true;
+        pcscd.enable = true;
+        psd.enable = true;
         udev.packages = with pkgs; [gnome.gnome-settings-daemon yubikey-personalization];
+        udisks2.enable = true;
+        vnstat.enable = true;
+
+        # Boot optimizations regarding filesystem:
+        # Journald was taking too long to copy from runtime memory to disk at boot
+        # set storage to "auto" if you're trying to troubleshoot a boot issue
+        journald.extraConfig = ''
+            Storage=auto
+            SystemMaxFileSize=300M
+            SystemMaxFiles=50
+        '';
     };
 
     xdg.portal = {
