@@ -137,12 +137,15 @@
         iftop # display bandwidth
         inetutils # common network programs
         ipcalc # calculate ip addr stuff
+        iputils # set of small useful utilities for Linux networking
+        kexec-tools # tools related to the kexec Linux feature
         magic-wormhole # secure transfer between computers
         netcat-openbsd # openbsd netcat variant
         netdiscover # another network scan
         netsniff-ng # sniffer
         nettools # controlling the network subsystem in Linux
         nmap # port scanner
+        procps # info about processes using /proc
         socat # multipurpose relay
         sshfs # ssh mount
         tcpdump # best friend to show network stuff
