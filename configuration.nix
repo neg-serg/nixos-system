@@ -140,9 +140,10 @@
         httpie # fancy curl
         httpstat # fancy curl -v
         iftop # display bandwidth
+        inetutils # common network programs
+        ipcalc # calculate ip addr stuff
         magic-wormhole # secure transfer between computers
         netcat-openbsd # openbsd netcat variant
-        ipcalc # calculate ip addr stuff
         netdiscover # another network scan
         netsniff-ng # sniffer
         nmap # port scanner
@@ -247,6 +248,7 @@
         gparted # gtk frontend for parted disk manager
         hddtemp # display hard disk temperature
         hdparm # set ata/sata params
+        ioping # io latency measuring tool
         mtools # utils for msdos disks
         nvme-cli # nvme manage tools
         ostree # git for os binaries
