@@ -128,14 +128,17 @@
         
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
+        fwupd fwupd-efi # firmware update
 
         aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
         curl
+        ethtool # control eth hardware and drivers
         fping # like ping -c1
         hcxdumptool # wpa scanner
         httpie # fancy curl
         httpstat # fancy curl -v
+        iftop # display bandwidth
         netdiscover # another network scan
         netsniff-ng # sniffer
         nmap # port scanner
@@ -168,7 +171,7 @@
         chrpath # adjust rpath for ELF
         debugedit # debug info rewrite
         delta
-        elftuils # set of utilities to handle ELF objects
+        elftutils # set of utilities to handle ELF objects
         eza # more modern version of exa ls replacer
         fd # better find
         file # get filetype from content
@@ -194,6 +197,7 @@
         nix-zsh-completions
 
         abduco # cli session detach
+        diffutils # classic diff utils
         lsof # list open something
         parallel # parallel xargs
         psmisc # killall and friends
@@ -229,6 +233,8 @@
         exfat
         fio # disk test
         gparted # gtk frontend for parted disk manager
+        hddtemp # display hard disk temperature
+        hdparm # set ata/sata params
 
         ddccontrol # ddc control
         ddcutil # rule monitor params
