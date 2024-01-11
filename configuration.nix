@@ -135,10 +135,13 @@
         curl
         ethtool # control eth hardware and drivers
         fping # like ping -c1
+        geoip # geoip lookup
         hcxdumptool # wpa scanner
         httpie # fancy curl
         httpstat # fancy curl -v
         iftop # display bandwidth
+        magic-wormhole # secure transfer between computers
+        netcat-openbsd # openbsd netcat variant
         netdiscover # another network scan
         netsniff-ng # sniffer
         nmap # port scanner
@@ -161,6 +164,7 @@
         gdb # gnu debugger
         hyperfine # command-line benchmarking tool
         ltrace # trace functions
+        pkgconf # package compiler and linker metadata toolkit (wrapper script)
         strace # trace system-calls
 
         git
@@ -180,6 +184,8 @@
         vis # minimal editor
         neovim # better vim
 
+        office-code-pro # customized source code pro
+
         dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
         nh # some nice nix commands
@@ -198,8 +204,10 @@
 
         abduco # cli session detach
         diffutils # classic diff utils
+        inotify-tools # shell inotify bindings
         lsof # list open something
         parallel # parallel xargs
+        progress # show progress over all coreutils
         psmisc # killall and friends
         pv # pipe viewer
         reptyr # move app to another pty, tmux as an example
@@ -214,6 +222,7 @@
         nethogs # network traffic per process
         nvtop-amd # nvidia top
         powertop # watch for power events
+        procdump # procdump for linux
 
         terminus-nerdfont # font for console
 
@@ -235,10 +244,18 @@
         gparted # gtk frontend for parted disk manager
         hddtemp # display hard disk temperature
         hdparm # set ata/sata params
+        mtools # utils for msdos disks
+        nvme-cli # nvme manage tools
+        ostree # git for os binaries
+        parted # cli disk manager
 
         ddccontrol # ddc control
         ddcutil # rule monitor params
+        edid-decode # edid decoder and tester
         lm_sensors # sensors
+        pciutils # manipulate pci devices
+        read-edid # tool to read and parse edid from monitors
+
     ];
 
     systemd.extraConfig = ''
