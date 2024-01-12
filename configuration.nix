@@ -215,6 +215,7 @@
         progress # show progress over all coreutils
         psmisc # killall and friends
         pv # pipe viewer
+        readline # readline library
         reptyr # move app to another pty, tmux as an example
         ripgrep # better grep
         rlwrap # readline wrapper for everything
@@ -226,6 +227,7 @@
         htop # fancy top
         iotop # top for iops
         iperf iperf2 # IP bandwidth measurement
+        linuxKernel.packages.linux_6_7.turbostat # cpu monitor
         nethogs # network traffic per process
         nvitop # yet another nvidia top
         nvtop-amd # nvidia top
