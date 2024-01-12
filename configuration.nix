@@ -169,8 +169,10 @@
         radare2 # free disassembler
         strace # trace system-calls
 
-        git
-        git-extras
+        git # my favorite dvcs
+        git-extras # git extra stuff
+        git-filter-repo # quickly rewrite git history
+        git-lfs # git extension for large files
 
         openvpn # gnu/gpl vpn
 
@@ -270,9 +272,13 @@
         read-edid # tool to read and parse edid from monitors
         xcalib # stuff for icc profiles
 
+        dmidecode # extract system/memory/bios info
         lm_sensors # sensors
         pciutils # manipulate pci devices
         schedtool # CPU scheduling
+
+        xdg-user-dirs
+        xdg-utils
 
     ];
 
