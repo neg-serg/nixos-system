@@ -160,7 +160,6 @@
         hashcat # password recovery
         qFlipper # desktop stuff for flipper zero
 
-        android-tools # android debug stuff
         gcc # gnu compiler collection
         gdb # gnu debugger
         hyperfine # command-line benchmarking tool
@@ -311,7 +310,11 @@
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
-        udev.packages = with pkgs; [gnome.gnome-settings-daemon yubikey-personalization];
+        udev.packages = with pkgs; [
+            android-udev-rules
+            gnome.gnome-settings-daemon
+            yubikey-personalization
+        ];
         udisks2.enable = true;
         vnstat.enable = true;
 
