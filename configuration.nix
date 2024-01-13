@@ -101,6 +101,7 @@
         isNormalUser = true;
         description = "Neg";
         extraGroups = [
+            "adbusers"
             "audio"
             "i2c"
             "input"
