@@ -36,6 +36,9 @@
     systemd = {
         extraConfig = '' DefaultTimeoutStopSec=10s '';
         packages = [pkgs.packagekit];
+
+        services."autovt@tty1".enable = false;
+        services."getty@tty1".enable = false;
     };
 
     security = {
@@ -114,11 +117,11 @@
                 "i2c"
                 "input"
                 "neg"
-                "networkmanager" 
+                "networkmanager"
                 "openrazer"
-                "systemd-journal" 
-                "video" 
-                "wheel" 
+                "systemd-journal"
+                "video"
+                "wheel"
             ];
         };
         defaultUserShell = pkgs.zsh;
@@ -127,7 +130,7 @@
 
     environment.systemPackages = with pkgs; [
         bibata-cursors
-        
+
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
         fwupd fwupd-efi # firmware update
