@@ -262,10 +262,6 @@
         linuxKernel.packages.linux_6_6.perf
         scx # for cachyos sched
 
-        gnomeExtensions.appindicator
-        gnome.gnome-settings-daemon
-        gnome.gnome-color-manager
-
         blktrace # another disk test
         dmraid # Old-style RAID configuration utility
         exfat
@@ -318,13 +314,10 @@
         psd.enable = true;
         udev.packages = with pkgs; [
             android-udev-rules
-            gnome.gnome-settings-daemon
             yubikey-personalization
         ];
         udisks2.enable = true;
         vnstat.enable = true;
-
-        xserver.desktopManager.gnome.enable = true;
 
         # Boot optimizations regarding filesystem:
         # Journald was taking too long to copy from runtime memory to disk at boot
@@ -338,7 +331,7 @@
 
     xdg.portal = {
         enable = true;
-        # extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        extraPortals = [pkgs.xdg-desktop-portal-gtk];
         config.common.default = "gtk";
     };
 
