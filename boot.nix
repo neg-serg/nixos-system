@@ -4,8 +4,9 @@
     boot.loader = {
         efi.canTouchEfiVariables = true;
         systemd-boot.consoleMode = "max";
-        systemd-boot.enable = true;
         systemd-boot.editor = false; # close security hole
+        systemd-boot.enable = true;
+        timeout = 3;
     };
     boot.initrd = {
         availableKernelModules = [
