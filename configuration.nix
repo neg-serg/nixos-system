@@ -31,6 +31,34 @@
     nix.gc = {automatic = true; dates = "weekly"; options = "--delete-older-than 21d";};
     nixpkgs.config.allowUnfree = true;
 
+    nixpkgs = {
+        overlays = [
+          (self: super: {
+            gnome = super.gnome.overrideScope' (selfg: superg: {
+              gnome-shell = superg.gnome-shell.overrideAttrs (old: {
+                patches = (old.patches or []) ++ [
+                  (let
+                    bg = pkgs.fetchurl {
+                      url = "https://disk.yandex.ru/i/dVu2gCXpcoGyCQ";
+                      sha256 = "aniZnfrlpDsrfvqjb2QS3P5rlg9KbTp6W2aICdq2WTM=";
+                    };
+                  in pkgs.writeText "bg.patch" ''
+                    --- a/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+                    +++ b/data/theme/gnome-shell-sass/widgets/_login-lock.scss
+                    @@ -15,4 +15,5 @@ $_gdm_dialog_width: 23em;
+                     /* Login Dialog */
+                     .login-dialog {
+                       background-color: $_gdm_bg;
+                    +  background-image: url('file://${bg}');
+                     }
+                  '')
+                ];
+              });
+            });
+          })
+        ];
+    };
+
     systemd.packages = [pkgs.packagekit];
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
