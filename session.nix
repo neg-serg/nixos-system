@@ -14,6 +14,11 @@
             autoLogin.enable = false;
             autoLogin.user = "neg";
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
+            gdm = {
+                enable = true;
+                wayland = true;
+                autoSuspend = false;
+            };
         };
     };
 }
