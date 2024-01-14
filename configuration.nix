@@ -36,8 +36,6 @@
     systemd = {
         extraConfig = '' DefaultTimeoutStopSec=10s '';
         packages = [pkgs.packagekit];
-        services."autovt@tty1".enable = false;
-        services."getty@tty1".enable = false;
     };
 
     security = {
