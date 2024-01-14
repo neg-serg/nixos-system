@@ -127,4 +127,5 @@
         "scsi_mod.use_blk_mq=1"
     ];
     boot.extraModulePackages = [];
+    boot.consoleLogLevel = 1;
 }
