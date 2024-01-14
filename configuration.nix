@@ -323,13 +323,6 @@
         upower.enable = true;
         vnstat.enable = true;
 
-        # Enable plymouth boot splash screen
-        plymouth = {
-            enable = true;
-            # theme = "angular";
-            # themePackages = [ angular_plymouth_theme ];
-        };
-
         # Boot optimizations regarding filesystem:
         # Journald was taking too long to copy from runtime memory to disk at boot
         # set storage to "auto" if you're trying to troubleshoot a boot issue
