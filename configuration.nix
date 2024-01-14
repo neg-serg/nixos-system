@@ -319,6 +319,8 @@
         udisks2.enable = true;
         vnstat.enable = true;
 
+        xserver.desktopManager.gnome.enable = true;
+
         # Boot optimizations regarding filesystem:
         # Journald was taking too long to copy from runtime memory to disk at boot
         # set storage to "auto" if you're trying to troubleshoot a boot issue
@@ -331,7 +333,7 @@
 
     xdg.portal = {
         enable = true;
-        extraPortals = [pkgs.xdg-desktop-portal-gtk];
+        # extraPortals = [pkgs.xdg-desktop-portal-gtk];
         config.common.default = "gtk";
     };
 
