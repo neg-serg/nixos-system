@@ -133,7 +133,6 @@
 
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
-        fwupd fwupd-efi # firmware update
         os-prober # utility to detect other OSs on a set of drives
 
         aircrack-ng # stuff for wifi security
@@ -306,7 +305,9 @@
     };
 
     services = {
+        acpid.enable = true; # events for some hardware actions
         flatpak.enable = true;
+        fwupd.enable = true;
         gvfs.enable = true;
         irqbalance.enable = true;
         openssh.enable = true;
@@ -317,6 +318,7 @@
             yubikey-personalization
         ];
         udisks2.enable = true;
+        upower.enable = true;
         vnstat.enable = true;
 
         # Boot optimizations regarding filesystem:
