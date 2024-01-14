@@ -132,7 +132,7 @@
     };
 
     environment.systemPackages = with pkgs; [
-        bibata-cursors
+        bibata-cursors # my favorite cursors
 
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
@@ -140,7 +140,7 @@
 
         aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
-        curl
+        curl # transfer curl
         ethtool # control eth hardware and drivers
         fping # like ping -c1
         geoip # geoip lookup
@@ -166,7 +166,7 @@
         traceroute # basic traceroute
         tshark # sniffer tui
         w3m # cli browser
-        wget
+        wget # non-interactive downloader
 
         ddrescue # data recovery tool
         foremost # files extact from structure
@@ -290,7 +290,6 @@
 
         xdg-user-dirs
         xdg-utils
-
     ];
 
     programs = {
