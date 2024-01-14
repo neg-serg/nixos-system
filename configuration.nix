@@ -39,6 +39,7 @@
     security.polkit.enable = true;
     security.pam = { loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}]; };
 
+    environment.shells = with pkgs; [zsh];
     # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
     # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
     environment.sessionVariables = rec {
@@ -96,26 +97,28 @@
         lowLatency = { enable = true; quantum = 64; rate = 48000; };
     };
 
-    users.users.neg = {
-        packages = with pkgs; [pam_u2f python3-lto];
-        isNormalUser = true;
-        description = "Neg";
-        extraGroups = [
-            "adbusers"
-            "audio"
-            "i2c"
-            "input"
-            "neg"
-            "networkmanager" 
-            "openrazer"
-            "systemd-journal" 
-            "video" 
-            "wheel" 
-        ];
+    users = {
+        users.neg = {
+            packages = with pkgs; [pam_u2f python3-lto];
+            isNormalUser = true;
+            description = "Neg";
+            extraGroups = [
+                "adbusers"
+                "audio"
+                "i2c"
+                "input"
+                "neg"
+                "networkmanager" 
+                "openrazer"
+                "systemd-journal" 
+                "video" 
+                "wheel" 
+            ];
+        };
+        defaultUserShell = pkgs.zsh;
+        groups.neg.gid = 1000;
     };
 
-    users.defaultUserShell = pkgs.zsh;
-    users.groups.neg.gid = 1000;
     environment.systemPackages = with pkgs; [
         flat-remix-gtk
         flat-remix-icon-theme
@@ -287,8 +290,6 @@
     systemd.extraConfig = ''
         DefaultTimeoutStopSec=10s
     '';
-
-    environment.shells = with pkgs; [zsh];
 
     programs = {
         atop = { enable = true; };
