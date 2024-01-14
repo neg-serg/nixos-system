@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
-{
+let 
+     tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.nix { };
+in {
+    environment.systemPackages = with pkgs; [ tokyo-night-sddm ];
     services.xserver = {
         enable = true; # Enable the X11 windowing system.
         exportConfiguration = true;
@@ -14,11 +17,7 @@
             autoLogin.enable = false;
             autoLogin.user = "neg";
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
-            gdm = {
-                enable = true;
-                wayland = true;
-                autoSuspend = false;
-            };
+            sddm = { enable = true; theme = "tokyo-night-sddm"; };
         };
     };
 }
