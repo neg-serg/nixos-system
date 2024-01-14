@@ -126,8 +126,6 @@
     };
 
     environment.systemPackages = with pkgs; [
-        flat-remix-gtk
-        flat-remix-icon-theme
         bibata-cursors
         
         efibootmgr # rule efi boot
