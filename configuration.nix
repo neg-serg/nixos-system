@@ -34,6 +34,7 @@
     nixpkgs.config.allowUnfree = true;
 
     systemd = {
+        coredump.enable = true;
         extraConfig = '' DefaultTimeoutStopSec=10s '';
         packages = [pkgs.packagekit];
 
