@@ -280,6 +280,7 @@
         dmidecode # extract system/memory/bios info
         lm_sensors # sensors
         pciutils # manipulate pci devices
+        usbutils # lsusb
         schedtool # CPU scheduling
 
         xdg-user-dirs
