@@ -16,28 +16,37 @@
         ./keyd.nix
         ./kmscon.nix
     ];
-    nix.extraOptions = ''experimental-features = nix-command flakes repl-flake'';
-    nix.settings = {
-        trusted-users = ["root" "neg"];
-        substituters = [
-            "https://ezkea.cachix.org"
-            "https://nix-gaming.cachix.org"
-        ];
-        trusted-public-keys = [
-            "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-            "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-        ];
+    nix = {
+        extraOptions = ''experimental-features = nix-command flakes repl-flake'';
+        settings = {
+            trusted-users = ["root" "neg"];
+            substituters = [
+                "https://ezkea.cachix.org"
+                "https://nix-gaming.cachix.org"
+            ];
+            trusted-public-keys = [
+                "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
+                "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+            ];
+        };
+        gc = {automatic = true; dates = "weekly"; options = "--delete-older-than 21d";};
     };
-    nix.gc = {automatic = true; dates = "weekly"; options = "--delete-older-than 21d";};
     nixpkgs.config.allowUnfree = true;
 
-    systemd.packages = [pkgs.packagekit];
-    systemd.services."getty@tty1".enable = false;
-    systemd.services."autovt@tty1".enable = false;
-    security.sudo.execWheelOnly = true;
-    security.sudo.wheelNeedsPassword = false;
-    security.polkit.enable = true;
-    security.pam = { loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}]; };
+    systemd = {
+        extraConfig = '' DefaultTimeoutStopSec=10s '';
+        packages = [pkgs.packagekit];
+        services."autovt@tty1".enable = false;
+        services."getty@tty1".enable = false;
+    };
+
+    security = {
+        pam = { loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}]; };
+        polkit.enable = true;
+        rtkit.enable = true; # rtkit recommended for pipewire
+        sudo.execWheelOnly = true;
+        sudo.wheelNeedsPassword = false;
+    };
 
     environment.shells = with pkgs; [zsh];
     # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
@@ -87,7 +96,6 @@
     powerManagement.cpuFreqGovernor = "performance";
     hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
-    security.rtkit.enable = true; # rtkit is optional but recommended
     services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -286,10 +294,6 @@
         xdg-utils
 
     ];
-
-    systemd.extraConfig = ''
-        DefaultTimeoutStopSec=10s
-    '';
 
     programs = {
         atop = { enable = true; };
