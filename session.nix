@@ -18,7 +18,7 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             session = [{
                 manage="window";
                 name="i3";
-                start=''$HOME/.xsession'';
+                start=''exec env $HOME/.xsession'';
             }];
             sddm = {
                 enable = true;
