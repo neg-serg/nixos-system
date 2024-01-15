@@ -11,12 +11,10 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
         xkbOptions = "grp:alt_shift_toggle";
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
         displayManager = {
-            defaultSession = "negwm";
+            defaultSession = "none+i3";
             autoLogin.enable = false;
             autoLogin.user = "neg";
-            sx.enable = true;
-            startx.enable = true;
-            session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
+            session = [{manage="window"; name="i3"; start=''$HOME/.xsession'';}];
             sddm = {
                 enable = true;
                 theme = "tokyo-night-sddm";
