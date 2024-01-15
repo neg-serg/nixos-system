@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, ... }:
 let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.nix { }; in {
     environment.systemPackages = with pkgs; [tokyo-night-sddm];
     services.xserver = {
@@ -14,17 +14,10 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             defaultSession = "none+i3";
             autoLogin.enable = false;
             autoLogin.user = "neg";
-            sessionCommands = ''
-                ${lib.getBin pkgs.systemd}/bin/systemctl --user import-environment DISPLAY XAUTHORITY SSH_AUTH_SOCK WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
-                ${lib.getBin pkgs.dbus}/bin/dbus-daemon --session --address="unix:path=$XDG_RUNTIME_DIR/bus"
-                ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
-            '';
             session = [{
                 manage="window";
                 name="i3";
-                start=''${pkgs.i3}/bin/i3 &
-                        waitpid $!
-                '';
+                start=''$HOME/.xsession'';
             }];
             sddm = {
                 enable = true;
