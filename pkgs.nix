@@ -27,6 +27,7 @@
         nettools # controlling the network subsystem in Linux
         nmap # port scanner
         procps # info about processes using /proc
+        rclone # rsync for cloud storage
         socat # multipurpose relay
         sshfs # ssh mount
         tcpdump # best friend to show network stuff
