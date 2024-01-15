@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.nix { }; in {
     environment.systemPackages = with pkgs; [tokyo-night-sddm];
     services.xserver = {
@@ -14,6 +14,7 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             defaultSession = "none+i3";
             autoLogin.enable = false;
             autoLogin.user = "neg";
+            sessionCommands = ''${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all'';
             session = [{
                 manage="window";
                 name="i3";
