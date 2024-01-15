@@ -10,6 +10,7 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
         xkbVariant = "";
         xkbOptions = "grp:alt_shift_toggle";
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
+        desktopManager = { xterm.enable = false; };
         displayManager = {
             defaultSession = "none+i3";
             autoLogin.enable = false;
