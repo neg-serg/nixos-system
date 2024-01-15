@@ -6,6 +6,8 @@
         efivar # manipulate efi vars
         os-prober # utility to detect other OSs on a set of drives
 
+        dbus-broker # try alternative dbus daemon
+
         aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
         curl # transfer curl
