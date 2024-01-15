@@ -139,6 +139,7 @@
         mtr = { enable = true; };
         nix-ld = { enable = true; };
         zsh = { enable = true; };
+        ssh.startAgent = true;
         steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
