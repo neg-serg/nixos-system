@@ -14,11 +14,17 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             defaultSession = "none+i3";
             autoLogin.enable = false;
             autoLogin.user = "neg";
-            sessionCommands = ''${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all'';
+            sessionCommands = ''
+                ${lib.getBin pkgs.systemd}/bin/systemctl --user import-environment DISPLAY XAUTHORITY SSH_AUTH_SOCK WAYLAND_DISPLAY SWAYSOCK XDG_SESSION_TYPE XDG_SESSION_DESKTOP XDG_CURRENT_DESKTOP
+                ${lib.getBin pkgs.dbus}/bin/dbus-daemon --session --address="unix:path=$XDG_RUNTIME_DIR/bus"
+                ${lib.getBin pkgs.dbus}/bin/dbus-update-activation-environment --systemd --all
+            '';
             session = [{
                 manage="window";
                 name="i3";
-                start=''$HOME/.xsession'';
+                start=''${pkgs.i3}/bin/i3 &
+                        waitpid $!
+                '';
             }];
             sddm = {
                 enable = true;
