@@ -14,7 +14,11 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             defaultSession = "none+i3";
             autoLogin.enable = false;
             autoLogin.user = "neg";
-            session = [{manage="window"; name="i3"; start=''$HOME/.xsession'';}];
+            session = [{
+                manage="window";
+                name="i3";
+                start=''$HOME/.xsession'';
+            }];
             sddm = {
                 enable = true;
                 theme = "tokyo-night-sddm";
