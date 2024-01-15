@@ -14,6 +14,8 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             defaultSession = "negwm";
             autoLogin.enable = false;
             autoLogin.user = "neg";
+            sx.enable = true;
+            startx.enable = true;
             session = [{manage="desktop"; name="negwm"; start=''$HOME/.xsession'';}];
             sddm = {
                 enable = true;
