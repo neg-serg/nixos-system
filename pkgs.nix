@@ -72,6 +72,7 @@
 
         office-code-pro # customized source code pro
 
+        cached-nix-shell # nix-shell with instant startup
         dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
         nh # some nice nix commands
