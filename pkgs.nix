@@ -147,6 +147,7 @@
         nvme-cli # nvme manage tools
         ostree # git for os binaries
         parted # cli disk manager
+        smartmontools # smartctl
 
         ddccontrol # ddc control
         ddcutil # rule monitor params
@@ -157,8 +158,8 @@
         dmidecode # extract system/memory/bios info
         lm_sensors # sensors
         pciutils # manipulate pci devices
-        usbutils # lsusb
         schedtool # CPU scheduling
+        usbutils # lsusb
 
         flatpak-builder # build flatpaks
     ];
