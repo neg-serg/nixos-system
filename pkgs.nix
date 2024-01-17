@@ -123,6 +123,7 @@
 
         keyd # systemwide key manager
 
+        ccrypt # Secure encryption and decryption of files and streams
         opensc # libraries and utilities to access smart cards
         p11-kit # loading and sharing PKCS#11 modules
         pass-secret-service # gnome-keyring alternative via paste
