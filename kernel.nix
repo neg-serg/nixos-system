@@ -125,6 +125,9 @@
         "preempt=full"
         "pti=off"
         "scsi_mod.use_blk_mq=1"
+        # # Security
+        # "page_poison=1" # Overwrite free'd memory
+        # "page_alloc.shuffle=1" # Enable page allocator randomization
     ];
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;

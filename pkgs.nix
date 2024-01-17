@@ -48,6 +48,7 @@
         ltrace # trace functions
         pkgconf # package compiler and linker metadata toolkit (wrapper script)
         radare2 # free disassembler
+        radare2-cutter # Free and Open Source Reverse Engineering Platform powered by rizin
         strace # trace system-calls
 
         git # my favorite dvcs
