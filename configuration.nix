@@ -140,6 +140,12 @@
         nix-ld = { enable = true; };
         zsh = { enable = true; };
         ssh.startAgent = true;
+        gnupg.agent.enable = true;
+        gnupg.agent.settings = lib.mkForce {
+            pinentry-program="${pkgs.pinentry-rofi}/bin/pinentry-rofi";
+            max-cache-ttl="60480000";
+            default-cache-ttl="60480000";
+        };
         steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
