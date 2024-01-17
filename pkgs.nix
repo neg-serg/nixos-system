@@ -161,5 +161,5 @@
         schedtool # CPU scheduling
 
         flatpak-builder # build flatpaks
-        ];
+    ];
 }
