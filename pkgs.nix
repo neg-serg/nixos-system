@@ -85,6 +85,7 @@
         nvd # compare versions: nvd diff /run/current-system result
         statix # static analyzer for nix
 
+        any-nix-shell # nix-shell zsh support
         bash-completion
         nix-bash-completions
         nix-zsh-completions
