@@ -78,6 +78,7 @@
         dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
         nh # some nice nix commands
+        nix-diff # show what causes derivation to be different
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
         nix-index # index for nix-locate
         nix-output-monitor
@@ -87,9 +88,9 @@
         nvd # compare versions: nvd diff /run/current-system result
         statix # static analyzer for nix
 
-        bash-completion
-        nix-bash-completions
-        nix-zsh-completions
+        bash-completion # generic bash completions
+        nix-bash-completions # nix-related bash-completions
+        nix-zsh-completions # nix-related zsh-completion
 
         abduco # cli session detach
         diffutils # classic diff utils
