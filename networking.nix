@@ -2,7 +2,7 @@
 {
     networking = {
         hostName = "telfir"; # Define your hostname.
-        wireless.enable = false;  # Enables wireless support via wpa_supplicant.
+        wireless.iwd.enable = true; # iwctl to manage wifi
         useNetworkd = true;
         nameservers = [
             "1.1.1.1"
