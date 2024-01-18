@@ -9,6 +9,7 @@
         aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
         curl # transfer curl
+        dig # dns command-line tool
         ethtool # control eth hardware and drivers
         fping # like ping -c1
         geoip # geoip lookup
