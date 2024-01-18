@@ -134,7 +134,12 @@
 
     programs = {
         atop = { enable = true; };
-        dconf = { enable = true; };
+        dconf = {
+            enable = true; 
+            settings = {
+                "org/gnome/desktop/interface" = { color-scheme = "prefer-dark"; };
+            };
+        };
         gamemode = { enable = true; };
         mtr = { enable = true; };
         nix-ld = { enable = true; };
