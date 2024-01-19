@@ -162,13 +162,14 @@
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
-        udev.packages = with pkgs; [
-            android-udev-rules
-            yubikey-personalization
-        ];
+        udev.packages = with pkgs; [ android-udev-rules yubikey-personalization ];
         udisks2.enable = true;
         upower.enable = true;
         vnstat.enable = true;
+
+        logind = { extraConfig = ''
+            IdleAction=ignore
+        ''; };
 
         # Boot optimizations regarding filesystem:
         # Journald was taking too long to copy from runtime memory to disk at boot
