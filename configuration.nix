@@ -42,7 +42,17 @@
     };
 
     security = {
-        pam = { loginLimits = [{domain = "@users"; item = "rtprio"; type = "-"; value = 1;}]; };
+        pam = { 
+            loginLimits = [
+                {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
+                {domain = "@audio"; item = "rtprio"; type = "-"; value = "95";}
+                {domain = "@audio"; item = "nice"; type = "-"; value = "-19";}
+                {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
+                {domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited";}
+                {domain = "@realtime"; item = "nice" type = "-"; value = "-11";}
+                {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
+            ];
+        };
         polkit.enable = true;
         rtkit.enable = true; # rtkit recommended for pipewire
         sudo.execWheelOnly = true;
