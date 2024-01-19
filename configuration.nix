@@ -49,7 +49,7 @@
                 {domain = "@audio"; item = "nice"; type = "-"; value = "-19";}
                 {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
                 {domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited";}
-                {domain = "@realtime"; item = "nice" type = "-"; value = "-11";}
+                {domain = "@realtime"; item = "nice"; type = "-"; value = "-11";}
                 {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
             ];
         };
