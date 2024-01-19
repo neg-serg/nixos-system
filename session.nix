@@ -3,6 +3,7 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
     environment.systemPackages = with pkgs; [tokyo-night-sddm];
     services.xserver = {
         enable = true; # Enable the X11 windowing system.
+        enableCtrlAltBackspace = true;
         exportConfiguration = true;
         layout = "us,ru";
         autoRepeatDelay = 250;
