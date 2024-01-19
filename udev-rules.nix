@@ -1,5 +1,11 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: {
+    services.udev = {
+      extraRules = ''
+          KERNEL=="rtc0", GROUP="audio"
+          KERNEL=="hpet", GROUP="audio"
+          '';
+    };
+
     # Various controller udev rules stolen from https://gitlab.com/fabiscafe/game-devices-udev
     services.udev.extraRules = ''
         # 8Bitdo F30 P1
