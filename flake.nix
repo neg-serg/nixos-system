@@ -10,7 +10,6 @@
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         nur.url = "github:nix-community/NUR";
         nix-ld.url = "github:Mic92/nix-ld";
-        agenix.url = "github:ryantm/agenix";
     };
     outputs = {
         self
@@ -25,7 +24,6 @@
         , nur
         , disko
         , nix-ld
-        , agenix
         } @inputs: {
         nixosConfigurations = {
             telfir = nixpkgs.lib.nixosSystem {
