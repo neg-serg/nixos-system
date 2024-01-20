@@ -164,5 +164,9 @@
         usbutils # lsusb
 
         flatpak-builder # build flatpaks
+
+        (inputs.nix-gaming.packages.${pkgs.hostPlatform.system}.star-citizen.override {
+            location  = "$HOME/games/star-citizen";
+        })
     ];
 }
