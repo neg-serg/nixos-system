@@ -24,10 +24,12 @@
         , nixpkgs-stable
         , nixtheplanet
         , nur
-        } @inputs: {
+        } @inputs: 
+        let system = "x86_64-linux"; in {
         nixosConfigurations = {
             telfir = nixpkgs.lib.nixosSystem {
-                system = "x86_64-linux";
+                inherit system;
+                specialArgs = {inherit inputs;};
                 modules = [
                     ./configuration.nix
                     chaotic.nixosModules.default
