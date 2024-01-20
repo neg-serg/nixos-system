@@ -40,6 +40,10 @@
         # Bufferbloat mitigations + slight improvement in throughput & latency
         "net.ipv4.tcp_congestion_control" = "bbr";
         "net.core.default_qdisc" = "cake";
+
+        # NixOS configuration for Star Citizen requirements
+        "vm.max_map_count" = 16777216;
+        "fs.file-max" = 524288;
     };
     boot.kernelModules = ["kvm-amd" "tcp_bbr"];
     boot.blacklistedKernelModules=[
