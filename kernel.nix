@@ -151,11 +151,11 @@ let mitigations_settings = [
         "nvidia-drm.modeset=1"
         "page_alloc.shuffle=1"
         "pcie_aspm=performance"
+        "preempt=full"
         "rcupdate.rcu_expedited=1"
+        "scsi_mod.use_blk_mq=1"
         "threadirqs"
         "tsc=reliable"
-        "preempt=full"
-        "scsi_mod.use_blk_mq=1"
     ] ++ mitigations_settings ++ silence ++ no_watchdog;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
