@@ -7,6 +7,7 @@
                 systemd-boot.enable = true;
             timeout = 3;
         };
+        kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
             availableKernelModules = [
                 "nvidia"
