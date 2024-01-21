@@ -1,6 +1,7 @@
 { config, lib, pkgs, modulesPath, packageOverrides, inputs, ... }: {
     environment.systemPackages = with pkgs; [
         bibata-cursors # my favorite cursors
+        flat-remix-gnome # nice theme for gnome
 
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
