@@ -95,6 +95,9 @@
         LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
         WGETRC = "$XDG_CONFIG_HOME/wgetrc";
     };
+    environment.shellInit = ''
+        [ -n "$DISPLAY" ] && ${pkgs.xorg.xhost}/bin/xhost +si:localuser:$USER > /dev/null || true
+        '';
 
     hardware.i2c.enable = true;
     hardware.pulseaudio.enable = false;
