@@ -165,6 +165,8 @@
 
         flatpak-builder # build flatpaks
 
+        xorg.xdpyinfo # display info
+
         (inputs.nix-gaming.packages.${pkgs.hostPlatform.system}.star-citizen.override {
             location  = "$HOME/games/star-citizen";
         })
