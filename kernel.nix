@@ -26,6 +26,24 @@ let mitigations_settings = [
   extra_security = [
       "page_poison=1" # Overwrite free'd memory
       "page_alloc.shuffle=1" # Enable page allocator randomization
+  ];
+  f2fs_root_settings = [
+      "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
+  ];
+  silence = [
+      "quiet"
+      "rd.systemd.show_status=auto"
+      "rd.udev.log_priority=3"
+      "systemd.show_status=false"
+      "vt.global_cursor_default=0"
+  ];
+  acpi_settings = [
+      "acpi_osi=!"
+      "acpi_osi=Linux"
+  ];
+  iommu_on = [
+      "amd_iommu=on"
+      "iommu=pt"
   ]; in {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
@@ -75,11 +93,10 @@ let mitigations_settings = [
     boot.kernelModules = ["kvm-amd" "tcp_bbr"];
     boot.blacklistedKernelModules=[
         "nouveau"
-        # blacklist nvidiafb
-        "snd_hda_intel"
-        "snd_hda_codec_hdmi"
         "snd_hda_codec"
+        "snd_hda_codec_hdmi"
         "snd_hda_core"
+        "snd_hda_intel"
         # Obscure network protocols
         "ax25"
         "netrom"
@@ -87,46 +104,41 @@ let mitigations_settings = [
         # Old or rare or insufficiently audited filesystems
         "adfs"
         "affs"
-        "bfs"
         "befs"
+        "bfs"
+        "cramfs"
         "cramfs"
         "efs"
         "erofs"
         "exofs"
         "freevxfs"
-        "vivid"
-        "gfs2"
-        "ksmbd"
-        "cramfs"
         "freevxfs"
-        "jffs2"
+        "gfs2"
         "hfs"
         "hfsplus"
-        "squashfs"
-        "udf"
         "hpfs"
+        "jffs2"
         "jfs"
+        "ksmbd"
         "minix"
         "nilfs2"
         "omfs"
         "qnx4"
         "qnx6"
+        "squashfs"
         "sysv"
+        "udf"
         "ufs"
-        # Disable watchdog for better performance
-        # wiki.archlinux.org/title/improving_performance#Watchdogs
+        "vivid"
+        # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
         "sp5100_tco"
     ];
-    boot.kernelParams = [
+    boot.kernelParams = f2fs_root_settings ++ [
         "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
 
-        "acpi_osi=!"
-        "acpi_osi=Linux"
-        "amd_iommu=on"
         "audit=0"
         "biosdevname=1"
         "cryptomgr.notests"
-        "iommu=pt"
         "loglevel=0"
         "net.ifnames=0"
         "noreplace-smp"
@@ -135,18 +147,13 @@ let mitigations_settings = [
         "nowatchdog" "kernel.nmi_watchdog=0"
         "nvidia-drm.modeset=1"
         "page_alloc.shuffle=1"
-        "pcie_aspm=off"
-        "quiet"
+        "pcie_aspm=performance"
         "rcupdate.rcu_expedited=1"
-        "rd.systemd.show_status=auto"
-        "rd.udev.log_priority=3"
-        "systemd.show_status=false"
         "threadirqs"
         "tsc=reliable"
-        "vt.global_cursor_default=0"
         "preempt=full"
         "scsi_mod.use_blk_mq=1"
-    ] ++ mitigations_settings;
+    ] ++ mitigations_settings ++ silence;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
 }
