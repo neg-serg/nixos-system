@@ -25,10 +25,18 @@
         , nixtheplanet
         , nur
         } @inputs: 
-        let system = "x86_64-linux"; in {
+        let 
+            locale = "en_US.UTF-8"; # select locale
+            system = "x86_64-linux";
+            timeZone = "Europe/Moscow";
+        in {
         nixosConfigurations = {
             telfir = nixpkgs.lib.nixosSystem {
                 inherit system;
+                specialArgs = {
+                    inherit locale;
+                    inherit timeZone;
+                };
                 specialArgs = {inherit inputs;};
                 modules = [
                     ./configuration.nix

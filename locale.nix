@@ -1,16 +1,15 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, ... }:
-{
-    time.timeZone = "Europe/Moscow";
-    i18n.defaultLocale = "en_US.UTF-8";
+{ config, lib, pkgs, modulesPath, packageOverrides, locale, timeZone, ... }: {
+    time.timeZone = timeZone;
+    i18n.defaultLocale = locale;
     i18n.extraLocaleSettings = {
-        LC_ADDRESS = "ru_RU.UTF-8";
-        LC_IDENTIFICATION = "ru_RU.UTF-8";
-        LC_MEASUREMENT = "ru_RU.UTF-8";
-        LC_MONETARY = "ru_RU.UTF-8";
-        LC_NAME = "ru_RU.UTF-8";
-        LC_NUMERIC = "ru_RU.UTF-8";
-        LC_PAPER = "ru_RU.UTF-8";
-        LC_TELEPHONE = "ru_RU.UTF-8";
-        LC_TIME = "ru_RU.UTF-8";
+        LC_ADDRESS = locale;
+        LC_IDENTIFICATION = locale;
+        LC_MEASUREMENT = locale;
+        LC_MONETARY = locale;
+        LC_NAME = locale;
+        LC_NUMERIC = locale;
+        LC_PAPER = locale;
+        LC_TELEPHONE = locale;
+        LC_TIME = locale;
     };
 }
