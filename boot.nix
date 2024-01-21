@@ -15,8 +15,8 @@
             "nvidia_uvm"
             "nvme"
             "sd_mod"
-            "usbhid"
             "usb_storage"
+            "usbhid"
             "xhci_hcd"
             "xhci_pci"
         ];
