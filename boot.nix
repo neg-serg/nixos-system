@@ -21,7 +21,11 @@
                 "xhci_hcd"
                 "xhci_pci"
             ];
-            kernelModules = ["dm-snapshot"];
+            kernelModules = [
+                "dm-snapshot"
+                "i2c-dev"
+                "i2c-piix4"
+            ];
         };
     };
 }
