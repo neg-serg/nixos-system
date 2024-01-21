@@ -1,5 +1,32 @@
 { config, lib, ... }:
-{
+let mitigations_settings = [
+        "noibrs" # Disables the Indirect Branch Restricted Speculation (IBRS) feature, which is a hardware mitigation for Spectre variant 2
+                 # (CVE-2017-5715). Disabling this feature can improve performance, but it can also make the system more vulnerable to Spectre variant 2 attacks.
+        "noibpb" # Disables the Indirect Branch Predictor Barrier (IBPB) feature, which is a software mitigation for Spectre variant 2.
+                 # Disabling this feature can improve performance, but it can also make the system more vulnerable to Spectre variant 2 attacks.
+        "no_stf_barrier" # Disables the Indirect Branch Predictor Barrier (IBPB) feature, which is a software mitigation for Spectre variant 2.
+                         # Disabling this feature can improve performance, but it can also make the system more vulnerable to Spectre variant 2 attacks.
+        "mds=off" # Disables the Microarchitectural Data Sampling (MDS) mitigation, which is a hardware mitigation for MDS (CVE-2018-12126,
+                  # CVE-2018-12127, CVE-2018-12130, CVE-2019-11091). Disabling this feature can improve performance, but it can also make the system more
+                  # vulnerable to MDS attacks.
+        # "tsx=on" # Enables Intel Transactional Synchronization Extensions (TSX), which can improve performance for certain workloads that
+        #          # use transactional memory.
+        # "tsx_async_abort=off" # Disables the TSX Asynchronous Abort (TAA) mitigation, which is a hardware mitigation for TAA
+        #                       # (CVE-2019-11135). Disabling this feature can improve performance, but it can also make the system more vulnerable to TAA attacks.
+        "mitigations=off" # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
+        "l1tf=off" # Disables the L1 Terminal Fault (L1TF) mitigation, which is a hardware mitigation for L1TF (CVE-2018-3620 and
+                   # CVE-2018-3646). Disabling this feature can improve performance, but it can also make the system more vulnerable to L1TF attacks.
+        "nospec_store_bypass_disable" # Disables the Speculative Store Bypass Disable (SSBD) feature, which is a hardware mitigation for
+                                      # Spectre variant 4 (CVE-2018-3639). Disabling this feature can improve performance, but it can also make the system more vulnerable to Spectre variant 4 attacks.
+        "nospectre_v1" # Disables all mitigations for Spectre variant 1 (CVE-2017-5753). This can improve performance, but it can also make the system more vulnerable to Spectre variant 1 attacks.
+        "nospectre_v2" # Disables all mitigations for Spectre variant 2, including IBRS and IBPB. This can significantly improve performance, but it can also make the system more vulnerable to Spectre variant 2 attacks.
+        "nopti" # Disables the Kernel Page Table Isolation (KPTI) feature, which is a software mitigation for Meltdown (CVE-2017-5754).
+                # Disabling this feature can improve performance, but it can also make the system more vulnerable to Meltdown attacks.
+        ];
+  extra_security = [
+      "page_poison=1" # Overwrite free'd memory
+      "page_alloc.shuffle=1" # Enable page allocator randomization
+  ]; in {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
         # The Magic SysRq key is a key combo that allows users connected to the
@@ -100,18 +127,9 @@
         "biosdevname=1"
         "cryptomgr.notests"
         "iommu=pt"
-        "l1tf=off"
         "loglevel=0"
-        "mds=off"
-        "mitigations=off"
         "net.ifnames=0"
-        "noibpb"
-        "noibrs"
         "noreplace-smp"
-        "nospec_store_bypass_disable"
-        "nospectre_v1"
-        "nospectre_v2"
-        "no_stf_barrier"
         "no_timer_check"
         # https://wiki.archlinux.org/title/improving_performance#Watchdogs
         "nowatchdog" "kernel.nmi_watchdog=0"
@@ -127,12 +145,8 @@
         "tsc=reliable"
         "vt.global_cursor_default=0"
         "preempt=full"
-        "pti=off"
         "scsi_mod.use_blk_mq=1"
-        # # Security
-        # "page_poison=1" # Overwrite free'd memory
-        # "page_alloc.shuffle=1" # Enable page allocator randomization
-    ];
+    ] ++ mitigations_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
 }
