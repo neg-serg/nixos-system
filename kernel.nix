@@ -41,6 +41,11 @@ let mitigations_settings = [
       "acpi_osi=!"
       "acpi_osi=Linux"
   ];
+  no_watchdog = [
+      # https://wiki.archlinux.org/title/improving_performance#Watchdogs
+      "nowatchdog"
+      "kernel.nmi_watchdog=0"
+  ];
   iommu_on = [
       "amd_iommu=on"
       "iommu=pt"
@@ -143,8 +148,6 @@ let mitigations_settings = [
         "net.ifnames=0"
         "noreplace-smp"
         "no_timer_check"
-        # https://wiki.archlinux.org/title/improving_performance#Watchdogs
-        "nowatchdog" "kernel.nmi_watchdog=0"
         "nvidia-drm.modeset=1"
         "page_alloc.shuffle=1"
         "pcie_aspm=performance"
@@ -153,7 +156,7 @@ let mitigations_settings = [
         "tsc=reliable"
         "preempt=full"
         "scsi_mod.use_blk_mq=1"
-    ] ++ mitigations_settings ++ silence;
+    ] ++ mitigations_settings ++ silence ++ no_watchdog;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
 }
