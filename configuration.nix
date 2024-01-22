@@ -29,8 +29,14 @@
                 "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
                 "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
             ];
+            max-jobs = 20;
+            cores = 32;
         };
-        gc = {automatic = true; dates = "weekly"; options = "--delete-older-than 21d";};
+        gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 21d";
+        };
     };
     nixpkgs.config.allowUnfree = true;
 
