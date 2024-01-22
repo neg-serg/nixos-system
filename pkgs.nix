@@ -10,6 +10,7 @@
         aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
         curl # transfer curl
+        cacert # for curl certificate verification
         dig # dns command-line tool
         ethtool # control eth hardware and drivers
         fping # like ping -c1
