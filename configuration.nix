@@ -161,7 +161,7 @@
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
-        udev.packages = with pkgs; [ android-udev-rules yubikey-personalization ];
+        udev.packages = with pkgs; [ android-udev-rules ];
         udisks2.enable = true;
         upower.enable = true;
         vnstat.enable = true;
