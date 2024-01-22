@@ -1,5 +1,6 @@
 { config, lib, pkgs, modulesPath, packageOverrides, inputs, ... }: {
     environment.systemPackages = with pkgs; [
+        flat-remix-gtk # fav gtk theme
         flat-remix-gnome # nice theme for gnome
 
         efibootmgr # rule efi boot
