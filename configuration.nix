@@ -53,6 +53,14 @@
             ];
         };
         polkit.enable = true;
+        polkit.extraConfig = ''
+            polkit.addRule(function(action, subject) {
+              if (action.id == "org.debian.pcsc-lite.access_pcsc" &&
+                subject.isInGroup("wheel")) {
+                return polkit.Result.YES;
+              }
+            });
+        '';
         rtkit.enable = true; # rtkit recommended for pipewire
         sudo.execWheelOnly = true;
         sudo.wheelNeedsPassword = false;
@@ -95,6 +103,12 @@
         LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
         WGETRC = "$XDG_CONFIG_HOME/wgetrc";
     };
+
+    # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots
+    # (PIN1 for authentication/decryption, PIN2 for signing).
+    environment.etc."pkcs11/modules/opensc-pkcs11".text = ''
+        module: ${pkgs.opensc}/lib/opensc-pkcs11.so
+    '';
 
     hardware.i2c.enable = true;
     hardware.pulseaudio.enable = false;
@@ -161,7 +175,7 @@
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
-        udev.packages = with pkgs; [ android-udev-rules ];
+        udev.packages = with pkgs; [ android-udev-rules yubikey-personalization ];
         udisks2.enable = true;
         upower.enable = true;
         vnstat.enable = true;
