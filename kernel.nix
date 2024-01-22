@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 let mitigations_settings = [
         "mitigations=off" # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
         # "noibrs" # Disables the Indirect Branch Restricted Speculation (IBRS) feature, which is a hardware mitigation for Spectre variant 2
@@ -32,6 +32,7 @@ let mitigations_settings = [
   ];
   silence = [
       "quiet"
+      "splash"
       "rd.systemd.show_status=auto"
       "rd.udev.log_priority=3"
       "systemd.show_status=false"
@@ -49,7 +50,8 @@ let mitigations_settings = [
   iommu_on = [
       "amd_iommu=on"
       "iommu=pt"
-  ]; in {
+  ];
+  in {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
         # The Magic SysRq key is a key combo that allows users connected to the
@@ -148,7 +150,8 @@ let mitigations_settings = [
         "net.ifnames=0"
         "noreplace-smp"
         "no_timer_check"
-        "nvidia-drm.modeset=1"
+        "nvidia_drm.modeset=1"
+        "video=3440x1440@120"
         "page_alloc.shuffle=1"
         "pcie_aspm=performance"
         "preempt=full"
