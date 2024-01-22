@@ -143,6 +143,11 @@
         parted # cli disk manager
         smartmontools # smartctl
 
+        opensc # libraries and utilities to access smart cards
+        p11-kit # loading and sharing PKCS#11 modules
+        pcsclite # middleware to access a smart card using SCard API (PC/SC)
+        pcsctools # tools used to test a PC/SC driver, card or reader
+
         ddccontrol # ddc control
         ddcutil # rule monitor params
         edid-decode # edid decoder and tester
