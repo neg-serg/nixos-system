@@ -126,15 +126,6 @@
 
         keyd # systemwide key manager
 
-        ccrypt # Secure encryption and decryption of files and streams
-        opensc # libraries and utilities to access smart cards
-        p11-kit # loading and sharing PKCS#11 modules
-        pass-secret-service # gnome-keyring alternative via paste
-        pcscliteWithPolkit # middleware to access a smart card using SCard API (PC/SC)
-        pcsctools # tools used to test a PC/SC driver, card or reader
-        pkcs11helper # library that simplifies the interaction with PKCS#11 providers
-        pwgen # generate passwords
-
         linuxKernel.packages.linux_6_6.perf
         scx # for cachyos sched
 
