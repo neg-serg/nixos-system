@@ -158,7 +158,14 @@
         mtr = { enable = true; };
         nix-ld = { enable = true; };
         zsh = { enable = true; };
-        ssh.startAgent = true;
+        ssh = {
+            startAgent = true;
+            # agentPKCS11Whitelist = "/nix/store/*";
+            # or specific URL if you're paranoid
+            # but beware this can break if you don't have exactly matching opensc versions
+            # between your main config and home-manager channel
+            agentPKCS11Whitelist = "${pkgs.opensc}/lib/opensc-pkcs11.so";
+        };
         steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -175,7 +182,7 @@
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
-        udev.packages = with pkgs; [ android-udev-rules yubikey-personalization ];
+        udev.packages = with pkgs; [ android-udev-rules ];
         udisks2.enable = true;
         upower.enable = true;
         vnstat.enable = true;
