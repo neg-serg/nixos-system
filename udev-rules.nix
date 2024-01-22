@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }: {
     services.udev.extraRules = ''
-        ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0407", MODE="664", GROUP="wheel"
         # High performance clocks for audio
         KERNEL=="rtc0", GROUP="audio"
         KERNEL=="hpet", GROUP="audio"
