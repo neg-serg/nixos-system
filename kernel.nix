@@ -41,6 +41,41 @@ let mitigations_settings = [
   no_watchdog = [ "nowatchdog" "kernel.nmi_watchdog=0" ];
   iommu_on = [ "amd_iommu=on" "iommu=pt" ];
   video_settings = [ "nvidia_drm.modeset=1" "video=3440x1440@175" ];
+
+  # -- Blacklist
+  obscure_network_protocols = [
+      "ax25"
+      "netrom"
+      "rose"
+  ];
+  old_rare_insufficiently_audited_fs = [
+      "adfs"
+      "affs"
+      "befs"
+      "bfs"
+      "cramfs"
+      "efs"
+      "erofs"
+      "exofs"
+      "freevxfs"
+      "gfs2"
+      "hfs"
+      "hfsplus"
+      "hpfs"
+      "jffs2"
+      "jfs"
+      "ksmbd"
+      "minix"
+      "nilfs2"
+      "omfs"
+      "qnx4"
+      "qnx6"
+      "squashfs"
+      "sysv"
+      "udf"
+      "ufs"
+      "vivid"
+      ];
   in {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
@@ -94,40 +129,9 @@ let mitigations_settings = [
         "snd_hda_codec_hdmi"
         "snd_hda_core"
         "snd_hda_intel"
-        # Obscure network protocols
-        "ax25"
-        "netrom"
-        "rose"
-        # Old or rare or insufficiently audited filesystems
-        "adfs"
-        "affs"
-        "befs"
-        "bfs"
-        "cramfs"
-        "efs"
-        "erofs"
-        "exofs"
-        "freevxfs"
-        "gfs2"
-        "hfs"
-        "hfsplus"
-        "hpfs"
-        "jffs2"
-        "jfs"
-        "ksmbd"
-        "minix"
-        "nilfs2"
-        "omfs"
-        "qnx4"
-        "qnx6"
-        "squashfs"
-        "sysv"
-        "udf"
-        "ufs"
-        "vivid"
         # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
         "sp5100_tco"
-    ];
+    ] ++ obscure_network_protocols ++ old_rare_insufficiently_audited_fs;
     boot.kernelParams = f2fs_root_settings ++ [
         "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
 
