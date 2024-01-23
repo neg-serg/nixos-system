@@ -111,6 +111,7 @@
         zsh # better shell
 
         btop # even more fancy top
+        dstat # example use: dstat -cdnpmgs --top-bio --top-cpu --top-mem
         htop # fancy top
         iotop # top for iops
         iperf iperf2 # IP bandwidth measurement
