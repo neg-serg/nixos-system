@@ -27,9 +27,7 @@ let mitigations_settings = [
       "page_poison=1" # Overwrite free'd memory
       "page_alloc.shuffle=1" # Enable page allocator randomization
   ];
-  f2fs_root_settings = [
-      "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
-  ];
+  f2fs_root_settings = [ "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix" ];
   silence = [
       "quiet"
       "splash"
@@ -38,19 +36,11 @@ let mitigations_settings = [
       "systemd.show_status=false"
       "vt.global_cursor_default=0"
   ];
-  acpi_settings = [
-      "acpi_osi=!"
-      "acpi_osi=Linux"
-  ];
-  no_watchdog = [
-      # https://wiki.archlinux.org/title/improving_performance#Watchdogs
-      "nowatchdog"
-      "kernel.nmi_watchdog=0"
-  ];
-  iommu_on = [
-      "amd_iommu=on"
-      "iommu=pt"
-  ];
+  acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
+  # https://wiki.archlinux.org/title/improving_performance#Watchdogs
+  no_watchdog = [ "nowatchdog" "kernel.nmi_watchdog=0" ];
+  iommu_on = [ "amd_iommu=on" "iommu=pt" ];
+  video_settings = [ "nvidia_drm.modeset=1" "video=3440x1440@175" ];
   in {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
@@ -150,8 +140,6 @@ let mitigations_settings = [
         "net.ifnames=0"
         "noreplace-smp"
         "no_timer_check"
-        "nvidia_drm.modeset=1"
-        "video=3440x1440@175"
         "page_alloc.shuffle=1"
         "pcie_aspm=performance"
         "preempt=full"
@@ -159,7 +147,8 @@ let mitigations_settings = [
         "scsi_mod.use_blk_mq=1"
         "threadirqs"
         "tsc=reliable"
-    ] ++ mitigations_settings ++ silence ++ no_watchdog;
+
+    ] ++ mitigations_settings ++ silence ++ no_watchdog ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
 }
