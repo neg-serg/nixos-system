@@ -76,6 +76,7 @@
 
         office-code-pro # customized source code pro
 
+        alejandra # the uncompromising nix code formatter
         cached-nix-shell # nix-shell with instant startup
         dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
@@ -83,6 +84,7 @@
         nix-diff # show what causes derivation to be different
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
         nix-index # index for nix-locate
+        nix-init # provides more easy way to create nix packages
         nix-output-monitor
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nix-update
