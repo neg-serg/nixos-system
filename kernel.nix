@@ -151,7 +151,7 @@ let mitigations_settings = [
         "noreplace-smp"
         "no_timer_check"
         "nvidia_drm.modeset=1"
-        "video=3440x1440@120"
+        "video=3440x1440@175"
         "page_alloc.shuffle=1"
         "pcie_aspm=performance"
         "preempt=full"
