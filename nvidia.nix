@@ -1,13 +1,11 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }:
+{
     hardware.opengl={
         enable=true;
         driSupport=true;
         driSupport32Bit=true;
     };
-    boot.extraModprobeConfig=''
-        options nouveau modeset=0
-        options nvidia NVreg_PreserveVideoMemoryAllocations=1 NVreg_TemporaryFilePath=/home/neg/.local/share/tmp
-    '';
+    boot.extraModprobeConfig='' options nouveau modeset=0 '';
     environment={
         systemPackages=with pkgs; [glxinfo];
         variables={ 
