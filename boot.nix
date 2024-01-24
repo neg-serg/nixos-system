@@ -2,9 +2,11 @@
     boot = {
         loader = {
             efi.canTouchEfiVariables = true;
-            systemd-boot.consoleMode = "max";
-            systemd-boot.editor = false; # close security hole
-                systemd-boot.enable = true;
+            systemd-boot = {
+                consoleMode = "max";
+                editor = false; # close security hole
+                enable = true;
+            };
             timeout = 3;
         };
         kernelPackages = pkgs.linuxPackages_cachyos;
