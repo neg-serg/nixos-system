@@ -150,6 +150,7 @@
         opensc # libraries and utilities to access smart cards
         p11-kit # loading and sharing PKCS#11 modules
         pcsctools # tools used to test a PC/SC driver, card or reader
+        pam_u2f  # A PAM module for allowing authentication with a U2F device
 
         ddccontrol # ddc control
         ddcutil # rule monitor params
@@ -166,6 +167,12 @@
         flatpak-builder # build flatpaks
 
         xorg.xdpyinfo # display info
+
+        # different python3 build
+        (pkgs.python3-lto.withPackages (p: with p; [
+            pygobject3 gst-python systemd
+        ]))
+        gobject-introspection
 
         (inputs.nix-gaming.packages.${pkgs.hostPlatform.system}.star-citizen.override {
             location  = "$HOME/games/star-citizen";
