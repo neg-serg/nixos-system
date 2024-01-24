@@ -1,7 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
   fileSystems."/" = {
-      device = "/dev/mapper/xenon-nix";
+      device = "/dev/mapper/main-sys";
       fsType = "f2fs";
       options = [
           "rw"
