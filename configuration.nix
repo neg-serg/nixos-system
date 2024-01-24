@@ -39,13 +39,6 @@
         };
     };
     nixpkgs.config.allowUnfree = true;
-    nixpkgs.overlays = [
-        (final: prev: {
-             libadwaita = prev.libadwaita.overrideAttrs (o: {
-                 patches = (o.patches or [ ]) ++ [ ./patch/libadwaita-without-adwaita.patch ];
-             });
-         })
-    ];
 
     systemd = {
         coredump.enable = true;
