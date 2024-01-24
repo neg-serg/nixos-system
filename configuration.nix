@@ -155,7 +155,7 @@
 
     users = {
         users.neg = {
-            packages = with pkgs; [pam_u2f python3-lto];
+            packages = with pkgs; [];
             isNormalUser = true;
             description = "Neg";
             extraGroups = [
