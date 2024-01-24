@@ -40,7 +40,7 @@ let mitigations_settings = [
   # https://wiki.archlinux.org/title/improving_performance#Watchdogs
   no_watchdog = [ "nowatchdog" "kernel.nmi_watchdog=0" ];
   iommu_on = [ "amd_iommu=on" "iommu=pt" ];
-  video_settings = [ "nvidia_drm.modeset=1" "video=3440x1440@175" ];
+  video_settings = [ "nvidia_drm.modeset=1" "video=3440x1440@175" "modeset=1" "fbdev=1" ];
 
   # -- Blacklist
   obscure_network_protocols = [
