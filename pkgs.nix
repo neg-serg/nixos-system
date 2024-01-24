@@ -168,12 +168,7 @@
 
         xorg.xdpyinfo # display info
 
-        # different python3 build
-        (pkgs.python3-lto.withPackages (p: with p; [
-            pygobject3 gst-python systemd
-        ]))
-        gobject-introspection
-
+        (python3-lto.withPackages (p: with p; [])) # different python3 build
         (inputs.nix-gaming.packages.${pkgs.hostPlatform.system}.star-citizen.override {
             location  = "$HOME/games/star-citizen";
         })
