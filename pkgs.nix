@@ -38,7 +38,7 @@
         traceroute # basic traceroute
         tshark # sniffer tui
         w3m # cli browser
-        wget # non-interactive downloader
+        wget2 # non-interactive downloader
 
         ddrescue # data recovery tool
         foremost # files extact from structure
