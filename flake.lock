@@ -255,6 +255,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1705806513,
+        "narHash": "sha256-FcOmNjhHFfPz2udZbRpZ1sfyhVMr+C2O8kOxPj+HDDk=",
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "rev": "f8e04fbcebcc24cebc91989981bd45f69b963ed7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nix-ld": {
       "inputs": {
         "nixpkgs": "nixpkgs_6"
@@ -555,6 +575,7 @@
         "nh": "nh",
         "nix": "nix",
         "nix-gaming": "nix-gaming",
+        "nix-index-database": "nix-index-database",
         "nix-ld": "nix-ld",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_7",
