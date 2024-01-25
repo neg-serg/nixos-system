@@ -210,6 +210,7 @@
         udisks2.enable = true;
         upower.enable = true;
         vnstat.enable = true;
+        chrony.enable = true;
 
         logind = { extraConfig = ''
             IdleAction=ignore
