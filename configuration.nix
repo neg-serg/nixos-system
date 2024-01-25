@@ -18,8 +18,8 @@
         ./pkgs.nix
     ];
     nix = {
-        extraOptions = ''experimental-features = nix-command flakes repl-flake'';
         settings = {
+            experimental-features = ["nix-command" "flakes" "repl-flake"];
             trusted-users = ["root" "neg"];
             substituters = [
                 "https://ezkea.cachix.org"
