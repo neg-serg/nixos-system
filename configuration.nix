@@ -200,6 +200,8 @@
 
     services = {
         acpid.enable = true; # events for some hardware actions
+        avahi = {enable = true; nssmdns = true;};
+        chrony.enable = true;
         flatpak.enable = true;
         fwupd.enable = true;
         gvfs.enable = true;
@@ -211,8 +213,6 @@
         udisks2.enable = true;
         upower.enable = true;
         vnstat.enable = true;
-        chrony.enable = true;
-
         logind = { extraConfig = ''
             IdleAction=ignore
         ''; };
