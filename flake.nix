@@ -30,6 +30,7 @@
             system = "x86_64-linux";
             timeZone = "Europe/Moscow";
         in {
+        packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
         nixosConfigurations = {
             telfir = nixpkgs.lib.nixosSystem {
                 inherit system;
