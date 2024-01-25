@@ -181,7 +181,6 @@
         atop = { enable = true; };
         gamemode = { enable = true; };
         mtr = { enable = true; };
-        nix-ld = { enable = true; };
         zsh = { enable = true; };
         ssh = {
             startAgent = true;
