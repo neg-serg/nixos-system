@@ -72,8 +72,11 @@
         sudo.wheelNeedsPassword = false;
     };
 
-    documentation.doc.enable = false;
-    documentation.info.enable = false;
+    documentation = {
+        doc.enable = false;
+        dev.enable = false;
+        info.enable = false;
+    };
 
     environment.wordlist.enable = true; # to make "look" utility work
     environment.shells = with pkgs; [zsh];
