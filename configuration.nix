@@ -14,6 +14,7 @@
         ./session.nix
         ./keyd.nix
         ./kmscon.nix
+        ./nixindex.nix
 
         ./pkgs.nix
     ];
