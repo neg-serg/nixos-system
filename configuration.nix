@@ -190,7 +190,6 @@
             # between your main config and home-manager channel
             agentPKCS11Whitelist = "${pkgs.opensc}/lib/opensc-pkcs11.so";
         };
-        command-not-found.enable = false;
         steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play

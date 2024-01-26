@@ -10,7 +10,6 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         nur.url = "github:nix-community/NUR";
-        nix-index-database = { url = "github:Mic92/nix-index-database";  inputs.nixpkgs.follows = "nixpkgs"; };
     };
     outputs = {
         self
@@ -25,7 +24,6 @@
         , nixpkgs-stable
         , nixtheplanet
         , nur
-        , nix-index-database
         } @inputs: 
         let 
             locale = "en_US.UTF-8"; # select locale
@@ -45,7 +43,6 @@
                     ./configuration.nix
                     chaotic.nixosModules.default
                     nix-gaming.nixosModules.pipewireLowLatency
-                    nix-index-database.nixosModules.nix-index
                 ];
             };
         };
