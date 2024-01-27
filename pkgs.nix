@@ -54,11 +54,10 @@
         radare2-cutter # Free and Open Source Reverse Engineering Platform powered by rizin
         strace # trace system-calls
 
-        git-crypt # encryption via git
+        git # my favorite dvcs
         git-extras # git extra stuff
         git-filter-repo # quickly rewrite git history
         git-lfs # git extension for large files
-        git # my favorite dvcs
 
         openvpn # gnu/gpl vpn
 
