@@ -23,6 +23,7 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             }];
             sddm = {
                 enable = true;
+                theme = "tokyo-night-sddm";
                 wayland.enable = false;
                 settings = {
                     General = {
