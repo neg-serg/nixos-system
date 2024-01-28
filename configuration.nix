@@ -15,6 +15,7 @@
         ./keyd.nix
         ./kmscon.nix
         ./nixindex.nix
+        ./theme.nix
 
         ./pkgs.nix
     ];
