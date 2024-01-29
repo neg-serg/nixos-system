@@ -58,6 +58,10 @@
                 {domain = "@realtime"; item = "nice"; type = "-"; value = "-11";}
                 {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
             ];
+            services = {
+                login.u2fAuth = true;
+                sudo.u2fAuth = true;
+            };
         };
         polkit.enable = true;
         polkit.extraConfig = ''
