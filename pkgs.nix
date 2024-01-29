@@ -1,8 +1,5 @@
 { config, lib, pkgs, modulesPath, packageOverrides, inputs, ... }: {
     environment.systemPackages = with pkgs; [
-        flat-remix-gtk # fav gtk theme
-        flat-remix-gnome # nice theme for gnome
-
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
         os-prober # utility to detect other OSs on a set of drives
@@ -42,8 +39,6 @@
 
         ddrescue # data recovery tool
         foremost # files extact from structure
-        hashcat # password recovery
-        qFlipper # desktop stuff for flipper zero
 
         gcc # gnu compiler collection
         gdb # gnu debugger
@@ -63,7 +58,7 @@
 
         chrpath # adjust rpath for ELF
         debugedit # debug info rewrite
-        delta
+        delta # better diff tool
         dump_syms # parsing the debugging information
         elfutils # set of utilities to handle ELF objects
         eza # more modern version of exa ls replacer
@@ -74,8 +69,6 @@
         vis # minimal editor
         neovim # better vim
 
-        office-code-pro # customized source code pro
-
         alejandra # the uncompromising nix code formatter
         cached-nix-shell # nix-shell with instant startup
         dconf2nix # convert dconf to nix config
@@ -85,7 +78,7 @@
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
         nix-index # index for nix-locate
         nix-init # provides more easy way to create nix packages
-        nix-output-monitor
+        nix-output-monitor # fancy nix output (nom)
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nix-update
         nixos-shell # tool to create vm for current config
@@ -126,7 +119,7 @@
         sysstat # sar and friends
         vmtouch # portable file system cache diagnostics and control
 
-        terminus-nerdfont # font for console
+        terminus-nerdfont # font for tty
 
         keyd # systemwide key manager
 
