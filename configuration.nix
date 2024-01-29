@@ -200,6 +200,7 @@
 
     services = {
         acpid.enable = true; # events for some hardware actions
+        adguardhome.enable = true;
         avahi = {enable = true; nssmdns = true;};
         chrony.enable = true;
         flatpak.enable = true;
