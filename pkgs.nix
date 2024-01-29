@@ -130,16 +130,13 @@
 
         keyd # systemwide key manager
 
-        linuxKernel.packages.linux_6_6.perf
+        linuxKernel.packages.linux_6_7.perf
         scx # for cachyos sched
 
         blktrace # another disk test
         dmraid # Old-style RAID configuration utility
-        exfat
+        exfat # Exfat support
         fio # disk test
-        gparted # gtk frontend for parted disk manager
-        hddtemp # display hard disk temperature
-        hdparm # set ata/sata params
         ioping # io latency measuring tool
         mtools # utils for msdos disks
         nvme-cli # nvme manage tools
@@ -150,7 +147,6 @@
         opensc # libraries and utilities to access smart cards
         p11-kit # loading and sharing PKCS#11 modules
         pcsctools # tools used to test a PC/SC driver, card or reader
-        pam_u2f  # A PAM module for allowing authentication with a U2F device
 
         ddccontrol # ddc control
         ddcutil # rule monitor params
@@ -163,8 +159,6 @@
         pciutils # manipulate pci devices
         schedtool # CPU scheduling
         usbutils # lsusb
-
-        flatpak-builder # build flatpaks
 
         xorg.xdpyinfo # display info
 
