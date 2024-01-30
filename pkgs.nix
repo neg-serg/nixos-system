@@ -130,6 +130,7 @@
         dmraid # Old-style RAID configuration utility
         exfat # Exfat support
         fio # disk test
+        gptfdisk # sgdisk
         ioping # io latency measuring tool
         mtools # utils for msdos disks
         nvme-cli # nvme manage tools
