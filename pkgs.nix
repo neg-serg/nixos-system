@@ -71,6 +71,7 @@
 
         alejandra # the uncompromising nix code formatter
         cached-nix-shell # nix-shell with instant startup
+        cachix # for downloading pre-built binaries
         dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
         nh # some nice nix commands

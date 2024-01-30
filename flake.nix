@@ -41,6 +41,7 @@
                 specialArgs = {inherit inputs;};
                 modules = [
                     ./configuration.nix
+                    ./cachix.nix
                     chaotic.nixosModules.default
                     nix-gaming.nixosModules.pipewireLowLatency
                 ];
