@@ -134,6 +134,7 @@
         gptfdisk # sgdisk
         ioping # io latency measuring tool
         mtools # utils for msdos disks
+        multipath-tools # (kpartx) create loop devices for partitions in image
         nvme-cli # nvme manage tools
         ostree # git for os binaries
         parted # cli disk manager
