@@ -9,7 +9,6 @@
             };
             timeout = 3;
         };
-        plymouth.enable = true;
         kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
             availableKernelModules = [
