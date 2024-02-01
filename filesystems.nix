@@ -66,6 +66,5 @@
   fileSystems."/home/neg/torrent"={device="/one/torrent"; options=["bind" "nofail" "x-systemd.automount"];};
   fileSystems."/home/neg/vid"={device="/one/vid"; options=["bind" "nofail" "x-systemd.automount"];};
   fileSystems."/home/neg/games"={device="/one/games"; options=["bind" "nofail" "x-systemd.automount"];};
-  fileSystems."/home/neg/.var"={device="/zero/flatpak"; options=["bind" "nofail" "x-systemd.automount"];};
   swapDevices = [];
 }
