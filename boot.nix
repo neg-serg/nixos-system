@@ -7,7 +7,7 @@
                 editor = false; # close security hole
                 enable = true;
             };
-            timeout = 3;
+            timeout = 1;
         };
         kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
