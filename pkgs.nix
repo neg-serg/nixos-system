@@ -156,6 +156,9 @@
         schedtool # CPU scheduling
         usbutils # lsusb
 
+        sops # secret management
+        age # pgp alternative
+
         xorg.xdpyinfo # display info
 
         python3-lto # different python3 build
