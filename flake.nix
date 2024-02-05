@@ -29,6 +29,7 @@
             locale = "en_US.UTF-8"; # select locale
             system = "x86_64-linux";
             timeZone = "Europe/Moscow";
+            kexec_enabled = true;
         in {
         packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
         nixosConfigurations = {
@@ -37,6 +38,7 @@
                 specialArgs = {
                     inherit locale;
                     inherit timeZone;
+                    inherit kexec_enabled;
                 };
                 specialArgs = {inherit inputs;};
                 modules = [
