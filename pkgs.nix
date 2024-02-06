@@ -84,6 +84,7 @@
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nix-update
         nixos-shell # tool to create vm for current config
+        nurl # cli to generate Nix fetcher calls from repository URLs
         nvd # compare versions: nvd diff /run/current-system result
         statix # static analyzer for nix
 
