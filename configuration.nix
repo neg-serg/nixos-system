@@ -207,7 +207,7 @@
         acpid.enable = true; # events for some hardware actions
         adguardhome.enable = true;
         autorandr.enable = true;
-        avahi = {enable = true; nssmdns = true;};
+        avahi = {enable = true; nssmdns4 = true;};
         chrony.enable = true;
         flatpak.enable = true;
         fwupd.enable = true;
