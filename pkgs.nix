@@ -42,6 +42,7 @@
 
         gcc # gnu compiler collection
         gdb # gnu debugger
+        hexyl # command-line hex editor
         hyperfine # command-line benchmarking tool
         ltrace # trace functions
         pkgconf # package compiler and linker metadata toolkit (wrapper script)
