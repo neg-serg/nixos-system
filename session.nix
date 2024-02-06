@@ -5,11 +5,13 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
         enable = true; # Enable the X11 windowing system.
         enableCtrlAltBackspace = true;
         exportConfiguration = true;
-        layout = "us,ru";
         autoRepeatDelay = 250;
         autoRepeatInterval = 20;
-        xkbVariant = "";
-        xkbOptions = "grp:alt_shift_toggle";
+        xkb ={
+            variant = "";
+            options = "grp:alt_shift_toggle";
+            layout = "us,ru";
+        };
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
         desktopManager = { xterm.enable = false; };
         displayManager = {
