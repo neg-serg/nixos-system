@@ -209,6 +209,7 @@
         autorandr.enable = true;
         avahi = {enable = true; nssmdns4 = true;};
         chrony.enable = true;
+        envfs.enable = true;
         flatpak.enable = true;
         fwupd.enable = true;
         gvfs.enable = true;
