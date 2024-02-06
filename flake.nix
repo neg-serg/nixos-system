@@ -10,6 +10,7 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         nur.url = "github:nix-community/NUR";
+        nixos-generators = { url = "github:nix-community/nixos-generators"; inputs.nixpkgs.follows = "nixpkgs"; };
     };
     outputs = {
         self
@@ -24,8 +25,9 @@
         , nixpkgs-stable
         , nixtheplanet
         , nur
-        } @inputs: 
-        let 
+        , nixos-generators
+        } @inputs:
+        let
             locale = "en_US.UTF-8"; # select locale
             system = "x86_64-linux";
             timeZone = "Europe/Moscow";
