@@ -7,6 +7,7 @@
                 settings = {
                     main = {
                         capslock = "layer(capslock)";
+                        insert = "S-insert";
                     };
                     "capslock:C" = {
                         "0" = "M-0";
