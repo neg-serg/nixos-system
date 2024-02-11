@@ -192,6 +192,7 @@
         atop = { enable = true; };
         gamemode = { enable = true; };
         mtr = { enable = true; };
+        nano = { enable = false; }; # I hate nano to be honest
         zsh = { enable = true; };
         ssh = {
             startAgent = true;
