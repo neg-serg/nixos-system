@@ -63,11 +63,7 @@
                 sudo.u2fAuth = true;
             };
         };
-        tpm2 = {
-            enable = true;
-            pkcs11.enable = true;
-            abrmd.enable = true;
-        };
+
         polkit.enable = true;
         polkit.extraConfig = ''
             polkit.addRule(function(action, subject) {
@@ -77,6 +73,7 @@
               }
             });
         '';
+
         rtkit.enable = true; # rtkit recommended for pipewire
         sudo.execWheelOnly = true;
         sudo.wheelNeedsPassword = false;
