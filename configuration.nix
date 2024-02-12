@@ -80,6 +80,8 @@
         protectKernelImage = if kexec_enabled == false then true else false;
     };
 
+    virtualisation.docker.enable = true;
+
     documentation = {
         doc.enable = false;
         dev.enable = false;
