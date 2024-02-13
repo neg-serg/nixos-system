@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, inputs, ... }: {
+{ config, lib, pkgs, stable, inputs, ... }: {
     environment.systemPackages = with pkgs; [
         efibootmgr # rule efi boot
         efivar # manipulate efi vars
@@ -106,7 +106,7 @@
         rlwrap # readline wrapper for everything
         tig # git viewer
         tmux # better screen
-        zsh # better shell
+        stable.zsh # better shell
 
         btop # even more fancy top
         dstat # example use: dstat -cdnpmgs --top-bio --top-cpu --top-mem

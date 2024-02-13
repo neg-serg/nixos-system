@@ -27,12 +27,13 @@
         , nur
         , nixos-generators
         } @inputs:
-        let
+        with rec {
             locale = "en_US.UTF-8"; # select locale
             system = "x86_64-linux";
             timeZone = "Europe/Moscow";
             kexec_enabled = true;
-        in {
+            stable = nixpkgs-stable.legacyPackages.${system};
+        }; {
         packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
         nixosConfigurations = {
             telfir = nixpkgs.lib.nixosSystem {
@@ -41,6 +42,7 @@
                     inherit locale;
                     inherit timeZone;
                     inherit kexec_enabled;
+                    inherit stable;
                 };
                 specialArgs = {inherit inputs;};
                 modules = [
