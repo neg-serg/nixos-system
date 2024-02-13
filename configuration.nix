@@ -216,7 +216,7 @@
         chrony.enable = true;
         fwupd.enable = true;
         gvfs.enable = true;
-        irqbalance.enable = true;
+        irqbalance.enable = false;
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
