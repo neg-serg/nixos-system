@@ -50,9 +50,9 @@
     security = {
         pam = {
             loginLimits = [
-                {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
-                {domain = "@audio"; item = "rtprio"; type = "-"; value = "95";}
-                {domain = "@audio"; item = "nice"; type = "-"; value = "-19";}
+                # {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
+                # {domain = "@audio"; item = "rtprio"; type = "-"; value = "95";}
+                # {domain = "@audio"; item = "nice"; type = "-"; value = "-19";}
                 # {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
                 # {domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited";}
                 # {domain = "@realtime"; item = "nice"; type = "-"; value = "-11";}
