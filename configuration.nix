@@ -207,6 +207,12 @@
             gamescopeSession.enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
         };
+        hyprland = {
+            # Install the packages from nixpkgs
+            enable = true;
+            # Whether to enable XWayland
+            xwayland.enable = true;
+        };
     };
 
     services = {
