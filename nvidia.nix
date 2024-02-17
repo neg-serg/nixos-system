@@ -4,7 +4,10 @@
         driSupport=true;
         driSupport32Bit=true;
     };
-    boot.extraModprobeConfig='' options nouveau modeset=0 '';
+    boot.extraModprobeConfig=''
+        options nouveau modeset=0
+        options nvidia NVreg_RegistryDwords="PowerMizerEnable=0x1; PerfLevelSrc=0x2222; PowerMizerLevel=0x3; PowerMizerDefault=0x3; PowerMizerDefaultAC=0x3"
+    '';
     environment={
         systemPackages=with pkgs; [
             glxinfo
