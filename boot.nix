@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, ... }: {
+{ pkgs, ... }: {
     boot = {
         loader = {
             efi.canTouchEfiVariables = true;

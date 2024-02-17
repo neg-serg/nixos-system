@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, ... }: {
+{
     services.openssh = {
         enable = true;
         settings = {

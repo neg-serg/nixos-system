@@ -1,4 +1,3 @@
-{ config, lib, pkgs, modulesPath, ... }:
 {
     networking = {
         hostName = "telfir"; # Define your hostname.

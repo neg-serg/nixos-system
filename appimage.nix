@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, ... }: {
+{ pkgs, ... }: {
     # run appimages directly (see https://nixos.wiki/wiki/Appimage)
     boot.binfmt.registrations.appimage = {
         wrapInterpreterInShell = false;

@@ -1,4 +1,4 @@
-{ config, ... }: {
+{
     services.keyd.enable = true;
         services.keyd.keyboards = {
             default = {

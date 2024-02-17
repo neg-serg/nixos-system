@@ -1,4 +1,4 @@
-{ config, lib, pkgs, stable, inputs, ... }: {
+{ pkgs, stable, inputs, ... }: {
     environment.systemPackages = with pkgs; [
         efibootmgr # rule efi boot
         efivar # manipulate efi vars

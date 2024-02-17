@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
     systemd.services.nixindex = {
         serviceConfig.Type = "oneshot";
         path = with pkgs; [ nix-index ];

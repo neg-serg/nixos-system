@@ -1,4 +1,3 @@
-{ config, lib, pkgs, ... }:
 let
   mitigations_settings = [
         # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.

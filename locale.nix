@@ -1,4 +1,4 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, locale, timeZone, ... }: {
+{ locale, timeZone, ... }: {
     time.timeZone = timeZone;
     i18n.defaultLocale = locale;
     i18n.extraLocaleSettings = {
