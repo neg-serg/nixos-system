@@ -10,9 +10,10 @@ let
   f2fs_root_settings = [ "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix" ];
   silence = [
       "quiet"
-      "splash"
       "rd.systemd.show_status=auto"
+      "rd.udev.log_level=3"
       "rd.udev.log_priority=3"
+      "splash"
       "systemd.show_status=false"
       "vt.global_cursor_default=0"
   ];
