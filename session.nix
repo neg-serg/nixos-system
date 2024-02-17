@@ -24,6 +24,14 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
                 name="i3";
                 start=''$HOME/.xsession'';
             }];
+            sddm = {
+                enable = true;
+                theme = "tokyo-night-sddm";
+                wayland.enable = true;
+                settings = {
+                    General = { DisplayServer = "x11-user"; };
+                };
+            };
         };
     };
 }
