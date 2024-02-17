@@ -6,7 +6,12 @@
     };
     boot.extraModprobeConfig='' options nouveau modeset=0 '';
     environment={
-        systemPackages=with pkgs; [glxinfo];
+        systemPackages=with pkgs; [
+            glxinfo
+            vulkan-extension-layer
+            vulkan-tools
+            vulkan-validation-layers
+        ];
         variables={ 
             __GL_GSYNC_ALLOWED="0"; 
         };
