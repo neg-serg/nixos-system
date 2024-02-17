@@ -11,8 +11,6 @@
         };
         kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
-            verbose = false;
-            systemd.enable = true;
             availableKernelModules = [
                 "nvidia"
                 "nvidia_drm"
