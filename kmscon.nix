@@ -1,5 +1,4 @@
-{ config, lib, pkgs, modulesPath, packageOverrides, ... }:
-{
+{ config, lib, pkgs, modulesPath, packageOverrides, ... }: {
     services.kmscon = {
         enable = false;
         hwRender = true;
