@@ -43,7 +43,10 @@
     systemd = {
         coredump.enable = true;
         extraConfig = '' DefaultTimeoutStopSec=10s '';
-        packages = [pkgs.packagekit];
+        watchdog.rebootTime = "0";
+        packages = [
+            pkgs.packagekit
+        ];
     };
 
     security = {
