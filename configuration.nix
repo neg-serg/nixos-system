@@ -67,15 +67,6 @@
         };
 
         polkit.enable = true;
-        polkit.extraConfig = ''
-            polkit.addRule(function(action, subject) {
-              if (action.id == "org.debian.pcsc-lite.access_pcsc" &&
-                subject.isInGroup("wheel")) {
-                return polkit.Result.YES;
-              }
-            });
-        '';
-
         rtkit.enable = true; # rtkit recommended for pipewire
         sudo.execWheelOnly = true;
         sudo.wheelNeedsPassword = false;
