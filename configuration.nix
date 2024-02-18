@@ -114,7 +114,6 @@
         ZDOTDIR = "$HOME/.config/zsh";
     };
 
-    # systemwide xdg-ninja
     environment.variables = {
         __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
         ASPELL_CONF = ''
@@ -170,7 +169,6 @@
 
     users = {
         users.neg = {
-            packages = with pkgs; [];
             isNormalUser = true;
             description = "Neg";
             extraGroups = [
@@ -210,10 +208,8 @@
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
         };
         hyprland = {
-            # Install the packages from nixpkgs
-            enable = true;
-            # Whether to enable XWayland
-            xwayland.enable = true;
+            enable = true; # Install the packages from nixpkgs
+            xwayland.enable = true; # Whether to enable XWayland
         };
     };
 
