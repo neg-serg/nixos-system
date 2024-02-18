@@ -75,7 +75,6 @@
         cachix # for downloading pre-built binaries
         dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
-        manix # nixos documentation
         nh # some nice nix commands
         nix-diff # show what causes derivation to be different
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
@@ -85,9 +84,9 @@
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nix-update
         nixos-shell # tool to create vm for current config
+        manix # nixos documentation
         nurl # cli to generate Nix fetcher calls from repository URLs
         nvd # compare versions: nvd diff /run/current-system result
-        nvfetcher # generate nix sources from TOML
         statix # static analyzer for nix
 
         bash-completion # generic bash completions
