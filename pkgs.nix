@@ -8,7 +8,7 @@
         bandwhich # display network utilization per process
         cacert # for curl certificate verification
         curl # transfer curl
-        dig # dns command-line tool
+        dnsutils # dns command-line tools (dig, nslookup)
         ethtool # control eth hardware and drivers
         fping # like ping -c1
         geoip # geoip lookup
@@ -78,12 +78,10 @@
         manix # nixos documentation
         nh # some nice nix commands
         nix-diff # show what causes derivation to be different
-        nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
         nix-index # index for nix-locate
         nix-init # provides more easy way to create nix packages
         nix-output-monitor # fancy nix output (nom)
         nix-tree # Interactive scan current system / derivations for what-why-how depends
-        nix-update
         nixos-shell # tool to create vm for current config
         nurl # cli to generate Nix fetcher calls from repository URLs
         nvd # compare versions: nvd diff /run/current-system result
