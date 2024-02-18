@@ -226,6 +226,7 @@
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
+        sysprof.enable = false; # gnome profiler ?
         udev.packages = with pkgs; [ android-udev-rules ];
         udisks2.enable = true;
         upower.enable = true;
