@@ -219,6 +219,7 @@
         autorandr.enable = true;
         avahi = {enable = true; nssmdns4 = true;};
         chrony.enable = true;
+        earlyoom.enable = false; # may need it for notebook
         fwupd.enable = true;
         gvfs.enable = true;
         irqbalance.enable = false;
