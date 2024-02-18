@@ -6,8 +6,8 @@
 
         aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
-        curl # transfer curl
         cacert # for curl certificate verification
+        curl # transfer curl
         dig # dns command-line tool
         ethtool # control eth hardware and drivers
         fping # like ping -c1
@@ -75,6 +75,7 @@
         cachix # for downloading pre-built binaries
         dconf2nix # convert dconf to nix config
         deadnix # scan for dead nix code
+        manix # nixos documentation
         nh # some nice nix commands
         nix-diff # show what causes derivation to be different
         nix-du # nix-du --root /run/current-system/sw/ -s 500MB > result.dot
@@ -84,7 +85,6 @@
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nix-update
         nixos-shell # tool to create vm for current config
-        manix # nixos documentation
         nurl # cli to generate Nix fetcher calls from repository URLs
         nvd # compare versions: nvd diff /run/current-system result
         statix # static analyzer for nix
@@ -105,9 +105,9 @@
         reptyr # move app to another pty, tmux as an example
         ripgrep # better grep
         rlwrap # readline wrapper for everything
+        stable.zsh # better shell
         tig # git viewer
         tmux # better screen
-        stable.zsh # better shell
 
         btop # even more fancy top
         dstat # example use: dstat -cdnpmgs --top-bio --top-cpu --top-mem
