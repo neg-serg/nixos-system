@@ -17,17 +17,11 @@ let
       "vt.global_cursor_default=0"
   ];
   acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
-  # https://wiki.archlinux.org/title/improving_performance#Watchdogs
-  no_watchdog = [ "nowatchdog" "kernel.nmi_watchdog=0" ];
+  no_watchdog = [ "nowatchdog" "kernel.nmi_watchdog=0" ]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
   iommu_on = [ "amd_iommu=on" "iommu=pt" ];
   video_settings = [ "nvidia_drm.modeset=1" "video=3440x1440@175" "modeset=1" "fbdev=1" ];
-
   # -- Blacklist
-  obscure_network_protocols = [
-      "ax25"
-      "netrom"
-      "rose"
-  ];
+  obscure_network_protocols = [ "ax25" "netrom" "rose" ];
   old_rare_insufficiently_audited_fs = [
       "adfs"
       "affs"
@@ -63,7 +57,6 @@ let
         # system console of a Linux kernel to perform some low-level commands.
         # Disable it, since we don't need it, and is a potential security concern.
         "kernel.sysrq" = 0;
-
         ## TCP hardening
         # Prevent bogus ICMP errors from filling up logs.
         "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
@@ -88,7 +81,6 @@ let
         "net.ipv4.tcp_syncookies" = 1;
         # Incomplete protection again TIME-WAIT assassination
         "net.ipv4.tcp_rfc1337" = 1;
-
         ## TCP optimization
         # TCP Fast Open is a TCP extension that reduces network latency by packing
         # data in the sender’s initial TCP SYN. Setting 3 = enable TCP Fast Open for
@@ -97,7 +89,6 @@ let
         # Bufferbloat mitigations + slight improvement in throughput & latency
         "net.ipv4.tcp_congestion_control" = "bbr";
         "net.core.default_qdisc" = "cake";
-
         # NixOS configuration for Star Citizen requirements
         "vm.max_map_count" = 16777216;
         "fs.file-max" = 524288;
@@ -114,7 +105,6 @@ let
     ] ++ obscure_network_protocols ++ old_rare_insufficiently_audited_fs;
     boot.kernelParams = f2fs_root_settings ++ [
         "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
-
         "audit=0"
         "biosdevname=1"
         "cryptomgr.notests"
