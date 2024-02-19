@@ -15,13 +15,11 @@
             vulkan-tools
             vulkan-validation-layers
         ];
-        variables={ 
-            __GL_GSYNC_ALLOWED="0"; 
-        };
+        variables={ __GL_GSYNC_ALLOWED="0"; };
     };
 
     services.xserver={
-        screenSection=''Option         "metamodes" "3440x1440_175 +0+0 {AllowGSYNCCompatible=Off}"'';
+        screenSection=''Option "metamodes" "3440x1440_175 +0+0 {AllowGSYNCCompatible=Off}"'';
         monitorSection=''
             Option "StandbyTime" "0"
             Option "SuspendTime" "0"
@@ -31,7 +29,7 @@
     };
     services.xserver.videoDrivers=["nvidia"];
     hardware.nvidia={
-        open=false; # Currently alpha-quality/buggy, so false is currently the recommended setting.
+        open=false;
         nvidiaSettings=true;
     };
 }
