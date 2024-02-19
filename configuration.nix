@@ -85,9 +85,7 @@
     environment.shells = with pkgs; [zsh];
     # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
     # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
-    environment.sessionVariables = {
-        ZDOTDIR = "$HOME/.config/zsh";
-    };
+    environment.sessionVariables = { ZDOTDIR = "$HOME/.config/zsh"; };
 
     environment.variables = {
         __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
@@ -219,7 +217,7 @@
 
     xdg.portal = {
         enable = true;
-        extraPortals = with pkgs; [ xdg-desktop-portal xdg-desktop-portal-gtk ];
+        extraPortals = with pkgs; [xdg-desktop-portal xdg-desktop-portal-gtk];
         config.common.default = "gtk";
     };
 
