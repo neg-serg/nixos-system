@@ -4,18 +4,17 @@
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
         ./boot.nix
-        ./kernel.nix
         ./filesystems.nix
+        ./kernel.nix
+        ./keyd.nix
         ./locale.nix
         ./networking.nix
+        ./nixindex.nix
         ./nvidia.nix
-        ./udev-rules.nix
+        ./pkgs.nix
         ./python-lto.nix
         ./session.nix
-        ./keyd.nix
-        ./nixindex.nix
-
-        ./pkgs.nix
+        ./udev-rules.nix
     ];
     nix = {
         settings = {
