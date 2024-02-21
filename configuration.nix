@@ -64,11 +64,10 @@
                 sudo.u2fAuth = true;
             };
         };
-
         polkit.enable = true;
         rtkit.enable = true; # rtkit recommended for pipewire
         sudo.execWheelOnly = true;
-        sudo.wheelNeedsPassword = false;
+        sudo.wheelNeedsPassword = true;
         protectKernelImage = if kexec_enabled == false then true else false;
     };
 
