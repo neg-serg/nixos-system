@@ -66,6 +66,19 @@
         };
         polkit.enable = true;
         rtkit.enable = true; # rtkit recommended for pipewire
+        sudo.extraRules = [{
+              commands = [{
+                  command = "${pkgs.systemd}/bin/systemctl suspend";
+                  options = ["NOPASSWD"];
+              }{
+                  command = "${pkgs.systemd}/bin/reboot";
+                  options = ["NOPASSWD"];
+              }{
+                  command = "${pkgs.systemd}/bin/poweroff";
+                  options = ["NOPASSWD"];
+              }];
+              groups = ["wheel"];
+        }];
         sudo.execWheelOnly = true;
         sudo.wheelNeedsPassword = true;
         protectKernelImage = if kexec_enabled == false then true else false;
