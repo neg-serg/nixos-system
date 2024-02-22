@@ -11,8 +11,12 @@
             layout = "us,ru";
         };
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
-        desktopManager = { xterm.enable = false; };
+        desktopManager = {
+            plasma5.enable = true;
+            xterm.enable = false; 
+        };
         displayManager = {
+            sddm.enable = true;
             defaultSession = "none+i3";
             autoLogin.enable = false;
             autoLogin.user = "neg";
