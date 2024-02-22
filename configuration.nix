@@ -4,6 +4,7 @@
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
         ./boot.nix
+        ./appimage.nix
         ./filesystems.nix
         ./kernel.nix
         ./keyd.nix
