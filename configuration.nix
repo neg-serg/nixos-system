@@ -1,6 +1,6 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, lib, pkgs, modulesPath, kexec_enabled, ... }: {
+{ config, lib, pkgs, modulesPath, kexec_enabled, inputs, ... }: {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
         ./boot.nix
@@ -39,6 +39,8 @@
         };
     };
     nixpkgs.config.allowUnfree = true;
+    nix.registry.nixpkgs.flake = inputs.nixpkgs;
+    nix.registry.stable.flake = inputs.nixpkgs-stable;
 
     systemd = {
         coredump.enable = true;
