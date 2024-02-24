@@ -62,7 +62,7 @@
         delta # better diff tool
         dump_syms # parsing the debugging information
         elfutils # set of utilities to handle ELF objects
-        eza # more modern version of exa ls replacer
+        stable.eza # more modern version of exa ls replacer
         fd # better find
         file # get filetype from content
         patchelf # for fixing up binaries in nix
