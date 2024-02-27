@@ -100,7 +100,7 @@
         psmisc # killall and friends
         pv # pipe viewer
         readline # readline library
-        reptyr # move app to another pty, tmux as an example
+        reptyr # move app to another pty, tmux as an example ( echo 0 > /proc/sys/kernel/yama/ptrace_scope )
         ripgrep # better grep
         rlwrap # readline wrapper for everything
         stable.zsh # better shell
