@@ -19,7 +19,12 @@
     ];
     nix = {
         settings = {
-            experimental-features = ["nix-command" "flakes" "repl-flake"];
+            experimental-features = [
+                "auto-allocate-uids"
+                "ca-derivations"
+                "flakes"
+                "nix-command"
+            ];
             trusted-users = ["root" "neg"];
             substituters = [
                 "https://ezkea.cachix.org"
