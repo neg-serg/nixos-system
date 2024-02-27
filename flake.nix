@@ -8,7 +8,6 @@
         nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
-        nur.url = "github:nix-community/NUR";
         nixos-generators = { url = "github:nix-community/nixos-generators"; inputs.nixpkgs.follows = "nixpkgs"; };
     };
     outputs = {
@@ -22,7 +21,6 @@
         , nixpkgs
         , nixpkgs-stable
         , nixtheplanet
-        , nur
         , nixos-generators
         } @inputs:
         with rec {
