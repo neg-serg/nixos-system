@@ -5,7 +5,6 @@
         disko.url = "github:nix-community/disko";
         nh.url = "github:viperML/nh";
         nix-gaming.url = "github:fufexan/nix-gaming";
-        nix-ld.url = "github:Mic92/nix-ld";
         nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
@@ -19,7 +18,6 @@
         , nh
         , nix
         , nix-gaming
-        , nix-ld
         , nixos-hardware
         , nixpkgs
         , nixpkgs-stable
