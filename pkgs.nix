@@ -81,6 +81,7 @@
         nix-index # index for nix-locate
         nix-init # provides more easy way to create nix packages
         nix-output-monitor # fancy nix output (nom)
+        nix-search-cli # tool for fast package search
         nix-tree # Interactive scan current system / derivations for what-why-how depends
         nixos-shell # tool to create vm for current config
         nurl # cli to generate Nix fetcher calls from repository URLs
