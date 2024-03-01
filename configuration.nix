@@ -238,6 +238,7 @@
             SystemMaxFiles=50
         '';
     };
+    systemd.services.vnstat.serviceConfig.ExecStart = lib.mkForce "${pkgs.vnstat}/bin/vnstatd -n --alwaysadd 1";
 
     xdg.portal = {
         enable = true;
