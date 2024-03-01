@@ -3,8 +3,8 @@
 { config, lib, pkgs, modulesPath, kexec_enabled, inputs, ... }: {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
-        ./boot.nix
         ./appimage.nix
+        ./boot.nix
         ./filesystems.nix
         ./kernel.nix
         ./keyd.nix
@@ -16,6 +16,7 @@
         ./python-lto.nix
         ./session.nix
         ./udev-rules.nix
+        ./vnstat.nix
     ];
     nix = {
         settings = {
@@ -227,7 +228,6 @@
         udev.packages = with pkgs; [ android-udev-rules ];
         udisks2.enable = true;
         upower.enable = true;
-        vnstat.enable = true;
         logind = { extraConfig = '' IdleAction=ignore ''; };
         # Boot optimizations regarding filesystem:
         # Journald was taking too long to copy from runtime memory to disk at boot
@@ -238,7 +238,6 @@
             SystemMaxFiles=50
         '';
     };
-    systemd.services.vnstat.serviceConfig.ExecStart = lib.mkForce "${pkgs.vnstat}/bin/vnstatd -n --alwaysadd 1";
 
     xdg.portal = {
         enable = true;
