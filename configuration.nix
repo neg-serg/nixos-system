@@ -44,10 +44,10 @@
             dates = "weekly";
             options = "--delete-older-than 21d";
         };
+        registry.nixpkgs.flake = inputs.nixpkgs;
+        registry.stable.flake = inputs.nixpkgs-stable;
     };
     nixpkgs.config.allowUnfree = true;
-    nix.registry.nixpkgs.flake = inputs.nixpkgs;
-    nix.registry.stable.flake = inputs.nixpkgs-stable;
 
     systemd = {
         coredump.enable = true;
