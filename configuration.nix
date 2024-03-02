@@ -214,6 +214,8 @@
         fwupd.enable = true;
         gvfs.enable = true;
         irqbalance.enable = false;
+        locate = { enable = true; package = pkgs.plocate; };
+        logind = { extraConfig = '' IdleAction=ignore ''; };
         openssh.enable = true;
         pcscd.enable = true;
         psd.enable = true;
@@ -221,7 +223,6 @@
         udev.packages = with pkgs; [ android-udev-rules ];
         udisks2.enable = true;
         upower.enable = true;
-        logind = { extraConfig = '' IdleAction=ignore ''; };
         # Boot optimizations regarding filesystem:
         # Journald was taking too long to copy from runtime memory to disk at boot
         # set storage to "auto" if you're trying to troubleshoot a boot issue
