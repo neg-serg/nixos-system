@@ -146,7 +146,6 @@
         pulse.enable = true;
         jack.enable = true;
         # Once #292115 is merged and has reached nixos-unstable, you'll be able to use services.pipewire.wireplumber.extraLuaConfig as well:
-        #
         # services.pipewire.wireplumber.extraLuaConfig.bluetooth."51-bluez-config" = ''
         # 	bluez_monitor.properties = {
         # 		["bluez5.enable-sbc-xq"] = true,
