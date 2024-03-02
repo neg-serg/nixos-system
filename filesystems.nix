@@ -1,5 +1,4 @@
-{ config, lib, pkgs, modulesPath, ... }: {
-  boot.supportedFilesystems = [ "bcachefs" ];
+{ ... }: {
   fileSystems."/" = {
       device = "/dev/mapper/main-sys";
       fsType = "f2fs";
