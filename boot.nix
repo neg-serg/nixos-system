@@ -9,7 +9,7 @@
             };
             timeout = 1;
         };
-        kernelPackages = pkgs.linuxPackages_cachyos-lto;
+        kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
             availableKernelModules = [
                 "nvidia"
