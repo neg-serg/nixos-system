@@ -120,7 +120,7 @@
         nvtop-amd # nvidia top
         powertop # watch for power events
         procdump # procdump for linux
-        sysstat # sar and friends
+        sysstat # sar, iostat, mpstat, pidstat and friends
         vmtouch # portable file system cache diagnostics and control
 
         terminus-nerdfont # font for tty
