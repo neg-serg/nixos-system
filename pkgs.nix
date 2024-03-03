@@ -36,6 +36,7 @@
         tshark # sniffer tui
         w3m # cli browser
         wget2 # non-interactive downloader
+        wireshark # sniffer gui
 
         ddrescue # data recovery tool
         foremost # files extact from structure
