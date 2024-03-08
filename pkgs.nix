@@ -116,8 +116,6 @@
         iperf iperf2 # IP bandwidth measurement
         linuxKernel.packages.linux_6_7.turbostat # cpu monitor
         nethogs # network traffic per process
-        #nvitop # yet another nvidia top
-        #nvtop-amd # nvidia top
         powertop # watch for power events
         procdump # procdump for linux
         sysstat # sar, iostat, mpstat, pidstat and friends
