@@ -5,7 +5,7 @@
         exportConfiguration = true;
         autoRepeatDelay = 250;
         autoRepeatInterval = 20;
-        xkb ={
+        xkb = {
             variant = "";
             options = "grp:alt_shift_toggle";
             layout = "us,ru";
@@ -14,14 +14,12 @@
         desktopManager = { xterm.enable = false; };
         displayManager = {
             defaultSession = "none+i3";
-            autoLogin.enable = false;
-            autoLogin.user = "neg";
+            autoLogin = {
+	    	enable = false;
+            	user = "neg";
+            };
             startx.enable = true;
-            session = [{
-                manage="window";
-                name="i3";
-                start=''$HOME/.xsession'';
-            }];
+            session = [{ manage="window"; name="i3"; start=''$HOME/.xsession''; }];
         };
     };
 }
