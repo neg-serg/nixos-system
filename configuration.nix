@@ -62,6 +62,7 @@
         pam = {
             loginLimits = [
                 {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
+                {domain = "@users"; item = "rtprio"; type = "-"; value = 1;}
                 {domain = "@audio"; item = "rtprio"; type = "-"; value = "95";}
                 {domain = "@audio"; item = "nice"; type = "-"; value = "-19";}
                 {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
