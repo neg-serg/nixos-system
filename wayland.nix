@@ -1,5 +1,4 @@
 { config, pkgs, lib, ... }:
-
 let
   # bash script to let dbus know about important env variables and
   # propagate them to relevent services run at the end of sway config
@@ -60,12 +59,6 @@ in
     wdisplays # tool to configure displays
   ];
 
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    pulse.enable = true;
-  };
-
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path
@@ -83,8 +76,6 @@ in
   # Enable the gnome-keyrig secrets vault. 
   # Will be exposed through DBus to programs willing to store secrets.
   services.gnome.gnome-keyring.enable = true;
-
-
   # enable sway window manager
   programs.sway = {
     enable = true;
