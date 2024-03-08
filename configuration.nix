@@ -18,7 +18,7 @@
         ./udev-rules.nix
         ./vnstat.nix
         ./pipewire.nix
-	./wayland.nix
+	#./wayland.nix
     ];
     nix = {
         settings = {
