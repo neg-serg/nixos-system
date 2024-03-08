@@ -21,6 +21,7 @@
             ];
             kernelModules = [
                 "dm-snapshot"
+                "amdgpu"
             ];
         };
     };
