@@ -19,7 +19,8 @@ let
   acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
   no_watchdog = [ "nowatchdog" "kernel.nmi_watchdog=0" ]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
   iommu_on = [ "amd_iommu=on" "iommu=pt" ];
-  video_settings = [ "nvidia_drm.modeset=1" "video=3440x1440@175" "modeset=1" "fbdev=1" ];
+  video_settings = [ "video=3440x1440@175"  ];
+  nvidia_settings = [ "nvidia_drm.modeset=1"  "modeset=1" "fbdev=1" ];
   # -- Blacklist
   obscure_network_protocols = [ "ax25" "netrom" "rose" ];
   old_rare_insufficiently_audited_fs = [

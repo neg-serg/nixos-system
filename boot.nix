@@ -12,10 +12,6 @@
         kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
             availableKernelModules = [
-                "nvidia"
-                "nvidia_drm"
-                "nvidia_modeset"
-                "nvidia_uvm"
                 "nvme"
                 "sd_mod"
                 "usb_storage"

@@ -11,7 +11,7 @@
         ./locale.nix
         ./networking.nix
         ./nixindex.nix
-        ./nvidia.nix
+        #./nvidia.nix
         ./pkgs.nix
         ./python-lto.nix
         ./session.nix
