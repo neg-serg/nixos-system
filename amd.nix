@@ -3,12 +3,7 @@
         enable=true;
         driSupport=true;
         driSupport32Bit=true;
-
-        extraPackages = with pkgs; [ amdvlk ];
-        # For 32 bit applications 
-        extraPackages32 = with pkgs; [ driversi686Linux.amdvlk ];
     };
-
     environment={
         systemPackages=with pkgs; [
             glxinfo
@@ -19,7 +14,6 @@
     };
     services.xserver={
         enable=true;
-        screenSection=''Option "metamodes" "3440x1440_175 +0+0"'';
         monitorSection=''
             Option "StandbyTime" "0"
             Option "SuspendTime" "0"
