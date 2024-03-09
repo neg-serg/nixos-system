@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.nix { }; in {
-    environment.systemPackages = [tokyo-night-sddm];
+{
     services.xserver = {
         enable = true; # Enable the X11 windowing system.
         enableCtrlAltBackspace = true;
@@ -22,14 +20,6 @@ let tokyo-night-sddm = pkgs.libsForQt5.callPackage ./tokyo-night-sddm/default.ni
             };
             startx.enable = true;
             session = [{ manage="window"; name="i3"; start=''$HOME/.xsession''; }];
-            sddm = {
-                enable = true;
-                theme = "tokyo-night-sddm";
-                wayland.enable = true;
-                settings = {
-                    General = { DisplayServer = "x11-user"; };
-                };
-            };
         };
     };
 }
