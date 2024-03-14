@@ -19,7 +19,7 @@
         ./vnstat.nix
         ./pipewire.nix
         #./wayland.nix
-	./greetd.nix
+	#./greetd.nix
     ];
     nix = {
         settings = {
