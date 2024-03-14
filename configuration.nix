@@ -199,10 +199,6 @@
             gamescopeSession.enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
         };
-        hyprland = {
-            enable = true; # Install the packages from nixpkgs
-            xwayland.enable = true; # Whether to enable XWayland
-        };
     };
 
     services = {
@@ -236,8 +232,12 @@
 
     xdg.portal = {
         enable = true;
-        extraPortals = with pkgs; [xdg-desktop-portal xdg-desktop-portal-gtk];
-        config.common.default = "gtk";
+        extraPortals = with pkgs; [
+	  xdg-desktop-portal
+	  xdg-desktop-portal-gtk
+          xdg-desktop-portal-wlr
+	];
+        config.common.default = "wlr";
     };
 
     # (man configuration.nix or on https://nixos.org/nixos/options.html).
