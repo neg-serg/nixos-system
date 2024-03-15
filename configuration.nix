@@ -109,7 +109,21 @@
     environment.shells = with pkgs; [zsh];
     # This is using a rec (recursive) expression to set and access XDG_BIN_HOME within the expression
     # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
-    environment.sessionVariables = { ZDOTDIR = "$HOME/.config/zsh"; };
+    environment.sessionVariables = {
+        XDG_CACHE_HOME = "$HOME/.cache";
+        XDG_CONFIG_HOME = "$HOME/.config";
+        XDG_DATA_HOME = "$HOME/.local/share";
+        XDG_DESKTOP_DIR = "$HOME/.local/desktop";
+        XDG_DOCUMENTS_DIR = "$HOME/doc/";
+        XDG_DOWNLOAD_DIR = "$HOME/dw";
+        XDG_MUSIC_DIR = "$HOME/music";
+        XDG_PICTURES_DIR = "$HOME/pic";
+        XDG_PUBLICSHARE_DIR = "$HOME/1st_level/upload/share";
+        XDG_STATE_HOME = "$HOME/.local/state";
+        XDG_TEMPLATES_DIR = "$HOME/1st_level/templates";
+        XDG_VIDEOS_DIR = "$HOME/vid";
+        ZDOTDIR = "$HOME/.config/zsh";
+    };
 
     environment.variables = {
         ASPELL_CONF = ''
@@ -237,6 +251,15 @@
 	  xdg-desktop-portal-gtk
           xdg-desktop-portal-wlr
 	];
+        wlr = {
+          enable = true;
+          settings = {
+            screencast = {
+              chooser_type = "simple";
+              chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -ro";
+            };
+          };
+        };
         config.common.default = "wlr";
     };
 
