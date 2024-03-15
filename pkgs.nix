@@ -1,4 +1,5 @@
 { pkgs, stable, inputs, ... }: {
+    imports = [ ./python-lto.nix ];
     environment.systemPackages = with pkgs; [
         efibootmgr # rule efi boot
         efivar # manipulate efi vars

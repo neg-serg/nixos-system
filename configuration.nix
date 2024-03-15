@@ -13,7 +13,6 @@
         ./nixindex.nix
         ./amd.nix
         ./pkgs.nix
-        ./python-lto.nix
         ./session.nix
         ./udev-rules.nix
         ./vnstat.nix
