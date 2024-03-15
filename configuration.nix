@@ -18,8 +18,6 @@
         ./udev-rules.nix
         ./vnstat.nix
         ./pipewire.nix
-        #./wayland.nix
-	    #./greetd.nix
     ];
     nix = {
         settings = {
