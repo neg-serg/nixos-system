@@ -3,6 +3,7 @@
 { config, lib, pkgs, modulesPath, kexec_enabled, inputs, ... }: {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
+        ./bash.nix
         ./appimage.nix
         ./boot.nix
         ./filesystems.nix
