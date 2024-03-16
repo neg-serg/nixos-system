@@ -36,7 +36,7 @@
                 "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
                 "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
             ];
-            use-xdg-base-directories = true;
+            use-xdg-base-directories = false;
             max-jobs = 20;
             cores = 32;
         };
