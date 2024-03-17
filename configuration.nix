@@ -78,7 +78,6 @@
             };
         };
         polkit.enable = true;
-        rtkit.enable = true; # rtkit recommended for pipewire
         sudo.extraRules = [{
               commands = [{
                   command = "${pkgs.systemd}/bin/systemctl suspend";
