@@ -19,6 +19,8 @@
         ./vnstat.nix
         ./pipewire.nix
     ];
+    musnix.enable = true;
+    musnix.kernel.realtime = true;
     nix = {
         settings = {
             experimental-features = [
