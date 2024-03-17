@@ -65,11 +65,11 @@
                 {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
                 {domain = "neg"; item = "rtprio"; type = "-"; value = 90;}
                 {domain = "@audio"; item = "rtprio"; type = "-"; value = 90;}
-                {domain = "neg"; item = "nice"; type = "-"; value = "-19";}
-                {domain = "@audio"; item = "nice"; type = "-"; value = "-19";}
+                {domain = "neg"; item = "nice"; type = "-"; value = "-20";}
+                {domain = "@audio"; item = "nice"; type = "-"; value = "-20";}
                 {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
                 {domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited";}
-                {domain = "@realtime"; item = "nice"; type = "-"; value = "-11";}
+                {domain = "@realtime"; item = "nice"; type = "-"; value = "-20";}
                 {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
             ];
             services = {
