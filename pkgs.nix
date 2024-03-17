@@ -132,7 +132,7 @@
 
         blktrace # another disk test
         dmraid # Old-style RAID configuration utility
-        exfat # Exfat support
+        exfat exfatprogs # Exfat support
         fio # disk test
         gptfdisk # sgdisk
         ioping # io latency measuring tool
