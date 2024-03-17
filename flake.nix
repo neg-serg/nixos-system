@@ -9,7 +9,6 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         nixos-generators = { url = "github:nix-community/nixos-generators"; inputs.nixpkgs.follows = "nixpkgs"; };
-        musnix = { url = "github:musnix/musnix"; };
     };
     outputs = {
         self
@@ -23,7 +22,6 @@
         , nixpkgs-stable
         , nixtheplanet
         , nixos-generators
-        , musnix
         } @inputs:
         with rec {
             locale = "en_US.UTF-8"; # select locale
@@ -46,7 +44,6 @@
                 modules = [
                     ./configuration.nix
                     ./cachix.nix
-                    inputs.musnix.nixosModules.musnix
                     chaotic.nixosModules.default
                 ];
             };
