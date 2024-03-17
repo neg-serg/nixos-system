@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+    systemd.tmpfiles.rules = [
+        "w    /sys/class/rtc/rtc0/max_user_freq     -    -    -    -   2048"
+        "w    /proc/sys/dev/hpet/max-user-freq     -    -    -    -   2048"
+    ];
     services.pipewire = {
         enable = true;
         alsa.enable = true;
