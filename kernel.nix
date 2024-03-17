@@ -3,10 +3,6 @@ let
         # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
         "mitigations=off"
   ];
-  extra_security = [
-      "page_poison=1" # Overwrite free'd memory
-      "page_alloc.shuffle=1" # Enable page allocator randomization
-  ];
   f2fs_root_settings = [ "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix" ];
   silence = [
       "quiet"
@@ -16,11 +12,15 @@ let
       "systemd.show_status=false"
       "vt.global_cursor_default=0"
   ];
-  acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
+  # extra_security = [
+  #     "page_poison=1" # Overwrite free'd memory
+  #     "page_alloc.shuffle=1" # Enable page allocator randomization
+  # ];
+  # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
+  # nvidia_settings = [ "nvidia_drm.modeset=1"  "modeset=1" "fbdev=1" ];
+  # acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
   no_watchdog = [ "nowatchdog" "kernel.nmi_watchdog=0" ]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
-  iommu_on = [ "amd_iommu=on" "iommu=pt" ];
   video_settings = [ "video=3440x1440@175"  ];
-  nvidia_settings = [ "nvidia_drm.modeset=1"  "modeset=1" "fbdev=1" ];
   # -- Blacklist
   obscure_network_protocols = [ "ax25" "netrom" "rose" ];
   old_rare_insufficiently_audited_fs = [
