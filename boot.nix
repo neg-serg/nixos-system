@@ -9,10 +9,10 @@
                 useOSProber = true;
                 device = "nodev";
                 backgroundColor = "#000000";
-                font = "${pkgs.hack-font}/share/fonts/hack/Hack-Regular.ttf";
-                fontSize = 36;
+                font = "${pkgs.iosevka}/share/fonts/Iosevka.ttf";
+                fontSize = 48;
                 gfxmodeEfi = "3440x1440";
-                splashImage = "/home/neg/pic/wl/4305db796f7d8fcb41b27df23912358c.jpg";
+                splashImage = /home/neg/pic/wl/4305db796f7d8fcb41b27df23912358c.jpg;
             };
             timeout = 1;
         };
