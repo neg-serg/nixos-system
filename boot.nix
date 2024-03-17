@@ -9,13 +9,14 @@
                 useOSProber = true;
                 device = "nodev";
                 backgroundColor = "#000000";
-                fontSize = "32";
+                font = "${pkgs.hack-font}/share/fonts/hack/Hack-Regular.ttf";
+                fontSize = 36;
                 gfxmodeEfi = "3440x1440";
                 splashImage = "/home/neg/pic/wl/4305db796f7d8fcb41b27df23912358c.jpg";
             };
             timeout = 1;
         };
-        kernelPackages = pkgs.linuxPackages_cachyos;
+        # kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
             availableKernelModules = [
                 "nvme"
