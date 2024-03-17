@@ -8,6 +8,10 @@
                 efiSupport = true;
                 useOSProber = true;
                 device = "nodev";
+                backgroundColor = "#000000";
+                fontSize = "32";
+                gfxmodeEfi = "3440x1440";
+                splashImage = "/home/neg/pic/wl/4305db796f7d8fcb41b27df23912358c.jpg";
             };
             timeout = 1;
         };
