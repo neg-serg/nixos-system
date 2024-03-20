@@ -51,7 +51,7 @@ let
       "ufs"
       "vivid"
       ];
-  in {
+    in { pkgs, ... } : {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
         # The Magic SysRq key is a key combo that allows users connected to the
@@ -124,4 +124,5 @@ let
     ] ++ mitigations_settings ++ silence ++ no_watchdog ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
+    boot.kernelPackages = pkgs.linuxPackages_cachyos;
 }

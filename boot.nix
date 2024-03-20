@@ -16,7 +16,6 @@
             };
             timeout = 1;
         };
-        kernelPackages = pkgs.linuxPackages_cachyos;
         initrd = {
             availableKernelModules = [
                 "nvme"
