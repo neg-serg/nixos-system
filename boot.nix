@@ -9,10 +9,9 @@
                 device = "nodev";
                 backgroundColor = "#000000";
                 font = "${pkgs.iosevka}/share/fonts/truetype/Iosevka-Medium.ttf";
-                fontSize = 48;
+                fontSize = 32;
                 gfxmodeEfi = "2560x1440";
                 gfxpayloadEfi = "keep";
-                splashImage = /home/neg/pic/wl/4305db796f7d8fcb41b27df23912358c.jpg;
             };
             timeout = 1;
         };
