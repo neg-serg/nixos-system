@@ -25,10 +25,7 @@
                 "xhci_hcd"
                 "xhci_pci"
             ];
-            kernelModules = [
-                "dm-snapshot"
-                "amdgpu"
-            ];
+            kernelModules = [];
         };
     };
 }
