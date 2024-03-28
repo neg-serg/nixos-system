@@ -1,10 +1,10 @@
 { pkgs, ... }: {
     services.pipewire = {
-        enable = false;
+        enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
         pulse.enable = true;
-        jack.enable = false;
+        jack.enable = true;
         wireplumber.configPackages = [
             (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
                 bluez_monitor.properties = {

@@ -143,7 +143,6 @@
     '';
 
     hardware.i2c.enable = true;
-    hardware.pulseaudio.enable = true;
     hardware.bluetooth = {
         enable = true;
         powerOnBoot = false;
