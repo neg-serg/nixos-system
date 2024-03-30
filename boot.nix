@@ -8,7 +8,7 @@
                 useOSProber = true;
                 device = "nodev";
                 backgroundColor = "#000000";
-                font = "${pkgs.iosevka}/share/fonts/truetype/Iosevka-Medium.ttf";
+                font = "${pkgs.terminus_font_ttf}/share/fonts/truetype/TerminusTTF-Bold.ttf";
                 fontSize = 32;
                 gfxmodeEfi = "2560x1440";
                 gfxpayloadEfi = "keep";
