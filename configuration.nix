@@ -18,6 +18,7 @@
         ./udev-rules.nix
         ./vnstat.nix
         ./pipewire.nix
+        ./syncthing.nix
     ];
     nix = {
         settings = {
