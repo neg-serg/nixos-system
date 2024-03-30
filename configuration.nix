@@ -3,23 +3,25 @@
 { config, lib, pkgs, modulesPath, kexec_enabled, inputs, ... }: {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
-        ./bash.nix
-        ./appimage.nix
         ./boot.nix
-        ./filesystems.nix
         ./kernel.nix
+        ./filesystems.nix
+        ./networking.nix
+
+        ./amd.nix
+        ./appimage.nix
+        ./bash.nix
+        ./games.nix
         ./keyd.nix
         ./locale.nix
-        ./networking.nix
         ./nixindex.nix
-        ./amd.nix
-        ./pkgs.nix
+        ./pipewire.nix
         ./session.nix
+        ./syncthing.nix
         ./udev-rules.nix
         ./vnstat.nix
-        ./pipewire.nix
-        ./syncthing.nix
-        ./games.nix
+
+        ./pkgs.nix
     ];
     nix = {
         settings = {
