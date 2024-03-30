@@ -19,6 +19,7 @@
         ./vnstat.nix
         ./pipewire.nix
         ./syncthing.nix
+        ./games.nix
     ];
     nix = {
         settings = {
@@ -155,23 +156,6 @@
     hardware.enableRedistributableFirmware = true;
     hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
 
-    nixpkgs.config.packageOverrides = pkgs: {
-      steam = pkgs.steam.override {
-          extraPkgs = pkgs: with pkgs; [
-              keyutils
-              libkrb5
-              libpng
-              libpulseaudio
-              libvorbis
-              stdenv.cc.cc.lib
-              xorg.libXcursor
-              xorg.libXi
-              xorg.libXinerama
-              xorg.libXScrnSaver
-          ];
-      };
-    };
-
     users = {
         users.neg = {
             isNormalUser = true;
@@ -205,12 +189,6 @@
             # but beware this can break if you don't have exactly matching opensc versions
             # between your main config and home-manager channel
             agentPKCS11Whitelist = "${pkgs.opensc}/lib/opensc-pkcs11.so";
-        };
-        steam = {
-            enable = true;
-            dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-            gamescopeSession.enable = true;
-            remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
         };
     };
 
