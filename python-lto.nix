@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ lib, pkgs, ... }: {
     nixpkgs = {
         hostPlatform = lib.mkDefault "x86_64-linux";
         config.allowUnfree = true;
@@ -13,4 +13,7 @@
             };
         };
     };
+    environment.systemPackages = with pkgs; [
+        python3-lto # different python3 build
+    ];
 }
