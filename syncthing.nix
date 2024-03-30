@@ -2,8 +2,8 @@
    services.syncthing = {
        enable = true;
        user = "neg";
-       dataDir = "/zero/data";
-       configDir = "/zero/syncthing-config";
+       dataDir = "/zero/syncthing/data";
+       configDir = "/zero/syncthing/config";
        overrideDevices = true;     # overrides any devices added or deleted through the WebUI
        overrideFolders = true;     # overrides any folders added or deleted through the WebUI
        settings = {
