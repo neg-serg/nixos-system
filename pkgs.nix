@@ -116,7 +116,7 @@
         htop # fancy top
         iotop # top for iops
         iperf iperf2 # IP bandwidth measurement
-        linuxKernel.packages.linux_6_7.turbostat # cpu monitor
+        linuxKernel.packages.linux_6_8.turbostat # cpu monitor
         nethogs # network traffic per process
         powertop # watch for power events
         procdump # procdump for linux
@@ -127,7 +127,7 @@
 
         keyd # systemwide key manager
 
-        linuxKernel.packages.linux_6_7.perf
+        linuxKernel.packages.linux_6_8.perf
         scx # for cachyos sched
 
         blktrace # another disk test
