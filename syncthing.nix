@@ -2,10 +2,14 @@
    services.syncthing = {
        enable = true;
        user = "neg";
+       settings.gui = {
+           user = "neg";
+           password = "ithee3Ye";
+       };
        dataDir = "/zero/syncthing/data";
        configDir = "/zero/syncthing/config";
-       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
-       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+       overrideDevices = true; # overrides any devices added or deleted through the WebUI
+       overrideFolders = true; # overrides any folders added or deleted through the WebUI
        settings = {
          devices = {
            "telfir" = { id = "GNB553I-2IUWVBA-OCGXUVZ-BP322Q2-S5EGA5O-HNI5IWM-TJ4CEI6-547A5QI"; };
@@ -29,9 +33,4 @@
    # source: https://docs.syncthing.net/users/firewall.html
    networking.firewall.allowedTCPPorts = [ 8384 22000 ];
    networking.firewall.allowedUDPPorts = [ 22000 21027 ];
-
-   services.syncthing.settings.gui = {
-       user = "neg";
-       password = "ithee3Ye";
-   };
 }
