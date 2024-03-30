@@ -31,7 +31,10 @@
                 "flakes"
                 "nix-command"
             ];
-            trusted-users = ["root" "neg"];
+            trusted-users = [
+                "root"
+                "neg"
+            ];
             substituters = [
                 "https://ezkea.cachix.org"
                 "https://nix-gaming.cachix.org"
