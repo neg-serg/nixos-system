@@ -13,8 +13,12 @@
          };
          folders = {
            "music-upload" = { # Name of folder in Syncthing, also the folder ID
-             path = "/zero/music-upload"; # Which folder to add to Syncthing
-             devices = [ "Pixel 7 Pro" "telfir" ]; # Which devices to share the folder with
+               path = "/zero/music-upload"; # Which folder to add to Syncthing
+               devices = [ "Pixel 7 Pro" "telfir" ]; # Which devices to share the folder with
+           };
+           "picture-upload" = { # Name of folder in Syncthing, also the folder ID
+               path = "/zero/picture-upload"; # Which folder to add to Syncthing
+               devices = [ "Pixel 7 Pro" "telfir" ]; # Which devices to share the folder with
            };
         };
       };
