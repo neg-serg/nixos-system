@@ -5,15 +5,12 @@
         efivar # manipulate efi vars
         os-prober # utility to detect other OSs on a set of drives
 
-        aircrack-ng # stuff for wifi security
         bandwhich # display network utilization per process
         cacert # for curl certificate verification
-        curl # transfer curl
         dnsutils # dns command-line tools (dig, nslookup)
         ethtool # control eth hardware and drivers
         fping # like ping -c1
         geoip # geoip lookup
-        hcxdumptool # wpa scanner
         httpie # fancy curl
         httpstat # fancy curl -v
         iftop # display bandwidth
@@ -24,7 +21,6 @@
         magic-wormhole # secure transfer between computers
         netcat-openbsd # openbsd netcat variant
         netdiscover # another network scan
-        netsniff-ng # sniffer
         nettools # controlling the network subsystem in Linux
         nmap # port scanner
         procps # info about processes using /proc
@@ -34,9 +30,15 @@
         tcpdump # best friend to show network stuff
         tcptraceroute # traceroute without icmp
         traceroute # basic traceroute
-        tshark # sniffer tui
         w3m # cli browser
+
+        curl # transfer curl
         wget2 # non-interactive downloader
+
+        aircrack-ng # stuff for wifi security
+        hcxdumptool # wpa scanner
+        netsniff-ng # sniffer
+        tshark # sniffer tui
         wireshark # sniffer gui
 
         ddrescue # data recovery tool
@@ -116,19 +118,18 @@
         htop # fancy top
         iotop # top for iops
         iperf iperf2 # IP bandwidth measurement
+        linuxKernel.packages.linux_6_8.perf
         linuxKernel.packages.linux_6_8.turbostat # cpu monitor
         nethogs # network traffic per process
         powertop # watch for power events
         procdump # procdump for linux
+        scx # for cachyos sched
         sysstat # sar, iostat, mpstat, pidstat and friends
         vmtouch # portable file system cache diagnostics and control
 
         terminus-nerdfont # font for tty
 
         keyd # systemwide key manager
-
-        linuxKernel.packages.linux_6_8.perf
-        scx # for cachyos sched
 
         blktrace # another disk test
         dmraid # Old-style RAID configuration utility
