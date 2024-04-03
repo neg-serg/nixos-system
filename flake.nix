@@ -1,7 +1,6 @@
 {
     description = "Neg-Serg configuration";
     inputs = {
-        chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
         disko.url = "github:nix-community/disko";
         nh.url = "github:viperML/nh";
         nix-gaming.url = "github:fufexan/nix-gaming";
@@ -13,7 +12,6 @@
     };
     outputs = {
         self
-        , chaotic
         , disko
         , nh
         , nix
@@ -45,8 +43,6 @@
                 specialArgs = {inherit inputs;};
                 modules = [
                     ./configuration.nix
-                    ./cachix.nix
-                    chaotic.nixosModules.default
                     darkmatter-grub-theme.nixosModule
                 ];
             };
