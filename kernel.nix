@@ -120,7 +120,6 @@ let
         "scsi_mod.use_blk_mq=1"
         "threadirqs"
         "tsc=reliable"
-        "clocksource=hpet"
     ] ++ mitigations_settings ++ silence ++ no_watchdog ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
