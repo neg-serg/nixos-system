@@ -10,6 +10,7 @@
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         nixos-generators = { url = "github:nix-community/nixos-generators"; inputs.nixpkgs.follows = "nixpkgs"; };
         darkmatter-grub-theme = { url = "gitlab:VandalByte/darkmatter-grub-theme"; inputs.nixpkgs.follows = "nixpkgs"; };
+        musnix  = { url = "github:musnix/musnix"; };
     };
     outputs = {
         self
@@ -24,6 +25,7 @@
         , nixtheplanet
         , nixos-generators
         , darkmatter-grub-theme
+        , musnix
         } @inputs:
         with rec {
             locale = "en_US.UTF-8"; # select locale
@@ -46,6 +48,7 @@
                 modules = [
                     ./configuration.nix
                     ./cachix.nix
+                    musnix.nixosModules.musnix
                     chaotic.nixosModules.default
                     darkmatter-grub-theme.nixosModule
                 ];
