@@ -12,6 +12,12 @@ let
       "systemd.show_status=false"
       "vt.global_cursor_default=0"
   ];
+  # intel_hda_modules = [
+  #       "snd_hda_codec"
+  #       "snd_hda_codec_hdmi"
+  #       "snd_hda_core"
+  #       "snd_hda_intel"
+  # ];
   # extra_security = [
   #     "page_poison=1" # Overwrite free'd memory
   #     "page_alloc.shuffle=1" # Enable page allocator randomization
@@ -96,13 +102,7 @@ let
     };
     boot.kernelModules = ["kvm-amd" "tcp_bbr"];
     boot.blacklistedKernelModules=[
-        "nouveau"
-        "snd_hda_codec"
-        "snd_hda_codec_hdmi"
-        "snd_hda_core"
-        "snd_hda_intel"
-        # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
-        "sp5100_tco"
+        "sp5100_tco" # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
     ] ++ obscure_network_protocols ++ old_rare_insufficiently_audited_fs;
     boot.kernelParams = f2fs_root_settings ++ [
         "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
