@@ -23,11 +23,6 @@
 
         ./pkgs.nix
     ];
-    musnix.enable = true;
-    musnix.kernel.realtime = true;
-    musnix.kernel.packages = pkgs.linuxPackages_6_6_rt;
-    musnix.rtirq.enable = true;
-    musnix.das_watchdog.enable = true;
     nix = {
         settings = {
             experimental-features = [
@@ -74,14 +69,14 @@
     security = {
         pam = {
             loginLimits = [
-                # {domain = "neg"; item = "rtprio"; type = "-"; value = 90;}
-                # {domain = "@audio"; item = "rtprio"; type = "-"; value = 90;}
-                # {domain = "neg"; item = "nice"; type = "-"; value = "-20";}
-                # {domain = "@audio"; item = "nice"; type = "-"; value = "-20";}
-                # {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
-                # {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
-                # {domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited";}
-                # {domain = "@realtime"; item = "nice"; type = "-"; value = "-20";}
+                {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
+                {domain = "neg"; item = "rtprio"; type = "-"; value = 90;}
+                {domain = "@audio"; item = "rtprio"; type = "-"; value = 90;}
+                {domain = "neg"; item = "nice"; type = "-"; value = "-20";}
+                {domain = "@audio"; item = "nice"; type = "-"; value = "-20";}
+                {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
+                {domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited";}
+                {domain = "@realtime"; item = "nice"; type = "-"; value = "-20";}
                 {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
             ];
             services = {
