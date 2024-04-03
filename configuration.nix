@@ -156,9 +156,9 @@
         settings = {General.Enable = "Source,Sink,Media,Socket";};
     };
     powerManagement.cpuFreqGovernor = "performance";
-    # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    # hardware.enableAllFirmware = true; # Enable all the firmware
-    # hardware.enableRedistributableFirmware = true;
+    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    hardware.enableAllFirmware = true; # Enable all the firmware
+    hardware.enableRedistributableFirmware = true;
     hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
 
     users = {
