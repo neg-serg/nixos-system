@@ -123,5 +123,5 @@ let
     ] ++ mitigations_settings ++ silence ++ no_watchdog ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
-    boot.kernelPackages = pkgs.linuxPackages_6_1;
+    boot.kernelPackages = pkgs.linuxPackages_5_15;
 }
