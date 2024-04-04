@@ -103,7 +103,7 @@ let
     boot.kernelModules = ["kvm-amd" "tcp_bbr"];
     boot.blacklistedKernelModules=[
         "sp5100_tco" # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
-    ] ++ obscure_network_protocols ++ old_rare_insufficiently_audited_fs ++ intel_hda_modules;
+    ] ++ obscure_network_protocols ++ old_rare_insufficiently_audited_fs;
     boot.kernelParams = f2fs_root_settings ++ [
         "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"
         "audit=0"
