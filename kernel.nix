@@ -112,7 +112,6 @@ let
         "loglevel=0"
         "net.ifnames=0"
         "noreplace-smp"
-        "no_timer_check"
         "page_alloc.shuffle=1"
         "pcie_aspm=performance"
         "preempt=full"
@@ -123,5 +122,5 @@ let
     ] ++ mitigations_settings ++ silence ++ no_watchdog ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
-    boot.kernelPackages = pkgs.linuxPackages_6_1;
+    boot.kernelPackages = pkgs.linuxPackages_cachyos;
 }
