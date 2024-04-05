@@ -20,7 +20,6 @@
         ./syncthing.nix
         ./udev-rules.nix
         ./vnstat.nix
-        ./musnix.nix
 
         ./pkgs.nix
     ];
