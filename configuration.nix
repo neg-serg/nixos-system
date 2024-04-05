@@ -20,15 +20,10 @@
         ./syncthing.nix
         ./udev-rules.nix
         ./vnstat.nix
+        ./musnix.nix
 
         ./pkgs.nix
     ];
-    musnix.enable = true;
-    musnix.kernel.realtime = true;
-    musnix.kernel.packages = pkgs.linuxPackages-rt_latest;
-    musnix.rtirq.enable = true;
-    musnxi.rtcqs.enable = true;
-    musnix.das_watchdog.enable = true;
     nix = {
         settings = {
             experimental-features = [
