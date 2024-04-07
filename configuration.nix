@@ -54,6 +54,7 @@
         };
         registry.nixpkgs.flake = inputs.nixpkgs;
         registry.stable.flake = inputs.nixpkgs-stable;
+        daemonCPUSchedPolicy = "idle";
     };
     nixpkgs.config.allowUnfree = true;
 
