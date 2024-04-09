@@ -208,7 +208,11 @@
         fwupd.enable = true;
         gvfs.enable = true;
         irqbalance.enable = false;
-        locate = { enable = true; package = pkgs.plocate; };
+        locate = {
+            enable = true;
+            package = pkgs.plocate;
+            localuser = null;
+        };
         logind = { extraConfig = '' IdleAction=ignore ''; };
         openssh.enable = true;
         pcscd.enable = true;
