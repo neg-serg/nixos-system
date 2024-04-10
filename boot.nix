@@ -1,4 +1,7 @@
 { pkgs, ... }: {
+    imports = [
+        ./pkgs/boot.nix
+    ];
     boot = {
         loader = {
             efi.canTouchEfiVariables = true;
