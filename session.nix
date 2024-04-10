@@ -1,4 +1,8 @@
-{
+{ pkgs, ... }: {
+    environment.systemPackages = with pkgs; [
+        keyd # systemwide key manager
+        xorg.xdpyinfo # display info
+    ];
     services.xserver = {
         enable = true; # Enable the X11 windowing system.
         enableCtrlAltBackspace = true;
@@ -15,7 +19,7 @@
         displayManager = {
             defaultSession = "none+i3";
             autoLogin = {
-	    	enable = false;
+                enable = false;
             	user = "neg";
             };
             startx.enable = true;
