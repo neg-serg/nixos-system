@@ -1,5 +1,7 @@
 { pkgs, stable, ... }: {
     environment.systemPackages = with pkgs; [
+        ddrescue # data recovery tool
+        foremost # files extact from structure
         gcc # gnu compiler collection
         gdb # gnu debugger
         hexyl # command-line hex editor
