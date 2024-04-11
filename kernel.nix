@@ -1,23 +1,23 @@
 let
+  # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
   mitigations_settings = [
-        # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
         "mitigations=off"
   ];
   f2fs_root_settings = [ "rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix" ];
   silence = [
       "quiet"
-      "splash"
       "rd.systemd.show_status=auto"
       "rd.udev.log_priority=3"
+      "splash"
       "systemd.show_status=false"
       "vt.global_cursor_default=0"
   ];
-  intel_hda_modules = [
-        "snd_hda_codec"
-        "snd_hda_codec_hdmi"
-        "snd_hda_core"
-        "snd_hda_intel"
-  ];
+  # intel_hda_modules = [
+  #       "snd_hda_codec"
+  #       "snd_hda_codec_hdmi"
+  #       "snd_hda_core"
+  #       "snd_hda_intel"
+  # ];
   # extra_security = [
   #     "page_poison=1" # Overwrite free'd memory
   #     "page_alloc.shuffle=1" # Enable page allocator randomization
@@ -56,8 +56,7 @@ let
       "udf"
       "ufs"
       "vivid"
-      ];
-    in { pkgs, ... } : {
+    ]; in { pkgs, ... } : {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
         # The Magic SysRq key is a key combo that allows users connected to the
@@ -84,10 +83,8 @@ let
         "net.ipv4.conf.default.secure_redirects" = 0;
         "net.ipv6.conf.all.accept_redirects" = 0;
         "net.ipv6.conf.default.accept_redirects" = 0;
-        # Protects against SYN flood attacks
-        "net.ipv4.tcp_syncookies" = 1;
-        # Incomplete protection again TIME-WAIT assassination
-        "net.ipv4.tcp_rfc1337" = 1;
+        "net.ipv4.tcp_syncookies" = 1; # Protects against SYN flood attacks
+        "net.ipv4.tcp_rfc1337" = 1; # Incomplete protection again TIME-WAIT assassination
         ## TCP optimization
         # TCP Fast Open is a TCP extension that reduces network latency by packing
         # data in the sender’s initial TCP SYN. Setting 3 = enable TCP Fast Open for
@@ -95,7 +92,7 @@ let
         "net.ipv4.tcp_fastopen" = 3;
         # Bufferbloat mitigations + slight improvement in throughput & latency
         "net.ipv4.tcp_congestion_control" = "bbr";
-        "net.core.default_qdisc" = "cake";
+        "net.core.default_qdisc" = "fq";
         # NixOS configuration for Star Citizen requirements
         "vm.max_map_count" = 16777216;
         "fs.file-max" = 524288;
