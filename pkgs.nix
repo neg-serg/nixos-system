@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ ... }: {
     imports = [
         ./pkgs/cli.nix
         ./pkgs/dev.nix
