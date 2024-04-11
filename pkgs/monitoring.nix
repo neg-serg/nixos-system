@@ -10,7 +10,6 @@
         nethogs # network traffic per process
         powertop # watch for power events
         procdump # procdump for linux
-        scx # for cachyos sched
         sysstat # sar, iostat, mpstat, pidstat and friends
         vmtouch # portable file system cache diagnostics and control
     ];
