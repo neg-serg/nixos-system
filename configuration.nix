@@ -71,15 +71,9 @@
     security = {
         pam = {
             loginLimits = [
-                # {domain = "neg"; item = "rtprio"; type = "-"; value = 90;}
-                # {domain = "@audio"; item = "rtprio"; type = "-"; value = 90;}
-                # {domain = "neg"; item = "nice"; type = "-"; value = "-20";}
-                # {domain = "@audio"; item = "nice"; type = "-"; value = "-20";}
-                # {domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited";}
-                # {domain = "@realtime"; item = "rtprio"; type = "-"; value = "98";}
-                # {domain = "@realtime"; item = "memlock"; type = "-"; value = "unlimited";}
-                # {domain = "@realtime"; item = "nice"; type = "-"; value = "-20";}
+                {domain = "@audio"; item = "rtprio"; type = "-"; value = "99";}
                 {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
+                {domain = "@realtime"; item = "rtprio"; type = "-"; value = "99";}
             ];
             services = {
                 login.u2fAuth = true;
