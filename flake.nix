@@ -6,6 +6,7 @@
         nh.url = "github:viperML/nh";
         nix-gaming.url = "github:fufexan/nix-gaming";
         nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+        nixpkgs-master.url = "github:NixOS/nixpkgs/master";
         nixpkgs.url = "github:NixOS/nixpkgs/master";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         nixos-generators = { url = "github:nix-community/nixos-generators"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -22,6 +23,7 @@
         , nixos-hardware
         , nixpkgs
         , nixpkgs-stable
+        , nixpkgs-master
         , nixtheplanet
         , nixos-generators
         , darkmatter-grub-theme
@@ -33,6 +35,7 @@
             timeZone = "Europe/Moscow";
             kexec_enabled = true;
             stable = nixpkgs-stable.legacyPackages.${system};
+            master = nixpkgs-master.legacyPackages.${system};
         }; {
         packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
         nixosConfigurations = {
@@ -43,6 +46,7 @@
                     inherit timeZone;
                     inherit kexec_enabled;
                     inherit stable;
+                    inherit master;
                 };
                 specialArgs = {inherit inputs;};
                 modules = [
