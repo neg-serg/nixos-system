@@ -71,9 +71,9 @@
     security = {
         pam = {
             loginLimits = [
-                {domain = "@audio"; item = "rtprio"; type = "-"; value = "99";}
                 {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
-                {domain = "@realtime"; item = "rtprio"; type = "-"; value = "99";}
+                # {domain = "@audio"; item = "rtprio"; type = "-"; value = "99";}
+                # {domain = "@realtime"; item = "rtprio"; type = "-"; value = "99";}
             ];
             services = {
                 login.u2fAuth = true;
@@ -202,7 +202,6 @@
         earlyoom.enable = false; # may need it for notebook
         fwupd.enable = true;
         gvfs.enable = true;
-        irqbalance.enable = false;
         locate = {
             enable = true;
             package = pkgs.plocate;
