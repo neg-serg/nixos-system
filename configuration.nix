@@ -102,9 +102,9 @@
     virtualisation.docker.enable = true;
 
     documentation = {
-        doc.enable = false;
-        dev.enable = false;
-        info.enable = false;
+        doc.enable = true;
+        dev.enable = true;
+        info.enable = true;
     };
 
     environment.wordlist.enable = true; # to make "look" utility work
