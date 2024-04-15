@@ -7,7 +7,7 @@
         nix-gaming.url = "github:fufexan/nix-gaming";
         nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
         nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-        nixpkgs.url = "github:NixOS/nixpkgs/master";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
         nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
         nixos-generators = { url = "github:nix-community/nixos-generators"; inputs.nixpkgs.follows = "nixpkgs"; };
         darkmatter-grub-theme = { url = "gitlab:VandalByte/darkmatter-grub-theme"; inputs.nixpkgs.follows = "nixpkgs"; };
