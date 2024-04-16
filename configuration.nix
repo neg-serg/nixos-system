@@ -1,8 +1,7 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, lib, pkgs, modulesPath, kexec_enabled, inputs, ... }: {
+{ config, lib, pkgs, ... }: {
     imports = [
-        (modulesPath + "/installer/scan/not-detected.nix")
         ./system
         ./nix
 
@@ -56,7 +55,6 @@
         }];
         sudo.execWheelOnly = true;
         sudo.wheelNeedsPassword = true;
-        protectKernelImage = if kexec_enabled == false then true else false;
     };
 
     virtualisation.docker.enable = true;

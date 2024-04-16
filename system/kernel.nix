@@ -56,7 +56,7 @@ let
       "udf"
       "ufs"
       "vivid"
-    ]; in { pkgs, ... } : {
+    ]; in { pkgs, kexec_enabled, ... } : {
     # thx to https://github.com/hlissner/dotfiles
     boot.kernel.sysctl = {
         # The Magic SysRq key is a key combo that allows users connected to the
@@ -116,4 +116,5 @@ let
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
     boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
+    security.protectKernelImage = if kexec_enabled == false then true else false;
 }
