@@ -5,5 +5,6 @@
       ./kernel.nix
       ./networking.nix
       ./udev-rules.nix
+      ./vnstat.nix
   ];
 }
