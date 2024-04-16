@@ -1,6 +1,11 @@
 { inputs, ... }: {
     nix = {
         settings = {
+            system-features = [
+                "big-parallel"
+                "gccarch-znver3"
+                "gcctune-znver3"
+            ];
             experimental-features = [
                 "auto-allocate-uids"
                 "ca-derivations"
@@ -34,4 +39,9 @@
         daemonIOSchedPriority = 4;
     };
     nixpkgs.config.allowUnfree = true;
+    # nixpkgs.hostPlatform = {
+    #     gcc.arch = "znver3";
+    #     gcc.tune = "znver3";
+    #     system = "x86_64-linux";
+    # };
 }
