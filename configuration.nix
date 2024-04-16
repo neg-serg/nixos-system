@@ -10,10 +10,10 @@
         ./bash.nix
         ./games.nix
         ./locale.nix
-        ./pipewire.nix
         ./session.nix
         ./syncthing.nix
 
+        ./audio
         ./pkgs
     ];
 
