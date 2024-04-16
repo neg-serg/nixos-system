@@ -4,9 +4,8 @@
     imports = [
         ./system
         ./nix
+        ./video
 
-        ./amd.nix
-        ./appimage.nix
         ./bash.nix
         ./games.nix
         ./locale.nix
