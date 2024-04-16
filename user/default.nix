@@ -8,5 +8,6 @@
         ./locale.nix
         ./session.nix
         ./syncthing.nix
+        ./xdg.nix
     ];
 }
