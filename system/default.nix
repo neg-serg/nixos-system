@@ -12,5 +12,6 @@
       ./appimage.nix
       ./keyd.nix # systemwide keyboard manager
       ./vnstat.nix
+      ./documentation.nix
   ];
 }
