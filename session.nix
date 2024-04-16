@@ -5,7 +5,6 @@
     ];
     services.xserver = {
         enable = true; # Enable the X11 windowing system.
-        enableCtrlAltBackspace = true;
         exportConfiguration = true;
         autoRepeatDelay = 250;
         autoRepeatInterval = 20;
