@@ -1,5 +1,9 @@
 { lib, config, ... }: {
-    imports = [ ./udev-rules.nix ];
+    imports = [
+        ./audio
+        ./video
+        ./udev-rules.nix 
+    ];
     hardware.i2c.enable = true;
     hardware.bluetooth = {
         enable = true;
