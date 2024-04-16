@@ -3,15 +3,6 @@
 { config, lib, pkgs, ... }: {
     imports = [ ./system ./nix ./pkgs ./user ];
 
-    systemd = {
-        coredump.enable = true;
-        extraConfig = '' DefaultTimeoutStopSec=10s '';
-        watchdog.rebootTime = "0";
-        packages = [
-            pkgs.packagekit
-        ];
-    };
-
     security = {
         pam = {
             loginLimits = [
