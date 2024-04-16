@@ -15,6 +15,7 @@
         ./secrets.nix
         ./shell.nix
         ./system.nix
+        ./openssh.nix
     ];
 
     programs = {
