@@ -17,13 +17,15 @@
         libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
         desktopManager = { xterm.enable = false; };
         displayManager = {
-            defaultSession = "none+i3";
-            autoLogin = {
-                enable = false;
-            	user = "neg";
-            };
             startx.enable = true;
             session = [{ manage="window"; name="i3"; start=''$HOME/.xsession''; }];
+        };
+    };
+    services.displayManager = {
+        defaultSession = "none+i3";
+        autoLogin = {
+            enable = false;
+            user = "neg";
         };
     };
 }
