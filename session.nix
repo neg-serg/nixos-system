@@ -1,6 +1,8 @@
 { pkgs, ... }: {
+    imports = [
+        ./keyd.nix # systemwide keyboard manager
+    ];
     environment.systemPackages = with pkgs; [
-        keyd # systemwide key manager
         xorg.xdpyinfo # display info
     ];
     services.xserver = {

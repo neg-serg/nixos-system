@@ -12,7 +12,6 @@
         ./appimage.nix
         ./bash.nix
         ./games.nix
-        ./keyd.nix
         ./locale.nix
         ./nixindex.nix
         ./pipewire.nix
