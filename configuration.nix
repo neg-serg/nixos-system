@@ -3,10 +3,7 @@
 { config, lib, pkgs, modulesPath, kexec_enabled, inputs, ... }: {
     imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
-        ./boot.nix
-        ./kernel.nix
-        ./filesystems.nix
-        ./networking.nix
+        ./system
 
         ./amd.nix
         ./appimage.nix
@@ -17,10 +14,9 @@
         ./pipewire.nix
         ./session.nix
         ./syncthing.nix
-        ./udev-rules.nix
         ./vnstat.nix
 
-        ./pkgs.nix
+        ./pkgs
     ];
     nix = {
         settings = {
