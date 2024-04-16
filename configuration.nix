@@ -31,8 +31,9 @@
         pam = {
             loginLimits = [
                 {domain = "@gamemode"; item = "nice"; type = "-"; value = "-10";}
-                # {domain = "@audio"; item = "rtprio"; type = "-"; value = "99";}
-                # {domain = "@realtime"; item = "rtprio"; type = "-"; value = "99";}
+                {domain = "@audio"; item = "rtprio"; type = "-"; value = "99";}
+                {domain = "@audio"; item = "memlock"; type = "-"; value = "8388608";}
+                {domain = "@realtime"; item = "rtprio"; type = "-"; value = "99";}
             ];
             services = {
                 login.u2fAuth = true;
