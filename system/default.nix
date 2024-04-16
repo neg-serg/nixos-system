@@ -8,5 +8,6 @@
       ./networking.nix
       ./udev-rules.nix
       ./vnstat.nix
+      ./keyd.nix # systemwide keyboard manager
   ];
 }

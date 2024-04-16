@@ -1,7 +1,4 @@
 { pkgs, ... }: {
-    imports = [
-        ./keyd.nix # systemwide keyboard manager
-    ];
     environment.systemPackages = with pkgs; [
         xorg.xdpyinfo # display info
     ];

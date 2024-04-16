@@ -4,16 +4,8 @@
     imports = [
         ./system
         ./nix
-        ./video
-
-        ./bash.nix
-        ./games.nix
-        ./locale.nix
-        ./session.nix
-        ./syncthing.nix
-
-        ./audio
         ./pkgs
+        ./user
     ];
 
     systemd = {
