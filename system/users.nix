@@ -6,14 +6,14 @@
             description = "Neg";
             extraGroups = [
                 "audio"
-                    "i2c"
-                    "input"
-                    "neg"
-                    "networkmanager"
-                    "openrazer"
-                    "systemd-journal"
-                    "video"
-                    "wheel"
+                "i2c"
+                "input"
+                "neg"
+                "networkmanager"
+                "openrazer"
+                "systemd-journal"
+                "video"
+                "wheel"
             ];
         };
         defaultUserShell = pkgs.zsh;
