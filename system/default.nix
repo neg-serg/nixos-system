@@ -7,7 +7,6 @@
       ./networking.nix
       ./security.nix
       ./systemd.nix
-      ./udev-rules.nix
 
       ./appimage.nix
       ./keyd.nix # systemwide keyboard manager

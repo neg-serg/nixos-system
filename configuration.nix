@@ -1,21 +1,15 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, lib, pkgs, ... }: {
-    imports = [ ./system ./nix ./pkgs ./user ];
+{ pkgs, ... }: {
+    imports = [
+        ./system
+        ./hardware
+        ./nix
+        ./user
+        ./pkgs
+    ];
 
     virtualisation.docker.enable = true;
-
-    hardware.i2c.enable = true;
-    hardware.bluetooth = {
-        enable = true;
-        powerOnBoot = false;
-        settings = {General.Enable = "Source,Sink,Media,Socket";};
-    };
-    powerManagement.cpuFreqGovernor = "performance";
-    hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    hardware.enableAllFirmware = true; # Enable all the firmware
-    hardware.enableRedistributableFirmware = true;
-    # hardware.openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
 
     users = {
         users.neg = {
