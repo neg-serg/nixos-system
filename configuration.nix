@@ -1,12 +1,7 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { config, lib, pkgs, ... }: {
-    imports = [
-        ./system
-        ./nix
-        ./pkgs
-        ./user
-    ];
+    imports = [ ./system ./nix ./pkgs ./user ];
 
     systemd = {
         coredump.enable = true;
