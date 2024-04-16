@@ -3,6 +3,7 @@
         ./cli.nix
         ./dev.nix
         ./display.nix
+        ./documentation.nix
         ./editor.nix
         ./elf.nix
         ./games.nix
@@ -11,11 +12,11 @@
         ./monitoring.nix
         ./network.nix
         ./nixos.nix
+        ./openssh.nix
         ./python-lto.nix
         ./secrets.nix
         ./shell.nix
         ./system.nix
-        ./openssh.nix
     ];
 
     programs = {
