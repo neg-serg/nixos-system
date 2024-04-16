@@ -3,6 +3,7 @@
       ./boot.nix
       ./filesystems.nix
       ./kernel.nix
+      ./security.nix
 
       ./appimage.nix
       ./keyd.nix # systemwide keyboard manager
