@@ -50,7 +50,7 @@
                 };
                 specialArgs = {inherit inputs;};
                 modules = [
-                    ./configuration.nix
+                    ./init.nix
                     ./cachix.nix
                     musnix.nixosModules.musnix
                     chaotic.nixosModules.default
