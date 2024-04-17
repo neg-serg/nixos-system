@@ -1,5 +1,6 @@
 { pkgs, ... }: {
     imports = [
+        ./appimage.nix
         ./cli.nix
         ./dev.nix
         ./display.nix
@@ -9,6 +10,7 @@
         ./games.nix
         ./git.nix
         ./io.nix
+        ./keyd.nix # systemwide keyboard manager
         ./monitoring.nix
         ./network.nix
         ./nixos.nix
@@ -17,6 +19,7 @@
         ./secrets.nix
         ./shell.nix
         ./system.nix
+        ./vnstat.nix
     ];
 
     programs = {

@@ -9,9 +9,5 @@
       ./systemd.nix
       ./users.nix
       ./virt.nix
-
-      ./appimage.nix
-      ./keyd.nix # systemwide keyboard manager
-      ./vnstat.nix
   ];
 }
