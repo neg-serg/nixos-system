@@ -1,7 +1,7 @@
 { pkgs, stable, master, ... }: {
     environment.systemPackages = with pkgs; [
         abduco # cli session detach
-        delta # better diff tool
+        # delta # better diff tool
         diffutils # classic diff utils
         master.fd # better find
         file # get filetype from content
