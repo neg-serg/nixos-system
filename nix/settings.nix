@@ -39,9 +39,9 @@
         daemonIOSchedPriority = 4;
     };
     nixpkgs.config.allowUnfree = true;
-    nixpkgs.hostPlatform = {
-        gcc.arch = "znver3";
-        gcc.tune = "znver3";
-        system = "x86_64-linux";
-    };
+    # nixpkgs.hostPlatform = {
+    #     gcc.arch = "znver3";
+    #     gcc.tune = "znver3";
+    #     system = "x86_64-linux";
+    # };
 }
