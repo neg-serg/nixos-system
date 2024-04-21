@@ -18,31 +18,49 @@
           domain = "@audio";
           item = "rtprio";
           type = "-";
-          value = "99";
+          value = "95";
         }
         {
           domain = "@audio";
           item = "memlock";
           type = "-";
-          value = "8388608";
+          value = "4194304";
         }
         {
           domain = "neg";
           item = "rtprio";
           type = "-";
-          value = "99";
+          value = "95";
         }
         {
           domain = "neg";
           item = "memlock";
           type = "-";
-          value = "8388608";
+          value = "4194304";
         }
         {
           domain = "@realtime";
           item = "rtprio";
           type = "-";
-          value = "99";
+          value = "95";
+        }
+        {
+          domain = "@pipewire";
+          item = "rtprio";
+          type = "-";
+          value = "95";
+        }
+        {
+          domain = "@pipewire";
+          item = "nice";
+          type = "-";
+          value = "-19";
+        }
+        {
+          domain = "@pipewire";
+          item = "memlock";
+          type = "-";
+          value = "4194304";
         }
       ];
       services = {
