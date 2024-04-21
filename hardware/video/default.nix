@@ -1,5 +1,5 @@
-{ ... }: {
-    imports = [
-        ./amd.nix
-    ];
+{...}: {
+  imports = [
+    ./amd.nix
+  ];
 }
