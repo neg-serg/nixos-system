@@ -1,6 +1,6 @@
 {
   imports = [
-      ./nixindex.nix
-      ./settings.nix
+    ./nixindex.nix
+    ./settings.nix
   ];
 }
