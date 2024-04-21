@@ -1,10 +1,14 @@
-{ lib, pkgs, ... }: {
-    services = {
-        vnstat.enable = true;
+{
+  lib,
+  pkgs,
+  ...
+}: {
+  services = {
+    vnstat.enable = true;
+  };
+  systemd = {
+    services.vnstat = {
+      serviceConfig.ExecStart = lib.mkForce "${pkgs.vnstat}/bin/vnstatd -n --alwaysadd 1";
     };
-    systemd = {
-        services.vnstat = {
-            serviceConfig.ExecStart = lib.mkForce "${pkgs.vnstat}/bin/vnstatd -n --alwaysadd 1";
-        };
-    };
+  };
 }
