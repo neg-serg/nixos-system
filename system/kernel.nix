@@ -131,18 +131,7 @@ in
       ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
-    boot.kernelPackages = pkgs.linuxPackages_cachyos-lto-custom;
-    nixpkgs.overlays = [
-      (self: super: {
-        linuxPackages_cachyos-lto-custom = pkgs.linuxPackagesFor (pkgs.linuxPackages_cachyos-lto.kernel.override {
-          structuredExtraConfig = with lib.kernel; {
-            HZ_1000 = yes;
-            HZ_PERIODIC = yes;
-          };
-          ignoreConfigErrors = true;
-        });
-      })
-    ];
+    boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
     security.protectKernelImage =
       if kexec_enabled == false
       then true
