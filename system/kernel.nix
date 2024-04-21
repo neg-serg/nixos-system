@@ -131,15 +131,18 @@ in
       ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
-    boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
-    boot.kernelPatches = lib.singleton {
-      name = "enable-lirc";
-      patch = null;
-      extraConfig = ''
-        HZ_1000 y
-        HZ_PERIODIC y
-      '';
-    };
+    boot.kernelPackages = pkgs.linuxPackages_cachyos-lto-custom;
+    nixpkgs.overlays = [
+      (self: super: {
+        linuxPackages_cachyos-lto-custom = pkgs.linuxPackagesFor (pkgs.linuxPackages_cachyos-lto.kernel.override {
+          structuredExtraConfig = with lib.kernel; {
+            HZ_1000 = yes;
+            HZ_PERIODIC = yes;
+          };
+          ignoreConfigErrors = true;
+        });
+      })
+    ];
     security.protectKernelImage =
       if kexec_enabled == false
       then true
