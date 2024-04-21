@@ -1,4 +1,4 @@
-{...}: {
+{master, ...}: {
   nixpkgs.overlays = [
     (final: prev: {
       pipewire = prev.pipewire.override {
@@ -13,5 +13,6 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.package = master.wireplumber;
   };
 }
