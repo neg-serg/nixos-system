@@ -136,18 +136,11 @@ in
       (self: super: {
         linuxPackages_cachyos-lto-custom = pkgs.linuxPackagesFor (pkgs.linuxPackages_cachyos-lto.kernel.override {
           structuredExtraConfig = with lib.kernel; {
-            HAVE_IRQ_TIME_ACCOUNTING = yes;
-            HAVE_VIRT_CPU_ACCOUNTING_GEN = yes;
             HZ_1000 = yes;
             HZ_PERIODIC = yes;
-            IRQ_TIME_ACCOUNTING = yes;
-            NO_HZ_COMMON = yes;
-            NO_HZ_FULL = yes;
-            NO_HZ_IDLE = yes;
-            NO_HZ = yes;
-            PARAVIRT_TIME_ACCOUNTING = yes;
-            RCU_FAST_NO_HZ = yes;
-            TASK_IO_ACCOUNTING = yes;
+            NO_HZ = no;
+            NO_HZ_IDLE = no;
+            NO_HZ_FULL = no;
           };
         });
       })
