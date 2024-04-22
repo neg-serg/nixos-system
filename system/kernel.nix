@@ -12,19 +12,18 @@ let
     "systemd.show_status=false"
     "vt.global_cursor_default=0"
   ];
-  # intel_hda_modules = [
-  #       "snd_hda_codec"
-  #       "snd_hda_codec_hdmi"
-  #       "snd_hda_core"
-  #       "snd_hda_intel"
-  # ];
-  # extra_security = [
-  #     "page_poison=1" # Overwrite free'd memory
-  #     "page_alloc.shuffle=1" # Enable page allocator randomization
-  # ];
+  intel_hda_modules = [
+        "snd_hda_codec"
+        "snd_hda_codec_hdmi"
+        "snd_hda_core"
+        "snd_hda_intel"
+  ];
+  extra_security = [
+      "page_poison=0" # Overwrite free'd memory
+      "page_alloc.shuffle=1" # Enable page allocator randomization
+  ];
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
-  # nvidia_settings = [ "nvidia_drm.modeset=1"  "modeset=1" "fbdev=1" ];
-  # acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
+  acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
   no_watchdog = ["nowatchdog" "kernel.nmi_watchdog=0"]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
   video_settings = ["video=3440x1440@175"];
   # -- Blacklist
@@ -128,6 +127,9 @@ in
       ++ mitigations_settings
       ++ silence
       ++ no_watchdog
+      ++ intel_hda_modules
+      ++ extra_security
+      ++ acpi_settings
       ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
