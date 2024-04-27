@@ -13,17 +13,17 @@ let
     "vt.global_cursor_default=0"
   ];
   intel_hda_modules = [
-        "snd_hda_codec"
-        "snd_hda_codec_hdmi"
-        "snd_hda_core"
-        "snd_hda_intel"
+    "snd_hda_codec"
+    "snd_hda_codec_hdmi"
+    "snd_hda_core"
+    "snd_hda_intel"
   ];
   extra_security = [
-      "page_poison=0" # Overwrite free'd memory
-      "page_alloc.shuffle=1" # Enable page allocator randomization
+    "page_poison=0" # Overwrite free'd memory
+    "page_alloc.shuffle=1" # Enable page allocator randomization
   ];
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
-  acpi_settings = [ "acpi_osi=!" "acpi_osi=Linux" ];
+  acpi_settings = ["acpi_osi=!" "acpi_osi=Linux"];
   no_watchdog = ["nowatchdog" "kernel.nmi_watchdog=0"]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
   video_settings = ["video=3440x1440@175"];
   # -- Blacklist
@@ -133,21 +133,13 @@ in
       ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
-    boot.kernelPackages = pkgs.linuxPackages_latest-custom;
+    boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
     nixpkgs.overlays = [
       (self: super: {
-        linuxPackages_latest-custom = pkgs.linuxPackagesFor (pkgs.linuxPackages_latest.kernel.override {
+        linuxPackages_latest-custom-lto = pkgs.linuxPackagesFor (pkgs.linuxPackages_cachyos-lto.kernel.override {
           structuredExtraConfig = with lib.kernel; {
             HZ_1000 = yes;
             HZ_PERIODIC = yes;
-            PREEMPT_BUILD = yes;
-            SCHED_SMT = yes;
-            RCU_BOOST = yes;
-            CGROUPS = yes;
-            CGROUP_SCHED = yes;
-            FAIR_GROUP_SCHED = yes;
-            SCHED_AUTOGROUP = yes;
-            SPECULATION_MITIGATIONS = no;
           };
           ignoreConfigErrors = true;
         });
