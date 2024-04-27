@@ -58,7 +58,6 @@ let
   ];
 in
   {
-    lib,
     pkgs,
     kexec_enabled,
     ...
@@ -134,17 +133,6 @@ in
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
     boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
-    nixpkgs.overlays = [
-      (self: super: {
-        linuxPackages_latest-custom-lto = pkgs.linuxPackagesFor (pkgs.linuxPackages_cachyos-lto.kernel.override {
-          structuredExtraConfig = with lib.kernel; {
-            HZ_1000 = yes;
-            HZ_PERIODIC = yes;
-          };
-          ignoreConfigErrors = true;
-        });
-      })
-    ];
     security.protectKernelImage =
       if kexec_enabled == false
       then true
