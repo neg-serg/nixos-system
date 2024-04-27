@@ -58,6 +58,7 @@ let
   ];
 in
   {
+    lib,
     pkgs,
     kexec_enabled,
     ...
@@ -132,7 +133,26 @@ in
       ++ video_settings;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
-    boot.kernelPackages = pkgs.linuxPackages_latest;
+    boot.kernelPackages = pkgs.linuxPackages_latest-custom;
+    nixpkgs.overlays = [
+      (self: super: {
+        linuxPackages_latest-custom = pkgs.linuxPackagesFor (pkgs.linuxPackages_latest.kernel.override {
+          structuredExtraConfig = with lib.kernel; {
+            HZ_1000 = yes;
+            HZ_PERIODIC = yes;
+            PREEMPT_BUILD = yes;
+            SCHED_SMT = yes;
+            RCU_BOOST = yes;
+            CGROUPS = yes;
+            CGROUP_SCHED = yes;
+            FAIR_GROUP_SCHED = yes;
+            SCHED_AUTOGROUP = yes;
+            SPECULATION_MITIGATIONS = no;
+          };
+          ignoreConfigErrors = true;
+        });
+      })
+    ];
     security.protectKernelImage =
       if kexec_enabled == false
       then true
