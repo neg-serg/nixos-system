@@ -5,6 +5,7 @@
     disko.url = "github:nix-community/disko";
     nh.url = "github:viperML/nh";
     nix-gaming.url = "github:fufexan/nix-gaming";
+    nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.05-small";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -27,6 +28,7 @@
     nix-gaming,
     nixos-hardware,
     nixpkgs,
+    nixpkgs-oldstable,
     nixpkgs-stable,
     nixpkgs-master,
     nixtheplanet,
@@ -38,6 +40,7 @@
       system = "x86_64-linux";
       timeZone = "Europe/Moscow";
       kexec_enabled = true;
+      oldstable = nixpkgs-stable.legacyPackages.${system};
       stable = nixpkgs-stable.legacyPackages.${system};
       master = nixpkgs-master.legacyPackages.${system};
     }; {
@@ -49,6 +52,7 @@
             inherit locale;
             inherit timeZone;
             inherit kexec_enabled;
+            inherit oldstable;
             inherit stable;
             inherit master;
           };
