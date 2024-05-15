@@ -8,7 +8,7 @@
     nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.05-small";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
-    nixpkgs.url = "github:NixOS/nixpkgs/staging-next";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
