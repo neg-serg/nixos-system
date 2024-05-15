@@ -23,7 +23,7 @@
   ];
 
   programs = {
-    atop = {enable = true;};
+    atop = {enable = false;};
     gamemode = {enable = true;};
     mtr = {enable = true;};
     nano = {enable = false;}; # I hate nano to be honest
