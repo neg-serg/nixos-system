@@ -11,6 +11,7 @@
     hexyl # command-line hex editor
     hyperfine # command-line benchmarking tool
     imhex # gui hex editor
+    julia # nice language
     ltrace # trace functions
     pkgconf # package compiler and linker metadata toolkit (wrapper script)
     radare2 # free disassembler
