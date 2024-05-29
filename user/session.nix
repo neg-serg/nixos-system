@@ -16,6 +16,7 @@
     desktopManager = {xterm.enable = false;};
     displayManager = {
       startx.enable = true;
+      xpra.enable = true;
       session = [
         {
           manage = "window";
