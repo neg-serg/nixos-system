@@ -3,8 +3,10 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    jamesdsp # pipewire dsp
     carla # audio plugin host
+    jamesdsp # pipewire dsp
     lsp-plugins # various linux dsp
+    yabridgectl # vst control for linux
+    yabridge # vst for linux
   ];
 }
