@@ -5,6 +5,7 @@
     ./dev.nix
     ./display.nix
     ./documentation.nix
+    ./dsp.nix
     ./editor.nix
     ./elf.nix
     ./games.nix
