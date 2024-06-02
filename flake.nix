@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {
+  outputs = inputs @ {
     self,
     chaotic,
     disko,
@@ -34,7 +34,7 @@
     nixtheplanet,
     nixos-generators,
     darkmatter-grub-theme,
-  } @ inputs:
+  }:
     with rec {
       locale = "en_US.UTF-8"; # select locale
       system = "x86_64-linux";
