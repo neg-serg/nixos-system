@@ -4,27 +4,16 @@
     "exfat"
     "xfs"
   ];
-  # fileSystems."/" = {
-  #   device = "/dev/mapper/main-sys";
-  #   fsType = "f2fs";
-  #   options = [
-  #     "rw"
-  #     "relatime"
-  #     "lazytime"
-  #
-  #     "active_logs=6"
-  #     "alloc_mode=default"
-  #     "background_gc=off"
-  #     "extent_cache"
-  #     "flush_merge"
-  #     "fsync_mode=posix"
-  #     "inline_data"
-  #     "inline_dentry"
-  #     "inline_xattr"
-  #     "mode=adaptive"
-  #     "no_heap"
-  #   ];
-  # };
+
+  fileSystems."/" = {
+    device = "/dev/mapper/main-sys";
+    fsType = "xfs";
+    options = [
+      "rw"
+      "relatime"
+      "lazytime"
+    ];
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/C06B-349A";
@@ -37,11 +26,13 @@
     options = ["x-systemd.automount" "relatime" "lazytime"];
   };
 
-  fileSystems."/" = {
+  fileSystems."/zero" = {
     device = "/dev/mapper/argon-zero";
     fsType = "f2fs";
     options = [
-        "x-systemd.automount" "relatime" "lazytime"
+        "x-systemd.automount"
+        "relatime"
+        "lazytime"
         "rw"
     ];
   };
