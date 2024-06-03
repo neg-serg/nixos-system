@@ -35,14 +35,11 @@
     nixos-generators,
     darkmatter-grub-theme,
   }:
-    with rec {
+    with {
       locale = "en_US.UTF-8"; # select locale
       system = "x86_64-linux";
       timeZone = "Europe/Moscow";
       kexec_enabled = true;
-      oldstable = nixpkgs-stable.legacyPackages.${system};
-      stable = nixpkgs-stable.legacyPackages.${system};
-      master = nixpkgs-master.legacyPackages.${system};
     }; {
       packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
       nixosConfigurations = {
@@ -52,11 +49,20 @@
             inherit locale;
             inherit timeZone;
             inherit kexec_enabled;
-            inherit oldstable;
-            inherit stable;
-            inherit master;
+            oldstable = import nixpkgs-oldstable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            stable = import nixpkgs-stable {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            master = import nixpkgs-master {
+              inherit system;
+              config.allowUnfree = true;
+            };
+            inherit inputs;
           };
-          specialArgs = {inherit inputs;};
           modules = [
             ./init.nix
             ./cachix.nix
