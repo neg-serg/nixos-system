@@ -1,8 +1,8 @@
 {...}: {
   boot.supportedFilesystems = [
     "bcachefs"
-    "btrfs"
     "exfat"
+    "xfs"
   ];
   # fileSystems."/" = {
   #   device = "/dev/mapper/main-sys";
