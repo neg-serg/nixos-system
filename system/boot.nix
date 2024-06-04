@@ -37,7 +37,6 @@
         "xhci_pci"
       ];
       kernelModules = [];
-      checkJournalingFS = false; # TODO: temporary fix for f2fs long loading
     };
   };
 }
