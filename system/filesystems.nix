@@ -22,7 +22,7 @@
 
   fileSystems."/one" = {
     device = "/dev/mapper/xenon-one";
-    fsType = "f2fs";
+    fsType = "xfs";
     options = ["x-systemd.automount" "relatime" "lazytime"];
   };
 
