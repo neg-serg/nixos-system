@@ -23,7 +23,7 @@
   fileSystems."/one" = {
     device = "/dev/mapper/xenon-one";
     fsType = "xfs";
-    options = ["x-systemd.automount" "relatime" "lazytime"];
+    options = ["x-systemd.automount" "relatime" "lazytime" "rw"];
   };
 
   fileSystems."/zero" = {
