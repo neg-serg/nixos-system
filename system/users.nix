@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{pkgs, config, ...}: with rec {
+  groupExists = grp: builtins.hasAttr grp config.users.groups;
+  groupsIfExist = builtins.filter groupExists;
+}; {
   users = {
     users.neg = {
       isNormalUser = true;
@@ -7,8 +10,9 @@
       ];
       hashedPassword = "$6$dy0VIe3yFCwdxh2q$CkgfitafpeqFwYn7fqmR/CRP29G/h9sBcN8sOPSXfgkCeraXA6B8VOoJLrsaktUsSnfHbC0RqDHcnnUCtICF4.";
       description = "Neg";
-      extraGroups = [
+      extraGroups = groupsIfExist [
         "audio"
+        "docker"
         "i2c"
         "input"
         "neg"
