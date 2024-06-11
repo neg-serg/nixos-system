@@ -7,4 +7,9 @@
     autoUpgrade.enable = true;
     autoUpgrade.allowReboot = true;
   };
+
+  services.dbus = {
+	enable = true;
+	implementation = "broker";
+};
 }
