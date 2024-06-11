@@ -6,8 +6,8 @@
     iotop # top for iops
     iperf
     iperf2 # IP bandwidth measurement
-    linuxKernel.packages.linux_6_8.perf
-    linuxKernel.packages.linux_6_8.turbostat # cpu monitor
+    linuxKernel.packages.linux_6_9.perf
+    linuxKernel.packages.linux_6_9.turbostat # cpu monitor
     nethogs # network traffic per process
     powertop # watch for power events
     procdump # procdump for linux
