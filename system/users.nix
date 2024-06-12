@@ -3,6 +3,7 @@
   groupsIfExist = builtins.filter groupExists;
 }; {
   users = {
+    users.root.hashedPassword = "*"; # lock root account
     users.neg = {
       isNormalUser = true;
       openssh.authorizedKeys.keys = [
