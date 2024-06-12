@@ -92,6 +92,10 @@
             command = "${pkgs.systemd}/bin/poweroff";
             options = ["NOPASSWD"];
           }
+          {
+            command = "${pkgs.util-linux}/bin/dmesg";
+            options = ["NOPASSWD"];
+          }
         ];
         groups = ["wheel"];
       }
