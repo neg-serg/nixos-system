@@ -21,6 +21,7 @@
     ./secrets.nix
     ./shell.nix
     ./system.nix
+    ./timesyncd.nix
     ./vnstat.nix
   ];
 
