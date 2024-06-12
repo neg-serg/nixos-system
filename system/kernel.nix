@@ -1,4 +1,7 @@
-let
+{lib, ...}: let
+  inherit (lib.kernel) yes no;
+  inherit (lib.attrsets) mapAttrs;
+  inherit (lib.modules) mkForce;
   # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
   mitigations_settings = [
     "mitigations=off"
@@ -22,8 +25,8 @@ let
     "page_alloc.shuffle=1" # Enable page allocator randomization
   ];
   idle = [
-      "idle=nomwait" # nomwait: Disable mwait for CPU C-states
-      "usbcore.autosuspend=-1" # disable usb autosuspend
+    "idle=nomwait" # nomwait: Disable mwait for CPU C-states
+    "usbcore.autosuspend=-1" # disable usb autosuspend
   ];
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
   acpi_settings = ["acpi_osi=!" "acpi_osi=Linux"];
@@ -110,7 +113,8 @@ in
       ++ obscure_network_protocols
       ++ intel_hda_modules
       ++ old_rare_insufficiently_audited_fs;
-    boot.kernelParams = [
+    boot.kernelParams =
+      [
         "audit=0"
         "biosdevname=1"
         "cryptomgr.notests"
@@ -132,6 +136,25 @@ in
       ++ acpi_settings
       ++ video_settings
       ++ idle;
+    boot.kernelPatches = [
+      {
+        name = "amd-platform-patches"; # recompile with AMD platform specific optimizations
+        patch = null; # no patch is needed, just apply the options
+        extraStructuredConfig = mapAttrs (_: mkForce) {
+          MNATIVE_AMD = yes; # enable compiler optimizations for AMD
+          X86_USE_PPRO_CHECKSUM = yes;
+          X86_AMD_PSTATE = yes;
+          X86_EXTENDED_PLATFORM = no; # disable support for other x86 platforms
+          X86_MCE_INTEL = no; # disable support for intel mce
+          # multigen LRU
+          LRU_GEN = yes;
+          LRU_GEN_ENABLED = yes;
+          CPU_FREQ_STAT = yes; # collect CPU frequency statistics
+          # Optimized for performance this is already set on the Xanmod kernel
+          # CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
+        };
+      }
+    ];
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
     boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
