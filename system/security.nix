@@ -6,6 +6,9 @@
   '';
 
   security = {
+    protectKernelImage = true; # prevent replacing the running kernel image
+    lockKernelModules = false;
+    polkit.enable = true;
     pam = {
       loginLimits = [
         {
@@ -68,7 +71,6 @@
         sudo.u2fAuth = true;
       };
     };
-    polkit.enable = true;
     sudo.extraRules = [
       {
         commands = [
