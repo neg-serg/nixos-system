@@ -21,6 +21,7 @@ let
     "page_poison=0" # Overwrite free'd memory
     "page_alloc.shuffle=1" # Enable page allocator randomization
   ];
+  idle = [ "idle=nomwait" ]; # nomwait: Disable mwait for CPU C-states
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
   acpi_settings = ["acpi_osi=!" "acpi_osi=Linux"];
   no_watchdog = ["nowatchdog" "kernel.nmi_watchdog=0"]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
@@ -126,7 +127,8 @@ in
       ++ no_watchdog
       ++ extra_security
       ++ acpi_settings
-      ++ video_settings;
+      ++ video_settings
+      ++ idle;
     boot.extraModulePackages = [];
     boot.consoleLogLevel = 1;
     boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
