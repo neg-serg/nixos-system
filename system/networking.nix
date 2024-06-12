@@ -11,6 +11,7 @@
       # options edns0
     ];
   };
+  systemd.services.NetworkManager-wait-online.enable = false;
   systemd.network = {
     enable = true;
     networks."10-lan" = {
