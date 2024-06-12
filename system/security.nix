@@ -8,7 +8,10 @@
   security = {
     protectKernelImage = true; # prevent replacing the running kernel image
     lockKernelModules = false;
-    polkit.enable = true;
+    polkit = {
+        enable = true;
+        debug = true;
+    };
     pam = {
       loginLimits = [
         {
