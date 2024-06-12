@@ -5,12 +5,14 @@
         "big-parallel"
         "gccarch-znver3"
         "gcctune-znver3"
+        "recursive-nix" 
       ];
       experimental-features = [
-        "auto-allocate-uids"
-        "ca-derivations"
-        "flakes"
-        "nix-command"
+        "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
+        "ca-derivations" # content addressed nix
+        "flakes" # flakes for reprodusability
+        "nix-command" # new nix interface
+        "recursive-nix" # let nix invoke itself
       ];
       trusted-users = [
         "root"
