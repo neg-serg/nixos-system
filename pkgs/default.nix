@@ -12,6 +12,7 @@
     ./git.nix
     ./io.nix
     ./keyd.nix # systemwide keyboard manager
+    ./libinput.nix
     ./monitoring.nix
     ./network.nix
     ./nix-ld.nix
