@@ -48,6 +48,7 @@
       nssmdns4 = true;
     };
     chrony.enable = true;
+    dbus.implementation = "broker";
     earlyoom.enable = false; # may need it for notebook
     fwupd.enable = true;
     gvfs.enable = true;
