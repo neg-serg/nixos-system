@@ -30,6 +30,7 @@
       max-jobs = 20;
       cores = 32;
       warn-dirty = false; # disable annoying dirty warn
+      connect-timeout = 5; # bail early on missing cache hits
     };
     gc = {
       automatic = true;
