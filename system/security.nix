@@ -6,7 +6,7 @@
   '';
 
   security = {
-    protectKernelImage = true; # prevent replacing the running kernel image
+    protectKernelImage = false; # prevent replacing the running kernel image
     lockKernelModules = false;
     polkit = {
         enable = true;
