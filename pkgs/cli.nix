@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
     delta # better diff tool
+    difftastic # syntax-aware diff
     diffutils # classic diff utils
     master.fd # better find
     file # get filetype from content
