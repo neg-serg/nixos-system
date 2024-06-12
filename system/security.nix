@@ -71,6 +71,9 @@
         sudo.u2fAuth = true;
       };
     };
+    sudo.extraConfig = ''
+        Defaults timestamp_timeout = 300 # makes sudo ask for password less often
+    '';
     sudo.extraRules = [
       {
         commands = [
