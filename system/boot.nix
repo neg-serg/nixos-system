@@ -13,7 +13,7 @@
         useOSProber = true;
         memtest86.enable = true;
         device = "nodev";
-        backgroundColor = "#000000";
+        backgroundColor = null;
         font = "${pkgs.terminus_font_ttf}/share/fonts/truetype/TerminusTTF-Bold.ttf";
         fontSize = 32;
         gfxmodeEfi = "2560x1440";
