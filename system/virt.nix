@@ -12,11 +12,4 @@
       wine-staging # tool to run windows packages
       winetricks # stuff to install dxvk
   ];
-  nix.settings.extra-sandbox-paths = ["/run/binfmt" "${pkgs.qemu}"];
-  boot.binfmt = {
-    registrations = {
-      aarch64-linux.interpreter = "${pkgs.qemu}/bin/qemu-aarch64"; # aarch64 interpreter
-      i686-linux.interpreter = "${pkgs.qemu}/bin/qemu-i686"; # i686 interpreter
-    };
-  };
 }
