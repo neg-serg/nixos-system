@@ -26,11 +26,11 @@
         "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
       ];
-      use-xdg-base-directories = false;
-      max-jobs = 20;
+      connect-timeout = 5; # Bail early on missing cache hits (thx to nyx)
       cores = 32;
-      warn-dirty = false; # disable annoying dirty warn
-      connect-timeout = 5; # bail early on missing cache hits
+      max-jobs = 20;
+      use-xdg-base-directories = false;
+      warn-dirty = false; # Disable annoying dirty warn
     };
     gc = {
       automatic = true;
