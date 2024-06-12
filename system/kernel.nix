@@ -113,7 +113,7 @@ in
         "audit=0"
         "biosdevname=1"
         "cryptomgr.notests"
-        "loglevel=0"
+        "loglevel=3"
         "net.ifnames=0"
         "noreplace-smp"
         "page_alloc.shuffle=1"
