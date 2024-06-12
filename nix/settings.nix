@@ -29,6 +29,7 @@
       use-xdg-base-directories = false;
       max-jobs = 20;
       cores = 32;
+      warn-dirty = false; # disable annoying dirty warn
     };
     gc = {
       automatic = true;
