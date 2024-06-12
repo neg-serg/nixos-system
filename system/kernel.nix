@@ -157,7 +157,7 @@ in {
   # ];
   boot.extraModulePackages = [];
   boot.consoleLogLevel = 1;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   security.protectKernelImage =
     if kexec_enabled == false
     then true
