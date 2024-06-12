@@ -3,7 +3,6 @@ let
   mitigations_settings = [
     "mitigations=off"
   ];
-  f2fs_root_settings = ["rootflags=rw,relatime,lazytime,background_gc=on,discard,no_heap,user_xattr,inline_xattr,acl,inline_data,inline_dentry,flush_merge,extent_cache,mode=adaptive,active_logs=6,alloc_mode=default,fsync_mode=posix"];
   silence = [
     "quiet"
     "rd.systemd.show_status=auto"
@@ -107,9 +106,7 @@ in
       ++ obscure_network_protocols
       ++ intel_hda_modules
       ++ old_rare_insufficiently_audited_fs;
-    boot.kernelParams =
-      f2fs_root_settings
-      ++ [
+    boot.kernelParams = [
         "audit=0"
         "biosdevname=1"
         "cryptomgr.notests"
