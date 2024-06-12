@@ -36,7 +36,8 @@
     registry.nixpkgs.flake = inputs.nixpkgs;
     registry.stable.flake = inputs.nixpkgs-stable;
     daemonCPUSchedPolicy = "batch";
-    daemonIOSchedPriority = 4;
+    daemonIOSchedClass = "idle";
+    daemonIOSchedPriority = 7;
   };
   nixpkgs.config.allowUnfree = true;
   # nixpkgs.hostPlatform = {
