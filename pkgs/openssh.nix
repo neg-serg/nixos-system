@@ -7,4 +7,5 @@
       PermitRootLogin = "no";
     };
   };
+  programs.mosh.enable = true; # Opens the relevant UDP ports.
 }
