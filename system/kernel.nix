@@ -141,17 +141,12 @@ in {
       name = "amd-platform-patches"; # recompile with AMD platform specific optimizations
       patch = null; # no patch is needed, just apply the options
       extraStructuredConfig = mapAttrs (_: mkForce) {
-        # MNATIVE_AMD = yes; # enable compiler optimizations for AMD
-        # X86_USE_PPRO_CHECKSUM = yes;
         X86_AMD_PSTATE = yes;
         X86_EXTENDED_PLATFORM = no; # disable support for other x86 platforms
         X86_MCE_INTEL = no; # disable support for intel mce
-        # multigen LRU
-        LRU_GEN = yes;
+        LRU_GEN = yes; # multigen LRU
         LRU_GEN_ENABLED = yes;
         CPU_FREQ_STAT = yes; # collect CPU frequency statistics
-        # Optimized for performance this is already set on the Xanmod kernel
-        # CC_OPTIMIZE_FOR_PERFORMANCE_O3 = yes;
       };
     }
   ];
