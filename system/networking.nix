@@ -11,9 +11,9 @@
       # options edns0
     ];
   };
-  systemd.services.NetworkManager-wait-online.enable = false;
   systemd.network = {
     enable = true;
+    wait-online.anyInterface = true;
     networks."10-lan" = {
       matchConfig.Name = "net0";
       networkConfig.DHCP = "ipv4";
