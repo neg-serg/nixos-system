@@ -68,6 +68,7 @@
     "vivid"
   ];
 in {
+  imports = [ ./selinux.nix ];
   # thx to https://github.com/hlissner/dotfiles
   boot.kernel.sysctl = {
     # The Magic SysRq key is a key combo that allows users connected to the
