@@ -27,7 +27,7 @@
       ZDOTDIR = "$HOME/.config/zsh";
     };
 
-    extraInit = let
+    extraInit = let # Load variables from home-manager
       user = "neg";
       homedir = config.users.users.${user}.home;
     in ''
@@ -52,7 +52,7 @@
       VST_PATH = makePluginPath "vst";
       VST3_PATH = makePluginPath "vst3";
       ASPELL_CONF = ''
-            per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
+        per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
         personal $XDG_CONFIG_HOME/aspell/en_US.pws;
         repl $XDG_CONFIG_HOME/aspell/en.prepl;
       '';
