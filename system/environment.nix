@@ -1,4 +1,9 @@
-{lib, pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   environment = {
     wordlist.enable = true; # to make "look" utility work
     shells = with pkgs; [zsh];
@@ -22,33 +27,39 @@
       ZDOTDIR = "$HOME/.config/zsh";
     };
 
-    variables =
-        let
-        makePluginPath = format:
+    extraInit = let
+      user = "neg";
+      homedir = config.users.users.${user}.home;
+    in ''
+      if [ "$(id -un)" = "${user}" ]; then
+        . "${homedir}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      fi
+    '';
+
+    variables = let
+      makePluginPath = format:
         (lib.makeSearchPath format [
-         "$HOME/.nix-profile/lib"
-         "/run/current-system/sw/lib"
-         "/etc/profiles/per-user/$USER/lib"
+          "$HOME/.nix-profile/lib"
+          "/run/current-system/sw/lib"
+          "/etc/profiles/per-user/$USER/lib"
         ])
         + ":$HOME/.${format}";
-    in
-    {
-        DSSI_PATH = makePluginPath "dssi";
-        LADSPA_PATH = makePluginPath "ladspa";
-        LV2_PATH = makePluginPath "lv2";
-        LXVST_PATH = makePluginPath "lxvst";
-        VST_PATH = makePluginPath "vst";
-        VST3_PATH = makePluginPath "vst3";
-        ASPELL_CONF = ''
+    in {
+      DSSI_PATH = makePluginPath "dssi";
+      LADSPA_PATH = makePluginPath "ladspa";
+      LV2_PATH = makePluginPath "lv2";
+      LXVST_PATH = makePluginPath "lxvst";
+      VST_PATH = makePluginPath "vst";
+      VST3_PATH = makePluginPath "vst3";
+      ASPELL_CONF = ''
             per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
         personal $XDG_CONFIG_HOME/aspell/en_US.pws;
         repl $XDG_CONFIG_HOME/aspell/en.prepl;
-        '';
-        HISTFILE = "$XDG_DATA_HOME/bash/history";
-        INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";
-        LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
-        WGETRC = "$XDG_CONFIG_HOME/wgetrc";
-
+      '';
+      HISTFILE = "$XDG_DATA_HOME/bash/history";
+      INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";
+      LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
+      WGETRC = "$XDG_CONFIG_HOME/wgetrc";
     };
   };
 }
