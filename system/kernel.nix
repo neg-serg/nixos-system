@@ -173,6 +173,13 @@ in {
         RCU_BOOST_DELAY = freeform "500";
         RCU_NOCB_CPU = yes;
         RCU_LAZY = yes;
+
+        MODULE_SIG = yes;
+        MODULE_SIG_SHA512 = yes;
+        MODULE_SIG_FORCE = yes;
+        # used to avoid a systemd error:
+        # systemd[1]: bpf-lsm: Failed to load BPF object: Invalid argument
+        BPF_LSM = yes;
       };
     }
   ];
