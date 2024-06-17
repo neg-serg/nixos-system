@@ -128,6 +128,7 @@ in {
       "scsi_mod.use_blk_mq=1"
       "threadirqs"
       "tsc=reliable"
+      "split_lock_detect=off"
     ]
     ++ mitigations_settings
     ++ silence
