@@ -1,6 +1,5 @@
 {...}: {
   boot.supportedFilesystems = [
-    "bcachefs"
     "exfat"
     "xfs"
   ];
