@@ -1,6 +1,6 @@
 {...}: {
-  services.dbus = {
-    enable = true;
-    implementation = "broker";
-  };
+  # services.dbus = {
+  #   enable = true;
+  #   implementation = "broker";
+  # };
 }
