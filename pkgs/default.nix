@@ -14,6 +14,7 @@
     ./keyd.nix # systemwide keyboard manager
     ./libinput.nix
     ./monitoring.nix
+    ./navidrome.nix
     ./network.nix
     ./nix-ld.nix
     ./nixos.nix
@@ -67,13 +68,6 @@
     udev.packages = with pkgs; [android-udev-rules];
     udisks2.enable = true;
     upower.enable = true;
-    navidrome = {
-        enable = true;
-        openFirewall = true;
-        settings = {
-            MusicFolder = "/one/music";
-        };
-    };
     # Boot optimizations regarding filesystem:
     # Journald was taking too long to copy from runtime memory to disk at boot
     # set storage to "auto" if you're trying to troubleshoot a boot issue
