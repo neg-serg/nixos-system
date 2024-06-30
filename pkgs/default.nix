@@ -55,7 +55,10 @@
     earlyoom.enable = false; # may need it for notebook
     fwupd.enable = true;
     gvfs.enable = true;
-    jellyfin.enable = true;
+    jellyfin = {
+        enable = true;
+        openFirewall = true;
+    };
     locate = {
       enable = true;
       package = pkgs.plocate;
