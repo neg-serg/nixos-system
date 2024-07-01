@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     xorg.xdpyinfo # display info
+    xorg.xhost # install xhost to setup X11 ACL
   ];
   services.xserver = {
     enable = true; # Enable the X11 windowing system.
