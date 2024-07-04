@@ -1,6 +1,6 @@
 {pkgs, stable, ...}: {
   environment.systemPackages = with pkgs; [
-    openvpn # gnu/gpl vpn
+    (openvpn.override {pkcs11Support=true; pkcs11helper=pkgs.pkcs11helper;})
 
     bandwhich # display network utilization per process
     cacert # for curl certificate verification
