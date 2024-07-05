@@ -3,6 +3,7 @@
     hostName = "telfir"; # Define your hostname.
     wireless.iwd.enable = true; # iwctl to manage wifi
     useNetworkd = true;
+    networkmanager.enable = true;
     nameservers = [
       "1.1.1.1"
       "192.168.88.1"
