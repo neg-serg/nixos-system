@@ -5,8 +5,9 @@
 }: {
   imports = [
     ./audio
-    ./video
+    ./libinput.nix
     ./udev-rules.nix
+    ./video
   ];
   hardware.i2c.enable = true;
   hardware.bluetooth = {
