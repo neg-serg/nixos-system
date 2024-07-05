@@ -4,7 +4,7 @@
     ./environment.nix
     ./filesystems.nix
     ./kernel.nix
-    ./networking.nix
+    ./networking
     ./oomd.nix
     ./security.nix
     ./systemd.nix
