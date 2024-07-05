@@ -1,6 +1,5 @@
 {
   config.services.libinput = {
-    # enable libinput
     enable = true;
 
     # disable mouse acceleration
@@ -10,7 +9,6 @@
       middleEmulation = false;
     };
 
-    # touchpad settings
     touchpad = {
       naturalScrolling = true;
       tapping = true;
