@@ -3,11 +3,6 @@
     (openvpn.override {pkcs11Support=true; pkcs11helper=pkgs.pkcs11helper;})
     protonvpn-gui # protonvpn
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
-    wireguard-tools
-    python311Packages.protonvpn-nm-lib
-    python311Packages.proton-vpn-killswitch
-    python311Packages.proton-keyring-linux-secretservice
-    python311Packages.proton-vpn-logger
 
     bandwhich # display network utilization per process
     cacert # for curl certificate verification
