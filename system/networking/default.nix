@@ -1,5 +1,8 @@
 {
-  imports = [ ./tor.nix ];
+  imports = [
+      ./tor.nix
+      ./vpn.nix
+  ];
   networking = {
     hostName = "telfir"; # Define your hostname.
     wireless.iwd.enable = true; # iwctl to manage wifi
