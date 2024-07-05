@@ -1,6 +1,7 @@
 {pkgs, stable, ...}: {
   environment.systemPackages = with pkgs; [
     (openvpn.override {pkcs11Support=true; pkcs11helper=pkgs.pkcs11helper;})
+    protonvpn-gui # protonvpn
 
     bandwhich # display network utilization per process
     cacert # for curl certificate verification
