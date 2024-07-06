@@ -22,7 +22,6 @@
     ./shell.nix
     ./system.nix
     ./timesyncd.nix
-    ./vnstat.nix
   ];
 
   programs = {
