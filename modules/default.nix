@@ -8,7 +8,6 @@
     ./hardware
     ./monitoring
     ./nix
-    ./nix-ld
     ./nixos
     ./secrets
     ./servers
