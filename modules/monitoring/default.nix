@@ -1,5 +1,6 @@
 {
   imports = [
     ./vnstat
+    ./pkgs.nix
   ];
 }
