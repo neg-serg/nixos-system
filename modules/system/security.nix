@@ -3,6 +3,7 @@
   lib,
   ...
 }: {
+  services.pcscd.enable = true; # pkcs support
   # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots
   # (PIN1 for authentication/decryption, PIN2 for signing).
   environment.etc."pkcs11/modules/opensc-pkcs11".text = ''

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-      ./timesyncd
+    ./timesyncd
   ];
   # Boot optimizations regarding filesystem:
   # Journald was taking too long to copy from runtime memory to disk at boot
@@ -10,6 +10,7 @@
     SystemMaxFileSize=300M
     SystemMaxFiles=50
   '';
+  services.logind = {extraConfig = ''IdleAction=ignore '';};
   systemd = {
     coredump.enable = true;
     extraConfig = ''DefaultTimeoutStopSec=10s '';

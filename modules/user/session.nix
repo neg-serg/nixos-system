@@ -4,6 +4,7 @@
     xorg.xhost # install xhost to setup X11 ACL
   ];
   services = {
+    accounts-daemon.enable = true; # AccountsService a DBus service for accessing the list of user accounts and info…
     gnome = {gnome-keyring.enable = true;};
     gvfs.enable = true;
     dbus.implementation = "broker";
