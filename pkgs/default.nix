@@ -35,12 +35,12 @@
     devmon.enable = true;
     earlyoom.enable = false; # may need it for notebook
     fwupd.enable = true;
-    gnome = { gnome-keyring.enable = true; };
+    gnome = {gnome-keyring.enable = true;};
     gvfs.enable = true;
     power-profiles-daemon.enable = true;
     jellyfin = {
-        enable = true;
-        openFirewall = true;
+      enable = true;
+      openFirewall = true;
     };
     locate = {
       enable = true;

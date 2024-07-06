@@ -1,7 +1,7 @@
 {
   imports = [
-      ./tor.nix
-      ./vpn.nix
+    ./tor.nix
+    ./vpn.nix
   ];
   networking = {
     hostName = "telfir"; # Define your hostname.

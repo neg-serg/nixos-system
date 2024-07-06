@@ -5,7 +5,7 @@
         "big-parallel"
         "gccarch-znver3"
         "gcctune-znver3"
-        "recursive-nix" 
+        "recursive-nix"
       ];
       experimental-features = [
         "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts

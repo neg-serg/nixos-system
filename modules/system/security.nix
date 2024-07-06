@@ -1,4 +1,8 @@
-{pkgs, lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots
   # (PIN1 for authentication/decryption, PIN2 for signing).
   environment.etc."pkcs11/modules/opensc-pkcs11".text = ''
@@ -9,8 +13,8 @@
     protectKernelImage = false; # prevent replacing the running kernel image
     lockKernelModules = false;
     polkit = {
-        enable = true;
-        debug = true;
+      enable = true;
+      debug = true;
     };
     tpm2 = {
       enable = true; # enable Trusted Platform Module 2 support
@@ -85,7 +89,7 @@
       };
     };
     sudo.extraConfig = ''
-        Defaults timestamp_timeout = 300 # makes sudo ask for password less often
+      Defaults timestamp_timeout = 300 # makes sudo ask for password less often
     '';
     sudo.extraRules = [
       {

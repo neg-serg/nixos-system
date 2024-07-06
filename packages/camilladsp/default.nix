@@ -1,15 +1,15 @@
-{ lib
-, rustPlatform
-, fetchFromGitHub
-, pkg-config
-, bzip2
-, libpulseaudio
-, openssl
-, stdenv
-, darwin
-, alsa-lib
+{
+  lib,
+  rustPlatform,
+  fetchFromGitHub,
+  pkg-config,
+  bzip2,
+  libpulseaudio,
+  openssl,
+  stdenv,
+  darwin,
+  alsa-lib,
 }:
-
 rustPlatform.buildRustPackage rec {
   pname = "camilladsp";
   version = "2.0.3";
@@ -34,23 +34,26 @@ rustPlatform.buildRustPackage rec {
     rustPlatform.bindgenHook
   ];
 
-  buildInputs = [
-    bzip2
-    libpulseaudio
-    openssl
-  ] ++ lib.optionals stdenv.isDarwin [
-    darwin.apple_sdk.frameworks.CoreAudio
-    darwin.apple_sdk.frameworks.Security
-  ] ++ lib.optionals stdenv.isLinux [
-    alsa-lib
-  ];
+  buildInputs =
+    [
+      bzip2
+      libpulseaudio
+      openssl
+    ]
+    ++ lib.optionals stdenv.isDarwin [
+      darwin.apple_sdk.frameworks.CoreAudio
+      darwin.apple_sdk.frameworks.Security
+    ]
+    ++ lib.optionals stdenv.isLinux [
+      alsa-lib
+    ];
 
   meta = with lib; {
     description = "A flexible cross-platform IIR and FIR engine for crossovers, room correction etc";
     homepage = "https://github.com/HEnquist/camilladsp";
     changelog = "https://github.com/HEnquist/camilladsp/blob/${src.rev}/CHANGELOG.md";
     license = licenses.gpl3Only;
-    maintainers = with maintainers; [ ];
+    maintainers = with maintainers; [];
     mainProgram = "camilladsp";
   };
 }

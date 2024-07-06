@@ -29,10 +29,10 @@
     device = "/dev/mapper/argon-zero";
     fsType = "xfs";
     options = [
-        "x-systemd.automount"
-        "relatime"
-        "lazytime"
-        "rw"
+      "x-systemd.automount"
+      "relatime"
+      "lazytime"
+      "rw"
     ];
   };
 

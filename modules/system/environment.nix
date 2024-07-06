@@ -27,7 +27,8 @@
       ZDOTDIR = "$HOME/.config/zsh";
     };
 
-    extraInit = let # Load variables from home-manager
+    extraInit = let
+      # Load variables from home-manager
       user = "neg";
       homedir = config.users.users.${user}.home;
     in ''
