@@ -13,7 +13,6 @@
     ./io.nix
     ./keyd.nix # systemwide keyboard manager
     ./monitoring.nix
-    ./navidrome.nix
     ./network.nix
     ./nix-ld.nix
     ./nixos.nix
