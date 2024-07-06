@@ -2,6 +2,7 @@
   imports = [
     ./tor.nix
     ./vpn.nix
+    ./ssh.nix
     ./pkgs.nix
   ];
   networking = {

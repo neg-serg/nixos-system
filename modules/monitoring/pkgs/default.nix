@@ -1,4 +1,8 @@
 {pkgs, ...}: {
+  programs = {
+    atop = {enable = false;};
+    mtr = {enable = true;};
+  };
   environment.systemPackages = with pkgs; [
     btop # even more fancy top
     dstat # example use: dstat -cdnpmgs --top-bio --top-cpu --top-mem
