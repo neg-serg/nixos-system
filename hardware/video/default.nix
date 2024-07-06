@@ -1,5 +1,6 @@
 {...}: {
   imports = [
-    ./amd.nix
+    ./amd
+    ./pkgs
   ];
 }

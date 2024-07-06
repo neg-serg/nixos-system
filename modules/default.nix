@@ -1,6 +1,14 @@
 {
   imports = [
-    ./navidrome
+    ./appimage
+    ./dev
+    ./documentation
+    ./games
     ./monitoring
+    ./nix-ld
+    ./nixos
+    ./secrets
+    ./servers
+    ./shell
   ];
 }

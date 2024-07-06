@@ -5,8 +5,8 @@
 }: {
   imports = [
     ./audio
-    ./libinput.nix
-    ./udev-rules.nix
+    ./libinput
+    ./udev-rules
     ./video
   ];
   hardware.i2c.enable = true;

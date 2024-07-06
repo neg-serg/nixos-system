@@ -1,24 +1,11 @@
 {pkgs, ...}: {
   imports = [
-    ./appimage.nix
     ./cli.nix
-    ./dev.nix
-    ./display.nix
-    ./documentation.nix
     ./dsp.nix
-    ./editor.nix
-    ./elf.nix
-    ./games.nix
-    ./git.nix
     ./io.nix
     ./keyd.nix # systemwide keyboard manager
     ./network.nix
-    ./nix-ld.nix
-    ./nixos.nix
-    ./openssh.nix
     ./python-lto.nix
-    ./secrets.nix
-    ./shell.nix
     ./system.nix
     ./timesyncd.nix
   ];

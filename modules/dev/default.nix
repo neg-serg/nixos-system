@@ -1,6 +1,8 @@
 {
   imports = [
+    ./editor
+    ./elf
+    ./git
     ./pkgs
-    ./vnstat
   ];
 }
