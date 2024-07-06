@@ -3,7 +3,7 @@
   ...
 }:
 with {
-    camilladsp = pkgs.callPackage ../packages/camilladsp {};
+    camilladsp = pkgs.callPackage  ../../../../packages/camilladsp {};
 };{
   environment.systemPackages = with pkgs; [
     brutefir # one of the best FIR filters for linux

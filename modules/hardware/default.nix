@@ -5,6 +5,8 @@
 }: {
   imports = [
     ./audio
+    ./io
+    ./keyd # systemwide keyboard manager
     ./libinput
     ./udev-rules
     ./video

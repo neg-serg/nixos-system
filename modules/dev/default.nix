@@ -4,5 +4,6 @@
     ./elf
     ./git
     ./pkgs
+    ./python
   ];
 }

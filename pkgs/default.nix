@@ -1,13 +1,8 @@
 {pkgs, ...}: {
   imports = [
-    ./cli.nix
-    ./dsp.nix
-    ./io.nix
-    ./keyd.nix # systemwide keyboard manager
-    ./network.nix
-    ./python-lto.nix
-    ./system.nix
-    ./timesyncd.nix
+    ./network
+    ./system
+    ./timesyncd
   ];
 
   programs = {
