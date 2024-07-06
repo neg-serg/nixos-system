@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  imports = [./timesyncd];
   systemd = {
     coredump.enable = true;
     extraConfig = ''DefaultTimeoutStopSec=10s '';

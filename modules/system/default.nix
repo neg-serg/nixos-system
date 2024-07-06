@@ -6,8 +6,9 @@
     ./kernel.nix
     ./networking
     ./oomd.nix
+    ./pkgs.nix
     ./security.nix
-    ./systemd.nix
+    ./systemd
     ./users.nix
     ./virt.nix
   ];

@@ -1,10 +1,4 @@
 {pkgs, ...}: {
-  imports = [
-    ./network
-    ./system
-    ./timesyncd
-  ];
-
   programs = {
     atop = {enable = false;};
     mtr = {enable = true;};
