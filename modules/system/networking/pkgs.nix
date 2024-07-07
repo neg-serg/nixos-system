@@ -1,6 +1,5 @@
 {
   pkgs,
-  stable,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -16,7 +15,7 @@
     inetutils # common network programs
     ipcalc # calculate ip addr stuff
     iputils # set of small useful utilities for Linux networking
-    stable.magic-wormhole # secure transfer between computers
+    magic-wormhole # secure transfer between computers
     netcat-openbsd # openbsd netcat variant
     netdiscover # another network scan
     nettools # controlling the network subsystem in Linux
