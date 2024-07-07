@@ -13,8 +13,9 @@
     julia # nice language
     ltrace # trace functions
     pkgconf # package compiler and linker metadata toolkit (wrapper script)
-    radare2 # free disassembler
+    plow # high performance http benchmarking tool
     radare2-cutter # Free and Open Source Reverse Engineering Platform powered by rizin
+    radare2 # free disassembler
     strace # trace system-calls
   ];
 }
