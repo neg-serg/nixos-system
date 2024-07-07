@@ -4,6 +4,7 @@
     ./cli
     ./dev
     ./documentation
+    ./emulators
     ./games
     ./hardware
     ./monitoring
