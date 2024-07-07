@@ -4,6 +4,7 @@
     ./avahi
     ./jellyfin
     ./navidrome
+    ./nextcloud
     ./openssh
     ./syncthing
   ];
