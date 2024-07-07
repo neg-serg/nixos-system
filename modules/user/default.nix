@@ -2,11 +2,11 @@
   imports = [
     ./bash.nix
     ./dbus.nix
-    ./games.nix
+    ./games
     ./locale.nix
     ./locate.nix
     ./psd # profile sync daemon
-    ./session.nix
+    ./session
     ./xdg.nix
   ];
 }
