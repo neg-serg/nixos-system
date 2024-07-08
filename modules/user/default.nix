@@ -2,6 +2,7 @@
   imports = [
     ./bash.nix
     ./dbus.nix
+    ./fonts.nix
     ./games
     ./locale.nix
     ./locate.nix
