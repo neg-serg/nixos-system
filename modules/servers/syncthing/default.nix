@@ -13,17 +13,24 @@
     settings = {
       devices = {
         "Pixel 7 Pro" = {id = "OWGOTRT-Q4LV2MR-QLVIFZH-LPWZ4DP-TANYCAM-SXC2W2A-BL4VSHS-KWXLVAB";};
+        "DX180" = {id = "OWGOTRT-Q4LV2MR-QLVIFZH-LPWZ4DP-TANYCAM-SXC2W2A-BL4VSHS-KWXLVAB";};
       };
       folders = {
         "music-upload" = {
           # Name of folder in Syncthing, also the folder ID
           path = "/zero/syncthing/music-upload"; # Which folder to add to Syncthing
-          devices = ["Pixel 7 Pro"]; # Which devices to share the folder with
+          devices = [
+            "Pixel 7 Pro"
+            "DX180"
+          ]; # Which devices to share the folder with
         };
         "picture-upload" = {
           # Name of folder in Syncthing, also the folder ID
           path = "/zero/syncthing/picture-upload"; # Which folder to add to Syncthing
-          devices = ["Pixel 7 Pro"]; # Which devices to share the folder with
+          devices = [
+            "Pixel 7 Pro"
+            "DX180"
+          ]; # Which devices to share the folder with
         };
       };
     };
