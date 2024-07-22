@@ -8,4 +8,22 @@
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
     wireguard-tools
   ];
+  services.openvpn.servers = {
+    work = {
+      config = ''config /home/neg/.dotfiles/nix/.config/home-manager/secrets/crypted/work.ovpn '';
+      autoStart = false;
+    };
+    ipmi = {
+      config = ''config /home/neg/.dotfiles/nix/.config/home-manager/secrets/crypted/ipmi.ovpn '';
+      autoStart = false;
+    };
+  };
+  systemd.user.paths.openvpn-work = {
+    enable = true;
+    description = "OpenVPN for work activation path";
+    pathConfig = {
+      PathChanged = "/home/neg/.local/share/openvpn/client/work.pass";
+    };
+    wantedBy = ["multi-user.target"];
+  };
 }
