@@ -5,6 +5,7 @@
     ./dev
     ./documentation
     ./emulators
+    ./flatpak
     ./games
     ./hardware
     ./monitoring

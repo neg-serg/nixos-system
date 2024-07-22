@@ -18,6 +18,7 @@
       url = "gitlab:VandalByte/dedsec-grub-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
   };
   outputs = inputs @ {
     self,
@@ -34,6 +35,7 @@
     nixtheplanet,
     nixos-generators,
     dedsec-grub-theme,
+    nix-flatpak,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -68,6 +70,7 @@
             ./cachix.nix
             chaotic.nixosModules.default
             dedsec-grub-theme.nixosModule
+            nix-flatpak.nixosModules.nix-flatpak
           ];
         };
       };
