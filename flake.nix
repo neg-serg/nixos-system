@@ -14,8 +14,8 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    darkmatter-grub-theme = {
-      url = "gitlab:VandalByte/darkmatter-grub-theme";
+    dedsec-grub-theme = {
+      url = "gitlab:VandalByte/dedsec-grub-theme";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -33,7 +33,7 @@
     nixpkgs-master,
     nixtheplanet,
     nixos-generators,
-    darkmatter-grub-theme,
+    dedsec-grub-theme,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -67,7 +67,7 @@
             ./init.nix
             ./cachix.nix
             chaotic.nixosModules.default
-            darkmatter-grub-theme.nixosModule
+            dedsec-grub-theme.nixosModule
           ];
         };
       };

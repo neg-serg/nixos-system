@@ -18,11 +18,11 @@
         fontSize = 32;
         gfxmodeEfi = "2560x1440";
         gfxpayloadEfi = "keep";
-        darkmatter-theme = {
-          enable = true;
-          style = "nixos";
-          icon = "color";
-          resolution = "1440p";
+        dedsec-theme = {
+            enable = true;
+            style = "redskull";
+            icon = "color";
+            resolution = "1440p";
         };
       };
       timeout = 1;
