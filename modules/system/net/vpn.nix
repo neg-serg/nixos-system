@@ -18,7 +18,7 @@
       autoStart = false;
     };
   };
-  systemd.user.paths.openvpn-work = {
+  systemd.paths.openvpn-work = {
     enable = true;
     description = "OpenVPN for work activation path";
     pathConfig = {
@@ -26,7 +26,7 @@
     };
     wantedBy = ["multi-user.target"];
   };
-  systemd.user.paths.openvpn-ipmi = {
+  systemd.paths.openvpn-ipmi = {
     enable = true;
     description = "OpenVPN for ipmi activation path";
     pathConfig = {
