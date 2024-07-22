@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  environment.systemPackages = [pkgs.flatpak];
+  environment.systemPackages = [pkgs.flatpak pkgs.flatpak-builder];
   services.flatpak.enable = true;
   services.flatpak.packages = [
     {appId = "us.zoom.Zoom"; origin = "flathub";} 
