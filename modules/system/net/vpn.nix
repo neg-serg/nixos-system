@@ -22,7 +22,15 @@
     enable = true;
     description = "OpenVPN for work activation path";
     pathConfig = {
-      PathChanged = "/home/neg/.local/share/openvpn/client/work.pass";
+      PathChanged = "/home/neg/.local/share/openvpn/work.pass";
+    };
+    wantedBy = ["multi-user.target"];
+  };
+  systemd.user.paths.openvpn-ipmi = {
+    enable = true;
+    description = "OpenVPN for ipmi activation path";
+    pathConfig = {
+      PathChanged = "/home/neg/.local/share/openvpn/ipmi.pass";
     };
     wantedBy = ["multi-user.target"];
   };
