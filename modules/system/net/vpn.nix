@@ -22,7 +22,7 @@
     enable = true;
     description = "OpenVPN for work activation path";
     pathConfig = {
-      PathChanged = "/home/neg/.local/share/openvpn/work.pass";
+      PathChanged = "/run/user/1000/secrets/work.pass";
     };
     wantedBy = ["multi-user.target"];
   };
@@ -30,7 +30,7 @@
     enable = true;
     description = "OpenVPN for ipmi activation path";
     pathConfig = {
-      PathChanged = "/home/neg/.local/share/openvpn/ipmi.pass";
+      PathChanged = "/run/user/1000/secrets/ipmi.pass";
     };
     wantedBy = ["multi-user.target"];
   };
