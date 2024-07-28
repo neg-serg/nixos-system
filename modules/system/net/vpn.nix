@@ -6,7 +6,7 @@
     })
     protonvpn-gui # protonvpn
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
-    wireguard-tools
+    wireguard-tools # stuff to rule wireguard
   ];
   services.openvpn.servers = {
     work = {
