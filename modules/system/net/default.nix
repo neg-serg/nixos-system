@@ -1,10 +1,10 @@
 {
   imports = [
+    ./pkgs.nix
+    ./proxy.nix
+    ./ssh.nix
     ./tor.nix
     ./vpn.nix
-    ./ssh.nix
-    ./proxy.nix
-    ./pkgs.nix
   ];
   networking = {
     hostName = "telfir"; # Define your hostname.
