@@ -3,6 +3,7 @@
     ./tor.nix
     ./vpn.nix
     ./ssh.nix
+    ./proxy.nix
     ./pkgs.nix
   ];
   networking = {
