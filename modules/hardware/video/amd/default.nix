@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
   environment = {
