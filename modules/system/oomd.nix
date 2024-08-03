@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   ...
 }: {
@@ -12,7 +11,7 @@
     # and system slices, but their oomd configuration has since changed.
     # TODO: maybe disable user slice by default?
     oomd = {
-      enable = !config.systemd.enableUnifiedCgroupHierarchy;
+      enable = true;
       enableRootSlice = true;
       enableSystemSlice = true;
       enableUserSlices = true;
