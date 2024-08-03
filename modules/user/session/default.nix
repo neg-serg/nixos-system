@@ -8,6 +8,7 @@
     gnome = {gnome-keyring.enable = true;};
     gvfs.enable = true;
     dbus.implementation = "broker";
+    libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
     xserver = {
       enable = true; # Enable the X11 windowing system.
       exportConfiguration = true;
@@ -18,7 +19,6 @@
         options = "grp:alt_shift_toggle";
         layout = "us,ru";
       };
-      libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
       desktopManager = {xterm.enable = false;};
       displayManager = {
         startx.enable = true;
