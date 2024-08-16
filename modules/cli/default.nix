@@ -5,7 +5,7 @@
 }: {
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
-    delta # better diff tool
+    stable.delta # better diff tool
     difftastic # syntax-aware diff
     diffutils # classic diff utils
     eza # more modern version of exa ls replacer
