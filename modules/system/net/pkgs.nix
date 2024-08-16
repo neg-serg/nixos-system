@@ -4,7 +4,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    bandwhich # display network utilization per process
+    stable.bandwhich # display network utilization per process
     cacert # for curl certificate verification
     dnsutils # dns command-line tools (dig, nslookup)
     ethtool # control eth hardware and drivers
