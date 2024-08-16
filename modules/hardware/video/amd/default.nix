@@ -7,7 +7,7 @@
       glxinfo
       vulkan-extension-layer
       vulkan-tools
-      vulkan-validation-layers
+      # vulkan-validation-layers
     ];
   };
   services.xserver = {
