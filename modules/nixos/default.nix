@@ -1,6 +1,7 @@
 {
   lib,
   pkgs,
+  stable,
   ...
 }: let
   inherit (builtins) concatStringsSep length;
@@ -18,7 +19,7 @@ in {
     niv # pin different stuff
     nix-diff # show what causes derivation to be different
     nix-index # index for nix-locate
-    nix-init # provides more easy way to create nix packages
+    stable.nix-init # provides more easy way to create nix packages
     nix-output-monitor # fancy nix output (nom)
     nix-tree # Interactive scan current system / derivations for what-why-how depends
     nixos-shell # tool to create vm for current config
