@@ -8,6 +8,7 @@
     ./io
     ./keyd # systemwide keyboard manager
     ./libinput
+    ./qmk
     ./udev-rules
     ./video
   ];
