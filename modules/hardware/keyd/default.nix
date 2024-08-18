@@ -12,21 +12,15 @@
         };
         "capslock:C" = {
           "0" = "M-0";
-
           "a" = "home";
           "e" = "end";
-          "w" = "C-backspace";
-
           "h" = "left";
           "j" = "down";
           "k" = "up";
           "l" = "right";
-
           "2" = "down";
           "3" = "up";
-
-          "[" = "escape";
-          "]" = "insert";
+          "p" = "insert";
           "q" = "escape";
         };
       };
