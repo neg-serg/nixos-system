@@ -22,6 +22,7 @@
           "3" = "up";
           "p" = "insert";
           "q" = "escape";
+          "-" = "backspace";
         };
       };
     };
