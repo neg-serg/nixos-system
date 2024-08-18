@@ -14,15 +14,14 @@
           "0" = "M-0";
           "a" = "home";
           "e" = "end";
-          "h" = "left";
           "j" = "down";
           "k" = "up";
-          "l" = "right";
           "2" = "down";
           "3" = "up";
           "p" = "insert";
           "q" = "escape";
           "-" = "backspace";
+          "h" = "backspace";
         };
       };
     };
