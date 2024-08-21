@@ -5,6 +5,7 @@
 }: {
   environment.systemPackages = with pkgs; [
     ddrescue # data recovery tool
+    bpftrace # add tool to trace events via bpf
     foremost # files extact from structure
     gcc # gnu compiler collection
     gdb # gnu debugger
