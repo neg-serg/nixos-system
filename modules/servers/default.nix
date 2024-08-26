@@ -7,5 +7,6 @@
     ./nextcloud
     ./openssh
     ./syncthing
+    ./wakapi
   ];
 }
