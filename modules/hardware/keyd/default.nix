@@ -16,9 +16,8 @@
           "e" = "end";
           "j" = "down";
           "k" = "up";
-          "2" = "down";
-          "3" = "up";
-         #"p" = "insert";
+          "1" = "down";
+          "2" = "up";
           "q" = "escape";
           "-" = "backspace";
           "h" = "backspace";
