@@ -16,8 +16,8 @@
           "e" = "end";
           "j" = "down";
           "k" = "up";
-          "1" = "down";
-          "2" = "up";
+          "1" = "up";
+          "2" = "down";
           "q" = "escape";
           "-" = "backspace";
           "h" = "backspace";
