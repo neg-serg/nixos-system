@@ -19,6 +19,7 @@
           "1" = "up";
           "2" = "down";
           "q" = "escape";
+          "`" = "asciitilde";
           "-" = "backspace";
           "h" = "backspace";
         };
