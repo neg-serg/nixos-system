@@ -5,7 +5,6 @@
       pkcs11helper = pkgs.pkcs11helper;
     })
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
-    wireguard-tools # stuff to rule wireguard
   ];
   services.openvpn.servers = {
     work = {
