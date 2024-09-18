@@ -23,7 +23,6 @@ with rec {
         "input"
         "neg"
         "networkmanager"
-        "openrazer"
         "systemd-journal"
         "video"
         "wheel"

@@ -29,7 +29,6 @@
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     enableAllFirmware = true; # Enable all the firmware
     enableRedistributableFirmware = true;
-    openrazer.enable = true; # Enable the OpenRazer driver for my Razer stuff
   };
 
   powerManagement.cpuFreqGovernor = "performance";
