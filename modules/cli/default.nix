@@ -1,11 +1,10 @@
 {
   pkgs,
-  stable,
   ...
 }: {
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
-    stable.delta # better diff tool
+    delta # better diff tool
     difftastic # syntax-aware diff
     diffutils # classic diff utils
     eza # more modern version of exa ls replacer
@@ -22,7 +21,7 @@
     reptyr # move app to another pty, tmux as an example ( echo 0 > /proc/sys/kernel/yama/ptrace_scope )
     ripgrep # better grep
     rlwrap # readline wrapper for everything
-    stable.tig # git viewer
+    tig # git viewer
     tmux # better screen
   ];
 }
