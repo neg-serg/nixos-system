@@ -1,10 +1,9 @@
 {
   pkgs,
-  stable,
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    stable.bandwhich # display network utilization per process
+    bandwhich # display network utilization per process
     cacert # for curl certificate verification
     dnsutils # dns command-line tools (dig, nslookup)
     ethtool # control eth hardware and drivers
@@ -16,7 +15,7 @@
     inetutils # common network programs
     ipcalc # calculate ip addr stuff
     iputils # set of small useful utilities for Linux networking
-    stable.magic-wormhole # secure transfer between computers
+    magic-wormhole # secure transfer between computers
     netcat-openbsd # openbsd netcat variant
     netdiscover # another network scan
     nettools # controlling the network subsystem in Linux
