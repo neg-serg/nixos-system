@@ -2,6 +2,7 @@
   pkgs,
   ...
 }: {
+  imports = [./tmux];
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
     delta # better diff tool
@@ -22,6 +23,5 @@
     ripgrep # better grep
     rlwrap # readline wrapper for everything
     tig # git viewer
-    tmux # better screen
   ];
 }
