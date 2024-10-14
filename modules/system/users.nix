@@ -18,6 +18,7 @@ with rec {
       description = "Neg";
       extraGroups = groupsIfExist [
         "audio"
+        "dialout"
         "docker"
         "i2c"
         "input"
