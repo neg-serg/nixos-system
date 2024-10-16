@@ -1,5 +1,6 @@
 {
   pkgs,
+  stable,
   ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -15,7 +16,7 @@
     ltrace # trace functions
     pkgconf # package compiler and linker metadata toolkit (wrapper script)
     plow # high performance http benchmarking tool
-    radare2-cutter # Free and Open Source Reverse Engineering Platform powered by rizin
+    stable.radare2-cutter # Free and Open Source Reverse Engineering Platform powered by rizin
     radare2 # free disassembler
     strace # trace system-calls
   ];
