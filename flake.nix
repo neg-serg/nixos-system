@@ -42,6 +42,7 @@
       system = "x86_64-linux";
       timeZone = "Europe/Moscow";
       kexec_enabled = true;
+      use_dygma = true;
     }; {
       packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
       nixosConfigurations = {
@@ -51,6 +52,7 @@
             inherit locale;
             inherit timeZone;
             inherit kexec_enabled;
+            inherit use_dygma;
             oldstable = import nixpkgs-oldstable {
               inherit system;
               config.allowUnfree = true;
