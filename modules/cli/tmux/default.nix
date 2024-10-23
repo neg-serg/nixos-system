@@ -1,6 +1,6 @@
-{pkgs, ...}:{
+{pkgs, ...}: {
   programs.tmux = {
-    enable = true;  # better screen
+    enable = true; # better screen
     keyMode = "vi";
     clock24 = true;
     plugins = with pkgs.tmuxPlugins; [
@@ -137,6 +137,6 @@
       set -g status-right-length 150
       set-option -g status-right '#[fg=white]#(~/.config/tmux/bin/tmux_statusline)'
       # vim:ft=tmux tw=0
-    '';        
+    '';
   };
 }

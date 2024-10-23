@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [./tmux];
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
