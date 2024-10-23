@@ -179,7 +179,7 @@ in {
   ];
   boot.extraModulePackages = [];
   boot.consoleLogLevel = 1;
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   security.protectKernelImage =
     if kexec_enabled == false
     then true
