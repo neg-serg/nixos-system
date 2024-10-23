@@ -19,10 +19,10 @@
         gfxmodeEfi = "2560x1440";
         gfxpayloadEfi = "keep";
         dedsec-theme = {
-            enable = true;
-            style = "redskull";
-            icon = "color";
-            resolution = "1440p";
+          enable = true;
+          style = "redskull";
+          icon = "color";
+          resolution = "1440p";
         };
       };
       timeout = 1;

@@ -8,11 +8,11 @@
   ];
   services.openvpn.servers = {
     work = {
-      config = '' config /home/neg/.dotfiles/nix/.config/home-manager/secrets/crypted/work.ovpn '';
+      config = ''config /home/neg/.dotfiles/nix/.config/home-manager/secrets/crypted/work.ovpn '';
       autoStart = false;
     };
     ipmi = {
-      config = '' config /home/neg/.dotfiles/nix/.config/home-manager/secrets/crypted/ipmi.ovpn '';
+      config = ''config /home/neg/.dotfiles/nix/.config/home-manager/secrets/crypted/ipmi.ovpn '';
       autoStart = false;
     };
   };

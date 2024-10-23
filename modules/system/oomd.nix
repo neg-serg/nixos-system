@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   systemd = {
     # Systemd OOMd
     # Fedora enables these options by default. See the 10-oomd-* files here:
