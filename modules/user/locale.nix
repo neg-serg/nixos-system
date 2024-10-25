@@ -16,7 +16,6 @@
     LC_TELEPHONE = locale;
     LC_TIME = locale;
   };
-  # time.hardwareClockInLocalTime = true;
-  # location.provider = "geoclue2";
-  # services.automatic-timezoned.enable = true;
+  location.provider = "geoclue2";
+  time.hardwareClockInLocalTime = true;
 }
