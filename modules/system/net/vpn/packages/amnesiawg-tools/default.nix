@@ -11,7 +11,6 @@
   amneziawg-go,
   nix-update-script,
 }:
-
 stdenv.mkDerivation (finalAttrs: {
   pname = "amneziawg-tools";
   version = "1.0.20240213";
@@ -30,8 +29,8 @@ stdenv.mkDerivation (finalAttrs: {
     "man"
   ];
 
-  nativeBuildInputs = [ makeWrapper ];
-  buildInputs = [ bash ];
+  nativeBuildInputs = [makeWrapper];
+  buildInputs = [bash];
 
   makeFlags = [
     "DESTDIR=${placeholder "out"}"
@@ -52,36 +51,36 @@ stdenv.mkDerivation (finalAttrs: {
         # environment, we provide the "default" ones as fallback.
         wrapProgram $f \
           --prefix PATH : ${
-            lib.makeBinPath [
-              procps
-              iproute2
-            ]
-          } \
+        lib.makeBinPath [
+          procps
+          iproute2
+        ]
+      } \
           --suffix PATH : ${
-            lib.makeBinPath [
-              iptables
-              openresolv
-            ]
-          }
+        lib.makeBinPath [
+          iptables
+          openresolv
+        ]
+      }
       done
     ''
     + lib.optionalString stdenv.isDarwin ''
       for f in $out/bin/*; do
         wrapProgram $f \
-          --prefix PATH : ${lib.makeBinPath [ amneziawg-go ]}
+          --prefix PATH : ${lib.makeBinPath [amneziawg-go]}
       done
     '';
 
   strictDeps = true;
 
-  passthru.updateScript = nix-update-script { };
+  passthru.updateScript = nix-update-script {};
 
   meta = {
     description = "Tools for configuring AmneziaWG";
     homepage = "https://amnezia.org";
     changelog = "https://github.com/amnezia-vpn/amneziawg-tools/releases/tag/v${finalAttrs.version}";
     license = lib.licenses.gpl2Only;
-    maintainers = with lib.maintainers; [ averyanalex ];
+    maintainers = with lib.maintainers; [averyanalex];
     platforms = lib.platforms.unix;
     mainProgram = "awg";
   };
