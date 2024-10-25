@@ -1,10 +1,10 @@
 {pkgs, ...}:
 with {
-  amnesiawg-module = pkgs.callPackage ../../linux/amnesiawg {
+  amneziawg-module = pkgs.callPackage ../../linux/amneziawg {
     kernel = pkgs.linuxPackages_6_11.kernel;
   };
-  amnesiawg-tools = pkgs.callPackage ../vpn/packages/amnesiawg-tools {
-    amneziawg-go = pkgs.callPackage ../vpn/packages/amnesiawg-go {};
+  amneziawg-tools = pkgs.callPackage ../vpn/packages/amneziawg-tools {
+    amneziawg-go = pkgs.callPackage ../vpn/packages/amneziawg-go {};
   };
 }; {
   environment.systemPackages = with pkgs; [
@@ -12,8 +12,8 @@ with {
       pkcs11Support = true;
       pkcs11helper = pkgs.pkcs11helper;
     })
-    amnesiawg-module # kernel module for amnesiawg
-    amnesiawg-tools # tools for amnesiawg
+    amneziawg-module # kernel module for amneziawg
+    amneziawg-tools # tools for amneziawg
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
     wireguard-tools # wireguard interface
   ];
