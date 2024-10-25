@@ -67,6 +67,7 @@
     "ufs"
     "vivid"
   ];
+  wifi_modules = [ "iwlwifi" ];
 in {
   # thx to https://github.com/hlissner/dotfiles
   boot.kernel.sysctl = {
@@ -112,7 +113,8 @@ in {
     ]
     ++ obscure_network_protocols
     ++ intel_hda_modules
-    ++ old_rare_insufficiently_audited_fs;
+    ++ old_rare_insufficiently_audited_fs
+    ++ wifi_modules;
   boot.kernelParams =
     [
       "audit=0"
