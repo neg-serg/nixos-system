@@ -12,7 +12,7 @@
     useNetworkd = true;
     nameservers = [
       "1.1.1.1"
-      "192.168.88.1"
+      "192.168.0.1"
       "172.20.64.1" # OpenVPN defined name servers
       "127.0.0.53" # System defined name servers
       # options edns0
