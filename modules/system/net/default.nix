@@ -4,14 +4,14 @@
     ./proxy.nix
     ./ssh.nix
     ./tor.nix
-    ./vpn.nix
+    ./vpn
   ];
   networking = {
     hostName = "telfir"; # Define your hostname.
     wireless.iwd.enable = true; # iwctl to manage wifi
     useNetworkd = true;
     nameservers = [
-      "1.1.1.1"
+      "8.8.8.8"
       "192.168.0.1"
       "172.20.64.1" # OpenVPN defined name servers
       "127.0.0.53" # System defined name servers

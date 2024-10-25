@@ -1,9 +1,19 @@
-{pkgs, ...}: {
+{pkgs, ...}:
+with {
+  amnesiawg-module = pkgs.callPackage ../../linux/amnesiawg {
+    kernel = pkgs.linuxPackages_6_11.kernel;
+  };
+  amnesiawg-tools = pkgs.callPackage ../vpn/packages/amnesiawg-tools {
+    amneziawg-go = pkgs.callPackage ../vpn/packages/amnesiawg-go {};
+  };
+}; {
   environment.systemPackages = with pkgs; [
     (openvpn.override {
       pkcs11Support = true;
       pkcs11helper = pkgs.pkcs11helper;
     })
+    amnesiawg-module # kernel module for amnesiawg
+    amnesiawg-tools # tools for amnesiawg
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
   ];
   services.openvpn.servers = {
