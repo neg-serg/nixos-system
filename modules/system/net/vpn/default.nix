@@ -15,6 +15,7 @@ with {
     amnesiawg-module # kernel module for amnesiawg
     amnesiawg-tools # tools for amnesiawg
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
+    wireguard-tools # wireguard interface
   ];
   services.openvpn.servers = {
     work = {
