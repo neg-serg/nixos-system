@@ -16,7 +16,6 @@ with {
     amneziawg-tools # tools for amneziawg
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
     wireguard-tools # wireguard interface
-    zapret # dpi bypass
   ];
   services.openvpn.servers = {
     work = {
