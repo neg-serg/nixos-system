@@ -21,7 +21,7 @@
         useOSProber = true;
         dedsec-theme = {
           enable = true;
-          style = "redskull";
+          style = "reaper";
           icon = "color";
           resolution = "1440p";
         };
