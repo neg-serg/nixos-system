@@ -1,6 +1,7 @@
 {inputs, ...}: {
   nix = {
     settings = {
+      show-trace = true;
       system-features = [
         "big-parallel"
         "gccarch-znver3"
