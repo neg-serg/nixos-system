@@ -5,6 +5,7 @@
     delta # better diff tool
     difftastic # syntax-aware diff
     diffutils # classic diff utils
+    doggo # dns client for humans
     eza # more modern version of exa ls replacer
     fd # better find
     file # get filetype from content
@@ -20,5 +21,6 @@
     ripgrep # better grep
     rlwrap # readline wrapper for everything
     tig # git viewer
+    trippy # net analysis tool like ping + traceroute
   ];
 }
