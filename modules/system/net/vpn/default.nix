@@ -14,7 +14,6 @@ with {
     })
     amneziawg-module # kernel module for amneziawg
     amneziawg-tools # tools for amneziawg
-    obfs4 # tor proxy
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
     wireguard-tools # wireguard interface
     zapret # dpi bypass
