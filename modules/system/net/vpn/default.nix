@@ -7,6 +7,7 @@ with {
     amneziawg-go = pkgs.callPackage ../vpn/packages/amneziawg-go {};
   };
 }; {
+  imports = [ ./tailscale.nix ];
   environment.systemPackages = with pkgs; [
     (openvpn.override {
       pkcs11Support = true;
