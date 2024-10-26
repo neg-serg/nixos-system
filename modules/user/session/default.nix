@@ -5,10 +5,11 @@
   ];
   services = {
     accounts-daemon.enable = true; # AccountsService a DBus service for accessing the list of user accounts and info…
+    dbus.implementation = "broker";
     gnome = {gnome-keyring.enable = true;};
     gvfs.enable = true;
-    dbus.implementation = "broker";
     libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
+    ratbagd.enable = true; # gaming mouse setup daemon
     xserver = {
       enable = true; # Enable the X11 windowing system.
       exportConfiguration = true;
