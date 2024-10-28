@@ -8,10 +8,13 @@
     gamescopeSession.enable = false;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   };
+
   programs.gamescope = {
     enable = false;
     package = pkgs.gamescope; # the default, here in case I want to override it
   };
+
+  environment.systemPackages = with pkgs; [ protontricks ];
 
   # # workaround attempt for letting gamescope bypass YAMA LSM
   # # doesn't work, but doesn't hurt to keep this here
