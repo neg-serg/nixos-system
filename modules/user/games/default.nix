@@ -16,15 +16,6 @@
 
   environment.systemPackages = with pkgs; [ protontricks ];
 
-  # # workaround attempt for letting gamescope bypass YAMA LSM
-  # # doesn't work, but doesn't hurt to keep this here
-  # security.wrappers.gamescope = {
-  #   owner = "root";
-  #   group = "root";
-  #   source = "${config.programs.gamescope.package}/bin/gamescope";
-  #   capabilities = "cap_sys_ptrace,cap_sys_nice+pie";
-  # };
-
   security.wrappers.gamemode = {
     owner = "root";
     group = "root";
@@ -42,4 +33,5 @@
       };
     };
   };
+
 }
