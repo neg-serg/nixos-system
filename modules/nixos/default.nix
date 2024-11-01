@@ -19,12 +19,12 @@ in {
     nix-diff # show what causes derivation to be different
     nix-index # index for nix-locate
     nix-init # provides more easy way to create nix packages
+    nixos-shell # tool to create vm for current config
     nix-output-monitor # fancy nix output (nom)
     nix-tree # Interactive scan current system / derivations for what-why-how depends
-    nixos-shell # tool to create vm for current config
-    nurl # generate nix fetcher curl
     npins # pin different stuff ( inspired by niv )
     nurl # cli to generate Nix fetcher calls from repository URLs
+    nurl # generate nix fetcher curl
     nvd # compare versions: nvd diff /run/current-system result
     statix # static analyzer for nix
   ];
