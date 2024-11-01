@@ -22,6 +22,7 @@ in {
     nix-output-monitor # fancy nix output (nom)
     nix-tree # Interactive scan current system / derivations for what-why-how depends
     nixos-shell # tool to create vm for current config
+    nurl # generate nix fetcher curl
     npins # pin different stuff ( inspired by niv )
     nurl # cli to generate Nix fetcher calls from repository URLs
     nvd # compare versions: nvd diff /run/current-system result
