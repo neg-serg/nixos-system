@@ -69,7 +69,7 @@
           };
           modules = [
             ./init.nix
-            # ./cachix.nix
+            ./cachix.nix
             chaotic.nixosModules.default
             dedsec-grub-theme.nixosModule
             nix-flatpak.nixosModules.nix-flatpak
