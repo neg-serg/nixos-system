@@ -14,6 +14,7 @@ with {
     })
     amneziawg-module # kernel module for amneziawg
     amneziawg-tools # tools for amneziawg
+    openconnect # ciscoanyconnect open source
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
     wireguard-tools # wireguard interface
   ];
