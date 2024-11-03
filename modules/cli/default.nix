@@ -21,6 +21,5 @@
     ripgrep # better grep
     rlwrap # readline wrapper for everything
     tig # git viewer
-    trippy # net analysis tool like ping + traceroute
   ];
 }

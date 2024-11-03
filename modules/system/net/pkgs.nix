@@ -23,6 +23,7 @@
     tcpdump # best friend to show network stuff
     tcptraceroute # traceroute without icmp
     traceroute # basic traceroute
+    trippy # net analysis tool like ping + traceroute
     w3m # cli browser
 
     curl # transfer curl
