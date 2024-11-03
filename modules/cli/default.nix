@@ -28,5 +28,6 @@
     rmlint # remove duplicates
     stow # manage farms of symlinks
     tig # git viewer
+    ugrep # better grep, rg alternative
   ];
 }
