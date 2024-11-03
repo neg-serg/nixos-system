@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./tmux];
+  imports = [./tmux ./archives];
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
     delta # better diff tool
