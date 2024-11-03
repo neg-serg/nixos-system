@@ -20,6 +20,7 @@
     reptyr # move app to another pty, tmux as an example ( echo 0 > /proc/sys/kernel/yama/ptrace_scope )
     ripgrep # better grep
     rlwrap # readline wrapper for everything
+    rmlint # remove duplicates
     tig # git viewer
   ];
 }
