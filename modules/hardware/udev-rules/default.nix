@@ -5,5 +5,7 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="3434", ATTRS{idProduct}=="0b10", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"'
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", ATTRS{idProduct}=="2201", GROUP="users", MODE="0666"
     SUBSYSTEMS=="usb", ATTRS{idVendor}=="35ef", ATTRS{idProduct}=="2200", GROUP="users", MODE="0666"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="31e3", ATTRS{idProduct}=="1322", GROUP="users", MODE="0666"
+    SUBSYSTEMS=="usb", ATTRS{idVendor}=="31e3", ATTRS{idProduct}=="132f", GROUP="users", MODE="0666"
   '';
 }
