@@ -220,11 +220,11 @@
         "nixpkgs-regression": "nixpkgs-regression"
       },
       "locked": {
-        "lastModified": 1730673632,
-        "narHash": "sha256-c3dyBWvpsIRM3LZAlp77qgI0lVx8vuuvi4lauFWfYeY=",
+        "lastModified": 1730750003,
+        "narHash": "sha256-iqqwNWjDZZBQSG0Wj3VAhjh4ATazBrXP+h0kd4J/7k8=",
         "owner": "NixOS",
         "repo": "nix",
-        "rev": "dd5a50d80e827bd6246e94cfe165fec7fbb70146",
+        "rev": "b4c05a18b44ccc819786fb0e9d75e1dc27ddc761",
         "type": "github"
       },
       "original": {
@@ -459,11 +459,11 @@
       },
       "locked": {
         "dir": "packaging/nix",
-        "lastModified": 1730559589,
-        "narHash": "sha256-o4NT2Kt7yEA63j38Ic5mrh2U/iQjs3YSNvIbCccIYP0=",
+        "lastModified": 1730751859,
+        "narHash": "sha256-gc+dx5AIsY0NP24UkCNkpnBmSrkrlTR9v6f+6lJjk4A=",
         "ref": "refs/heads/main",
-        "rev": "70645c290dfc6ed10282bf4d2ae38c0bf7b1a3fb",
-        "revCount": 830,
+        "rev": "0b98dee77729c296e2044fc748c6dcaa168363c7",
+        "revCount": 831,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/Open-Wine-Components/umu-launcher/"
