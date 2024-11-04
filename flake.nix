@@ -2,7 +2,6 @@
   description = "Neg-Serg configuration";
   inputs = {
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    disko.url = "github:nix-community/disko";
     nh.url = "github:viperML/nh";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.05-small";
@@ -24,7 +23,6 @@
   outputs = inputs @ {
     self,
     chaotic,
-    disko,
     nh,
     nix,
     nix-gaming,
