@@ -12,6 +12,7 @@
     ./qmk
     ./udev-rules
     ./video
+    ./wooting
   ];
   services = {
     udisks2.enable = true;
