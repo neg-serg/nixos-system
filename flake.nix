@@ -1,18 +1,18 @@
 {
   description = "Neg-Serg configuration";
   inputs = {
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nh.url = "github:viperML/nh";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.05-small";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
+    # nixos-generators = {
+    #   url = "github:nix-community/nixos-generators";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     dedsec-grub-theme = {
       url = "gitlab:VandalByte/dedsec-grub-theme";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,20 +22,20 @@
   };
   outputs = inputs @ {
     self,
-    chaotic,
+    # chaotic,
+    dedsec-grub-theme,
+    lix-module,
     nh,
     nix,
+    nix-flatpak,
     nix-gaming,
+    # nixos-generators,
     nixos-hardware,
     nixpkgs,
+    # nixpkgs-master,
     nixpkgs-oldstable,
     nixpkgs-stable,
-    nixpkgs-master,
-    nixtheplanet,
-    nixos-generators,
-    dedsec-grub-theme,
-    nix-flatpak,
-    lix-module
+    # nixtheplanet,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -61,17 +61,17 @@
               inherit system;
               config.allowUnfree = true;
             };
-            master = import nixpkgs-master {
-              inherit system;
-              config.allowUnfree = true;
-            };
+            # master = import nixpkgs-master {
+            #   inherit system;
+            #   config.allowUnfree = true;
+            # };
             inherit inputs;
           };
           modules = [
             ./init.nix
             ./cachix.nix
             lix-module.nixosModules.default
-            chaotic.nixosModules.default
+            # chaotic.nixosModules.default
             dedsec-grub-theme.nixosModule
             nix-flatpak.nixosModules.nix-flatpak
           ];
