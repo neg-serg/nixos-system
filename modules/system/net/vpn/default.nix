@@ -5,6 +5,7 @@
       pkcs11helper = pkgs.pkcs11helper;
     })
     openconnect # ciscoanyconnect open source
+    openfortivpn # yet another vpn service
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
   ];
 
