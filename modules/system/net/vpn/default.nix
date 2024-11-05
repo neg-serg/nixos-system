@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   environment.etc."ppp/options".text = "ipcp-accept-remote";
+
   environment.systemPackages = with pkgs; [
     (openvpn.override {
       pkcs11Support = true;
