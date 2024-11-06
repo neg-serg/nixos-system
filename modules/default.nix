@@ -16,5 +16,6 @@
     ./shell
     ./system
     ./user
+    ./vm
   ];
 }
