@@ -6,7 +6,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.05-small";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
-    # nixpkgs-master.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
     # nixos-generators = {
@@ -32,7 +32,7 @@
     # nixos-generators,
     nixos-hardware,
     nixpkgs,
-    # nixpkgs-master,
+    nixpkgs-master,
     nixpkgs-oldstable,
     nixpkgs-stable,
     # nixtheplanet,
@@ -59,10 +59,10 @@
               inherit system;
               config.allowUnfree = true;
             };
-            # master = import nixpkgs-master {
-            #   inherit system;
-            #   config.allowUnfree = true;
-            # };
+            master = import nixpkgs-master {
+              inherit system;
+              config.allowUnfree = true;
+            };
             inherit inputs;
           };
           modules = [
