@@ -20,7 +20,10 @@
         options = "grp:alt_shift_toggle";
         layout = "us,ru";
       };
-      desktopManager = {xterm.enable = false;};
+      desktopManager = {
+        xterm.enable = false;
+        lxqt.enable = true;
+      };
       displayManager = {
         startx.enable = true;
         session = [
