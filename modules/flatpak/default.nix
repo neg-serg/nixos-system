@@ -18,6 +18,7 @@
           "/home/neg/pic/:rw"
         ];
       };
+
     };
 
     packages = [
@@ -31,6 +32,10 @@
       }
       {
         appId = "im.riot.Riot";
+        origin = "flathub";
+      }
+      {
+        appId = "com.github.tchx84.Flatseal";
         origin = "flathub";
       }
     ];
