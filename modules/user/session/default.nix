@@ -22,7 +22,7 @@
       };
       desktopManager = {
         xterm.enable = false;
-        lxqt.enable = true;
+        gnome.enable = true;
       };
       displayManager = {
         startx.enable = true;

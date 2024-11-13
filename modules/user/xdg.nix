@@ -2,6 +2,6 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    config.common.default = "lxqt";
+    config.common.default = "gnome";
   };
 }
