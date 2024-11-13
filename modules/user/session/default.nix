@@ -22,7 +22,6 @@
       };
       desktopManager = {
         xterm.enable = false;
-        gnome.enable = true;
       };
       displayManager = {
         startx.enable = true;
