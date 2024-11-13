@@ -2,6 +2,6 @@
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
-    config.common.default = "gnome";
+    config.common.default = "shana";
   };
 }
