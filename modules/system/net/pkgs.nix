@@ -1,4 +1,9 @@
 {pkgs, ...}: {
+  networking.firewall = rec {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+  };
+
   environment.systemPackages = with pkgs; [
     bandwhich # display network utilization per process
     cacert # for curl certificate verification
