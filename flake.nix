@@ -4,8 +4,8 @@
     # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     nh.url = "github:viperML/nh";
     nix-gaming.url = "github:fufexan/nix-gaming";
-    nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.05-small";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.11-small";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     # nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
