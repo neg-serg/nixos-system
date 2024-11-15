@@ -34,14 +34,6 @@
         appId = "im.riot.Riot";
         origin = "flathub";
       }
-      {
-        appId = "com.github.tchx84.Flatseal";
-        origin = "flathub";
-      }
-      {
-        appId = "md.obsidian.Obsidian";
-        origin = "flathub";
-      }
     ];
 
     update.onActivation = false;
