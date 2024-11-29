@@ -3,26 +3,13 @@
   lib,
   ...
 }: {
+  imports = [ ./firejail.nix ];
   services.pcscd.enable = true; # pkcs support
   # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots
   # (PIN1 for authentication/decryption, PIN2 for signing).
   environment.etc."pkcs11/modules/opensc-pkcs11".text = ''
     module: ${pkgs.opensc}/lib/opensc-pkcs11.so
   '';
-
-  programs.firejail = {
-    enable = true;
-    wrappedBinaries = {
-      firefox = {
-        executable = "${lib.getBin pkgs.firefox}/bin/firefox";
-        profile = "${pkgs.firejail}/etc/firejail/firefox.profile";
-      };
-      mpv = {
-        executable = "${lib.getBin pkgs.mpv}/bin/mpv";
-        profile = "${pkgs.firejail}/etc/firejail/mpv.profile";
-      };
-    };
-  };
 
   security = {
     protectKernelImage = false; # prevent replacing the running kernel image
