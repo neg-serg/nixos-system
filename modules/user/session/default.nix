@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  imports = [ ./wayland ];
   environment.systemPackages = with pkgs; [
     xorg.xdpyinfo # display info
     xorg.xhost # install xhost to setup X11 ACL
