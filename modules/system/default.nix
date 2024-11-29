@@ -7,7 +7,6 @@
     ./net
     ./oomd.nix
     ./pkgs.nix
-    ./security.nix
     ./systemd
     ./users.nix
     ./virt.nix

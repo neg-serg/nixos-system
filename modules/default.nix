@@ -12,6 +12,7 @@
     ./nix
     ./nixos
     ./secrets
+    ./security
     ./servers
     ./shell
     ./system

@@ -10,6 +10,8 @@
     module: ${pkgs.opensc}/lib/opensc-pkcs11.so
   '';
 
+  programs.firejail.enable = true;
+
   security = {
     protectKernelImage = false; # prevent replacing the running kernel image
     pki.useCompatibleBundle = true;
