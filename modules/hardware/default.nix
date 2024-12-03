@@ -12,6 +12,7 @@
     ./qmk
     ./udev-rules
     ./video
+    ./webcam
     ./wooting
   ];
   services = {
