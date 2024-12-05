@@ -1,14 +1,19 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     efibootmgr # rule efi boot
     efivar # manipulate efi vars
     os-prober # utility to detect other OSs on a set of drives
+    sbctl # For debugging and troubleshooting Secure Boot.
   ];
   boot = {
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
+    };
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {
-        enable = true;
+        enable = lib.mkForce false;
         memtest86.enable = true;
         consoleMode = "auto";
         edk2-uefi-shell.enable = true;

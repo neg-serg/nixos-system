@@ -16,6 +16,7 @@
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    lanzaboote = { url = "github:nix-community/lanzaboote/v0.4.1"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
   outputs = inputs @ {
     self,
@@ -24,6 +25,7 @@
     # nixpkgs-oldstable,
     # nixtheplanet,
     lix-module,
+    lanzaboote,
     nh,
     nix,
     nix-flatpak,
@@ -71,6 +73,7 @@
             ./cachix.nix
             lix-module.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
+            lanzaboote.nixosModules.lanzaboote
             # chaotic.nixosModules.default
           ];
         };
