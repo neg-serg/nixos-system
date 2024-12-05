@@ -10,6 +10,8 @@
       systemd-boot = {
         enable = true;
         memtest86.enable = true;
+        consoleMode = "auto";
+        edk2-uefi-shell.enable = true;
       };
       timeout = 1;
     };
