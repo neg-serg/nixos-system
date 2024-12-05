@@ -18,19 +18,6 @@
         consoleMode = "auto";
         edk2-uefi-shell.enable = true;
       };
-      grub = {
-        backgroundColor = "#000000";
-        device = "nodev";
-        efiSupport = true;
-        enable = false;
-        font = "${pkgs.terminus_font_ttf}/share/fonts/truetype/TerminusTTF-Bold.ttf";
-        fontSize = 32;
-        gfxmodeEfi = "2560x1440";
-        gfxpayloadEfi = "keep";
-        memtest86.enable = true;
-        splashImage = null;
-        useOSProber = true;
-      };
       timeout = 1;
     };
     initrd = {
