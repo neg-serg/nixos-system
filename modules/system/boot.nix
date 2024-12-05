@@ -30,12 +30,6 @@
         memtest86.enable = true;
         splashImage = null;
         useOSProber = true;
-        dedsec-theme = {
-          enable = true;
-          style = "compact";
-          icon = "color";
-          resolution = "1440p";
-        };
       };
       timeout = 1;
     };
