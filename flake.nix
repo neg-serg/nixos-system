@@ -14,17 +14,12 @@
     #   url = "github:nix-community/nixos-generators";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    dedsec-grub-theme = {
-      url = "gitlab:VandalByte/dedsec-grub-theme";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
   outputs = inputs @ {
     self,
     # chaotic,
-    dedsec-grub-theme,
     lix-module,
     nh,
     nix,
@@ -76,7 +71,6 @@
             ./cachix.nix
             lix-module.nixosModules.default
             # chaotic.nixosModules.default
-            dedsec-grub-theme.nixosModule
             nix-flatpak.nixosModules.nix-flatpak
           ];
         };
