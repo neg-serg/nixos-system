@@ -8,14 +8,14 @@
     #   url = "github:nix-community/nixos-generators";
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
-    nh.url = "github:viperML/nh";
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-flatpak.url = "github:gmodena/nix-flatpak"; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
-    lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nix-flatpak = { url = "github:gmodena/nix-flatpak"; inputs.nixpkgs.follows = "nixpkgs"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
+    lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote/v0.4.1"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
   outputs = inputs @ {
@@ -50,10 +50,6 @@
             inherit locale;
             inherit timeZone;
             inherit kexec_enabled;
-            # oldstable = import nixpkgs-oldstable {
-            #   inherit system;
-            #   config.allowUnfree = true;
-            # };
             stable = import nixpkgs-stable {
               inherit system;
               config.allowUnfree = true;
@@ -66,6 +62,10 @@
               inherit system;
               config.allowUnfree = true;
             };
+            # oldstable = import nixpkgs-oldstable {
+            #   inherit system;
+            #   config.allowUnfree = true;
+            # };
             inherit inputs;
           };
           modules = [
