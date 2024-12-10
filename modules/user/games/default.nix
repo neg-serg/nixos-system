@@ -3,12 +3,12 @@
     steam = {
       enable = true;
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-      gamescopeSession.enable = false;
+      gamescopeSession.enable = true;
       remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     };
 
     gamescope = {
-      enable = false;
+      enable = true;
       package = pkgs.gamescope; # the default, here in case I want to override it
     };
 
