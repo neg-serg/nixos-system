@@ -1,13 +1,6 @@
 {
   description = "Neg-Serg configuration";
   inputs = {
-    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.11-small";
-    # nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
-    # nixos-generators = {
-    #   url = "github:nix-community/nixos-generators";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
@@ -17,13 +10,16 @@
     nix-flatpak = { url = "github:gmodena/nix-flatpak"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote/v0.4.1"; inputs.nixpkgs.follows = "nixpkgs"; };
+    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.11-small";
+    # nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
+    # nixos-generators = {
+    #   url = "github:nix-community/nixos-generators";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
   outputs = inputs @ {
     self,
-    # chaotic,
-    # nixos-generators,
-    # nixpkgs-oldstable,
-    # nixtheplanet,
     lix-module,
     lanzaboote,
     nh,
@@ -35,6 +31,10 @@
     nixpkgs-master,
     nixpkgs-stable,
     nixpkgs-unstable,
+    # chaotic,
+    # nixos-generators,
+    # nixpkgs-oldstable,
+    # nixtheplanet,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -74,7 +74,6 @@
             lix-module.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
-            # chaotic.nixosModules.default
           ];
         };
       };
