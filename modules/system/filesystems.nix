@@ -56,5 +56,9 @@
     device = "/one/doc";
     options = ["bind" "nofail" "x-systemd.automount"];
   };
+  fileSystems."/var/lib/flatpak" = {
+    device = "/one/flatpak";
+    options = ["bind" "nofail" "x-systemd.automount"];
+  };
   swapDevices = [];
 }
