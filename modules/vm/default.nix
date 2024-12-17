@@ -1,5 +1,5 @@
-{unstable, ...}: {
-  environment.systemPackages = with unstable; [
-    vmware-horizon-client # vmware remote client
+{...}: {
+  environment.systemPackages = [
+    # vmware-horizon-client # vmware remote client
   ];
 }
