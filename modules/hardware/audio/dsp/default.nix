@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{stable, pkgs, ...}:
 with {
   camilladsp = pkgs.callPackage ../../../../packages/camilladsp {};
 }; {
@@ -7,7 +7,7 @@ with {
     camilladsp # one of the best DSP for linux
     # TODO: install gui later (github.com/HEnquist/camilladsp)
     carla # audio plugin host
-    jamesdsp # pipewire dsp
+    stable.jamesdsp # pipewire dsp
     lsp-plugins # various linux dsp
     yabridgectl # vst control for linux
     yabridge # vst for linux
