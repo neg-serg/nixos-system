@@ -1,8 +1,8 @@
-{lib, pkgs, ...}: {
+{lib, stable, pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     efibootmgr # rule efi boot
     efivar # manipulate efi vars
-    os-prober # utility to detect other OSs on a set of drives
+    stable.os-prober # utility to detect other OSs on a set of drives
     sbctl # For debugging and troubleshooting Secure Boot.
   ];
   boot = {
