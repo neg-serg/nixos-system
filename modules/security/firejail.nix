@@ -4,7 +4,7 @@
   ...
 }: {
   programs.firejail = {
-    enable = true;
+    enable = false;
     wrappedBinaries = {
       firefox = {
         executable = "${lib.getBin pkgs.firefox}/bin/firefox";
