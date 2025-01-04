@@ -14,7 +14,6 @@
       libuuid
       zlib
       libsecret
-      # graphical
       freetype
       libglvnd
       libnotify
