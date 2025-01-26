@@ -10,7 +10,8 @@
   environment.systemPackages = with pkgs; [
     dxvk # for plugins compatibility
     stable.quickemu # fast and simple vm builder
-    wine-staging # tool to run windows packages
+    wineWowPackages.unstable # tool to run windows packages
+    dxvk # setup script for dxvk
     winetricks # stuff to install dxvk
   ];
 }
