@@ -6,7 +6,7 @@
     plugins = with pkgs.tmuxPlugins; [
       better-mouse-mode # better mouse support for tmux
       fuzzback # search with fzf prefix + / (fzf search backwards)
-      resurrect # restore tmux environment after system restart
+      # resurrect # restore tmux environment after system restart
     ];
     shortcut = "s";
     secureSocket = false; # survive user logout
