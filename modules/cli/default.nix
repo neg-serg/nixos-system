@@ -1,4 +1,4 @@
-{stable, pkgs, ...}: {
+{pkgs, ...}: {
   imports = [./tmux ./archives];
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
@@ -25,7 +25,7 @@
     reptyr # move app to another pty, tmux as an example ( echo 0 > /proc/sys/kernel/yama/ptrace_scope )
     ripgrep # better grep
     rlwrap # readline wrapper for everything
-    stable.rmlint # remove duplicates
+    rmlint # remove duplicates
     stow # manage farms of symlinks
     tig # git viewer
     ugrep # better grep, rg alternative
