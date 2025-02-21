@@ -1,5 +1,6 @@
 {inputs, ...}: {
   nix = {
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       show-trace = true;
       system-features = [
