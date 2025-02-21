@@ -1,4 +1,4 @@
-{stable, pkgs, ...}: {
+{pkgs, ...}: {
   networking.firewall = rec {
     allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
     allowedUDPPortRanges = allowedTCPPortRanges;
@@ -17,7 +17,7 @@
     inetutils # common network programs
     ipcalc # calculate ip addr stuff
     iputils # set of small useful utilities for Linux networking
-    stable.magic-wormhole # secure transfer between computers
+    magic-wormhole # secure transfer between computers
     netcat-openbsd # openbsd netcat variant
     netdiscover # another network scan
     nettools # controlling the network subsystem in Linux
@@ -36,7 +36,7 @@
 
     aircrack-ng # stuff for wifi security
     hcxdumptool # wpa scanner
-    stable.netsniff-ng # sniffer
+    netsniff-ng # sniffer
     tshark # sniffer tui
     wireshark # sniffer gui
   ];
