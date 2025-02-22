@@ -1,10 +1,10 @@
 {
   pkgs,
-  stable,
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    stable.bpftrace # add tool to trace events via bpf
+    bpftrace # add tool to trace events via bpf
+    cutter # Free and Open Source Reverse Engineering Platform powered by rizin
     ddrescue # data recovery tool
     foremost # files extact from structure
     gcc # gnu compiler collection
@@ -12,12 +12,11 @@
     hexyl # command-line hex editor
     hyperfine # command-line benchmarking tool
     imhex # gui hex editor
-    lzbench # compression benchmark
     julia # nice language
     ltrace # trace functions
+    lzbench # compression benchmark
     pkgconf # package compiler and linker metadata toolkit (wrapper script)
     plow # high performance http benchmarking tool
-    stable.radare2-cutter # Free and Open Source Reverse Engineering Platform powered by rizin
     radare2 # free disassembler
     strace # trace system-calls
   ];
