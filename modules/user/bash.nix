@@ -22,7 +22,15 @@
 
       bind 'set show-all-if-ambiguous on'
       bind 'set completion-ignore-case on'
+      bind 'set completion-map-case on'
       bind 'TAB:menu-complete'
+      bind 'set mark-symlinked-directories on'
+
+      HISTFILESIZE=100000
+      HISTCONTROL="erasedups:ignoreboth"
+      export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
+      HISTTIMEFORMAT='%F %T '
+      
     '';
     shellAliases = {
       ":q" = "exit";
