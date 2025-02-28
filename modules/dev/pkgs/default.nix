@@ -7,6 +7,7 @@
     cutter # Free and Open Source Reverse Engineering Platform powered by rizin
     ddrescue # data recovery tool
     foremost # files extact from structure
+    freeze # generate images of code
     gcc # gnu compiler collection
     gdb # gnu debugger
     hexyl # command-line hex editor
