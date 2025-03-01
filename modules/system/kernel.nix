@@ -105,7 +105,7 @@ in {
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "fq";
   };
-  boot.kernelModules = ["kvm-amd" "tcp_bbr"];
+  boot.kernelModules = ["kvm-amd" "tcp_bbr" "udf"];
   boot.blacklistedKernelModules =
     [
       "sp5100_tco" # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
