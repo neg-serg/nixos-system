@@ -15,7 +15,7 @@
       systemd-boot = {
         enable = lib.mkForce false;
         memtest86.enable = true;
-        consoleMode = "auto";
+        consoleMode = "max";
         edk2-uefi-shell.enable = true;
       };
       timeout = 1;
