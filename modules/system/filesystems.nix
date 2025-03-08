@@ -2,6 +2,7 @@
   boot.supportedFilesystems = [
     "exfat"
     "xfs"
+    "udf"
   ];
 
   fileSystems."/" = {
