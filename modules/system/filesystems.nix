@@ -60,7 +60,19 @@
     device = "/one/flatpak";
     options = ["bind" "nofail" "x-systemd.automount"];
   };
-
+  fileSystems."/home/neg/.local/share/Steam/userdata" = {
+    device = "/zero/userdata_steam";
+    options = ["bind" "nofail" "x-systemd.automount"];
+  };
+  fileSystems."/home/neg/.local/share/wineprefixes" = {
+    device = "/zero/wineprefixes";
+    options = ["bind" "nofail" "x-systemd.automount"];
+  };
+  fileSystems."/home/neg/.cache/winetricks" = {
+    device = "/zero/winetricks_cache";
+    options = ["bind" "nofail" "x-systemd.automount"];
+  };
+  
   swapDevices = [];
 
 }
