@@ -27,6 +27,11 @@
       ZDOTDIR = "$HOME/.config/zsh";
     };
 
+    profiles = [
+      "$HOME/.local/state/nix/profile"
+      "/etc/profiles/per-user/$USER"
+    ];
+
     extraInit = let
       user = "neg"; # Load variables from home-manager
       homedir = config.users.users.${user}.home;
