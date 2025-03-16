@@ -27,22 +27,26 @@
       ZDOTDIR = "$HOME/.config/zsh";
     };
 
+    profiles = [
+      "\${XDG_STATE_HOME:-$HOME/.local/state}/nix/profile"
+      "/etc/profiles/per-user/$USER"
+    ];
+
     extraInit = let
-      # Load variables from home-manager
-      user = "neg";
+      user = "neg"; # Load variables from home-manager
       homedir = config.users.users.${user}.home;
     in ''
       if [ "$(id -un)" = "${user}" ]; then
-        . "${homedir}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        . "${homedir}/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh
       fi
     '';
 
     variables = let
       makePluginPath = format:
         (lib.makeSearchPath format [
-          "$HOME/.nix-profile/lib"
           "/run/current-system/sw/lib"
           "/etc/profiles/per-user/$USER/lib"
+          "$HOME/.local/state/nix/profile/lib"
         ])
         + ":$HOME/.${format}";
     in {
