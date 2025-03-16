@@ -27,17 +27,12 @@
       ZDOTDIR = "$HOME/.config/zsh";
     };
 
-    profiles = [
-      "\$HOME/.local/state/nix/profile"
-      "/etc/profiles/per-user/$USER"
-    ];
-
     extraInit = let
       user = "neg"; # Load variables from home-manager
       homedir = config.users.users.${user}.home;
     in ''
       if [ "$(id -un)" = "${user}" ]; then
-        . "${homedir}/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh
+        . "${homedir}/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"
       fi
     '';
 
