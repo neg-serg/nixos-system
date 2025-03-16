@@ -39,7 +39,7 @@
       connect-timeout = 5; # Bail early on missing cache hits (thx to nyx)
       cores = 32;
       max-jobs = 20;
-      use-xdg-base-directories = false;
+      use-xdg-base-directories = true;
       warn-dirty = false; # Disable annoying dirty warn
     };
     gc = {
