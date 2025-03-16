@@ -28,7 +28,7 @@
     };
 
     profiles = [
-      "\${XDG_STATE_HOME:-$HOME/.local/state}/nix/profile"
+      "$HOME/.local/state/nix/profile"
       "/etc/profiles/per-user/$USER"
     ];
 
