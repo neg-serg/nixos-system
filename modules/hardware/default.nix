@@ -30,6 +30,7 @@
     };
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     enableAllFirmware = true; # Enable all the firmware
+    usb-modeswitch.enable = true; # mode switching tool for controlling 'multi-mode' USB devices.
     enableRedistributableFirmware = true;
   };
 
