@@ -24,7 +24,7 @@
   hardware = {
     i2c.enable = true;
     bluetooth = {
-      enable = false; # disable bluetooth
+      enable = true; # disable bluetooth
       powerOnBoot = false;
       settings = {General.Enable = "Source,Sink,Media,Socket";};
     };
