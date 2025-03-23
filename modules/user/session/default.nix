@@ -4,6 +4,7 @@
     xorg.xdpyinfo # display info
     xorg.xhost # install xhost to setup X11 ACL
   ];
+  programs.kdeconnect.enable = true;
   services = {
     accounts-daemon.enable = true; # AccountsService a DBus service for accessing the list of user accounts and info…
     dbus.implementation = "broker";
