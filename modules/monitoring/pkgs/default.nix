@@ -5,7 +5,7 @@
   };
   environment.systemPackages = with pkgs; [
     btop # even more fancy top
-    # dstat # example use: dstat -cdnpmgs --top-bio --top-cpu --top-mem (dstat is not supported as standalone tool anymore)
+    dool # example use: dool -cdnpmgs --top-bio --top-cpu --top-mem (dstat is not supported as standalone tool anymore)
     htop # fancy top
     iotop # top for iops
     iperf
