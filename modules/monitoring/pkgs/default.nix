@@ -8,8 +8,7 @@
     dool # example use: dool -cdnpmgs --top-bio --top-cpu --top-mem (dstat is not supported as standalone tool anymore)
     htop # fancy top
     iotop # top for iops
-    iperf
-    iperf2 # IP bandwidth measurement
+    iperf iperf2 # IP bandwidth measurement
     linuxKernel.packages.linux_6_14.perf
     linuxKernel.packages.linux_6_14.turbostat # cpu monitor
     nethogs # network traffic per process
