@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     blktrace # another disk test
-    # stable.dmraid # Old-style RAID configuration utility
+    dmraid # Old-style RAID configuration utility
     exfat # exfat libs
     exfatprogs # Exfat support
     fio # disk test
