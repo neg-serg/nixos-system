@@ -5,6 +5,7 @@
 }: {
   imports = [
     ./audio
+    ./cpu
     ./dygma # ergonimic keyboard brand
     ./io
     ./keyd # systemwide keyboard manager
