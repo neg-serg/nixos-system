@@ -8,7 +8,10 @@
   ];
   networking = {
     hostName = "telfir"; # Define your hostname.
-    wireless.iwd.enable = false; # iwctl to manage wifi
+    wireless.iwd.enable = true; # iwctl to manage wifi
+    wireless.iwd.settings = {
+      Settings = { AutoConnect = false; };
+    };
     useNetworkd = true;
     nameservers = [
       "8.8.8.8"
