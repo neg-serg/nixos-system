@@ -1,5 +1,8 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    amnezia-vpn # amnezia VPN Client
+    amneziawg-go # userspace Go implementation of AmneziaWG
+    amneziawg-tools # tools for configuring AmneziaWG
     (openvpn.override {
       pkcs11Support = true;
       pkcs11helper = pkgs.pkcs11helper;
