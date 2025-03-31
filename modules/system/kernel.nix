@@ -177,7 +177,7 @@ in {
       };
     }
   ];
-  boot.extraModulePackages = [];
+  boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_14.amneziawg];
   boot.consoleLogLevel = 1;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   security.protectKernelImage =
