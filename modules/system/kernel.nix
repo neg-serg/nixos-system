@@ -118,7 +118,7 @@ in {
       "audit=0"
       "biosdevname=1"
       "cryptomgr.notests"
-      "loglevel=3"
+      "loglevel=0"
       "net.ifnames=0"
       "noreplace-smp"
       "page_alloc.shuffle=1"
@@ -178,7 +178,7 @@ in {
     }
   ];
   boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_14.amneziawg];
-  boot.consoleLogLevel = 2;
+  boot.consoleLogLevel = 3;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   security.protectKernelImage =
     if kexec_enabled == false
