@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, stable, ...}:
 with {
   camilladsp = pkgs.callPackage ../../../../packages/camilladsp {};
 }; {
@@ -9,6 +9,6 @@ with {
     jamesdsp # pipewire dsp
     lsp-plugins # various linux dsp
     yabridgectl # vst control for linux
-    yabridge # vst for linux
+    stable.yabridge # vst bridge for linux
   ];
 }
