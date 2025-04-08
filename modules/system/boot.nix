@@ -6,14 +6,15 @@
     sbctl # For debugging and troubleshooting Secure Boot.
   ];
   boot = {
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
+    #lanzaboote = {
+    #  enable = true;
+    #  pkiBundle = "/etc/secureboot";
+    #};
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {
-        enable = lib.mkForce false;
+        #enable = lib.mkForce false;
+	enable = true;
         memtest86.enable = true;
         consoleMode = "max";
         edk2-uefi-shell.enable = true;
