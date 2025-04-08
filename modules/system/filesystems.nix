@@ -6,7 +6,7 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/mapper/main-sys";
+    device = "/dev/mapper/main2-sys";
     fsType = "xfs";
     options = [
       "rw"
