@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     efibootmgr # rule efi boot
     efivar # manipulate efi vars
@@ -6,15 +6,14 @@
     sbctl # For debugging and troubleshooting Secure Boot.
   ];
   boot = {
-    #lanzaboote = {
-    #  enable = true;
-    #  pkiBundle = "/etc/secureboot";
-    #};
+    lanzaboote = {
+     enable = true;
+     pkiBundle = "/etc/secureboot";
+    };
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {
-        #enable = lib.mkForce false;
-	enable = true;
+        enable = lib.mkForce false;
         memtest86.enable = true;
         consoleMode = "max";
         edk2-uefi-shell.enable = true;
