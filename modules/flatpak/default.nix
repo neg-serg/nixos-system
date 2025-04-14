@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.flatpak pkgs.flatpak-builder];
+{pkgs, stable, ...}: {
+  environment.systemPackages = [pkgs.flatpak stable.flatpak-builder];
   services.flatpak = {
     enable = true;
 
