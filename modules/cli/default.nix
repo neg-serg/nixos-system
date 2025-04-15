@@ -12,6 +12,7 @@
     eza # more modern version of exa ls replacer
     fd # better find
     file # get filetype from content
+    goaccess # realtime log analyzer
     inotify-tools # shell inotify bindings
     lsof # list open something
     ncdu # interactive du
