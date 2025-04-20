@@ -36,7 +36,7 @@
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
   acpi_settings = ["acpi_osi=!" "acpi_osi=Linux"];
   no_watchdog = ["nowatchdog" "kernel.nmi_watchdog=0"]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
-  video_settings = ["video=3440x1440@175"];
+  video_settings = ["video=3840x2160@240"];
   # -- Blacklist
   obscure_network_protocols = ["ax25" "netrom" "rose"];
   old_rare_insufficiently_audited_fs = [
@@ -135,7 +135,7 @@ in {
     ++ no_watchdog
     ++ extra_security
     ++ acpi_settings
-    # ++ video_settings
+    ++ video_settings
     ++ idle;
   boot.kernelPatches = [
     {
