@@ -24,14 +24,14 @@
       }
     ];
     monitorSection = ''
-      Option      "StandbyTime" "0"
-      Option      "SuspendTime" "0"
-      Option      "OffTime" "0"
-      Option      "BlankTime" "0"
+      Option      "StandbyTime"     "0"
+      Option      "SuspendTime"     "0"
+      Option      "OffTime"         "0"
+      Option      "BlankTime"       "0"
     '';
     deviceSection = ''
-      Option "VariableRefresh" "false"
-      Option "EnablePageFlip"  "off"
+      Option "VariableRefresh"      "false"
+      Option "EnablePageFlip"       "off"
     '';
   };
   services.xserver.videoDrivers = ["amdgpu"];
