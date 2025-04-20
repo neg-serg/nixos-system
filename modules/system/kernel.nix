@@ -135,7 +135,7 @@ in {
     ++ no_watchdog
     ++ extra_security
     ++ acpi_settings
-    ++ video_settings
+    # ++ video_settings
     ++ idle;
   boot.kernelPatches = [
     {
