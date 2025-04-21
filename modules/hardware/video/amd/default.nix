@@ -18,8 +18,8 @@
         output = "DisplayPort-1";
         monitorConfig = ''
           # Find these values in "$HOME/.local/share/xorg/Xorg.0.log They will be in this exact format so scroll until you find it.
-          Modeline "3840x2160x240.0"  2315.95  3840 3936 3968 4096  2160 2166 2176 2356 +hsync -vsync
-          Option	"PreferredMode"	"3840x2160x240.0"
+          Modeline "3840x2160_240"  2315.95  3840 3936 3968 4096  2160 2166 2176 2356 +hsync -vsync
+          Option	"PreferredMode"	"3840x2160_240"
         '';
       }
     ];
