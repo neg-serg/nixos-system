@@ -6,7 +6,6 @@
   environment.systemPackages = with pkgs; [
     btop # even more fancy top
     dool # example use: dool -cdnpmgs --top-bio --top-cpu --top-mem (dstat is not supported as standalone tool anymore)
-    htop # fancy top
     iotop # top for iops
     iperf iperf2 # IP bandwidth measurement
     linuxKernel.packages.linux_6_14.perf
