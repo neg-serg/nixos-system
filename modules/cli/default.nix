@@ -2,6 +2,7 @@
   imports = [./tmux ./archives];
   environment.systemPackages = with pkgs; [
     abduco # cli session detach
+    ast-grep # ast-aware grep
     delta # better diff tool
     difftastic # syntax-aware diff
     diffutils # classic diff utils
