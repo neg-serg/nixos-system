@@ -1,8 +1,8 @@
-{pkgs, lib, config, ...}: with {
-  not_main = lib.mkIf (config.networking.hostName != "telfir");
-}; {
-  environment.systemPackages = with pkgs; not_main [
-    vial # gui configuration for qmk-based keyboards
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    keymapviz # qmk keymap.c visualizer
+    qmk_hid # commandline tool for interactng with QMK devices over HID 
+    qmk # program to help users work with QMK Firmware
     qmk-udev-rules # add qmk udev rules
   ];
 }
