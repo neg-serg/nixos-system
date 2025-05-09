@@ -14,7 +14,6 @@
     ./udev-rules
     ./video
     ./webcam
-    ./wooting
   ];
   services = {
     udisks2.enable = true;
