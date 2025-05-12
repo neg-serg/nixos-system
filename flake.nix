@@ -11,7 +11,6 @@
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-23.11-small";
     # nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
     # nixos-generators = {
     #   url = "github:nix-community/nixos-generators";
@@ -33,7 +32,6 @@
     nixpkgs-unstable,
     chaotic,
     # nixos-generators,
-    # nixpkgs-oldstable,
     # nixtheplanet,
   }:
     with {
@@ -62,10 +60,6 @@
               inherit system;
               config.allowUnfree = true;
             };
-            # oldstable = import nixpkgs-oldstable {
-            #   inherit system;
-            #   config.allowUnfree = true;
-            # };
             inherit inputs;
           };
           modules = [
