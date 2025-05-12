@@ -6,12 +6,10 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixpkgs.url = "github:NixOS/nixpkgs";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-flatpak = { url = "github:gmodena/nix-flatpak"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
     # nixos-generators = {
     #   url = "github:nix-community/nixos-generators";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -29,10 +27,8 @@
     nixpkgs,
     nixpkgs-master,
     nixpkgs-stable,
-    nixpkgs-unstable,
     chaotic,
     # nixos-generators,
-    # nixtheplanet,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -53,10 +49,6 @@
               config.allowUnfree = true;
             };
             master = import nixpkgs-master {
-              inherit system;
-              config.allowUnfree = true;
-            };
-            unstable = import nixpkgs-unstable {
               inherit system;
               config.allowUnfree = true;
             };
