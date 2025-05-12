@@ -10,10 +10,6 @@
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # nixos-generators = {
-    #   url = "github:nix-community/nixos-generators";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
   outputs = inputs @ {
     self,
@@ -28,7 +24,6 @@
     nixpkgs-master,
     nixpkgs-stable,
     chaotic,
-    # nixos-generators,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
