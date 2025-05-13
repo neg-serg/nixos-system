@@ -12,7 +12,7 @@
     ];
   };
   services.xserver = {
-    enable = true;
+    enable = false;
     xrandrHeads = [
       {
         output = "DisplayPort-1";
