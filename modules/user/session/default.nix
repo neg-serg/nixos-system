@@ -6,6 +6,7 @@
   programs.kdeconnect.enable = true;
   programs.hyprland = {
     enable = true;
+    withUWSM  = true;
     # set the flake package
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
@@ -18,36 +19,8 @@
     gvfs.enable = true;
     libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
     ratbagd.enable = true; # gaming mouse setup daemon
-    xserver = {
-      enable = true; # Enable the X11 windowing system.
-      exportConfiguration = true;
-      autoRepeatDelay = 250;
-      autoRepeatInterval = 20;
-      xkb = {
-        variant = "";
-        options = "grp:alt_shift_toggle";
-        layout = "us,ru";
-      };
-      desktopManager = {
-        xterm.enable = false;
-      };
-      displayManager = {
-        startx.enable = true;
-        session = [
-          {
-            manage = "window";
-            name = "i3";
-            start = ''$HOME/.xsession'';
-          }
-        ];
-      };
-    };
     displayManager = {
-      defaultSession = "none+i3";
-      autoLogin = {
-        enable = false;
-        user = "neg";
-      };
+      enable = true;
     };
   };
 }
