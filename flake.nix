@@ -52,6 +52,7 @@
           modules = [
             ./init.nix
             ./cachix.nix
+            chaotic.nixosModules.default
             lix-module.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
