@@ -19,8 +19,5 @@
     gvfs.enable = true;
     libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
     ratbagd.enable = true; # gaming mouse setup daemon
-    displayManager = {
-      enable = true;
-    };
   };
 }
