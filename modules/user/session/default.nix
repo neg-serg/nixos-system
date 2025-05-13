@@ -1,5 +1,6 @@
 {pkgs, inputs, ...}: {
   environment.systemPackages = with pkgs; [
+    pyprland # hyperland plugin system
     xorg.xdpyinfo # display info
     xorg.xhost # install xhost to setup X11 ACL
   ];
