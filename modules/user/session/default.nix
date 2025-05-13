@@ -1,5 +1,11 @@
 {pkgs, inputs, ...}: {
   environment.systemPackages = with pkgs; [
+    hyprcursor # is a new cursor theme format that has many advantages over the widely used xcursor.
+    hypridle # idle daemon
+    hyprland-qt-support # qt support
+    hyprpicker # color picker
+    hyprpolkitagent # better polkit agent
+    hyprsysteminfo # show system info
     pyprland # hyperland plugin system
     xorg.xdpyinfo # display info
     xorg.xhost # install xhost to setup X11 ACL
