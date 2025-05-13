@@ -1,3 +1,0 @@
-{...}: {
-  programs.uwsm.enable = false;
-}
