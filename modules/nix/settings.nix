@@ -48,7 +48,6 @@
       options = "--delete-older-than 21d";
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
-    registry.stable.flake = inputs.nixpkgs-stable;
     daemonCPUSchedPolicy = "batch";
     daemonIOSchedClass = "idle";
     daemonIOSchedPriority = 7;
