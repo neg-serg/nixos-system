@@ -7,6 +7,7 @@
     nix-flatpak = { url = "github:gmodena/nix-flatpak"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
+    hyprland = { url = "github:hyprwm/Hyprland"; };
   };
   outputs = inputs @ {
     self,
@@ -18,6 +19,7 @@
     nix-gaming,
     nixos-hardware,
     nixpkgs,
+    hyprland,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
