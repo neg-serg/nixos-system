@@ -3,6 +3,7 @@
     hyprcursor # is a new cursor theme format that has many advantages over the widely used xcursor.
     hypridle # idle daemon
     hyprland-qt-support # qt support
+    hyprland-qtutils # utility apps for hyprland
     hyprpaper # setup wallpaper
     hyprpicker # color picker
     hyprpolkitagent # better polkit agent
