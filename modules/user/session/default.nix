@@ -13,6 +13,7 @@
     pyprland # hyperland plugin system
     xorg.xdpyinfo # display info
     xorg.xhost # install xhost to setup X11 ACL
+    libsForQt5.qt5ct kdePackages.qt6ct
   ];
   programs.kdeconnect.enable = true;
   programs.hyprland = {
