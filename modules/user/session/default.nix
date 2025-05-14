@@ -10,12 +10,12 @@
     pyprland # hyperland plugin system
     xorg.xdpyinfo # display info
     xorg.xhost # install xhost to setup X11 ACL
+    inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system} # run-or-raise for hyprland
   ];
   programs.kdeconnect.enable = true;
   programs.hyprland = {
     enable = true;
     withUWSM  = true;
-    # set the flake package
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
