@@ -174,6 +174,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1692799911,
+        "narHash": "sha256-3eihraek4qL744EvQXsK1Ha6C3CR7nnT8X2qWap4RNk=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f9e7cf818399d17d347f847525c5a5a8032e4e44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "flakey-profile": {
       "locked": {
         "lastModified": 1712898590,
@@ -338,11 +356,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1747052147,
-        "narHash": "sha256-c0e3V7Rqu2DZuix1lRBXedInzSskow8ssQSsmqkW38o=",
+        "lastModified": 1747176389,
+        "narHash": "sha256-/1LO70LYdlECRCX5NuBWZxi7isllo4uJd6QI9vt9PQA=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "da3583fd5e86044d02af9fcfac84724e02545336",
+        "rev": "59b23406804d0c6aa37dc40c271852e697759663",
         "type": "github"
       },
       "original": {
@@ -583,6 +601,27 @@
         "url": "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"
       }
     },
+    "naersk-package": {
+      "inputs": {
+        "nixpkgs": [
+          "raise",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1692351612,
+        "narHash": "sha256-KTGonidcdaLadRnv9KFgwSMh1ZbXoR/OBmPjeNMhFwU=",
+        "owner": "nix-community",
+        "repo": "naersk",
+        "rev": "78789c30d64dea2396c9da516bbcc8db3a475207",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "naersk",
+        "type": "github"
+      }
+    },
     "nh": {
       "inputs": {
         "nixpkgs": [
@@ -756,15 +795,31 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1747140879,
-        "narHash": "sha256-wOG8hxMBLZhfJA6x01Qei5FvfkfdRfaVxBji1a6cPkw=",
+        "lastModified": 1747187148,
+        "narHash": "sha256-xE8/ML8PrY2qO0NlMmI94BdjIZ4gTgyq6cKmwbLvBnE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d02a69ff4de7bf5f9fadfe60f9ce269f5aec7be1",
+        "rev": "e481f916e39560b6d9327037f8001bf43e3f336f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1693158576,
+        "narHash": "sha256-aRTTXkYvhXosGx535iAFUaoFboUrZSYb1Ooih/auGp0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a999c1cc0c9eb2095729d5aa03e0d8f7ed256780",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -818,6 +873,26 @@
         "type": "github"
       }
     },
+    "raise": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "naersk-package": "naersk-package",
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1724452457,
+        "narHash": "sha256-iAJwtQC0i9ka1mCq63PMgh/r6964V2Eick4XIjthhPI=",
+        "owner": "knarkzel",
+        "repo": "raise",
+        "rev": "10069babc23a725a645bab95e569ba165a4b2dbb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "knarkzel",
+        "repo": "raise",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "hyprland": "hyprland",
@@ -828,7 +903,8 @@
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "raise": "raise"
       }
     },
     "rust-overlay": {
@@ -868,6 +944,21 @@
       }
     },
     "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
