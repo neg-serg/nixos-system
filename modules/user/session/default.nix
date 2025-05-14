@@ -1,19 +1,8 @@
 {pkgs, inputs, ...}: {
   environment.systemPackages = with pkgs; [
-    hyprcursor # is a new cursor theme format that has many advantages over the widely used xcursor.
-    hypridle # idle daemon
-    hyprland-qt-support # qt support
-    hyprland-qtutils # utility apps for hyprland
-    hyprpaper # setup wallpaper
-    hyprpicker # color picker
-    hyprpolkitagent # better polkit agent
-    hyprsysteminfo # show system info
-    hyprutils # small library for hyprland
     inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system} # run-or-raise for hyprland
-    pyprland # hyperland plugin system
     xorg.xdpyinfo # display info
     xorg.xhost # install xhost to setup X11 ACL
-    libsForQt5.qt5ct kdePackages.qt6ct
   ];
   programs.kdeconnect.enable = true;
   programs.hyprland = {
