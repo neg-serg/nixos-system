@@ -1,6 +1,5 @@
 {pkgs, inputs, ...}: {
   environment.systemPackages = with pkgs; [
-    gamemode # some stuff for gaming
     hyprcursor # is a new cursor theme format that has many advantages over the widely used xcursor.
     hypridle # idle daemon
     hyprland-qt-support # qt support
