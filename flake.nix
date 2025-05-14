@@ -7,6 +7,7 @@
     nix-flatpak = { url = "github:gmodena/nix-flatpak"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-2.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     hyprland = { url = "github:hyprwm/Hyprland"; };
     raise = { url = "github:knarkzel/raise"; };
   };
@@ -22,6 +23,7 @@
     nixpkgs,
     hyprland,
     raise,
+    chaotic,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -45,6 +47,7 @@
             lix-module.nixosModules.default
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
+            chaotic.nixosModules.default
           ];
         };
       };
