@@ -32,6 +32,7 @@
     trippy # net analysis tool like ping + traceroute
     w3m # cli browser
 
+    axel # console downloading program
     curl # transfer curl
     wget2 # non-interactive downloader
 
