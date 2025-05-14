@@ -7,6 +7,7 @@
     hyprpicker # color picker
     hyprpolkitagent # better polkit agent
     hyprsysteminfo # show system info
+    hyprutils # small library for hyprland
     inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system} # run-or-raise for hyprland
     pyprland # hyperland plugin system
     xorg.xdpyinfo # display info
