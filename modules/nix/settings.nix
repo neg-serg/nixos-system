@@ -5,8 +5,6 @@
       show-trace = true;
       system-features = [
         "big-parallel"
-        "gccarch-znver3"
-        "gcctune-znver3"
         "recursive-nix"
       ];
       experimental-features = [
@@ -53,9 +51,4 @@
     daemonIOSchedPriority = 7;
   };
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.hostPlatform = {
-  #     gcc.arch = "znver3";
-  #     gcc.tune = "znver3";
-  #     system = "x86_64-linux";
-  # };
 }
