@@ -1,7 +1,7 @@
 {...}: {
   documentation = {
-    doc.enable = false;
-    dev.enable = false;
+    doc.enable = true;
+    dev.enable = true;
     info.enable = false;
   };
 }
