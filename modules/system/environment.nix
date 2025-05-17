@@ -46,20 +46,21 @@
         ])
         + ":$HOME/.${format}";
     in {
-      DSSI_PATH = makePluginPath "dssi";
-      LADSPA_PATH = makePluginPath "ladspa";
-      LV2_PATH = makePluginPath "lv2";
-      LXVST_PATH = makePluginPath "lxvst";
-      VST_PATH = makePluginPath "vst";
-      VST3_PATH = makePluginPath "vst3";
       ASPELL_CONF = ''
         per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
         personal $XDG_CONFIG_HOME/aspell/en_US.pws;
         repl $XDG_CONFIG_HOME/aspell/en.prepl;
       '';
+      DSSI_PATH = makePluginPath "dssi";
+      GTK_USE_PORTAL = 1;
       HISTFILE = "$XDG_DATA_HOME/bash/history";
       INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";
+      LADSPA_PATH = makePluginPath "ladspa";
       LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
+      LV2_PATH = makePluginPath "lv2";
+      LXVST_PATH = makePluginPath "lxvst";
+      VST3_PATH = makePluginPath "vst3";
+      VST_PATH = makePluginPath "vst";
       WGETRC = "$XDG_CONFIG_HOME/wgetrc";
     };
   };
