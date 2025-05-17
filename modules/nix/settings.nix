@@ -11,7 +11,6 @@
         "ca-derivations" # content addressed nix
         "flakes" # flakes for reprodusability
         "nix-command" # new nix interface
-        "recursive-nix" # let nix invoke itself
       ];
       trusted-users = [
         "root"
