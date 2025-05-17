@@ -8,7 +8,6 @@
     lix-module = { url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.0.tar.gz"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    hyprland = { url = "github:hyprwm/Hyprland"; };
     raise = { url = "github:knarkzel/raise"; };
   };
   outputs = inputs @ {
@@ -21,7 +20,6 @@
     nix-gaming,
     nixos-hardware,
     nixpkgs,
-    hyprland,
     raise,
     chaotic,
   }:
