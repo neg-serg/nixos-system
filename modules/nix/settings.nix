@@ -5,7 +5,6 @@
       show-trace = true;
       system-features = [
         "big-parallel"
-        "recursive-nix"
       ];
       experimental-features = [
         "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
