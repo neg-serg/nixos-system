@@ -5,6 +5,7 @@
     xorg.xhost # install xhost to setup X11 ACL
   ];
   programs.kdeconnect.enable = true;
+  programs.seahorse.enable = true; # program to manage gnome-keyring
   programs.hyprland = {
     enable = true;
     withUWSM  = true;
