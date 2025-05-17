@@ -20,4 +20,5 @@
     libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
     ratbagd.enable = true; # gaming mouse setup daemon
   };
+  security.pam.services.UWSM.enableGnomeKeyring = true;
 }
