@@ -9,16 +9,14 @@
     lanzaboote = {
      enable = true;
      pkiBundle = "/etc/secureboot";
-     settings = {
-       memtest86 = true;
-       edk2-uefi-shell = true;
-       consoleMode = "max";
-     };
     };
     loader = {
       efi.canTouchEfiVariables = true;
       systemd-boot = {
         enable = lib.mkForce false;
+        memtest86.enable = true;
+        consoleMode = "max";
+        edk2-uefi-shell.enable = true;
       };
       timeout = 1;
     };
