@@ -21,7 +21,7 @@
         origin = "flathub";
       }
       {
-        appId = "org.onlyoffice.desktopeditors";
+        appId = "com.wps.Office";
         origin = "flathub";
       }
       {
