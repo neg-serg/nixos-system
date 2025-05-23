@@ -22,6 +22,7 @@ with rec {
         "docker"
         "i2c"
         "input"
+        "libvirtd"
         "neg"
         "networkmanager"
         "systemd-journal"
