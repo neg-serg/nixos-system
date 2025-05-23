@@ -1,31 +1,36 @@
 {pkgs, ...}: {
-  virtualisation.docker = {
-    enable = true;
-    autoPrune = {
+  virtualisation = {
+    docker = {
       enable = true;
-      dates = "weekly";
-      flags = ["--all"];
-    };
-  };
-
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu = {
-      package = pkgs.qemu_kvm;
-      runAsRoot = true;
-      swtpm.enable = true;
-      ovmf = {
+      autoPrune = {
         enable = true;
-        packages = [(pkgs.OVMF.override {
-          secureBoot = true;
-          tpmSupport = true;
-        }).fd];
+        dates = "weekly";
+        flags = ["--all"];
+      };
+    };
+
+    libvirtd = {
+      enable = true;
+      qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = true;
+        vhostUserPackages = [pkgs.virtiofsd];
+        swtpm.enable = true;
+        ovmf = {
+          enable = true;
+          packages = [
+            (pkgs.OVMF.override {
+              secureBoot = true;
+              tpmSupport = true;
+            }).fd
+          ];
+        };
       };
     };
   };
 
+  programs.virt-manager.enable = true;
   services.spice-webdavd.enable = true;
-  virtualisation.libvirtd.qemu.vhostUserPackages = [ pkgs.virtiofsd ];
 
   environment.systemPackages = with pkgs; [
     dxvk # setup script for dxvk
