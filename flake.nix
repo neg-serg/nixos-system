@@ -1,14 +1,14 @@
 {
   description = "Neg-Serg configuration";
   inputs = {
-    nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs"; };
-    determinate = { url = "https://flakehub.com/f/DeterminateSystems/determinate/*"; };
-    nixpkgs.url = "github:NixOS/nixpkgs";
-    nix-flatpak = { url = "github:gmodena/nix-flatpak"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
-    lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    determinate = { url = "https://flakehub.com/f/DeterminateSystems/determinate/*"; };
     hyprland = { url = "github:hyprwm/Hyprland"; };
+    lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nix-flatpak = { url = "github:gmodena/nix-flatpak"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
+    nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs"; };
+    nixpkgs.url = "github:NixOS/nixpkgs";
     raise = { url = "github:knarkzel/raise"; };
   };
   outputs = inputs @ {
