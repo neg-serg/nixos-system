@@ -14,6 +14,7 @@
   outputs = inputs @ {
     self,
     lanzaboote,
+    determinate,
     nh,
     nix,
     nix-flatpak,
