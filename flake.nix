@@ -2,7 +2,6 @@
   description = "Neg-Serg configuration";
   inputs = {
     chaotic = { url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; };
-    determinate = { url = "https://flakehub.com/f/DeterminateSystems/determinate/*"; };
     hyprland = { url = "github:hyprwm/Hyprland"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -14,7 +13,6 @@
   outputs = inputs @ {
     self,
     lanzaboote,
-    determinate,
     nh,
     nix,
     nix-flatpak,
@@ -47,7 +45,6 @@
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
             chaotic.nixosModules.default
-            determinate.nixosModules.default
           ];
         };
       };
