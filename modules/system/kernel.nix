@@ -177,9 +177,9 @@ in {
       };
     }
   ];
-  boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_14.amneziawg];
+  # boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_14.amneziawg];
   boot.consoleLogLevel = 3;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;
   security.protectKernelImage =
     if kexec_enabled == false
     then true
