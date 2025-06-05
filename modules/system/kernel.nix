@@ -150,7 +150,8 @@ in {
         CPU_FREQ_STAT = yes; # collect CPU frequency statistics
 
         HZ = freeform "1000";
-        HZ_1000 = yes;
+        HZ_250 = lib.mkForce no;
+        HZ_1000 = lib.mkForce yes;
 
         PREEMPT = yes;
         PREEMPT_BUILD = yes;
@@ -177,9 +178,9 @@ in {
       };
     }
   ];
-  # boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_6_14.amneziawg];
+  boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_xanmod_latest.amneziawg];
   boot.consoleLogLevel = 3;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;
+  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
   security.protectKernelImage =
     if kexec_enabled == false
     then true
