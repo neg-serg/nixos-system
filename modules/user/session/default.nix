@@ -1,8 +1,9 @@
 {pkgs, inputs, ...}: {
   environment.systemPackages = with pkgs; [
     inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system} # run-or-raise for hyprland
-    xorg.xdpyinfo # display info
+    xorg.xeyes # track eyes for the your cursor
     xorg.xhost # install xhost to setup X11 ACL
+    xorg.xlsclients # show clients list
   ];
   programs.kdeconnect.enable = true;
   programs.seahorse.enable = true; # program to manage gnome-keyring
