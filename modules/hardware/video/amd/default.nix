@@ -2,7 +2,7 @@
   hardware.graphics = {
     enable = true;
   };
-  chaotic.mesa-git.enable = true;
+  chaotic.mesa-git.enable = false;
   environment = {
     systemPackages = with pkgs; [
       glxinfo
