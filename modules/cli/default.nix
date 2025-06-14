@@ -15,6 +15,7 @@
     file # get filetype from content
     goaccess # realtime log analyzer
     inotify-tools # shell inotify bindings
+    kmon # kernel activity monitor
     lsof # list open something
     ncdu # interactive du
     nnn # cli filemanager
