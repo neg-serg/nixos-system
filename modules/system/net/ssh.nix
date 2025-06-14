@@ -2,7 +2,7 @@
   programs = {
     ssh = {
       package = pkgs.openssh;
-      startAgent = true;
+      startAgent = false;
       # agentPKCS11Whitelist = "/nix/store/*";
       # or specific URL if you're paranoid
       # but beware this can break if you don't have exactly matching opensc versions
