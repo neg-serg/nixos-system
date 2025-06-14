@@ -16,6 +16,7 @@
     goaccess # realtime log analyzer
     inotify-tools # shell inotify bindings
     kmon # kernel activity monitor
+    lnav # fancy log viewer
     lsof # list open something
     ncdu # interactive du
     nnn # cli filemanager
