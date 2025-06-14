@@ -9,5 +9,8 @@
       options = [ "-bios" "${pkgs.OVMF.fd}/FV/OVMF.fd" ];
     };
   };
+  environment.systemPackages = with pkgs; [
+    nemu # qemu tui interface
+  ];
   networking.firewall.enable = false; # for user convenience
 }
