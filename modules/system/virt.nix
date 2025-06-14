@@ -39,6 +39,7 @@
   services.spice-webdavd.enable = true;
 
   environment.systemPackages = with pkgs; [
+    ctop # top-like interface for container metrics
     dive # look into docker image layers
     dxvk # setup script for dxvk
     guestfs-tools # virt-sysprep to prepare image for use
