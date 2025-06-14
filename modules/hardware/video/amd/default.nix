@@ -8,6 +8,7 @@
       glxinfo
       lact # linux amdgpu controller
       vulkan-extension-layer
+      (nvtopPackages.amd.override { intel = true; })
       vulkan-tools
       vulkan-validation-layers
     ];
