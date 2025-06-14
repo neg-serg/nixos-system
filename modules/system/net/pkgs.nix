@@ -38,6 +38,7 @@
 
     aircrack-ng # stuff for wifi security
     hcxdumptool # wpa scanner
+    netscanner # alternative traffic viewer
     netsniff-ng # sniffer
     termshark # more modern tshark interface inspired by wireshark
     tshark # sniffer tui
