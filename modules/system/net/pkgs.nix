@@ -9,6 +9,7 @@
     cacert # for curl certificate verification
     curlie # feature-rich httpie
     dnsutils # dns command-line tools (dig, nslookup)
+    dogdns # commandline dns client
     ethtool # control eth hardware and drivers
     fping # like ping -c1
     geoip # geoip lookup
