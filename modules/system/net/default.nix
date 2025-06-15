@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./nscd.nix
     ./pkgs.nix
@@ -21,6 +21,10 @@
       "127.0.0.53" # System defined name servers
     ];
   };
+
+  environment.systemPackages = with pkgs; [
+    impala # tui for wifi management
+  ];
 
   systemd.network = {
     enable = true;
