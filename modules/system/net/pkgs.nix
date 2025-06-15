@@ -31,6 +31,7 @@
     traceroute # basic traceroute
     trippy # net analysis tool like ping + traceroute
     w3m # cli browser
+    xh # friendly and fast tool to send http requests
 
     axel # console downloading program
     curl # transfer curl
