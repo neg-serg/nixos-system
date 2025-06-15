@@ -46,6 +46,8 @@
     dive # look into docker image layers
     dxvk # setup script for dxvk
     guestfs-tools # virt-sysprep to prepare image for use
+    lima # tool to run linux virtual machines
+    nerdctl # docker compatible cli for containerd
     podman-compose # start group of containers for dev
     podman-tui # status of containers in the terminal
     quickemu # fast and simple vm builder
