@@ -18,6 +18,7 @@
     kmon # kernel activity monitor
     lnav # fancy log viewer
     lsof # list open something
+    moreuitls # some fancy unix utils like sponge
     ncdu # interactive du
     nnn # cli filemanager
     parallel # parallel xargs
