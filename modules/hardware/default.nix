@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   imports = [
@@ -33,6 +34,10 @@
     usb-modeswitch.enable = true; # mode switching tool for controlling 'multi-mode' USB devices.
     enableRedistributableFirmware = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    overskride # bluetooth and obex client
+  ];
 
   powerManagement.cpuFreqGovernor = "performance";
 }
