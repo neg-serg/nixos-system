@@ -6,6 +6,7 @@
     bpftrace # add tool to trace events via bpf
     cutter # Free and Open Source Reverse Engineering Platform powered by rizin
     ddrescue # data recovery tool
+    evcxr # rust repl
     foremost # files extact from structure
     freeze # generate images of code
     gcc # gnu compiler collection
