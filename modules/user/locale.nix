@@ -17,5 +17,6 @@
     LC_TIME = locale;
   };
   location.provider = "geoclue2";
+  services.geoclue2.enable = true;
   time.hardwareClockInLocalTime = true;
 }
