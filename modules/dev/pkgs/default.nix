@@ -14,6 +14,7 @@
     hyperfine # command-line benchmarking tool
     imhex # gui hex editor
     julia # nice language
+    license-generator # cli tool for generating license files 
     ltrace # trace functions
     lzbench # compression benchmark
     pkgconf # package compiler and linker metadata toolkit (wrapper script)
