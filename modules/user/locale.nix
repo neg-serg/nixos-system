@@ -1,6 +1,7 @@
 {
   locale,
   timeZone,
+  pkgs,
   ...
 }: {
   time.timeZone = timeZone;
@@ -16,6 +17,15 @@
     LC_TELEPHONE = locale;
     LC_TIME = locale;
   };
+
+  environment.systemPackages = with pkgs; [
+    hunspell
+    hunspellDicts.en_US
+    hunspellDicts.ru_RU
+    hyphen
+    nuspell
+  ];
+
   location.provider = "geoclue2";
   services.geoclue2.enable = true;
   time.hardwareClockInLocalTime = true;
