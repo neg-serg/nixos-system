@@ -101,10 +101,12 @@
       };
 
     };
-    sudo.extraConfig = ''
+
+    sudo-rs.package = pkgs.sudo-rs;
+    sudo-rs.extraConfig = ''
       Defaults timestamp_timeout = 300 # makes sudo ask for password less often
     '';
-    sudo.extraRules = [
+    sudo-rs.extraRules = [
       {
         commands = [
           {
@@ -127,7 +129,7 @@
         groups = ["wheel"];
       }
     ];
-    sudo.execWheelOnly = true;
-    sudo.wheelNeedsPassword = true;
+    sudo-rs.execWheelOnly = true;
+    sudo-rs.wheelNeedsPassword = true;
   };
 }
