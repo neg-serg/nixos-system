@@ -102,34 +102,36 @@
 
     };
 
-    sudo-rs.package = pkgs.sudo-rs;
-    sudo-rs.extraConfig = ''
-      Defaults timestamp_timeout = 300 # makes sudo ask for password less often
-    '';
-    sudo-rs.extraRules = [
-      {
-        commands = [
-          {
-            command = "${pkgs.systemd}/bin/systemctl suspend";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.systemd}/bin/reboot";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.systemd}/bin/poweroff";
-            options = ["NOPASSWD"];
-          }
-          {
-            command = "${pkgs.util-linux}/bin/dmesg";
-            options = ["NOPASSWD"];
-          }
-        ];
-        groups = ["wheel"];
-      }
-    ];
-    sudo-rs.execWheelOnly = true;
-    sudo-rs.wheelNeedsPassword = true;
+    sudo-rs = {
+      package = pkgs.sudo-rs;
+      extraConfig = ''
+        Defaults timestamp_timeout = 300 # makes sudo ask for password less often
+      '';
+      extraRules = [
+        {
+          commands = [
+            {
+              command = "${pkgs.systemd}/bin/systemctl suspend";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/reboot";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.systemd}/bin/poweroff";
+              options = ["NOPASSWD"];
+            }
+            {
+              command = "${pkgs.util-linux}/bin/dmesg";
+              options = ["NOPASSWD"];
+            }
+          ];
+          groups = ["wheel"];
+        }
+      ];
+      execWheelOnly = true;
+      wheelNeedsPassword = true;
+    };
   };
 }
