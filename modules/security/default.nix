@@ -87,9 +87,19 @@
         }
       ];
       services = {
+        greetd.u2fAuth = true;
+        hyprlock.u2fAuth = true;
         login.u2fAuth = true;
+        sudo-rs.u2fAuth = true;
         sudo.u2fAuth = true;
       };
+
+      u2f = {
+        enable = true;
+        settings.cue = true;
+        control = "sufficient";
+      };
+
     };
     sudo.extraConfig = ''
       Defaults timestamp_timeout = 300 # makes sudo ask for password less often
