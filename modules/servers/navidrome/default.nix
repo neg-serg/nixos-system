@@ -1,7 +1,7 @@
 {...}: {
   services.navidrome = {
-    enable = false;
-    openFirewall = false;
+    enable = true;
+    openFirewall = true;
     settings = {
       MusicFolder = "/one/music";
     };
