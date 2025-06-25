@@ -52,6 +52,6 @@
     podman-tui # status of containers in the terminal
     quickemu # fast and simple vm builder
     winetricks # stuff to install dxvk
-    wineWowPackages.unstable # tool to run windows packages
+    wine # tool to run windows packages
   ];
 }
