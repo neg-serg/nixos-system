@@ -42,7 +42,6 @@
   services.spice-webdavd.enable = true;
 
   environment.systemPackages = with pkgs; [
-    bottles # easy-to-use wineprefix manager
     ctop # top-like interface for container metrics
     dive # look into docker image layers
     dxvk # setup script for dxvk
