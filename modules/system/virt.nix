@@ -42,6 +42,7 @@
   services.spice-webdavd.enable = true;
 
   environment.systemPackages = with pkgs; [
+    bottles # easy-to-use wineprefix manager
     ctop # top-like interface for container metrics
     dive # look into docker image layers
     dxvk # setup script for dxvk
@@ -51,7 +52,8 @@
     podman-compose # start group of containers for dev
     podman-tui # status of containers in the terminal
     quickemu # fast and simple vm builder
+    vkd3d # directx 12 support for wine
+    wineWowPackages.staging # tool to run windows packages
     winetricks # stuff to install dxvk
-    wineWowPackages.waylandFull # tool to run windows packages
   ];
 }
