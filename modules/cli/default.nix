@@ -14,6 +14,7 @@
     fd # better find
     file # get filetype from content
     goaccess # realtime log analyzer
+    grc # generic text colorizer
     inotify-tools # shell inotify bindings
     kmon # kernel activity monitor
     lnav # fancy log viewer
