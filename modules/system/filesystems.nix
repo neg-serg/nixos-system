@@ -8,7 +8,11 @@
   fileSystems."/" = {
     device = "/dev/mapper/main2-sys";
     fsType = "xfs";
-    options = [ "rw" "relatime" "lazytime" "logbsize=1m"];
+    options = [
+      "rw"
+      "relatime"
+      "lazytime"
+    ];
   };
 
   fileSystems."/boot" = {
@@ -19,13 +23,18 @@
   fileSystems."/zero" = {
     device = "/dev/mapper/argon-zero";
     fsType = "xfs";
-    options = ["x-systemd.automount" "relatime" "lazytime" "rw" "logbsize=1m"];
+    options = [
+      "x-systemd.automount"
+      "relatime"
+      "lazytime"
+      "rw"
+    ];
   };
   
   fileSystems."/one" = {
     device = "/dev/mapper/xenon-one";
     fsType = "xfs";
-    options = ["x-systemd.automount" "relatime" "lazytime" "rw" "logbsize=1m"];
+    options = ["x-systemd.automount" "relatime" "lazytime" "rw"];
   };
   
   fileSystems."/home/neg/music" = {
