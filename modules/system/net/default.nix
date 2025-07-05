@@ -22,6 +22,17 @@
     ];
   };
 
+  services.dnsmasq.enable = true;
+  services.dnsmasq.settings = {
+    interface = "br0";
+    dhcp-range = "192.168.122.50,192.168.122.150,12h";
+    dhcp-option = [
+      "option:router,192.168.122.1"
+      "option:dns-server,192.168.122.1"
+    ];
+    bind-interfaces = true;
+  };
+
   environment.systemPackages = with pkgs; [
     impala # tui for wifi management
   ];
@@ -37,19 +48,15 @@
     };
     networks."10-lan" = {
       matchConfig.Name = "net0";
-      networkConfig.Bridge = "br0";
       networkConfig.DHCP = "ipv4";
     };
     networks."11-lan" = {
       matchConfig.Name = "net1";
-      networkConfig.Bridge = "br0";
       networkConfig.DHCP = "ipv4";
     };
     networks."10-br0" = {
       matchConfig.Name = "br0";
-      networkConfig = {
-        DHCP = "yes";
-      };
+      address = [ "192.168.122.1/24" ];
     };
   };
   services.udev.extraRules = ''
