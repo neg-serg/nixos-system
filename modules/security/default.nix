@@ -103,6 +103,7 @@
     };
 
     sudo-rs = {
+      enable = true;
       package = pkgs.sudo-rs;
       extraConfig = ''
         Defaults timestamp_timeout = 300 # makes sudo ask for password less often
