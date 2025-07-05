@@ -178,9 +178,9 @@ in {
       };
     }
   ];
-  boot.extraModulePackages = [pkgs.linuxKernel.packages.linux_xanmod_latest.amneziawg];
+  boot.extraModulePackages = [pkgs.linuxPackages_cachyos.amneziawg];
   boot.consoleLogLevel = 3;
-  boot.kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride { mArch = "GENERIC_V4"; };
   security.protectKernelImage =
     if kexec_enabled == false
     then true
