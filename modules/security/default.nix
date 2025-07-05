@@ -128,7 +128,7 @@
               options = ["NOPASSWD"];
             }
           ];
-          groups = ["wheel"];
+          groups = ["neg"];
         }
       ];
       execWheelOnly = true;
