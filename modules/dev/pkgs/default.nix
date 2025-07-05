@@ -4,7 +4,6 @@
 }: {
   environment.systemPackages = with pkgs; [
     bpftrace # add tool to trace events via bpf
-    cling # repl for c++
     cutter # Free and Open Source Reverse Engineering Platform powered by rizin
     ddrescue # data recovery tool
     evcxr # rust repl
