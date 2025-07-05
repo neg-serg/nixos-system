@@ -1,7 +1,4 @@
-{pkgs, ...}:
-with {
-  camilladsp = pkgs.callPackage ../../../../packages/camilladsp {};
-}; {
+{pkgs, ...}: {
   nixpkgs.overlays = [
     (self: super: {
       # audio plugin host  TODO: install gui later (github.com/HEnquist/camilladsp)
