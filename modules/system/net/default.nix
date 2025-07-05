@@ -29,13 +29,27 @@
   systemd.network = {
     enable = true;
     wait-online.anyInterface = true;
+    netdevs."br0" = {
+      netdevConfig = {
+        Kind = "bridge";
+        Name = "br0";
+      };
+    };
     networks."10-lan" = {
       matchConfig.Name = "net0";
+      networkConfig.Bridge = "br0";
       networkConfig.DHCP = "ipv4";
     };
     networks."11-lan" = {
       matchConfig.Name = "net1";
+      networkConfig.Bridge = "br0";
       networkConfig.DHCP = "ipv4";
+    };
+    networks."10-br0" = {
+      matchConfig.Name = "br0";
+      networkConfig = {
+        DHCP = "yes";
+      };
     };
   };
   services.udev.extraRules = ''
