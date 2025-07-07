@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    obfs4 # circumvents censorship by transforming Tor traffic between clients and bridges
     oniux # isolate Applications over Tor using Linux Namespaces
+    tor-browser # browse web via tor
+    tractor # setup a proxy with Onion Routing via TOR and optionally obfs4proxy
   ];
 
   services = {
