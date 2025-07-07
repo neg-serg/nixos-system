@@ -1,4 +1,8 @@
-{
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    oniux # isolate Applications over Tor using Linux Namespaces
+  ];
+
   services = {
     tor = {
       enable = true;
