@@ -14,7 +14,6 @@
     hexyl # command-line hex editor
     hyperfine # command-line benchmarking tool
     imhex # gui hex editor
-    julia # nice language
     license-generator # cli tool for generating license files 
     ltrace # trace functions
     lzbench # compression benchmark
