@@ -127,6 +127,10 @@
               command = "${pkgs.util-linux}/bin/dmesg";
               options = ["NOPASSWD"];
             }
+            {
+              command = "${pkgs.amneziawg-tools}/bin/awg-quick";
+              options = ["NOPASSWD"];
+            }
           ];
           groups = ["neg"];
         }
