@@ -6,7 +6,6 @@
     xorg.xlsclients # show clients list
   ];
   programs.kdeconnect.enable = true;
-  programs.seahorse.enable = true; # program to manage gnome-keyring
   programs.hyprland = {
     enable = true;
     withUWSM = false;
@@ -49,7 +48,6 @@
   services = {
     accounts-daemon.enable = true; # AccountsService a DBus service for accessing the list of user accounts and info…
     dbus.implementation = "broker";
-    gnome = {gnome-keyring.enable = true;};
     gvfs.enable = true;
     libinput.enable = true; # Enable touchpad support (enabled default in most desktopManager).
     ratbagd.enable = true; # gaming mouse setup daemon
