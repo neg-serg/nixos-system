@@ -9,11 +9,26 @@
   programs.seahorse.enable = true; # program to manage gnome-keyring
   programs.hyprland = {
     enable = true;
-    withUWSM  = true;
+    withUWSM = false;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
+
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "Hyprland";
+      user = "neg";
+    };
+  };
+
+  security.pam.services.greetd = {
+    enable = true;
+    enableGnomeKeyring = true;
+    u2fAuth = true;
+  };
+
   services = {
     accounts-daemon.enable = true; # AccountsService a DBus service for accessing the list of user accounts and info…
     dbus.implementation = "broker";
