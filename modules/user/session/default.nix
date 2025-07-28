@@ -43,7 +43,7 @@
   security.pam.services.greetd = {
     enable = true;
     enableGnomeKeyring = true;
-    u2fAuth = true;
+    u2fAuth = false;
   };
 
   services = {

@@ -87,15 +87,15 @@
         }
       ];
       services = {
-        hyprlock.u2fAuth = true;
-        login.u2fAuth = true;
-        sudo-rs.u2fAuth = true;
-        sudo.u2fAuth = true;
+        hyprlock.u2fAuth = false;
+        login.u2fAuth = false;
+        sudo-rs.u2fAuth = false;
+        sudo.u2fAuth = false;
       };
 
       u2f = {
-        enable = true;
-        settings.cue = true;
+        enable = false;
+        settings.cue = false;
         control = "sufficient";
       };
 
