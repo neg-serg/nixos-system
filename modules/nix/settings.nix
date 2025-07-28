@@ -36,8 +36,8 @@
         "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
       ];
       connect-timeout = 5; # Bail early on missing cache hits (thx to nyx)
-      cores = 24;
-      max-jobs = 24;
+      cores = 0; # Use all available cores per build
+      max-jobs = "auto"; # Use all available cores
       use-xdg-base-directories = true;
       warn-dirty = false; # Disable annoying dirty warn
     };
