@@ -8,23 +8,10 @@
   programs.kdeconnect.enable = true;
   programs.hyprland = {
     enable = true;
-    withUWSM = false;
+    withUWSM  = true;
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-  };
-
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "Hyprland";
-      user = "neg";
-    };
-  };
-
-  security.pam.services.greetd = {
-    enable = true;
-    u2fAuth = false;
   };
 
   services = {
