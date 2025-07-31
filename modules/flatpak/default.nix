@@ -24,6 +24,10 @@
         appId = "com.wps.Office";
         origin = "flathub";
       }
+      {
+        appId = "md.obsidian.Obsidian";
+        origin = "flathub";
+      }
     ];
     update.onActivation = false;
   };
