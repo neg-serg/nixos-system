@@ -1,5 +1,6 @@
-{inputs, ...}: {
+{inputs, pkgs, ...}: {
   nix = {
+    package = pkgs.lix;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       show-trace = true;
