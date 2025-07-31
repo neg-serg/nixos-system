@@ -10,9 +10,9 @@
           GTK_THEME = "Adwaita:dark"; # Force correct theme for some GTK apps
         };
       };
-      "im.riot.Riot".Context = {
-        filesystems = ["/run/current-system/sw/bin:ro" "/home/neg/dw/:rw" "/home/neg/pic/:rw"];
-      };
+      # "im.riot.Riot".Context = {
+      #   filesystems = ["/run/current-system/sw/bin:ro" "/home/neg/dw/:rw" "/home/neg/pic/:rw"];
+      # };
     };
 
     packages = [
@@ -22,10 +22,6 @@
       }
       {
         appId = "com.wps.Office";
-        origin = "flathub";
-      }
-      {
-        appId = "im.riot.Riot";
         origin = "flathub";
       }
     ];
