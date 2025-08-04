@@ -10,7 +10,6 @@
     ./dygma # ergonimic keyboard brand
     ./io
     ./keyd # systemwide keyboard manager
-    ./libinput
     ./qmk
     ./udev-rules
     ./video
