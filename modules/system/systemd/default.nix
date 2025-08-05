@@ -14,7 +14,7 @@
   systemd = {
     coredump.enable = true;
     # extraConfig = ''DefaultTimeoutStopSec=10s '';
-    watchdog.rebootTime = "0";
+    settings.Manager.RebootWatchdogSec = "10s";
     packages = [pkgs.packagekit];
   };
 }
