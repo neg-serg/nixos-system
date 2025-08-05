@@ -26,6 +26,7 @@ with rec {
         "neg"
         "networkmanager"
         "systemd-journal"
+        "tss"
         "video"
         "wheel"
       ];
