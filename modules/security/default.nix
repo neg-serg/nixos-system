@@ -4,32 +4,12 @@
   ...
 }: {
   imports = [ ./firejail.nix ];
-  environment.systemPackages = with pkgs; [
-    opensc
-    pam_u2f
-    softhsm
-    tpm2-pkcs11
-    tpm2-tools
-  ];
   services.pcscd.enable = true; # pkcs support
   # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots
   # (PIN1 for authentication/decryption, PIN2 for signing).
   environment.etc."pkcs11/modules/opensc-pkcs11".text = ''
     module: ${pkgs.opensc}/lib/opensc-pkcs11.so
   '';
-
-  environment.etc."pam_pkcs11/tpm.conf".text = ''
-      use_pkcs11_module = tpm2;
-  pkcs11_module tpm2 {
-      module = ${pkgs.tpm2-pkcs11}/lib/libtpm2_pkcs11.so;
-  }
-  pam_cert_map = subject;
-  cert_policy = none;
-  use_auth_token = yes;
-  use_mappers = cn;
-  '';
-
-  environment.variables.TPM2_PKCS11_STORE = "/var/lib/tpm2-pkcs11";
 
   security = {
     protectKernelImage = false; # prevent replacing the running kernel image
@@ -108,12 +88,7 @@
       ];
       services = {
         hyprlock.u2fAuth = false;
-        login = {
-          u2fAuth = false;
-          text = ''
-              auth sufficient pam_pkcs11.so config_file=/etc/pam_pkcs11/tpm.conf debug
-          '';
-        };
+        login.u2fAuth = false;
         sudo-rs.u2fAuth = false;
         sudo.u2fAuth = false;
       };
