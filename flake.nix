@@ -2,6 +2,7 @@
   description = "Neg-Serg configuration";
   inputs = {
     chaotic = { url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; };
+    flake-utils = { url = "github:numtide/flake-utils"; };
     hyprland = { url = "github:hyprwm/Hyprland"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
@@ -12,6 +13,9 @@
   };
   outputs = inputs @ {
     self,
+    chaotic,
+    flake-utils,
+    hyprland,
     lanzaboote,
     nh,
     nix,
@@ -19,15 +23,14 @@
     nix-gaming,
     nixos-hardware,
     nixpkgs,
-    hyprland,
     raise,
-    chaotic,
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
       system = "x86_64-linux";
       timeZone = "Europe/Moscow";
       kexec_enabled = true;
+      diffClosures = import ./modules/diff-closures.nix;
     }; {
       packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
       nixosConfigurations = {
@@ -45,6 +48,7 @@
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
             chaotic.nixosModules.default
+            diffClosures { diffClosures.enable = true; }
           ];
         };
       };
