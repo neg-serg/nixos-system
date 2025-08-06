@@ -31,6 +31,7 @@
       export HISTIGNORE="&:[ ]*:exit:ls:bg:fg:history:clear"
       HISTTIMEFORMAT='%F %T '
       
+      eval "$(oh-my-posh init bash --config ~/.config/zsh/neg.omp.json)"
     '';
     shellAliases = {
       ":q" = "exit";
