@@ -3,5 +3,6 @@
   environment.systemPackages = with pkgs; [
     neovim # better vim
     emacs # install emacs systemwide
+    zeal # offline documentation browser
   ];
 }
