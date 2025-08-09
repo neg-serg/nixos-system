@@ -22,7 +22,6 @@
     magic-wormhole # secure transfer between computers
     netcat-openbsd # openbsd netcat variant
     netdiscover # another network scan
-    nettools # controlling the network subsystem in Linux
     nmap # port scanner
     rclone # rsync for cloud storage
     socat # multipurpose relay
