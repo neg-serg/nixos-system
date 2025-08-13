@@ -13,5 +13,6 @@
     ostree # git for os binaries
     parted # cli disk manager
     smartmontools # smartctl
+    vial # add vial to configure keyboards
   ];
 }
