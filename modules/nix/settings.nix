@@ -9,7 +9,6 @@
       ];
       experimental-features = [
         "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
-        "ca-derivations" # content addressed nix
         "flakes" # flakes for reprodusability
         "nix-command" # new nix interface
       ];
