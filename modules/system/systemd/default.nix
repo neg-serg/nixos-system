@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./timesyncd
   ];
+
   # Boot optimizations regarding filesystem:
   # Journald was taking too long to copy from runtime memory to disk at boot
   # set storage to "auto" if you're trying to troubleshoot a boot issue
@@ -10,11 +11,19 @@
     SystemMaxFileSize=300M
     SystemMaxFiles=50
   '';
-  services.logind = {extraConfig = ''IdleAction=ignore '';};
+
+  services.logind.settings.Login = {
+    IdleAction = "ignore";
+  };
+
   systemd = {
     coredump.enable = true;
-    # extraConfig = ''DefaultTimeoutStopSec=10s '';
-    settings.Manager.RebootWatchdogSec = "10s";
-    packages = [pkgs.packagekit];
+    settings = {
+      Manager = {
+        RebootWatchdogSec = "10s";
+      };
+    };
+    packages = [ pkgs.packagekit ];
   };
 }
+
