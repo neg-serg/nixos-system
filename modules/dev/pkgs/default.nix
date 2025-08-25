@@ -3,6 +3,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
+    bacon # background rust code checker
     bpftrace # add tool to trace events via bpf
     cutter # Free and Open Source Reverse Engineering Platform powered by rizin
     ddrescue # data recovery tool
