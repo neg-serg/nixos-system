@@ -10,6 +10,7 @@
     nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs"; };
     nixpkgs = { url = "github:NixOS/nixpkgs"; };
     raise = { url = "github:knarkzel/raise"; };
+    sops-nix = { url = "github:Mic92/sops-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
   outputs = inputs @ {
     self,
@@ -24,6 +25,7 @@
     nixos-hardware,
     nixpkgs,
     raise,
+    sops-nix
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -48,6 +50,7 @@
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
             chaotic.nixosModules.default
+            sops-nix.nixosModules.sops
             diffClosures { diffClosures.enable = true; }
           ];
         };
