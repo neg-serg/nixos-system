@@ -2,8 +2,10 @@
   hardware.graphics = {
     enable = true;
   };
-  chaotic.mesa-git.enable = false;
+  chaotic.mesa-git.enable = true;
+  hardware.amdgpu.amdvlk.enable = true;
   environment = {
+    variables.AMD_VULKAN_ICD = "RADV";
     systemPackages = with pkgs; [
       glxinfo
       lact # linux amdgpu controller
