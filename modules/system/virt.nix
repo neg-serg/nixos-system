@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  users.users.neg.extraGroups = [ "video" "render" ];
   virtualisation = {
     containers.enable = true;
 
@@ -8,6 +9,8 @@
       dockerSocket.enable = true; # Create docker alias for compatibility
       defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
     };
+
+    oci-containers.backend = "podman";
 
     docker = {
       enable = false;
