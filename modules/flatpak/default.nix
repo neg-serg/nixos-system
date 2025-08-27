@@ -28,6 +28,10 @@
         appId = "md.obsidian.Obsidian";
         origin = "flathub";
       }
+      {
+        appId = "org.zealdocs.Zeal";
+        origin = "flathub";
+      }
     ];
     update.onActivation = false;
   };
