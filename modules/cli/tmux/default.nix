@@ -6,12 +6,12 @@
     plugins = with pkgs.tmuxPlugins; [
       better-mouse-mode # better mouse support for tmux
       fuzzback # search with fzf prefix + / (fzf search backwards)
-      # resurrect # restore tmux environment after system restart
+      resurrect # restore tmux environment after system restart
     ];
     shortcut = "s";
     secureSocket = false; # survive user logout
     terminal = "tmux-256color";
-    historyLimit = 8191;
+    historyLimit = 1024;
     extraConfigBeforePlugins = ''
       setw -gq utf8 on
 
@@ -46,14 +46,13 @@
       set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
       set-window-option -g mode-keys vi
       set -wg mode-style "bg=#000008","fg=#367bbf",bold
-      # set -g default-shell $\{SHELL\}
-      # set -g default-command $\{SHELL\}
+      set -g default-shell ${pkgs.zsh}/bin/zsh
+      set -g default-command ${pkgs.zsh}/bin/zsh
 
       set -sg escape-time 0 # fixes insert mode exit lag in vim
       bind C-a send-prefix # send the prefix to client inside window (ala nested sessions)
       set-window-option -g aggressive-resize on
       bind C-s last-window
-      set -g history-limit 8191
       set -s focus-events on
       set -g renumber-windows on
 
