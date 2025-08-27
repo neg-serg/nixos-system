@@ -2,7 +2,6 @@
   environment.systemPackages = [pkgs.flatpak pkgs.flatpak-builder];
   services.flatpak = {
     enable = true;
-
     overrides = {
       global = {
         Environment = {
@@ -10,9 +9,6 @@
           GTK_THEME = "Adwaita:dark"; # Force correct theme for some GTK apps
         };
       };
-      # "im.riot.Riot".Context = {
-      #   filesystems = ["/run/current-system/sw/bin:ro" "/home/neg/dw/:rw" "/home/neg/pic/:rw"];
-      # };
     };
 
     packages = [
