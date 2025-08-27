@@ -1,6 +1,9 @@
 {pkgs, ...}: {
   hardware.graphics = {
     enable = true;
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+    ];
   };
   chaotic.mesa-git.enable = true;
   hardware.amdgpu.amdvlk.enable = true;
