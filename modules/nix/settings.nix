@@ -1,9 +1,22 @@
-{inputs, pkgs, ...}: {
+{inputs, pkgs, config, ...}: {
+  sops.age = {
+    generateKey = true;
+    keyFile = "/var/lib/sops-nix/key.txt";
+    sshKeyPaths = [];
+  };
+
+  sops.secrets."github-netrc" = {
+    sopsFile = ../../secrets/github-netrc.sops.yaml;
+    owner = "root";
+    mode = "0600";
+  };
+
   nix = {
     package = pkgs.lix;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
       show-trace = true;
+      netrc-file = config.sops.secrets."github-netrc".path;
       system-features = [
         "big-parallel"
       ];

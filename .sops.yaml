@@ -1,6 +1,6 @@
 creation_rules:
-  - path_regex: secrets/.*\.sops$
+  - path_regex: secrets/.*\.sops.yaml$
     key_groups:
     - age:
       - age1eggdzmjp2h4a68kn0j5zay72s7s6tc7qzak6cy9zp3dj0rwxxetsmz4t52 # from ~/.config/sops/age/keys.txt
-      - age1xraazexzkzx4840mky23rzaxjghdp0fdh5h3dhfawpqz92snjcxq5l7ldv # from ssh-to-age
+      - age1lnkpac97m7drx3k2ej5jwccfa99z4n2sxlezwzjfcevwqtvw9chs8knmtc # from ssh-to-age
