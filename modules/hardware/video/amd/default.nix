@@ -5,10 +5,6 @@
       rocmPackages.clr.icd
     ];
   };
-  services.ollama = {
-    enable = true;
-    acceleration = "rocm";
-  };
   chaotic.mesa-git.enable = true;
   hardware.amdgpu.opencl.enable = true;
   hardware.amdgpu.amdvlk.enable = true;

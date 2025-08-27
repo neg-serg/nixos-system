@@ -1,6 +1,5 @@
 {
   imports = [
-    ./ai
     ./appimage
     ./cli
     ./dev
@@ -9,6 +8,7 @@
     ./flatpak
     ./games
     ./hardware
+    ./llm
     ./monitoring
     ./nix
     ./nixos
