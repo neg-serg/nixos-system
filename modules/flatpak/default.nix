@@ -32,6 +32,10 @@
         appId = "org.zealdocs.Zeal";
         origin = "flathub";
       }
+      {
+        appId = "org.chromium.Chromium";
+        origin = "flathub";
+      }
     ];
     update.onActivation = false;
   };
