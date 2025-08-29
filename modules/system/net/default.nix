@@ -7,6 +7,7 @@
     ./tor.nix
     ./vpn
   ];
+  services.resolved.enable = true;
   networking = {
     hostName = "telfir"; # Define your hostname.
     wireless.iwd.enable = true; # iwctl to manage wifi
