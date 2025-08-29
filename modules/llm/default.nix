@@ -1,6 +1,7 @@
 
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
+    codex # lightweight coding agent that runs in your terminal
     openai # python client library for the OpenAI API
   ];
   services.ollama = {
