@@ -14,6 +14,10 @@
     wireless.iwd.settings = {
       Settings = { AutoConnect = false; };
     };
+    hosts = {
+      "127.0.0.1" = [ "localhost" ];
+      "::1"       = [ "localhost" ];
+    };
     useNetworkd = true;
     nameservers = [
       "127.0.0.1:53"
