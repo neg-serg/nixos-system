@@ -17,8 +17,6 @@
     useNetworkd = true;
     nameservers = [
       "8.8.8.8"
-      "192.168.0.1"
-      "127.0.0.53" # System defined name servers
     ];
   };
 
