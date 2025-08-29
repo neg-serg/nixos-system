@@ -7,6 +7,7 @@
     ./nextcloud
     ./openssh
     ./syncthing
+    ./unbound
     ./wakapi
   ];
 }
