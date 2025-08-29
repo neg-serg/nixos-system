@@ -26,6 +26,7 @@
     procps # info about processes using /proc
     progress # show progress over all coreutils
     psmisc # killall and friends
+    pueue # queue manager
     pv # pipe viewer
     readline # readline library
     reptyr # move app to another pty, tmux as an example ( echo 0 > /proc/sys/kernel/yama/ptrace_scope )
