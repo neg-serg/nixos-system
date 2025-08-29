@@ -3,6 +3,7 @@
     ./adguardhome
     ./avahi
     ./jellyfin
+    ./mpd
     ./navidrome
     ./nextcloud
     ./openssh
