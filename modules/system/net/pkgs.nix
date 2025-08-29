@@ -2,6 +2,9 @@
   networking.firewall = rec {
     allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
     allowedUDPPortRanges = allowedTCPPortRanges;
+    interfaces.net0.allowedTCPPorts = [ 6600 ];
+    interfaces.net1.allowedTCPPorts = [ 6600 ];
+    interfaces.wlan0.allowedTCPPorts = [ 6600 ];
   };
 
   environment.systemPackages = with pkgs; [
