@@ -33,9 +33,9 @@
     w3m # cli browser
     xh # friendly and fast tool to send http requests
 
-    # axel # console downloading program
+    axel # console downloading program
     curl # transfer curl
-    # wget2 # non-interactive downloader
+    wget2 # non-interactive downloader
 
     aircrack-ng # stuff for wifi security
     hcxdumptool # wpa scanner
