@@ -16,7 +16,7 @@
     };
     useNetworkd = true;
     nameservers = [
-      "8.8.8.8"
+      "127.0.0.1:53"
     ];
   };
 
