@@ -7,7 +7,8 @@
     };
     flake-utils = {url = "github:numtide/flake-utils";};
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      # Pin Hyprland to a known-stable tag compatible with hy3
+      url = "github:hyprwm/Hyprland?ref=v0.50.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
