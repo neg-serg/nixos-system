@@ -4,7 +4,6 @@ _: let
 in {
   systemd.services.mpd.serviceConfig = {
     Environment = "XDG_RUNTIME_DIR=/run/user/1000";
-    BindPaths = ["/run/user/1000/pipewire-0"];
   };
 
   services.mpd = {
