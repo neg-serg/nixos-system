@@ -1,12 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: let
+_: let
   myUser = "neg";
   myHome = "/home/${myUser}";
-  lanIp = "192.168.2.240";
 in {
   systemd.services.mpd.serviceConfig = {
     Environment = "XDG_RUNTIME_DIR=/run/user/1000";
