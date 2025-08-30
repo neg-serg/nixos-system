@@ -1,13 +1,15 @@
 {pkgs, ...}: {
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      rocmPackages.clr.icd
-    ];
+  hardware = {
+    graphics = {
+      enable = true;
+      extraPackages = with pkgs; [
+        rocmPackages.clr.icd
+      ];
+    };
+    amdgpu.opencl.enable = true;
+    amdgpu.amdvlk.enable = true;
   };
   chaotic.mesa-git.enable = true;
-  hardware.amdgpu.opencl.enable = true;
-  hardware.amdgpu.amdvlk.enable = true;
   environment = {
     variables.AMD_VULKAN_ICD = "RADV";
     systemPackages = with pkgs; [
