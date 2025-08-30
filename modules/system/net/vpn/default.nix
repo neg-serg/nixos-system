@@ -7,7 +7,7 @@
     openconnect # ciscoanyconnect open source
     (openvpn.override {
       pkcs11Support = true;
-      pkcs11helper = pkgs.pkcs11helper;
+      inherit (pkgs) pkcs11helper;
     })
     update-resolv-conf # /etc/resolv.conf with DNS settings that come from the received push dhcp-options
   ];
