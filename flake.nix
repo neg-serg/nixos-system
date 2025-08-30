@@ -1,15 +1,15 @@
 {
   description = "Neg-Serg configuration";
   inputs = {
-    chaotic = { url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; };
+    chaotic = { url = "github:chaotic-cx/nyx/nyxpkgs-unstable"; inputs.nixpkgs.follows = "nixpkgs"; };
     flake-utils = { url = "github:numtide/flake-utils"; };
-    hyprland = { url = "github:hyprwm/Hyprland"; };
+    hyprland = { url = "github:hyprwm/Hyprland"; inputs.nixpkgs.follows = "nixpkgs"; };
     lanzaboote = { url = "github:nix-community/lanzaboote"; inputs.nixpkgs.follows = "nixpkgs"; };
     nh = { url = "github:viperML/nh"; inputs.nixpkgs.follows = "nixpkgs"; };
     nix-flatpak = { url = "github:gmodena/nix-flatpak"; }; # unstable branch. Use github:gmodena/nix-flatpak/?ref=<tag> to pin releases.
     nix-gaming = { url = "github:fufexan/nix-gaming"; inputs.nixpkgs.follows = "nixpkgs"; };
-    nixpkgs = { url = "github:NixOS/nixpkgs"; };
-    raise = { url = "github:knarkzel/raise"; };
+    nixpkgs = { url = "github:NixOS/nixpkgs/nixos-unstable"; };
+    raise = { url = "github:knarkzel/raise"; inputs.nixpkgs.follows = "nixpkgs"; };
     sops-nix = { url = "github:Mic92/sops-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
   outputs = inputs @ {
