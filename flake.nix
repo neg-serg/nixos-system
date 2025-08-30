@@ -12,6 +12,14 @@
     raise = { url = "github:knarkzel/raise"; inputs.nixpkgs.follows = "nixpkgs"; };
     sops-nix = { url = "github:Mic92/sops-nix"; inputs.nixpkgs.follows = "nixpkgs"; };
   };
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.garnix.io"
+    ];
+    extra-trusted-public-keys = [
+      "cache.garnix.io:CTFPyK8EEhZ3jAC5vVsQt1zArhcXd1LSeX776BFqe7A="
+    ];
+  };
   outputs = inputs @ {
     self,
     chaotic,

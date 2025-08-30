@@ -15,6 +15,7 @@
     package = pkgs.lix;
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     settings = {
+      accept-flake-config = true;
       show-trace = true;
       netrc-file = config.sops.secrets."github-netrc".path;
       system-features = [
