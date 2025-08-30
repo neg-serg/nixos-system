@@ -9,7 +9,7 @@
 
     config.packageOverrides = super: {
       python3-lto = super.python3.override {
-        packageOverrides = python-self: python-super: {
+        packageOverrides = _pythonSelf: _pythonSuper: {
           enableOptimizations = true;
           enableLTO = true;
           reproducibleBuild = false;
