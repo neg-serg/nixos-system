@@ -36,17 +36,11 @@
   outputs = inputs @ {
     self,
     chaotic,
-    flake-utils,
-    hyprland,
     lanzaboote,
-    nh,
-    nix,
     nix-flatpak,
-    nix-gaming,
-    nixos-hardware,
     nixpkgs,
-    raise,
     sops-nix,
+    ...
   }:
     with {
       locale = "en_US.UTF-8"; # select locale
@@ -70,7 +64,7 @@
           } ''
             cd ${self}
             alejandra --check .
-            mkdir -p $out && echo ok > $out
+            mkdir -p "$out" && echo ok > "$out/result"
           '';
 
         deadnix =
@@ -79,7 +73,7 @@
           } ''
             cd ${self}
             deadnix --fail .
-            mkdir -p $out && echo ok > $out
+            mkdir -p "$out" && echo ok > "$out/result"
           '';
 
         statix =
@@ -88,7 +82,7 @@
           } ''
             cd ${self}
             statix check .
-            mkdir -p $out && echo ok > $out
+            mkdir -p "$out" && echo ok > "$out/result"
           '';
       };
       nixosConfigurations = {
