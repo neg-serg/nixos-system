@@ -35,6 +35,38 @@
       diffClosures = import ./modules/diff-closures.nix;
     }; {
       packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
+
+      # Allow `nix fmt` to format this repo
+      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+
+      # Lightweight repo checks for `nix flake check`
+      checks.${system} = let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        nix-fmt = pkgs.runCommand "check-nix-fmt" {
+          nativeBuildInputs = [ pkgs.alejandra ];
+        } ''
+          cd ${self}
+          alejandra --check .
+          mkdir -p $out && echo ok > $out
+        '';
+
+        deadnix = pkgs.runCommand "check-deadnix" {
+          nativeBuildInputs = [ pkgs.deadnix ];
+        } ''
+          cd ${self}
+          deadnix --fail .
+          mkdir -p $out && echo ok > $out
+        '';
+
+        statix = pkgs.runCommand "check-statix" {
+          nativeBuildInputs = [ pkgs.statix ];
+        } ''
+          cd ${self}
+          statix check .
+          mkdir -p $out && echo ok > $out
+        '';
+      };
       nixosConfigurations = {
         telfir = nixpkgs.lib.nixosSystem {
           inherit system;
