@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.bash = {
     interactiveShellInit = ''
       shopt -qs autocd # cd without typing cd

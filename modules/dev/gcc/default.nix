@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+_: {
   environment.sessionVariables = {
     MAKEFLAGS = "-j$(nproc)";
   };
