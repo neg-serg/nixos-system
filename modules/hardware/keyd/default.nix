@@ -1,9 +1,16 @@
-{pkgs, lib, config, ...}: with {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with {
   not_main = lib.mkIf (config.networking.hostName != "telfir");
 }; {
-  environment.systemPackages = with pkgs; not_main [
-    keyd # systemwide key manager
-  ];
+  environment.systemPackages = with pkgs;
+    not_main [
+      keyd # systemwide key manager
+    ];
   services.keyd.enable = not_main true;
   services.keyd.keyboards = not_main {
     default = {

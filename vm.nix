@@ -6,7 +6,7 @@
     memorySize = 4 * 1024;
     qemu = {
       # networkingOptions = ["-nic bridge,br=br0,model=virtio-net-pci,helper=/run/wrappers/bin/qemu-bridge-helper"];
-      options = [ "-bios" "${pkgs.OVMF.fd}/FV/OVMF.fd" ];
+      options = ["-bios" "${pkgs.OVMF.fd}/FV/OVMF.fd"];
     };
   };
   environment.systemPackages = with pkgs; [

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./timesyncd
   ];
@@ -23,7 +23,6 @@
         RebootWatchdogSec = "10s";
       };
     };
-    packages = [ pkgs.packagekit ];
+    packages = [pkgs.packagekit];
   };
 }
-

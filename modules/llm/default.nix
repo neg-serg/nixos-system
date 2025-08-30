@@ -1,4 +1,3 @@
-
 {pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     aichat # Use GPT-4(V), Gemini, LocalAI, Ollama and other LLMs in the terminal

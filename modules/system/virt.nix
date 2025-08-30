@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  users.users.neg.extraGroups = [ "video" "render" ];
+  users.users.neg.extraGroups = ["video" "render"];
   virtualisation = {
     containers.enable = true;
 

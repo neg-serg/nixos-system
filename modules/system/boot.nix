@@ -1,4 +1,8 @@
-{lib, pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     efibootmgr # rule efi boot
     efivar # manipulate efi vars
@@ -7,8 +11,8 @@
   ];
   boot = {
     lanzaboote = {
-     enable = true;
-     pkiBundle = "/etc/secureboot";
+      enable = true;
+      pkiBundle = "/etc/secureboot";
     };
     loader = {
       efi.canTouchEfiVariables = true;

@@ -1,21 +1,25 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   myUser = "neg";
   myHome = "/home/${myUser}";
-  lanIp  = "192.168.2.240";
+  lanIp = "192.168.2.240";
 in {
   systemd.services.mpd.serviceConfig = {
     Environment = "XDG_RUNTIME_DIR=/run/user/1000";
-    BindPaths = [ "/run/user/1000/pipewire-0" ];
+    BindPaths = ["/run/user/1000/pipewire-0"];
   };
 
   services.mpd = {
     enable = true;
-    user   = myUser;
-    group  = myUser;
+    user = myUser;
+    group = myUser;
 
-    startWhenNeeded = false;      # важно
-    dataDir        = "${myHome}/.config/mpd";
+    startWhenNeeded = false; # важно
+    dataDir = "${myHome}/.config/mpd";
     musicDirectory = "${myHome}/music";
     network = {
       listenAddress = "any";
@@ -46,7 +50,7 @@ in {
         dop "no"
         tags "yes"
       }
-      
+
       audio_output {
         type "alsa"
         name "RME ADI-2/4 PRO SE"
@@ -64,6 +68,6 @@ in {
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 6600 ];
+    allowedTCPPorts = [6600];
   };
 }

@@ -1,4 +1,8 @@
-{inputs, pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -8,10 +12,10 @@
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-      common.default = [ "hyprland" "gtk" ];
-      common."org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-      hyprland.default = [ "hyprland" "gtk" ];
-      hyprland."org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
+      common.default = ["hyprland" "gtk"];
+      common."org.freedesktop.impl.portal.FileChooser" = ["gtk"];
+      hyprland.default = ["hyprland" "gtk"];
+      hyprland."org.freedesktop.impl.portal.FileChooser" = ["gtk"];
     };
   };
 }

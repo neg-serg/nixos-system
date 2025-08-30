@@ -30,13 +30,13 @@
       "rw"
     ];
   };
-  
+
   fileSystems."/one" = {
     device = "/dev/mapper/xenon-one";
     fsType = "xfs";
     options = ["x-systemd.automount" "relatime" "lazytime" "rw"];
   };
-  
+
   fileSystems."/home/neg/music" = {
     device = "/one/music";
     options = ["bind" "nofail" "x-systemd.automount"];
@@ -73,7 +73,6 @@
     device = "/zero/winetricks_cache";
     options = ["bind" "nofail" "x-systemd.automount"];
   };
-  
-  swapDevices = [];
 
+  swapDevices = [];
 }

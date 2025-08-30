@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     bacon # background rust code checker
     bpftrace # add tool to trace events via bpf
@@ -15,7 +12,7 @@
     hexyl # command-line hex editor
     hyperfine # command-line benchmarking tool
     imhex # gui hex editor
-    license-generator # cli tool for generating license files 
+    license-generator # cli tool for generating license files
     ltrace # trace functions
     lzbench # compression benchmark
     pkgconf # package compiler and linker metadata toolkit (wrapper script)

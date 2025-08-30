@@ -1,4 +1,9 @@
-{inputs, pkgs, config, ...}: {
+{
+  inputs,
+  pkgs,
+  config,
+  ...
+}: {
   sops.age = {
     generateKey = true;
     keyFile = "/var/lib/sops-nix/key.txt";
@@ -13,7 +18,7 @@
 
   nix = {
     package = pkgs.lix;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     settings = {
       accept-flake-config = true;
       show-trace = true;

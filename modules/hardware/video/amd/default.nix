@@ -16,7 +16,7 @@
       rocmPackages.rocm-smi
       glxinfo # show info about glx
       lact # linux amdgpu controller
-      (nvtopPackages.amd.override { intel = true; })
+      (nvtopPackages.amd.override {intel = true;})
       vulkan-extension-layer
       vulkan-tools
       vulkan-validation-layers
