@@ -69,122 +69,121 @@
   ];
 in {
   # thx to https://github.com/hlissner/dotfiles
-  boot.kernel.sysctl = {
-    # The Magic SysRq key is a key combo that allows users connected to the
-    # system console of a Linux kernel to perform some low-level commands.
-    # Disable it, since we don't need it, and is a potential security concern.
-    "kernel.sysrq" = 0;
-    ## TCP hardening
-    # Prevent bogus ICMP errors from filling up logs.
-    "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
-    # Reverse path filtering causes the kernel to do source validation of
-    # packets received from all interfaces. This can mitigate IP spoofing.
-    "net.ipv4.conf.default.rp_filter" = 1;
-    "net.ipv4.conf.all.rp_filter" = 1;
-    # Do not accept IP source route packets (we're not a router)
-    "net.ipv4.conf.all.accept_source_route" = 0;
-    "net.ipv6.conf.all.accept_source_route" = 0;
-    # Don't send ICMP redirects (again, we're on a router)
-    "net.ipv4.conf.all.send_redirects" = 0;
-    "net.ipv4.conf.default.send_redirects" = 0;
-    # Refuse ICMP redirects (MITM mitigations)
-    "net.ipv4.conf.all.accept_redirects" = 0;
-    "net.ipv4.conf.default.accept_redirects" = 0;
-    "net.ipv4.conf.all.secure_redirects" = 0;
-    "net.ipv4.conf.default.secure_redirects" = 0;
-    "net.ipv6.conf.all.accept_redirects" = 0;
-    "net.ipv6.conf.default.accept_redirects" = 0;
-    "net.ipv4.tcp_syncookies" = 1; # Protects against SYN flood attacks
-    "net.ipv4.tcp_rfc1337" = 1; # Incomplete protection again TIME-WAIT assassination
-    ## TCP optimization
-    # TCP Fast Open is a TCP extension that reduces network latency by packing
-    # data in the sender’s initial TCP SYN. Setting 3 = enable TCP Fast Open for
-    # both incoming and outgoing connections:
-    "net.ipv4.tcp_fastopen" = 3;
-    # Bufferbloat mitigations + slight improvement in throughput & latency
-    "net.ipv4.tcp_congestion_control" = "bbr";
-    "net.core.default_qdisc" = "fq";
+  boot = {
+    kernel.sysctl = {
+      # The Magic SysRq key is a key combo that allows users connected to the
+      # system console of a Linux kernel to perform some low-level commands.
+      # Disable it, since we don't need it, and is a potential security concern.
+      "kernel.sysrq" = 0;
+      ## TCP hardening
+      # Prevent bogus ICMP errors from filling up logs.
+      "net.ipv4.icmp_ignore_bogus_error_responses" = 1;
+      # Reverse path filtering causes the kernel to do source validation of
+      # packets received from all interfaces. This can mitigate IP spoofing.
+      "net.ipv4.conf.default.rp_filter" = 1;
+      "net.ipv4.conf.all.rp_filter" = 1;
+      # Do not accept IP source route packets (we're not a router)
+      "net.ipv4.conf.all.accept_source_route" = 0;
+      "net.ipv6.conf.all.accept_source_route" = 0;
+      # Don't send ICMP redirects (again, we're on a router)
+      "net.ipv4.conf.all.send_redirects" = 0;
+      "net.ipv4.conf.default.send_redirects" = 0;
+      # Refuse ICMP redirects (MITM mitigations)
+      "net.ipv4.conf.all.accept_redirects" = 0;
+      "net.ipv4.conf.default.accept_redirects" = 0;
+      "net.ipv4.conf.all.secure_redirects" = 0;
+      "net.ipv4.conf.default.secure_redirects" = 0;
+      "net.ipv6.conf.all.accept_redirects" = 0;
+      "net.ipv6.conf.default.accept_redirects" = 0;
+      "net.ipv4.tcp_syncookies" = 1; # Protects against SYN flood attacks
+      "net.ipv4.tcp_rfc1337" = 1; # Incomplete protection again TIME-WAIT assassination
+      ## TCP optimization
+      # TCP Fast Open is a TCP extension that reduces network latency by packing
+      # data in the sender’s initial TCP SYN. Setting 3 = enable TCP Fast Open for
+      # both incoming and outgoing connections:
+      "net.ipv4.tcp_fastopen" = 3;
+      # Bufferbloat mitigations + slight improvement in throughput & latency
+      "net.ipv4.tcp_congestion_control" = "bbr";
+      "net.core.default_qdisc" = "fq";
+    };
+    kernelModules = ["kvm-amd" "tcp_bbr" "amdgpu" "ntsync"];
+    blacklistedKernelModules =
+      [
+        "sp5100_tco" # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
+      ]
+      ++ obscure_network_protocols
+      ++ intel_hda_modules
+      ++ old_rare_insufficiently_audited_fs;
+    kernelParams =
+      [
+        "audit=0"
+        "biosdevname=1"
+        "cryptomgr.notests"
+        "loglevel=0"
+        "net.ifnames=0"
+        "noreplace-smp"
+        "page_alloc.shuffle=1"
+        "pcie_aspm=performance"
+        "preempt=full"
+        "rcupdate.rcu_expedited=1"
+        "scsi_mod.use_blk_mq=1"
+        "threadirqs"
+        "tsc=reliable"
+        "split_lock_detect=off"
+      ]
+      ++ mitigations_settings
+      ++ silence
+      ++ no_watchdog
+      ++ extra_security
+      ++ acpi_settings
+      ++ video_settings
+      ++ idle;
+    kernelPatches = [
+      {
+        name = "amd-platform-patches"; # recompile with AMD platform specific optimizations
+        patch = null; # no patch is needed, just apply the options
+        extraStructuredConfig = mapAttrs (_: mkForce) {
+          X86_AMD_PSTATE = yes;
+          X86_EXTENDED_PLATFORM = no; # disable support for other x86 platforms
+          X86_MCE_INTEL = no; # disable support for intel mce
+          LRU_GEN = yes; # multigen LRU
+          LRU_GEN_ENABLED = yes;
+          CPU_FREQ_STAT = yes; # collect CPU frequency statistics
+
+          HZ = freeform "1000";
+          HZ_250 = lib.mkForce no;
+          HZ_1000 = lib.mkForce yes;
+
+          PREEMPT = yes;
+          PREEMPT_BUILD = yes;
+          PREEMPT_COUNT = yes;
+          PREEMPT_VOLUNTARY = no;
+          PREEMPTION = yes;
+
+          TREE_RCU = yes;
+          PREEMPT_RCU = yes;
+          RCU_EXPERT = yes;
+          TREE_SRCU = yes;
+          TASKS_RCU_GENERIC = yes;
+          TASKS_RCU = yes;
+          TASKS_RUDE_RCU = yes;
+          TASKS_TRACE_RCU = yes;
+          RCU_STALL_COMMON = yes;
+          RCU_NEED_SEGCBLIST = yes;
+          RCU_FANOUT = freeform "64";
+          RCU_FANOUT_LEAF = freeform "16";
+          RCU_BOOST = yes;
+          RCU_BOOST_DELAY = freeform "500";
+          RCU_NOCB_CPU = yes;
+          RCU_LAZY = yes;
+
+          CONFIG_X86_NATIVE = yes;
+        };
+      }
+    ];
+    extraModulePackages = [pkgs.linuxPackages_cachyos.amneziawg];
+    consoleLogLevel = 3;
+    kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {mArch = "GENERIC_V4";};
   };
-  boot.kernelModules = ["kvm-amd" "tcp_bbr" "amdgpu" "ntsync"];
-  boot.blacklistedKernelModules =
-    [
-      "sp5100_tco" # Disable watchdog for better performance wiki.archlinux.org/title/improving_performance#Watchdogs
-    ]
-    ++ obscure_network_protocols
-    ++ intel_hda_modules
-    ++ old_rare_insufficiently_audited_fs;
-  boot.kernelParams =
-    [
-      "audit=0"
-      "biosdevname=1"
-      "cryptomgr.notests"
-      "loglevel=0"
-      "net.ifnames=0"
-      "noreplace-smp"
-      "page_alloc.shuffle=1"
-      "pcie_aspm=performance"
-      "preempt=full"
-      "rcupdate.rcu_expedited=1"
-      "scsi_mod.use_blk_mq=1"
-      "threadirqs"
-      "tsc=reliable"
-      "split_lock_detect=off"
-    ]
-    ++ mitigations_settings
-    ++ silence
-    ++ no_watchdog
-    ++ extra_security
-    ++ acpi_settings
-    ++ video_settings
-    ++ idle;
-  boot.kernelPatches = [
-    {
-      name = "amd-platform-patches"; # recompile with AMD platform specific optimizations
-      patch = null; # no patch is needed, just apply the options
-      extraStructuredConfig = mapAttrs (_: mkForce) {
-        X86_AMD_PSTATE = yes;
-        X86_EXTENDED_PLATFORM = no; # disable support for other x86 platforms
-        X86_MCE_INTEL = no; # disable support for intel mce
-        LRU_GEN = yes; # multigen LRU
-        LRU_GEN_ENABLED = yes;
-        CPU_FREQ_STAT = yes; # collect CPU frequency statistics
-
-        HZ = freeform "1000";
-        HZ_250 = lib.mkForce no;
-        HZ_1000 = lib.mkForce yes;
-
-        PREEMPT = yes;
-        PREEMPT_BUILD = yes;
-        PREEMPT_COUNT = yes;
-        PREEMPT_VOLUNTARY = no;
-        PREEMPTION = yes;
-
-        TREE_RCU = yes;
-        PREEMPT_RCU = yes;
-        RCU_EXPERT = yes;
-        TREE_SRCU = yes;
-        TASKS_RCU_GENERIC = yes;
-        TASKS_RCU = yes;
-        TASKS_RUDE_RCU = yes;
-        TASKS_TRACE_RCU = yes;
-        RCU_STALL_COMMON = yes;
-        RCU_NEED_SEGCBLIST = yes;
-        RCU_FANOUT = freeform "64";
-        RCU_FANOUT_LEAF = freeform "16";
-        RCU_BOOST = yes;
-        RCU_BOOST_DELAY = freeform "500";
-        RCU_NOCB_CPU = yes;
-        RCU_LAZY = yes;
-
-        CONFIG_X86_NATIVE = yes;
-      };
-    }
-  ];
-  boot.extraModulePackages = [pkgs.linuxPackages_cachyos.amneziawg];
-  boot.consoleLogLevel = 3;
-  boot.kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {mArch = "GENERIC_V4";};
-  security.protectKernelImage =
-    if kexec_enabled == false
-    then true
-    else false;
+  security.protectKernelImage = !kexec_enabled;
 }
