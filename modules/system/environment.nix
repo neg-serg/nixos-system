@@ -52,6 +52,8 @@
         ])
         + ":$HOME/.${format}";
     in {
+      # Legacy GL apps that rely on LD_LIBRARY_PATH
+      LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib:$LD_LIBRARY_PATH";
       # Encourage Wayland backends where supported
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
