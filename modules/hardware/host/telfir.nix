@@ -54,8 +54,9 @@ in
       "video=3840x2160@240"
     ];
 
-    # Use fancy zswap option instead of raw kernel param
-    profiles.performance.zswap.enable = true;
+    # Disable zswap and zram on this host to avoid double compression
+    profiles.performance.zswap.enable = lib.mkForce false;
+    zramSwap.enable = lib.mkForce false;
 
     # Nextcloud via Caddy on LAN, served as "telfir"
     services.nextcloud = {
