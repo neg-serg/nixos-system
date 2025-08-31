@@ -1,13 +1,20 @@
 {
   pkgs,
   lib,
+  modulesPath,
   ...
 }: {
   imports = [
     # Provide virtualisation.* options (cores, memorySize, diskSize, qemu.*)
-    "${pkgs.path}/nixos/modules/virtualisation/qemu-vm.nix"
+    (modulesPath + "/virtualisation/qemu-vm.nix")
   ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Fast-build overrides: avoid custom kernel patches/out-of-tree modules
+  boot.kernelPatches = lib.mkForce [];
+  boot.extraModulePackages = lib.mkForce [];
+  # Align with qemu-vm module: disable timesyncd to avoid conflicts
+  services.timesyncd.enable = lib.mkForce false;
+  # Prefer upstream latest kernel in VM
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
   virtualisation = {
     cores = 2;
     diskSize = 10 * 1024;
@@ -23,7 +30,8 @@
   networking.firewall.enable = false; # for user convenience
 
   # Make the VM identifiable and online by default
-  networking.hostName = lib.mkDefault "telfir-vm";
+  # Ensure VM does not match host-specific modules keyed on "telfir"
+  networking.hostName = lib.mkForce "telfir-vm";
   systemd.network.networks."99-vm-default" = {
     matchConfig.Name = "*";
     networkConfig.DHCP = "ipv4";
