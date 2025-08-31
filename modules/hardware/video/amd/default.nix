@@ -5,8 +5,8 @@
       enable32Bit = true; # 32-bit userspace for Steam/Wine
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
-        mesa-vdpau
-        mesa-vaapi
+        vaapiVdpau
+        libvdpau-va-gl
       ];
     };
     amdgpu.opencl.enable = true;

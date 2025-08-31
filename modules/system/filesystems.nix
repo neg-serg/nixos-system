@@ -13,7 +13,6 @@ _: {
         "rw"
         "relatime"
         "lazytime"
-        "discard=async"
       ];
     };
 
@@ -29,7 +28,6 @@ _: {
         "x-systemd.automount"
         "relatime"
         "lazytime"
-        "discard=async"
         "rw"
       ];
     };
@@ -37,7 +35,7 @@ _: {
     "/one" = {
       device = "/dev/mapper/xenon-one";
       fsType = "xfs";
-      options = ["x-systemd.automount" "relatime" "lazytime" "discard=async" "rw"];
+      options = ["x-systemd.automount" "relatime" "lazytime" "rw"];
     };
 
     "/home/neg/music" = {
@@ -79,4 +77,7 @@ _: {
   };
 
   swapDevices = [];
+
+  # Prefer periodic TRIM over online discard for XFS on NVMe
+  services.fstrim.enable = true;
 }
