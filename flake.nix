@@ -156,6 +156,7 @@
             inherit locale;
             inherit timeZone;
             inherit kexec_enabled;
+            inherit self;
             inherit inputs;
           };
           modules = [

@@ -10,6 +10,9 @@ let
   isHost = (config.networking.hostName or "") == "telfir";
 in
   lib.mkIf isHost {
+    # Disable auto-upgrade by default on this host
+    system.autoUpgrade.enable = lib.mkForce false;
+
     # Enable performance profile on this host
     profiles.performance.enable = true;
 
