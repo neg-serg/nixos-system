@@ -65,7 +65,20 @@
       "10-br0" = {
         matchConfig.Name = "br0";
         address = ["192.168.122.1/24"];
+        networkConfig.DHCPServer = "yes";
+        dhcpServerConfig = {
+          PoolOffset = 50;           # start at .50
+          PoolSize = 101;            # up to .150 inclusive
+          EmitDNS = true;            # advertise DNS
+          DNS = ["192.168.122.1"];  # host as DNS (resolved→unbound)
+          EmitRouter = true;         # advertise default route
+          Router = "192.168.122.1"; # host as router for guests
+          DefaultLeaseTimeSec = 12 * 3600; # 12h (matches previous)
+          MaxLeaseTimeSec = 24 * 3600;     # 24h max
+        };
       };
     };
   };
+  # Allow DHCP server traffic on br0
+  networking.firewall.interfaces.br0.allowedUDPPorts = [67 68];
 }
