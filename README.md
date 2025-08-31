@@ -28,3 +28,16 @@ How to update Hyprland (and related deps):
 3) Rebuild the system: `nh os switch /etc/nixos`.
 
 Auto‑update (optional): if `system.autoUpgrade` with flakes is enabled, you can add `--update-input hyprland` to automatically pull newer Hyprland. We typically update it manually to keep compatibility under control.
+
+## Commit message policy and local hook
+
+- Subject style: `[scope] short description` in English, ASCII only.
+- Exceptions: Git-generated subjects like `Merge ...`, `Revert ...`, and `WIP:` are allowed.
+
+Enable the repo hook locally:
+
+```
+git config core.hooksPath .githooks
+```
+
+The hook rejects commit messages that contain non‑ASCII characters or do not start with a bracketed scope.
