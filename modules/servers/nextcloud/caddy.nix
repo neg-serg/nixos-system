@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.services.nextcloud;
   domain = cfg.hostName or "localhost";
-in
-{
+in {
   options.services.nextcloud.caddyProxy.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -20,12 +22,12 @@ in
         message = "Set services.nextcloud.hostName to a public or LAN DNS name when enabling caddyProxy.";
       }
       {
-        assertion = (config.services.nextcloud.nginxProxy.enable or false) == false;
+        assertion = !(config.services.nextcloud.nginxProxy.enable or false);
         message = "Do not enable both nginxProxy and caddyProxy at the same time.";
       }
     ];
 
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [80 443];
 
     # Caddy manages certificates automatically; set contact email
     services.caddy = {
@@ -106,9 +108,9 @@ in
     # Export Caddy internal CA root to a predictable, world-readable path
     systemd.services.caddy-export-local-ca = {
       description = "Export Caddy internal CA root to /var/lib/caddy/ca.crt";
-      after = [ "caddy.service" ];
-      requires = [ "caddy.service" ];
-      wantedBy = [ "multi-user.target" ];
+      after = ["caddy.service"];
+      requires = ["caddy.service"];
+      wantedBy = ["multi-user.target"];
       serviceConfig.Type = "oneshot";
       script = ''
         set -euo pipefail
