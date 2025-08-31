@@ -1,4 +1,8 @@
 { pkgs, lib, ... }: {
+  imports = [
+    # Provide virtualisation.* options (cores, memorySize, diskSize, qemu.*)
+    "${pkgs.path}/nixos/modules/virtualisation/qemu-vm.nix"
+  ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
   virtualisation = {
     cores = 2;
