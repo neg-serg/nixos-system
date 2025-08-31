@@ -24,6 +24,7 @@ with rec {
         "input"
         "libvirtd"
         "neg"
+        "render"
         "networkmanager"
         "systemd-journal"
         "tss"
