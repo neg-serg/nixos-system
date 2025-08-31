@@ -1,4 +1,4 @@
-{pkgs, lib, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./nscd.nix
     ./pkgs.nix
