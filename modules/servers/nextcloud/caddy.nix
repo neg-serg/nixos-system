@@ -52,6 +52,26 @@ in
         redir /.well-known/host-meta /public.php?service=host-meta 301
         redir /.well-known/host-meta.json /public.php?service=host-meta-json 301
 
+        # Deny access to sensitive paths (Nextcloud hardening)
+        @forbidden {
+          path /.htaccess
+          path /.user.ini
+          path /.git*
+          path /README
+          path /config/*
+          path /data/*
+          path /build/*
+          path /tests/*
+          path /3rdparty/*
+          path /lib/*
+          path /templates/*
+          path /occ
+          path /console
+          path /autotest*
+          path /db_*
+        }
+        respond @forbidden 403
+
         # Serve Nextcloud via PHP-FPM socket provided by NixOS nextcloud module
         root * /var/lib/nextcloud
         php_fastcgi unix//run/phpfpm/nextcloud.sock
