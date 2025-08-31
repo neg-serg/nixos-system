@@ -1,6 +1,6 @@
 # Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ self, ... }: {
+{self, ...}: {
   imports = [./modules];
   system = {
     stateVersion = "23.11"; # (man configuration.nix or on https://nixos.org/nixos/options.html).
@@ -9,7 +9,8 @@
     # Track this flake and update nixpkgs on upgrades
     autoUpgrade.flake = "${self}#telfir";
     autoUpgrade.flags = [
-      "--update-input" "nixpkgs"
+      "--update-input"
+      "nixpkgs"
       "--commit-lock-file"
     ];
     # Schedule nightly window with randomized delay; catch-up after downtime

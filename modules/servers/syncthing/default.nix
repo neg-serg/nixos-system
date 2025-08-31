@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   hasSynSecret = builtins.pathExists (../../.. + "/secrets/syncthing.sops.yaml");
 in {
   # Register secret only if present to keep evaluation robust without secrets

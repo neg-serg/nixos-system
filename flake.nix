@@ -215,7 +215,7 @@
             chaotic.nixosModules.default
             sops-nix.nixosModules.sops
             # VM-specific adjustments
-            ({ lib, ... }: {
+            ({lib, ...}: {
               # Avoid secure boot integration in quick VM builds
               boot.lanzaboote.enable = lib.mkForce false;
               # Slim down services not needed for quick Hyprland testing

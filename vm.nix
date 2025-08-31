@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     # Provide virtualisation.* options (cores, memorySize, diskSize, qemu.*)
     "${pkgs.path}/nixos/modules/virtualisation/qemu-vm.nix"

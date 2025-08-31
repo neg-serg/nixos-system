@@ -1,5 +1,9 @@
-{ lib, config, pkgs, ... }:
-let
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
   hasNcSecret = builtins.pathExists (../../.. + "/secrets/nextcloud.sops.yaml");
 in {
   # Register SOPS secret only if the file exists to avoid eval errors
