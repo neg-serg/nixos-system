@@ -4,7 +4,6 @@
     ./pkgs.nix
     ./proxy.nix
     ./ssh.nix
-    ./tor.nix
     ./vpn
   ];
   services = {
