@@ -10,7 +10,8 @@
     tor = {
       enable = true;
       client.enable = true;
-      client.dns.enable = true;
+      # Disable Tor's built-in DNS to avoid hijacking system DNS
+      client.dns.enable = false;
       settings = {
         ExitNodes = "{ua}, {nl}, {gb}";
         ExcludeNodes = "{ru},{by},{kz}";
