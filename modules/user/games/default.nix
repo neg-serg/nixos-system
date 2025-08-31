@@ -34,6 +34,11 @@
         if command -v hyprctl >/dev/null 2>&1; then
           JSON=$(hyprctl monitors -j 2>/dev/null || true)
           if [ -n "${JSON}" ]; then
+            # If no monitor specified, pick the best one: highest refresh, then highest resolution
+            if [ -z "${MON}" ]; then
+              BEST=$(printf '%s' "$JSON" | jq -r 'sort_by([.refreshRate, (.width // 0) * (.height // 0)]) | reverse | .[0].name // empty')
+              [ -n "${BEST}" ] && MON="${BEST}"
+            fi
             if [ -n "${MON}" ]; then
               W=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].width // empty')
               H=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].height // empty')
@@ -100,6 +105,10 @@
         if command -v hyprctl >/dev/null 2>&1; then
           JSON=$(hyprctl monitors -j 2>/dev/null || true)
           if [ -n "${JSON}" ]; then
+            if [ -z "${MON}" ]; then
+              BEST=$(printf '%s' "$JSON" | jq -r 'sort_by([.refreshRate, (.width // 0) * (.height // 0)]) | reverse | .[0].name // empty')
+              [ -n "${BEST}" ] && MON="${BEST}"
+            fi
             if [ -n "${MON}" ]; then
               W=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].width // empty')
               H=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].height // empty')
@@ -157,6 +166,10 @@
         if command -v hyprctl >/dev/null 2>&1; then
           JSON=$(hyprctl monitors -j 2>/dev/null || true)
           if [ -n "${JSON}" ]; then
+            if [ -z "${MON}" ]; then
+              BEST=$(printf '%s' "$JSON" | jq -r 'sort_by([.refreshRate, (.width // 0) * (.height // 0)]) | reverse | .[0].name // empty')
+              [ -n "${BEST}" ] && MON="${BEST}"
+            fi
             if [ -n "${MON}" ]; then
               W=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].width // empty')
               H=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].height // empty')
