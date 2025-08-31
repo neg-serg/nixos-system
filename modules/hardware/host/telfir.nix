@@ -66,4 +66,9 @@ in
 
     # Local name resolution on this host as well
     networking.hosts."192.168.2.240" = ["telfir" "telfir.local"];
+
+    # Reserve two physical cores (both SMT threads) for gaming by banning them
+    # from IRQ balancing. Assumes typical Zen3 numbering where sibling threads
+    # are offset by +16: CPUs 14,15 and 30,31. Adjust if your topology differs.
+    systemd.services.irqbalance.environment.IRQBALANCE_BANNED_CPUS = "0xC000C000";
   }
