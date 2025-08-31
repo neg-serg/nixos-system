@@ -21,6 +21,20 @@ in
     # Enable performance profile on this host
     profiles.performance.enable = true;
 
+    # Enable server profiles on this host
+    servicesProfiles = {
+      adguardhome.enable = true;
+      avahi.enable = true;
+      jellyfin.enable = true;
+      mpd.enable = true;
+      navidrome.enable = true;
+      openssh.enable = true;
+      syncthing.enable = true;
+      unbound.enable = true;
+      wakapi.enable = true;
+      nextcloud.enable = true;
+    };
+
     # Host-specific kernel parameters
     boot.kernelParams = [
       # ACPI OSI quirks: pretend to be "Linux" while disabling generic OSI
