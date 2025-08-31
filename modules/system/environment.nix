@@ -13,6 +13,9 @@
     # For more on rec expressions see https://nix.dev/tutorials/first-steps/nix-language#recursive-attribute-set-rec
     sessionVariables = {
       NIXOS_OZONE_WL = "1"; # Optional, hint Electron apps to use Wayland:
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+      XDG_SESSION_TYPE = "wayland";
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME = "$HOME/.local/share";
@@ -46,6 +49,9 @@
         ])
         + ":$HOME/.${format}";
     in {
+      # Encourage Wayland backends where supported
+      QT_QPA_PLATFORM = "wayland";
+      SDL_VIDEODRIVER = "wayland";
       ASPELL_CONF = ''
         per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
         personal $XDG_CONFIG_HOME/aspell/en_US.pws;

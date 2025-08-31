@@ -8,6 +8,7 @@
     ./locate.nix
     ./psd # profile sync daemon
     ./session
+    ./session/tools.nix
     ./xdg.nix
   ];
 }
