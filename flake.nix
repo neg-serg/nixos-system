@@ -78,70 +78,89 @@
     nix-flatpak,
     nixpkgs,
     sops-nix,
+    flake-utils,
     ...
   }:
-    with {
-      locale = "en_US.UTF-8"; # select locale
-      system = "x86_64-linux";
+    let
+      # Shared settings
+      locale = "en_US.UTF-8";
       timeZone = "Europe/Moscow";
       kexec_enabled = true;
       diffClosures = import ./modules/diff-closures.nix;
-    }; {
-      packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
+      # Systems to build tools for
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      # Host system for NixOS configurations
+      defaultSystem = "x86_64-linux";
+    in
+      flake-utils.lib.eachSystem systems (system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in {
+          # Packages
+          packages.default = pkgs.zsh;
 
-      # Allow `nix fmt` to format this repo
-      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+          # Formatter for `nix fmt`
+          formatter = pkgs.alejandra;
 
-      # Lightweight repo checks for `nix flake check`
-      checks.${system} = let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        nix-fmt =
-          pkgs.runCommand "check-nix-fmt" {
-            nativeBuildInputs = [pkgs.alejandra];
-          } ''
-            cd ${self}
-            alejandra --check .
-            mkdir -p "$out" && echo ok > "$out/result"
-          '';
+          # Lightweight repo checks for `nix flake check`
+          checks = {
+            nix-fmt = pkgs.runCommand "check-nix-fmt" {
+              nativeBuildInputs = [pkgs.alejandra];
+            } ''
+              cd ${self}
+              alejandra --check .
+              mkdir -p "$out" && echo ok > "$out/result"
+            '';
 
-        deadnix =
-          pkgs.runCommand "check-deadnix" {
-            nativeBuildInputs = [pkgs.deadnix];
-          } ''
-            cd ${self}
-            deadnix --fail .
-            mkdir -p "$out" && echo ok > "$out/result"
-          '';
+            deadnix = pkgs.runCommand "check-deadnix" {
+              nativeBuildInputs = [pkgs.deadnix];
+            } ''
+              cd ${self}
+              deadnix --fail .
+              mkdir -p "$out" && echo ok > "$out/result"
+            '';
 
-        statix =
-          pkgs.runCommand "check-statix" {
-            nativeBuildInputs = [pkgs.statix];
-          } ''
-            cd ${self}
-            statix check .
-            mkdir -p "$out" && echo ok > "$out/result"
-          '';
-      };
-      nixosConfigurations = {
-        telfir = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = {
-            inherit locale;
-            inherit timeZone;
-            inherit kexec_enabled;
-            inherit inputs;
+            statix = pkgs.runCommand "check-statix" {
+              nativeBuildInputs = [pkgs.statix];
+            } ''
+              cd ${self}
+              statix check .
+              mkdir -p "$out" && echo ok > "$out/result"
+            '';
           };
-          modules = [
-            ./init.nix
-            nix-flatpak.nixosModules.nix-flatpak
-            lanzaboote.nixosModules.lanzaboote
-            chaotic.nixosModules.default
-            sops-nix.nixosModules.sops
-            diffClosures
-            {diffClosures.enable = true;}
-          ];
+
+          # Developer shell
+          devShells.default = pkgs.mkShell {
+            packages = [
+              pkgs.alejandra
+              pkgs.deadnix
+              pkgs.statix
+              pkgs.nil
+            ];
+          };
+        }) // {
+        nixosConfigurations = {
+          telfir = nixpkgs.lib.nixosSystem {
+            system = defaultSystem;
+            specialArgs = {
+              inherit locale;
+              inherit timeZone;
+              inherit kexec_enabled;
+              inherit inputs;
+            };
+            modules = [
+              ./init.nix
+              nix-flatpak.nixosModules.nix-flatpak
+              lanzaboote.nixosModules.lanzaboote
+              chaotic.nixosModules.default
+              sops-nix.nixosModules.sops
+              diffClosures
+              {diffClosures.enable = true;}
+            ];
+          };
         };
       };
-    };
 }
