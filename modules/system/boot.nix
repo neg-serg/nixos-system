@@ -16,13 +16,9 @@
     };
     loader = {
       efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = lib.mkForce false;
-        memtest86.enable = true;
-        consoleMode = "max";
-        edk2-uefi-shell.enable = true;
-      };
-      timeout = 1;
+      # With lanzaboote enabled, ensure systemd-boot is explicitly disabled
+      # and avoid setting unrelated systemd-boot options that would be ignored.
+      systemd-boot.enable = lib.mkForce false;
     };
     initrd = {
       availableKernelModules = [
