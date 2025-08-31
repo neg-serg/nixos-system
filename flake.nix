@@ -10,6 +10,15 @@
       url = "github:hyprwm/Hyprland?ref=v0.50.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Keep Hyprland-related inputs in lockstep with the pinned Hyprland flake
+    hyprland-protocols.inputs.hyprland.follows = "hyprland";
+    hyprland-protocols.follows = "hyprland/hyprland-protocols";
+    hyprland-qt-support.inputs.hyprland.follows = "hyprland";
+    hyprland-qt-support.follows = "hyprland/hyprland-qt-support";
+    hyprland-qtutils.inputs.hyprland.follows = "hyprland";
+    hyprland-qtutils.follows = "hyprland/hyprland-qtutils";
+    xdg-desktop-portal-hyprland.inputs.hyprland.follows = "hyprland";
+    xdg-desktop-portal-hyprland.follows = "hyprland/xdg-desktop-portal-hyprland";
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
