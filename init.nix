@@ -4,18 +4,20 @@
   imports = [./modules];
   system = {
     stateVersion = "23.11"; # (man configuration.nix or on https://nixos.org/nixos/options.html).
-    autoUpgrade.enable = true;
-    autoUpgrade.allowReboot = true;
-    # Track this flake and update nixpkgs on upgrades
-    autoUpgrade.flake = "${self}#telfir";
-    autoUpgrade.flags = [
-      "--update-input"
-      "nixpkgs"
-      "--commit-lock-file"
-    ];
-    # Schedule nightly window with randomized delay; catch-up after downtime
-    autoUpgrade.dates = "03:30"; # local time
-    autoUpgrade.randomizedDelaySec = "45min";
-    autoUpgrade.persistent = true;
+    autoUpgrade = {
+      enable = true;
+      allowReboot = true;
+      # Track this flake and update nixpkgs on upgrades
+      flake = "${self}#telfir";
+      flags = [
+        "--update-input"
+        "nixpkgs"
+        "--commit-lock-file"
+      ];
+      # Schedule nightly window with randomized delay; catch-up after downtime
+      dates = "03:30"; # local time
+      randomizedDelaySec = "45min";
+      persistent = true;
+    };
   };
 }
