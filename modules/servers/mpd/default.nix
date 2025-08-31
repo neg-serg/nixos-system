@@ -11,7 +11,7 @@ in {
     user = myUser;
     group = myUser;
 
-    startWhenNeeded = false; # важно
+    startWhenNeeded = false; # important
     dataDir = "${myHome}/.config/mpd";
     musicDirectory = "${myHome}/music";
     network = {
