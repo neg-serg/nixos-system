@@ -222,6 +222,7 @@
               services.nextcloud.enable = lib.mkForce false;
               services.adguardhome.enable = lib.mkForce false;
               services.syncthing.enable = lib.mkForce false;
+              services.unbound.enable = lib.mkForce false;
             })
           ];
         };
