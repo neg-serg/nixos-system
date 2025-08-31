@@ -26,6 +26,7 @@
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
+      MON="${GAMESCOPE_MON:-}"
       # Detect current monitor resolution via Hyprland; fallback to 3840x2160
       OUT_W="${GAMESCOPE_OUT_W:-}"
       OUT_H="${GAMESCOPE_OUT_H:-}"
@@ -33,8 +34,13 @@
         if command -v hyprctl >/dev/null 2>&1; then
           JSON=$(hyprctl monitors -j 2>/dev/null || true)
           if [ -n "${JSON}" ]; then
-            W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
-            H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            if [ -n "${MON}" ]; then
+              W=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].height // empty')
+            else
+              W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            fi
             if [ -n "${W}" ] && [ -n "${H}" ]; then
               OUT_W=${OUT_W:-$W}
               OUT_H=${OUT_H:-$H}
@@ -43,6 +49,27 @@
         fi
       fi
       OUT_W="${OUT_W:-3840}"; OUT_H="${OUT_H:-2160}"
+      # Optional: focus the target monitor so gamescope opens there
+      if [ -n "${MON}" ] && command -v hyprctl >/dev/null 2>&1; then
+        hyprctl dispatch focusmonitor "${MON}" >/dev/null 2>&1 || true
+      fi
+      # Choose refresh rate: explicit env overrides autodetect
+      RATE="${GAMESCOPE_RATE:-}"
+      if [ -z "${RATE}" ] && command -v hyprctl >/dev/null 2>&1; then
+        JSON=${JSON:-""}
+        if [ -z "${JSON}" ]; then JSON=$(hyprctl monitors -j 2>/dev/null || true); fi
+        if [ -n "${JSON}" ]; then
+          if [ -n "${MON}" ]; then
+            RR=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].refreshRate // empty')
+          else
+            RR=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].refreshRate // empty')
+          fi
+          if [ -n "${RR}" ] && [ "${RR}" != "null" ]; then
+            RATE=$(awk -v r="$RR" 'BEGIN{ printf("%d", (r<1)?0:int(r+0.5)) }')
+          fi
+        fi
+      fi
+      RATEFLAG=""; [ -n "${RATE}" ] && RATEFLAG="-r ${RATE}"
       # Default game render scale ≈ 0.66 of output for performance
       GAME_W="${GAMESCOPE_GAME_W:-}"
       GAME_H="${GAMESCOPE_GAME_H:-}"
@@ -50,7 +77,7 @@
         GAME_W=$(awk -v w="$OUT_W" 'BEGIN{ printf("%d", w*2/3) }')
         GAME_H=$(awk -v h="$OUT_H" 'BEGIN{ printf("%d", h*2/3) }')
       fi
-      FLAGS="-f --adaptive-sync -w ${GAME_W} -h ${GAME_H} -W ${OUT_W} -H ${OUT_H} --fsr-sharpness 3"
+      FLAGS="-f --adaptive-sync ${RATEFLAG} -w ${GAME_W} -h ${GAME_H} -W ${OUT_W} -H ${OUT_H} --fsr-sharpness 3"
       if [ "$#" -eq 0 ]; then
         CMD=$(zenity --entry --title="Gamescope Performance" --text="Command to run:" || true)
         [ -z "${CMD:-}" ] && exit 0
@@ -67,13 +94,19 @@
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
+      MON="${GAMESCOPE_MON:-}"
       OUT_W="${GAMESCOPE_OUT_W:-}"; OUT_H="${GAMESCOPE_OUT_H:-}"
       if [ -z "${OUT_W}" ] || [ -z "${OUT_H}" ]; then
         if command -v hyprctl >/dev/null 2>&1; then
           JSON=$(hyprctl monitors -j 2>/dev/null || true)
           if [ -n "${JSON}" ]; then
-            W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
-            H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            if [ -n "${MON}" ]; then
+              W=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].height // empty')
+            else
+              W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            fi
             if [ -n "${W}" ] && [ -n "${H}" ]; then
               OUT_W=${OUT_W:-$W}
               OUT_H=${OUT_H:-$H}
@@ -82,7 +115,26 @@
         fi
       fi
       OUT_W="${OUT_W:-3840}"; OUT_H="${OUT_H:-2160}"
-      FLAGS="-f --adaptive-sync -W ${OUT_W} -H ${OUT_H}"
+      if [ -n "${MON}" ] && command -v hyprctl >/dev/null 2>&1; then
+        hyprctl dispatch focusmonitor "${MON}" >/dev/null 2>&1 || true
+      fi
+      RATE="${GAMESCOPE_RATE:-}"
+      if [ -z "${RATE}" ] && command -v hyprctl >/dev/null 2>&1; then
+        JSON=${JSON:-""}
+        if [ -z "${JSON}" ]; then JSON=$(hyprctl monitors -j 2>/dev/null || true); fi
+        if [ -n "${JSON}" ]; then
+          if [ -n "${MON}" ]; then
+            RR=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].refreshRate // empty')
+          else
+            RR=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].refreshRate // empty')
+          fi
+          if [ -n "${RR}" ] && [ "${RR}" != "null" ]; then
+            RATE=$(awk -v r="$RR" 'BEGIN{ printf("%d", (r<1)?0:int(r+0.5)) }')
+          fi
+        fi
+      fi
+      RATEFLAG=""; [ -n "${RATE}" ] && RATEFLAG="-r ${RATE}"
+      FLAGS="-f --adaptive-sync ${RATEFLAG} -W ${OUT_W} -H ${OUT_H}"
       if [ "$#" -eq 0 ]; then
         CMD=$(zenity --entry --title="Gamescope Quality" --text="Command to run:" || true)
         [ -z "${CMD:-}" ] && exit 0
@@ -99,13 +151,19 @@
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
+      MON="${GAMESCOPE_MON:-}"
       OUT_W="${GAMESCOPE_OUT_W:-}"; OUT_H="${GAMESCOPE_OUT_H:-}"
       if [ -z "${OUT_W}" ] || [ -z "${OUT_H}" ]; then
         if command -v hyprctl >/dev/null 2>&1; then
           JSON=$(hyprctl monitors -j 2>/dev/null || true)
           if [ -n "${JSON}" ]; then
-            W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
-            H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            if [ -n "${MON}" ]; then
+              W=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].height // empty')
+            else
+              W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            fi
             if [ -n "${W}" ] && [ -n "${H}" ]; then
               OUT_W=${OUT_W:-$W}
               OUT_H=${OUT_H:-$H}
@@ -114,7 +172,26 @@
         fi
       fi
       OUT_W="${OUT_W:-3840}"; OUT_H="${OUT_H:-2160}"
-      FLAGS="-f --adaptive-sync --hdr-enabled -W ${OUT_W} -H ${OUT_H}"
+      if [ -n "${MON}" ] && command -v hyprctl >/dev/null 2>&1; then
+        hyprctl dispatch focusmonitor "${MON}" >/dev/null 2>&1 || true
+      fi
+      RATE="${GAMESCOPE_RATE:-}"
+      if [ -z "${RATE}" ] && command -v hyprctl >/dev/null 2>&1; then
+        JSON=${JSON:-""}
+        if [ -z "${JSON}" ]; then JSON=$(hyprctl monitors -j 2>/dev/null || true); fi
+        if [ -n "${JSON}" ]; then
+          if [ -n "${MON}" ]; then
+            RR=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].refreshRate // empty')
+          else
+            RR=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].refreshRate // empty')
+          fi
+          if [ -n "${RR}" ] && [ "${RR}" != "null" ]; then
+            RATE=$(awk -v r="$RR" 'BEGIN{ printf("%d", (r<1)?0:int(r+0.5)) }')
+          fi
+        fi
+      fi
+      RATEFLAG=""; [ -n "${RATE}" ] && RATEFLAG="-r ${RATE}"
+      FLAGS="-f --adaptive-sync ${RATEFLAG} --hdr-enabled -W ${OUT_W} -H ${OUT_H}"
       if [ "$#" -eq 0 ]; then
         CMD=$(zenity --entry --title="Gamescope HDR" --text="Command to run:" || true)
         [ -z "${CMD:-}" ] && exit 0
