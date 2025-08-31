@@ -12,5 +12,9 @@
       "--update-input" "nixpkgs"
       "--commit-lock-file"
     ];
+    # Schedule nightly window with randomized delay; catch-up after downtime
+    autoUpgrade.dates = "03:30"; # local time
+    autoUpgrade.randomizedDelaySec = "45min";
+    autoUpgrade.persistent = true;
   };
 }
