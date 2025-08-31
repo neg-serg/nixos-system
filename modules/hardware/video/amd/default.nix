@@ -1,10 +1,9 @@
 {pkgs, ...}: {
-  # Provide LD_LIBRARY_PATH to GL consumers that don't respect Nix store layout
-  hardware.graphics.setLdLibraryPath = true;
   hardware = {
     graphics = {
       enable = true;
       enable32Bit = true; # 32-bit userspace for Steam/Wine
+      setLdLibraryPath = true; # Provide LD_LIBRARY_PATH for legacy GL apps
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
         vaapiVdpau
