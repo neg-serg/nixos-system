@@ -54,12 +54,15 @@
       "https://numtide.cachix.org"
     ];
     trusted-public-keys = [
+      # Official NixOS cache (required for cache.nixos.org)
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "0uptime.cachix.org-1:ctw8yknBLg9cZBdqss+5krAem0sHYdISkw/IFdRbYdE="
       "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
       "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       "ezkea.cachix.org-1:ioBmUbJTZIKsHmWWXPe1FSFbeVe+afhfgqgTSNd34eI="
-      "cache.garnix.io:CTFPyK8EEhZ3jAC5vVsQt1zArhcXd1LSeX776BFqe7A="
+      # Garnix cache
+      "cache.garnix.io-1:CTFPyK8EEhZ3jAC5vVsQt1zArhcXd1LSeX776BFqe7A="
       "hercules-ci.cachix.org-1:ZZeDl9Va+xe9j+KqdzoBZMFJHVQ42Uu/c/1/KMC5Lw0="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "neg-serg.cachix.org-1:MZ+xYOrDj1Uhq8GTJAg//KrS4fAPpnIvaWU/w3Qz/wo="
@@ -88,52 +91,63 @@
     }; {
       packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
 
-      # Allow `nix fmt` to format this repo
-      formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+      # Make `nix fmt` behave like in home-manager: format repo with alejandra
+      formatter.${system} = let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+        pkgs.writeShellApplication {
+          name = "fmt";
+          runtimeInputs = [pkgs.alejandra];
+          text = ''
+            set -euo pipefail
+            alejandra -q .
+          '';
+        };
 
       # Lightweight repo checks for `nix flake check`
       checks.${system} = let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-        nix-fmt =
-          pkgs.runCommand "check-nix-fmt" {
+        fmt-alejandra =
+          pkgs.runCommand "fmt-alejandra" {
             nativeBuildInputs = [pkgs.alejandra];
           } ''
             cd ${self}
-            alejandra --check .
-            mkdir -p "$out" && echo ok > "$out/result"
+            alejandra -q --check .
+            touch "$out"
           '';
 
-        deadnix =
-          pkgs.runCommand "check-deadnix" {
+        lint-deadnix =
+          pkgs.runCommand "lint-deadnix" {
             nativeBuildInputs = [pkgs.deadnix];
           } ''
             cd ${self}
             deadnix --fail .
-            mkdir -p "$out" && echo ok > "$out/result"
+            touch "$out"
           '';
 
-        statix =
-          pkgs.runCommand "check-statix" {
+        lint-statix =
+          pkgs.runCommand "lint-statix" {
             nativeBuildInputs = [pkgs.statix];
           } ''
             cd ${self}
             statix check .
-            mkdir -p "$out" && echo ok > "$out/result"
+            touch "$out"
           '';
       };
 
       # Developer shell
       devShells.${system}.default = let
         pkgs = nixpkgs.legacyPackages.${system};
-      in pkgs.mkShell {
-        packages = [
-          pkgs.alejandra
-          pkgs.deadnix
-          pkgs.statix
-          pkgs.nil
-        ];
-      };
+      in
+        pkgs.mkShell {
+          packages = [
+            pkgs.alejandra
+            pkgs.deadnix
+            pkgs.statix
+            pkgs.nil
+          ];
+        };
 
       nixosConfigurations = {
         telfir = nixpkgs.lib.nixosSystem {
