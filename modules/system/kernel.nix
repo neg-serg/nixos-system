@@ -63,7 +63,6 @@
     "qnx6"
     "squashfs"
     "sysv"
-    "udf"
     "ufs"
     "vivid"
   ];
@@ -117,16 +116,12 @@ in {
     kernelParams =
       [
         "audit=0"
-        "biosdevname=1"
         "cryptomgr.notests"
-        "loglevel=0"
         "net.ifnames=0"
         "noreplace-smp"
-        "page_alloc.shuffle=1"
         "pcie_aspm=performance"
         "preempt=full"
         "rcupdate.rcu_expedited=1"
-        "scsi_mod.use_blk_mq=1"
         "threadirqs"
         "tsc=reliable"
         "split_lock_detect=off"
