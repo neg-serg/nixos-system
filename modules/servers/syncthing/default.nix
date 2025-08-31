@@ -1,10 +1,19 @@
-_: {
+{ lib, config, ... }:
+let
+  hasSynSecret = builtins.pathExists (../../.. + "/secrets/syncthing.sops.yaml");
+in {
+  # Register secret only if present to keep evaluation robust without secrets
+  sops.secrets."syncthing/gui-pass" = lib.mkIf hasSynSecret {
+    sopsFile = ../../../secrets/syncthing.sops.yaml;
+  };
+
   services.syncthing = {
     enable = true;
     user = "neg";
     settings.gui = {
       user = "neg";
-      password = "ithee3Ye";
+      # Password is managed out-of-band (either already configured in Syncthing
+      # or updated manually via GUI/API). Avoid reading secrets at eval time.
     };
     dataDir = "/zero/syncthing/data";
     configDir = "/zero/syncthing/config";

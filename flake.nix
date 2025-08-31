@@ -169,6 +169,29 @@
             {diffClosures.enable = true;}
           ];
         };
+        telfir-vm = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit locale;
+            inherit timeZone;
+            inherit kexec_enabled;
+            inherit self;
+            inherit inputs;
+          };
+          modules = [
+            ./init.nix
+            ./vm.nix
+            nix-flatpak.nixosModules.nix-flatpak
+            lanzaboote.nixosModules.lanzaboote
+            chaotic.nixosModules.default
+            sops-nix.nixosModules.sops
+            # VM-specific adjustments
+            ({ lib, ... }: {
+              # Avoid secure boot integration in quick VM builds
+              boot.lanzaboote.enable = lib.mkForce false;
+            })
+          ];
+        };
       };
     };
 }

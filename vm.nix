@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, lib, ... }: {
   boot.kernelPackages = pkgs.linuxPackages_latest;
   virtualisation = {
     cores = 2;
@@ -13,4 +13,11 @@
     nemu # qemu tui interface
   ];
   networking.firewall.enable = false; # for user convenience
+
+  # Make the VM identifiable and online by default
+  networking.hostName = lib.mkDefault "telfir-vm";
+  systemd.network.networks."99-vm-default" = {
+    matchConfig.Name = "*";
+    networkConfig.DHCP = "ipv4";
+  };
 }
