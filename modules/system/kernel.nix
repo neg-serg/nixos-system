@@ -29,7 +29,6 @@
     "snd_hda_intel"
   ];
   extra_security = [
-    "page_poison=1" # Overwrite/poison freed memory (helps catch UAF bugs)
     "page_alloc.shuffle=1" # Randomize page allocator to reduce predictability
   ];
   idle_nomwait = [
@@ -174,7 +173,11 @@ in {
     kernelParams =
       base_params
       ++ lib.optionals perfEnabled perf_params
-      ++ extra_security;
+      ++ extra_security
+      # Enable poisoning of freed pages only under security profile
+      ++ lib.optionals (config.profiles.security.enable or false) [
+        "page_poison=1"
+      ];
     kernelPatches = [
       {
         name = "amd-platform-patches"; # recompile with AMD platform specific optimizations
