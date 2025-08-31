@@ -7,6 +7,7 @@
     ./profiles/performance.nix
     ./net
     ./oomd.nix
+    ./zram.nix
     ./pkgs.nix
     ./systemd
     ./users.nix
