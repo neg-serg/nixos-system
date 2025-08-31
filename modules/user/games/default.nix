@@ -1,4 +1,24 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: let
+  gamescopePinned = pkgs.writeShellApplication {
+    name = "gamescope-pinned";
+    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode];
+    text = ''
+      set -euo pipefail
+      CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
+      FLAGS="${GAMESCOPE_FLAGS:--f --adaptive-sync}"
+      exec taskset -c "$CPUSET" gamemoderun gamescope $FLAGS -- "$@"
+    '';
+  };
+  gamePinned = pkgs.writeShellApplication {
+    name = "game-pinned";
+    runtimeInputs = [pkgs.util-linux pkgs.gamemode];
+    text = ''
+      set -euo pipefail
+      CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
+      exec taskset -c "$CPUSET" gamemoderun "$@"
+    '';
+  };
+in {
   programs = {
     steam = {
       enable = true;
@@ -31,7 +51,11 @@
     mangohud.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [protontricks];
+  environment.systemPackages = with pkgs; [
+    protontricks
+    gamescopePinned
+    gamePinned
+  ];
 
   security.wrappers.gamemode = {
     owner = "root";
