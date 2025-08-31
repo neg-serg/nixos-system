@@ -5,5 +5,6 @@
     grimblast     # Hyprland-friendly screenshots (wraps grim+slurp+wl-copy)
     wl-clipboard  # wl-copy / wl-paste
     swappy        # screenshot editor (optional)
+    hyprpicker    # color picker for Wayland/Hyprland
   ];
 }
