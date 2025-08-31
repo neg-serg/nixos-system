@@ -12,7 +12,6 @@
   '';
 
   security = {
-    protectKernelImage = false; # prevent replacing the running kernel image
     pki.useCompatibleBundle = true;
     lockKernelModules = false;
     polkit = {
