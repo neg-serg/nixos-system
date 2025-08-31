@@ -67,6 +67,13 @@ in
     # Local name resolution on this host as well
     networking.hosts."192.168.2.240" = ["telfir" "telfir.local"];
 
+    # Games autoscale defaults for this host: prefer 240 Hz targets but keep autoscale off
+    profiles.games = {
+      autoscaleDefault = false;
+      targetFps = 240;
+      nativeBaseFps = 240;
+    };
+
     # Reserve two physical cores (both SMT threads) for gaming by banning them
     # from IRQ balancing. Assumes typical Zen3 numbering where sibling threads
     # are offset by +16: CPUs 14,15 and 30,31. Adjust if your topology differs.
