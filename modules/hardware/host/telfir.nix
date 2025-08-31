@@ -25,7 +25,7 @@ in
     servicesProfiles = {
       adguardhome.enable = true;
       avahi.enable = true;
-      jellyfin.enable = true;
+      jellyfin.enable = false; # keep previously disabled state
       mpd.enable = true;
       navidrome.enable = true;
       openssh.enable = true;
