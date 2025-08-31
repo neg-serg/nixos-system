@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+  # Provide LD_LIBRARY_PATH to GL consumers that don't respect Nix store layout
+  hardware.opengl.setLdLibraryPath = true;
   hardware = {
     graphics = {
       enable = true;
