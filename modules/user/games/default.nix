@@ -215,6 +215,80 @@
     '';
   };
 
+  gamescopeTargetFPS = pkgs.writeShellApplication {
+    name = "gamescope-targetfps";
+    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.jq gawk pkgs.zenity];
+    text = ''
+      set -euo pipefail
+      CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
+      MON="${GAMESCOPE_MON:-}"
+      TARGET="${TARGET_FPS:-120}"
+      BASE="${NATIVE_BASE_FPS:-60}"
+
+      # Detect monitor and resolution (prefer selected, else best, else focused)
+      OUT_W="${GAMESCOPE_OUT_W:-}"; OUT_H="${GAMESCOPE_OUT_H:-}"
+      if [ -z "${OUT_W}" ] || [ -z "${OUT_H}" ]; then
+        if command -v hyprctl >/dev/null 2>&1; then
+          JSON=$(hyprctl monitors -j 2>/dev/null || true)
+          if [ -n "${JSON}" ]; then
+            if [ -z "${MON}" ]; then
+              BEST=$(printf '%s' "$JSON" | jq -r 'sort_by([.refreshRate, (.width // 0) * (.height // 0)]) | reverse | .[0].name // empty')
+              [ -n "${BEST}" ] && MON="${BEST}"
+            fi
+            if [ -n "${MON}" ]; then
+              W=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].height // empty')
+            else
+              W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
+              H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            fi
+            if [ -n "${W}" ] && [ -n "${H}" ]; then
+              OUT_W=${OUT_W:-$W}
+              OUT_H=${OUT_H:-$H}
+            fi
+          fi
+        fi
+      fi
+      OUT_W="${OUT_W:-3840}"; OUT_H="${OUT_H:-2160}"
+
+      # Focus chosen monitor if available
+      if [ -n "${MON}" ] && command -v hyprctl >/dev/null 2>&1; then
+        hyprctl dispatch focusmonitor "${MON}" >/dev/null 2>&1 || true
+      fi
+
+      # Choose refresh rate (env override wins)
+      RATE="${GAMESCOPE_RATE:-}"
+      if [ -z "${RATE}" ] && command -v hyprctl >/dev/null 2>&1; then
+        JSON=${JSON:-""}
+        if [ -z "${JSON}" ]; then JSON=$(hyprctl monitors -j 2>/dev/null || true); fi
+        if [ -n "${JSON}" ]; then
+          if [ -n "${MON}" ]; then
+            RR=$(printf '%s' "$JSON" | MON="$MON" jq -r 'map(select(.name==env.MON)) | .[0].refreshRate // empty')
+          else
+            RR=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].refreshRate // empty')
+          fi
+          if [ -n "${RR}" ] && [ "${RR}" != "null" ]; then
+            RATE=$(awk -v r="$RR" 'BEGIN{ printf("%d", (r<1)?0:int(r+0.5)) }')
+          fi
+        fi
+      fi
+      RATEFLAG=""; [ -n "${RATE}" ] && RATEFLAG="-r ${RATE}"
+
+      # Heuristic scale: assume native BASE fps at 1.0 scale, then scale ~ sqrt(BASE/TARGET)
+      SCALE=$(awk -v a="$BASE" -v t="$TARGET" 'BEGIN{ if(t<=0||a<=0){s=1.0}else{s=sqrt(a/t)}; if(s<0.5)s=0.5; if(s>1.0)s=1.0; printf("%.3f", s) }')
+      GAME_W=$(awk -v w="$OUT_W" -v s="$SCALE" 'BEGIN{ printf("%d", int(w*s+0.5)) }')
+      GAME_H=$(awk -v h="$OUT_H" -v s="$SCALE" 'BEGIN{ printf("%d", int(h*s+0.5)) }')
+
+      if [ "$#" -eq 0 ]; then
+        CMD=$(zenity --entry --title="Gamescope Target FPS" --text="Command to run (target ${TARGET} FPS, scale ${SCALE}):" || true)
+        [ -z "${CMD:-}" ] && exit 0
+        exec taskset -c "$CPUSET" gamemoderun gamescope -f --adaptive-sync ${RATEFLAG} -w "$GAME_W" -h "$GAME_H" -W "$OUT_W" -H "$OUT_H" --fsr-sharpness 3 -- bash -lc "$CMD"
+      else
+        exec taskset -c "$CPUSET" gamemoderun gamescope -f --adaptive-sync ${RATEFLAG} -w "$GAME_W" -h "$GAME_H" -W "$OUT_W" -H "$OUT_H" --fsr-sharpness 3 -- "$@"
+      fi
+    '';
+  };
+
   # Desktop entries for convenient launchers
   gamescopePerfDesktop = pkgs.makeDesktopItem {
     name = "gamescope-perf";
@@ -280,6 +354,7 @@ in {
     gamescopePerf
     gamescopeQuality
     gamescopeHDR
+    gamescopeTargetFPS
     gamescopePerfDesktop
     gamescopeQualityDesktop
     gamescopeHDRDesktop
