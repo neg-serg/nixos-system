@@ -13,12 +13,16 @@
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
+      settings = {
+        memtest86 = true;
+        edk2-uefi-shell = true;
+        consoleMode = "max";
+      };
     };
     loader = {
       efi.canTouchEfiVariables = true;
-      # With lanzaboote enabled, ensure systemd-boot is explicitly disabled
-      # and avoid setting unrelated systemd-boot options that would be ignored.
       systemd-boot.enable = lib.mkForce false;
+      timeout = 1;
     };
     initrd = {
       availableKernelModules = [
