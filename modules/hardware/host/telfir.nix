@@ -10,6 +10,8 @@ let
   isHost = (config.networking.hostName or "") == "telfir";
 in
   lib.mkIf isHost {
+    # Ensure removable media auto-mount is enabled on this host
+    hardware.storage.autoMount.enable = true;
     # Opt-in to bleeding-edge Mesa from Chaotic overlay on this host
     hardware.video.amd.useMesaGit = true;
     # Run flake checks on activation for this host
