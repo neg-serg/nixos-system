@@ -21,7 +21,7 @@
     nixPath = ["nixpkgs=${inputs.nixpkgs}"];
     settings = {
       accept-flake-config = true;
-      show-trace = true;
+      show-trace = false;
       netrc-file = config.sops.secrets."github-netrc".path;
       system-features = [
         "big-parallel"
