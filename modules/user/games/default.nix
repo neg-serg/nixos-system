@@ -222,8 +222,10 @@
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
       MON="${GAMESCOPE_MON:-}"
-      TARGET="${TARGET_FPS:-120}"
+      # By default autoscale is OFF unless explicitly requested
+      TARGET="${TARGET_FPS:-}"
       BASE="${NATIVE_BASE_FPS:-60}"
+      AUTOSCALE="${GAMESCOPE_AUTOSCALE:-}"
 
       # Detect monitor and resolution (prefer selected, else best, else focused)
       OUT_W="${GAMESCOPE_OUT_W:-}"; OUT_H="${GAMESCOPE_OUT_H:-}"
@@ -274,13 +276,20 @@
       fi
       RATEFLAG=""; [ -n "${RATE}" ] && RATEFLAG="-r ${RATE}"
 
-      # Heuristic scale: assume native BASE fps at 1.0 scale, then scale ~ sqrt(BASE/TARGET)
-      SCALE=$(awk -v a="$BASE" -v t="$TARGET" 'BEGIN{ if(t<=0||a<=0){s=1.0}else{s=sqrt(a/t)}; if(s<0.5)s=0.5; if(s>1.0)s=1.0; printf("%.3f", s) }')
+      # Heuristic autoscale (opt-in):
+      # - enable when TARGET_FPS is set OR GAMESCOPE_AUTOSCALE=1
+      # - formula: scale ≈ sqrt(BASE/TARGET) clamped to [0.5,1.0]
+      if [ -n "${TARGET}" ] || [ "${AUTOSCALE}" = "1" ]; then
+        if [ -z "${TARGET}" ]; then TARGET=120; fi
+        SCALE=$(awk -v a="$BASE" -v t="$TARGET" 'BEGIN{ if(t<=0||a<=0){s=1.0}else{s=sqrt(a/t)}; if(s<0.5)s=0.5; if(s>1.0)s=1.0; printf("%.3f", s) }')
+      else
+        SCALE=1.0
+      fi
       GAME_W=$(awk -v w="$OUT_W" -v s="$SCALE" 'BEGIN{ printf("%d", int(w*s+0.5)) }')
       GAME_H=$(awk -v h="$OUT_H" -v s="$SCALE" 'BEGIN{ printf("%d", int(h*s+0.5)) }')
 
       if [ "$#" -eq 0 ]; then
-        CMD=$(zenity --entry --title="Gamescope Target FPS" --text="Command to run (target ${TARGET} FPS, scale ${SCALE}):" || true)
+        CMD=$(zenity --entry --title="Gamescope Target FPS" --text="Command to run (scale ${SCALE}${TARGET:+, target ${TARGET} FPS}):" || true)
         [ -z "${CMD:-}" ] && exit 0
         exec taskset -c "$CPUSET" gamemoderun gamescope -f --adaptive-sync ${RATEFLAG} -w "$GAME_W" -h "$GAME_H" -W "$OUT_W" -H "$OUT_H" --fsr-sharpness 3 -- bash -lc "$CMD"
       else
