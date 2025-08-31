@@ -1,4 +1,4 @@
-{ lib, ... }:
+{lib, ...}:
 # This module defines a feature flag and granular toggles to apply
 # performance-oriented kernel/boot tweaks system-wide.
 #
@@ -8,9 +8,7 @@ let
   inherit (lib) mkEnableOption mkOption types;
 in {
   options.profiles.performance = {
-    enable = mkEnableOption (
-      "Performance-oriented kernel/boot tweaks (reduces security; use with care)."
-    );
+    enable = mkEnableOption "Performance-oriented kernel/boot tweaks (reduces security; use with care).";
 
     # Granular toggles (all default to true to preserve legacy behavior when
     # profiles.performance.enable = true)

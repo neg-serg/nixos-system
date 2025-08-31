@@ -9,18 +9,18 @@
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.modules) mkForce;
   # Toggle to include aggressive performance parameters; see profiles/performance.nix
-  perfEnabled = (config.profiles.performance.enable or false);
+  perfEnabled = config.profiles.performance.enable or false;
   # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
   mitigations_settings = [
     "mitigations=off"
   ];
   silence = [
-    "quiet"                        # Reduce kernel log verbosity during boot
-    "rd.systemd.show_status=auto"  # In initramfs: show status only on failures
-    "rd.udev.log_priority=3"       # In initramfs: udev log level (3=warning)
-    "splash"                       # Allow splash screen instead of text output
-    "systemd.show_status=false"    # Hide systemd unit status messages
-    "vt.global_cursor_default=0"   # Hide blinking cursor on virtual console
+    "quiet" # Reduce kernel log verbosity during boot
+    "rd.systemd.show_status=auto" # In initramfs: show status only on failures
+    "rd.udev.log_priority=3" # In initramfs: udev log level (3=warning)
+    "splash" # Allow splash screen instead of text output
+    "systemd.show_status=false" # Hide systemd unit status messages
+    "vt.global_cursor_default=0" # Hide blinking cursor on virtual console
   ];
   intel_hda_modules = [
     "snd_hda_codec"
@@ -29,19 +29,19 @@
     "snd_hda_intel"
   ];
   extra_security = [
-    "page_poison=1"         # Overwrite/poison freed memory (helps catch UAF bugs)
-    "page_alloc.shuffle=1"  # Randomize page allocator to reduce predictability
+    "page_poison=1" # Overwrite/poison freed memory (helps catch UAF bugs)
+    "page_alloc.shuffle=1" # Randomize page allocator to reduce predictability
   ];
   idle_nomwait = [
-    "idle=nomwait"            # Avoid MWAIT C-states (favor latency over power)
+    "idle=nomwait" # Avoid MWAIT C-states (favor latency over power)
   ];
   usb_noautosuspend = [
-    "usbcore.autosuspend=-1"  # Disable USB autosuspend (prevents input/audio hiccups)
+    "usbcore.autosuspend=-1" # Disable USB autosuspend (prevents input/audio hiccups)
   ];
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
   no_watchdog = [
-    "nowatchdog"             # Disable soft/hard lockup watchdogs
-    "kernel.nmi_watchdog=0"  # Disable NMI watchdog (lower overhead)
+    "nowatchdog" # Disable soft/hard lockup watchdogs
+    "kernel.nmi_watchdog=0" # Disable NMI watchdog (lower overhead)
   ]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
   # -- Blacklist
   obscure_network_protocols = ["ax25" "netrom" "rose"];
