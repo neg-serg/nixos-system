@@ -174,7 +174,7 @@ in {
       {
         name = "amd-platform-patches"; # recompile with AMD platform specific optimizations
         patch = null; # no patch is needed, just apply the options
-        extraStructuredConfig = mapAttrs (_: mkForce) {
+        structuredExtraConfig = mapAttrs (_: mkForce) {
           X86_AMD_PSTATE = yes;
           X86_EXTENDED_PLATFORM = no; # disable support for other x86 platforms
           X86_MCE_INTEL = no; # disable support for intel mce
@@ -209,7 +209,6 @@ in {
           RCU_NOCB_CPU = yes;
           RCU_LAZY = yes;
 
-          CONFIG_X86_NATIVE = yes;
         };
       }
     ];
