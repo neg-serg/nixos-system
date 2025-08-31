@@ -22,12 +22,34 @@
   # Preset launchers around gamescope-pinned with common flags
   gamescopePerf = pkgs.writeShellApplication {
     name = "gamescope-perf";
-    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity];
+    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity pkgs.jq gawk];
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
-      OUT_W="${GAMESCOPE_OUT_W:-3840}"; OUT_H="${GAMESCOPE_OUT_H:-2160}"
-      GAME_W="${GAMESCOPE_GAME_W:-2560}"; GAME_H="${GAMESCOPE_GAME_H:-1440}"
+      # Detect current monitor resolution via Hyprland; fallback to 3840x2160
+      OUT_W="${GAMESCOPE_OUT_W:-}"
+      OUT_H="${GAMESCOPE_OUT_H:-}"
+      if [ -z "${OUT_W}" ] || [ -z "${OUT_H}" ]; then
+        if command -v hyprctl >/dev/null 2>&1; then
+          JSON=$(hyprctl monitors -j 2>/dev/null || true)
+          if [ -n "${JSON}" ]; then
+            W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
+            H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            if [ -n "${W}" ] && [ -n "${H}" ]; then
+              OUT_W=${OUT_W:-$W}
+              OUT_H=${OUT_H:-$H}
+            fi
+          fi
+        fi
+      fi
+      OUT_W="${OUT_W:-3840}"; OUT_H="${OUT_H:-2160}"
+      # Default game render scale ≈ 0.66 of output for performance
+      GAME_W="${GAMESCOPE_GAME_W:-}"
+      GAME_H="${GAMESCOPE_GAME_H:-}"
+      if [ -z "${GAME_W}" ] || [ -z "${GAME_H}" ]; then
+        GAME_W=$(awk -v w="$OUT_W" 'BEGIN{ printf("%d", w*2/3) }')
+        GAME_H=$(awk -v h="$OUT_H" 'BEGIN{ printf("%d", h*2/3) }')
+      fi
       FLAGS="-f --adaptive-sync -w ${GAME_W} -h ${GAME_H} -W ${OUT_W} -H ${OUT_H} --fsr-sharpness 3"
       if [ "$#" -eq 0 ]; then
         CMD=$(zenity --entry --title="Gamescope Performance" --text="Command to run:" || true)
@@ -41,11 +63,25 @@
 
   gamescopeQuality = pkgs.writeShellApplication {
     name = "gamescope-quality";
-    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity];
+    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity pkgs.jq];
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
-      OUT_W="${GAMESCOPE_OUT_W:-3840}"; OUT_H="${GAMESCOPE_OUT_H:-2160}"
+      OUT_W="${GAMESCOPE_OUT_W:-}"; OUT_H="${GAMESCOPE_OUT_H:-}"
+      if [ -z "${OUT_W}" ] || [ -z "${OUT_H}" ]; then
+        if command -v hyprctl >/dev/null 2>&1; then
+          JSON=$(hyprctl monitors -j 2>/dev/null || true)
+          if [ -n "${JSON}" ]; then
+            W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
+            H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            if [ -n "${W}" ] && [ -n "${H}" ]; then
+              OUT_W=${OUT_W:-$W}
+              OUT_H=${OUT_H:-$H}
+            fi
+          fi
+        fi
+      fi
+      OUT_W="${OUT_W:-3840}"; OUT_H="${OUT_H:-2160}"
       FLAGS="-f --adaptive-sync -W ${OUT_W} -H ${OUT_H}"
       if [ "$#" -eq 0 ]; then
         CMD=$(zenity --entry --title="Gamescope Quality" --text="Command to run:" || true)
@@ -59,11 +95,25 @@
 
   gamescopeHDR = pkgs.writeShellApplication {
     name = "gamescope-hdr";
-    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity];
+    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity pkgs.jq];
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
-      OUT_W="${GAMESCOPE_OUT_W:-3840}"; OUT_H="${GAMESCOPE_OUT_H:-2160}"
+      OUT_W="${GAMESCOPE_OUT_W:-}"; OUT_H="${GAMESCOPE_OUT_H:-}"
+      if [ -z "${OUT_W}" ] || [ -z "${OUT_H}" ]; then
+        if command -v hyprctl >/dev/null 2>&1; then
+          JSON=$(hyprctl monitors -j 2>/dev/null || true)
+          if [ -n "${JSON}" ]; then
+            W=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].width // empty')
+            H=$(printf '%s' "$JSON" | jq -r 'map(select(.focused==true)) | .[0].height // empty')
+            if [ -n "${W}" ] && [ -n "${H}" ]; then
+              OUT_W=${OUT_W:-$W}
+              OUT_H=${OUT_H:-$H}
+            fi
+          fi
+        fi
+      fi
+      OUT_W="${OUT_W:-3840}"; OUT_H="${OUT_H:-2160}"
       FLAGS="-f --adaptive-sync --hdr-enabled -W ${OUT_W} -H ${OUT_H}"
       if [ "$#" -eq 0 ]; then
         CMD=$(zenity --entry --title="Gamescope HDR" --text="Command to run:" || true)
