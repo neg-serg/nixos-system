@@ -17,15 +17,13 @@
     import subprocess
     import sys
 
-    TASKSET = "taskset"
-    GAMEMODERUN = "gamemoderun"
     GAMESCOPE = "gamescope"
+    GAME_RUN = "game-run"
 
-    cpuset = os.environ.get("GAME_PIN_CPUSET", "14,15,30,31")
     flags = os.environ.get("GAMESCOPE_FLAGS", "-f --adaptive-sync")
 
     cmd = (
-        [TASKSET, "-c", cpuset, GAMEMODERUN, GAMESCOPE]
+        [GAME_RUN, GAMESCOPE]
         + shlex.split(flags)
         + ["--"]
         + sys.argv[1:]
@@ -35,15 +33,12 @@
 
   gamePinned = pkgs.writers.writePython3Bin "game-pinned" {}
     (dedentPy ''
-    import os
     import subprocess
     import sys
 
-    TASKSET = "taskset"
-    GAMEMODERUN = "gamemoderun"
+    GAME_RUN = "game-run"
 
-    cpuset = os.environ.get("GAME_PIN_CPUSET", "14,15,30,31")
-    cmd = [TASKSET, "-c", cpuset, GAMEMODERUN] + sys.argv[1:]
+    cmd = [GAME_RUN] + sys.argv[1:]
     raise SystemExit(subprocess.call(cmd))
     '');
 
@@ -60,8 +55,7 @@
     H = {
         "HYPRCTL": "hyprctl",
         "ZENITY": "zenity",
-        "TASKSET": "taskset",
-        "GAMEMODERUN": "gamemoderun",
+        "GAME_RUN": "game-run",
         "GAMESCOPE": "gamescope",
     }
 
@@ -97,7 +91,6 @@
         return None
 
 
-    cpuset = os.environ.get("GAME_PIN_CPUSET", "14,15,30,31")
     mon_env = os.environ.get("GAMESCOPE_MON")
     out_w = os.environ.get("GAMESCOPE_OUT_W")
     out_h = os.environ.get("GAMESCOPE_OUT_H")
@@ -171,7 +164,7 @@
         args = sys.argv[1:]
 
     cmd = (
-        [H["TASKSET"], "-c", cpuset, H["GAMEMODERUN"], H["GAMESCOPE"]]
+        [H["GAME_RUN"], H["GAMESCOPE"]]
         + flags
         + ["--"]
         + args
@@ -190,8 +183,7 @@
     H = {
         "HYPRCTL": "hyprctl",
         "ZENITY": "zenity",
-        "TASKSET": "taskset",
-        "GAMEMODERUN": "gamemoderun",
+        "GAME_RUN": "game-run",
         "GAMESCOPE": "gamescope",
     }
 
@@ -226,7 +218,6 @@
         return None
 
 
-    cpuset = os.environ.get("GAME_PIN_CPUSET", "14,15,30,31")
     mon_env = os.environ.get("GAMESCOPE_MON")
     out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
     out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
@@ -287,7 +278,7 @@
         args = sys.argv[1:]
 
     cmd = (
-        [H["TASKSET"], "-c", cpuset, H["GAMEMODERUN"], H["GAMESCOPE"]]
+        [H["GAME_RUN"], H["GAMESCOPE"]]
         + flags
         + ["--"]
         + args
@@ -306,8 +297,7 @@
     H = {
         "HYPRCTL": "hyprctl",
         "ZENITY": "zenity",
-        "TASKSET": "taskset",
-        "GAMEMODERUN": "gamemoderun",
+        "GAME_RUN": "game-run",
         "GAMESCOPE": "gamescope",
     }
 
@@ -342,7 +332,6 @@
         return None
 
 
-    cpuset = os.environ.get("GAME_PIN_CPUSET", "14,15,30,31")
     mon_env = os.environ.get("GAMESCOPE_MON")
     out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
     out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
@@ -403,7 +392,7 @@
         args = sys.argv[1:]
 
     cmd = (
-        [H["TASKSET"], "-c", cpuset, H["GAMEMODERUN"], H["GAMESCOPE"]]
+        [H["GAME_RUN"], H["GAMESCOPE"]]
         + flags
         + ["--"]
         + args
@@ -423,8 +412,7 @@
     H = {
         "HYPRCTL": "hyprctl",
         "ZENITY": "zenity",
-        "TASKSET": "taskset",
-        "GAMEMODERUN": "gamemoderun",
+        "GAME_RUN": "game-run",
         "GAMESCOPE": "gamescope",
     }
 
@@ -459,7 +447,6 @@
         return None
 
 
-    cpuset = os.environ.get("GAME_PIN_CPUSET", "14,15,30,31")
     mon_env = os.environ.get("GAMESCOPE_MON")
     target = os.environ.get("TARGET_FPS")
     base = float(os.environ.get("NATIVE_BASE_FPS", "60"))
@@ -543,7 +530,7 @@
         args = sys.argv[1:]
 
     cmd = (
-        [H["TASKSET"], "-c", cpuset, H["GAMEMODERUN"], H["GAMESCOPE"]]
+        [H["GAME_RUN"], H["GAMESCOPE"]]
         + flags
         + ["--"]
         + args
@@ -576,6 +563,81 @@
     terminal = false;
     categories = ["Game" "Utility"];
   };
+
+  # Helper: set affinity inside the scope to avoid shell escaping issues
+  gameAffinityExec = pkgs.writers.writePython3Bin "game-affinity-exec" {}
+    (dedentPy ''
+    import argparse
+    import os
+    import sys
+
+
+    def parse_cpuset(s: str):
+        cpus = set()
+        for part in s.split(','):
+            part = part.strip()
+            if not part:
+                continue
+            if '-' in part:
+                a, b = part.split('-', 1)
+                cpus.update(range(int(a), int(b) + 1))
+            else:
+                cpus.add(int(part))
+        return sorted(cpus)
+
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument(
+        '--cpus',
+        default=os.environ.get('GAME_PIN_CPUSET', '14,15,30,31'),
+    )
+    ap.add_argument('cmd', nargs=argparse.REMAINDER)
+    args = ap.parse_args()
+
+    if not args.cmd or args.cmd[0] != '--':
+        print(
+            'Usage: game-affinity-exec --cpus 14,15,30,31 -- <command> [args...]',
+            file=sys.stderr,
+        )
+        sys.exit(2)
+    cmd = args.cmd[1:]
+
+    cpus = parse_cpuset(args.cpus)
+    try:
+        os.sched_setaffinity(0, cpus)
+    except Exception as e:
+        print(f'Warning: failed to set CPU affinity: {e}', file=sys.stderr)
+
+    use_gamemode = os.environ.get('GAME_RUN_USE_GAMEMODE', '1') not in (
+        '0', 'false', 'no'
+    )
+    if use_gamemode:
+        cmd = ['gamemoderun'] + cmd
+
+    os.execvp(cmd[0], cmd)
+    '');
+
+  # Helper: run any command in a user cgroup scope with CPU affinity to gaming cores
+  gameRun = pkgs.writers.writePython3Bin "game-run" {}
+    (dedentPy ''
+    import os
+    import subprocess
+    import sys
+
+    CPUSET = os.environ.get('GAME_PIN_CPUSET', '14,15,30,31')
+    if len(sys.argv) <= 1:
+        print('Usage: game-run <command> [args...]', file=sys.stderr)
+        sys.exit(1)
+
+    cmd = [
+        'systemd-run', '--user', '--scope', '--same-dir', '--collect',
+        '-p', 'Slice=games.slice',
+        '-p', 'CPUWeight=10000', '-p', 'IOWeight=10000', '-p', 'TasksMax=infinity',
+        'game-affinity-exec', '--cpus', CPUSET, '--'
+    ] + sys.argv[1:]
+
+    raise SystemExit(subprocess.call(cmd))
+    '');
 in {
   options.profiles.games = {
     autoscaleDefault = lib.mkEnableOption "Enable autoscale heuristics by default for gamescope-targetfps.";
@@ -638,6 +700,8 @@ in {
         gamescopePerfDesktop
         gamescopeQualityDesktop
         gamescopeHDRDesktop
+        gameRun
+        gameAffinityExec
       ];
 
       # Global defaults for target-fps wrapper (opt-in switch)
@@ -670,6 +734,9 @@ in {
         io_write=1
         gamemode=1
       '';
+
+      # No static games.slice unit file: we rely on transient scope created
+      # by systemd-run with -p Slice=games.slice and per-scope properties.
     };
 
     security.wrappers.gamemode = {
