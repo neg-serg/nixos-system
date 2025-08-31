@@ -379,15 +379,15 @@ in {
     autoscaleDefault = lib.mkEnableOption "Enable autoscale heuristics by default for gamescope-targetfps.";
     targetFps = lib.mkOption {
       type = lib.types.int;
-      default = 120;
+      default = 240;
       description = "Default target FPS used when autoscale is enabled globally or TARGET_FPS is unset.";
       example = 240;
     };
     nativeBaseFps = lib.mkOption {
       type = lib.types.int;
-      default = 60;
+      default = 240;
       description = "Estimated FPS at native resolution used as baseline for autoscale heuristic.";
-      example = 80;
+      example = 240;
     };
   };
 
