@@ -32,8 +32,10 @@
     "page_poison=1"         # Overwrite/poison freed memory (helps catch UAF bugs)
     "page_alloc.shuffle=1"  # Randomize page allocator to reduce predictability
   ];
-  idle = [
+  idle_nomwait = [
     "idle=nomwait"            # Avoid MWAIT C-states (favor latency over power)
+  ];
+  usb_noautosuspend = [
     "usbcore.autosuspend=-1"  # Disable USB autosuspend (prevents input/audio hiccups)
   ];
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
@@ -76,21 +78,37 @@
   ];
   # Extra params applied only when profiles.performance.enable = true
   perf_params =
-    [
-      "audit=0"                  # Disable Linux auditing to reduce syscall overhead
-      "cryptomgr.notests"        # Skip crypto self-tests to speed up boot
-      "noreplace-smp"            # Do not patch alternatives at runtime (minor perf gains)
-      "pcie_aspm=performance"    # Prefer performance over power saving for PCIe links
-      "preempt=full"             # Lower latency scheduling (may reduce throughput)
-      "rcupdate.rcu_expedited=1" # Faster RCU grace periods for responsiveness
-      "threadirqs"               # Run IRQ handlers in threads for better scheduling control
-      "tsc=reliable"             # Trust TSC as reliable clocksource
-      "split_lock_detect=off"    # Disable split lock detection (reduces overhead)
+    []
+    ++ lib.optionals config.profiles.performance.disableAudit [
+      "audit=0"
     ]
-    ++ mitigations_settings      # Disable CPU vulnerability mitigations (security trade-off)
-    ++ silence                   # Quieter boot output
-    ++ no_watchdog               # Disable watchdogs to avoid overhead
-    ++ idle;                     # Idle/power knobs (e.g. nomwait, USB autosuspend)
+    ++ lib.optionals config.profiles.performance.skipCryptoSelftests [
+      "cryptomgr.notests"
+    ]
+    ++ lib.optionals config.profiles.performance.noreplaceSmp [
+      "noreplace-smp"
+    ]
+    ++ lib.optionals config.profiles.performance.pciePerformance [
+      "pcie_aspm=performance"
+    ]
+    ++ lib.optionals config.profiles.performance.lowLatencyScheduling [
+      "preempt=full"
+      "threadirqs"
+    ]
+    ++ lib.optionals config.profiles.performance.fastRCU [
+      "rcupdate.rcu_expedited=1"
+    ]
+    ++ lib.optionals config.profiles.performance.trustTSC [
+      "tsc=reliable"
+    ]
+    ++ lib.optionals config.profiles.performance.disableSplitLockDetect [
+      "split_lock_detect=off"
+    ]
+    ++ lib.optionals config.profiles.performance.disableMitigations mitigations_settings
+    ++ lib.optionals config.profiles.performance.quietBoot silence
+    ++ lib.optionals config.profiles.performance.disableWatchdogs no_watchdog
+    ++ lib.optionals config.profiles.performance.idleNoMwait idle_nomwait
+    ++ lib.optionals config.profiles.performance.disableUsbAutosuspend usb_noautosuspend;
 in {
   # thx to https://github.com/hlissner/dotfiles
   boot = {
