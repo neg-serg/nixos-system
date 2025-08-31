@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.servicesProfiles.navidrome;
 in {
   options.servicesProfiles.navidrome.enable = lib.mkEnableOption "Navidrome music server profile";

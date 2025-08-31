@@ -46,7 +46,7 @@ in {
       type = with lib.types; listOf str;
       default = [];
       description = "Extra arguments to pass to 'nix flake check'.";
-      example = ["--show-trace" "--print-build-logs"]; 
+      example = ["--show-trace" "--print-build-logs"];
     };
   };
 
@@ -66,4 +66,3 @@ in {
     '';
   };
 }
-

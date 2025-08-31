@@ -1,9 +1,11 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.services.nextcloud;
   domain = cfg.hostName or "localhost";
-in
-{
+in {
   options.services.nextcloud.nginxProxy.enable = lib.mkOption {
     type = lib.types.bool;
     default = false;
@@ -22,7 +24,7 @@ in
     ];
 
     # Open HTTP/HTTPS for ACME + clients
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [80 443];
 
     # Accept LE terms; set a real email to receive expiry notices
     security.acme = {
@@ -44,4 +46,3 @@ in
     };
   };
 }
-

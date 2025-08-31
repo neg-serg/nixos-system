@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.servicesProfiles.mpd;
   myUser = "neg";
   myHome = "/home/${myUser}";
