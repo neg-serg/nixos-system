@@ -3,3 +3,6 @@ domain
 domains
 nixos.qcow2
 result-man
+
+.tmp_py
+.tmp_py_dedented
