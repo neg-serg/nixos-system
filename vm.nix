@@ -28,4 +28,7 @@
     matchConfig.Name = "*";
     networkConfig.DHCP = "ipv4";
   };
+
+  # Enable removable media auto-mount in the VM for convenience/testing
+  hardware.storage.autoMount.enable = true;
 }
