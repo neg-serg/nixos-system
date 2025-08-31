@@ -19,6 +19,8 @@
       # Prefer Mesa VAAPI/VDPAU on AMD (radeonsi)
       LIBVA_DRIVER_NAME = "radeonsi";
       VDPAU_DRIVER = "radeonsi";
+      # Legacy GL apps; extend any base value
+      LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:/run/opengl-driver/lib:/run/opengl-driver-32/lib";
       XDG_CACHE_HOME = "$HOME/.cache";
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_DATA_HOME = "$HOME/.local/share";
@@ -52,8 +54,6 @@
         ])
         + ":$HOME/.${format}";
     in {
-      # Legacy GL apps that rely on LD_LIBRARY_PATH
-      LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib:$LD_LIBRARY_PATH";
       # Encourage Wayland backends where supported
       QT_QPA_PLATFORM = "wayland";
       SDL_VIDEODRIVER = "wayland";
