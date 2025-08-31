@@ -7,7 +7,7 @@
     enable = true;
     xdgOpenUsePortal = true;
     extraPortals = [
-      inputs.xdg-desktop-portal-hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
+      # Hyprland portal is provided via programs.hyprland.portalPackage
       pkgs.xdg-desktop-portal-termfilechooser
       pkgs.xdg-desktop-portal-gtk
     ];
