@@ -20,7 +20,7 @@
   services = {
     udisks2.enable = true;
     upower.enable = true;
-    devmon.enable = true; # TODO try disable later
+    devmon.enable = false; # disabled on stable hardware; enable per-host if needed
     fwupd.enable = true;
   };
   hardware = {
