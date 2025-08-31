@@ -2,8 +2,11 @@
   hardware = {
     graphics = {
       enable = true;
+      enable32Bit = true; # 32-bit userspace for Steam/Wine
       extraPackages = with pkgs; [
         rocmPackages.clr.icd
+        mesa-vdpau
+        mesa-vaapi
       ];
     };
     amdgpu.opencl.enable = true;
@@ -17,6 +20,8 @@
       rocmPackages.rocminfo
       rocmPackages.rocm-smi
       glxinfo # show info about glx
+      libva-utils # vainfo, encode/decode probing
+      vdpauinfo
       lact # linux amdgpu controller
       (nvtopPackages.amd.override {intel = true;})
       vulkan-extension-layer
