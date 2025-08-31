@@ -108,7 +108,14 @@
     ++ lib.optionals config.profiles.performance.quietBoot silence
     ++ lib.optionals config.profiles.performance.disableWatchdogs no_watchdog
     ++ lib.optionals config.profiles.performance.idleNoMwait idle_nomwait
-    ++ lib.optionals config.profiles.performance.disableUsbAutosuspend usb_noautosuspend;
+    ++ lib.optionals config.profiles.performance.disableUsbAutosuspend usb_noautosuspend
+    # zswap tuning (behind profiles.performance.zswap.enable)
+    ++ lib.optionals (config.profiles.performance.zswap.enable or false) [
+      "zswap.enabled=1"
+      "zswap.compressor=${config.profiles.performance.zswap.compressor}"
+      "zswap.max_pool_percent=${builtins.toString config.profiles.performance.zswap.maxPoolPercent}"
+      "zswap.zpool=${config.profiles.performance.zswap.zpool}"
+    ];
 in {
   # thx to https://github.com/hlissner/dotfiles
   boot = {

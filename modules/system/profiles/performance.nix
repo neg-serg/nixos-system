@@ -79,5 +79,28 @@ in {
       default = true;
       description = "Disable split lock detection: split_lock_detect=off.";
     };
+
+    # Fancy zswap toggle and tuning
+    zswap = {
+      enable = mkEnableOption "Enable zswap compressed swap cache in RAM.";
+      compressor = mkOption {
+        type = types.str;
+        default = "zstd";
+        description = "zswap compressor (e.g., zstd, lz4, lzo).";
+        example = "zstd";
+      };
+      maxPoolPercent = mkOption {
+        type = types.int;
+        default = 25;
+        description = "Maximum percentage of RAM used by zswap pool.";
+        example = 25;
+      };
+      zpool = mkOption {
+        type = types.str;
+        default = "zsmalloc";
+        description = "zswap zpool implementation (e.g., zsmalloc, zbud).";
+        example = "zsmalloc";
+      };
+    };
   };
 }

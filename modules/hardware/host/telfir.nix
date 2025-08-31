@@ -18,4 +18,7 @@ lib.mkIf isHost {
     # Force preferred mode for this monitor (4K 240Hz). Adjust per hardware.
     "video=3840x2160@240"
   ];
+
+  # Use fancy zswap option instead of raw kernel param
+  profiles.performance.zswap.enable = true;
 }
