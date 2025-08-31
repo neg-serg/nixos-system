@@ -13,6 +13,7 @@ _: {
         "rw"
         "relatime"
         "lazytime"
+        "discard=async"
       ];
     };
 
@@ -28,6 +29,7 @@ _: {
         "x-systemd.automount"
         "relatime"
         "lazytime"
+        "discard=async"
         "rw"
       ];
     };
@@ -35,7 +37,7 @@ _: {
     "/one" = {
       device = "/dev/mapper/xenon-one";
       fsType = "xfs";
-      options = ["x-systemd.automount" "relatime" "lazytime" "rw"];
+      options = ["x-systemd.automount" "relatime" "lazytime" "discard=async" "rw"];
     };
 
     "/home/neg/music" = {
