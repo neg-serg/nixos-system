@@ -108,6 +108,10 @@
     ++ lib.optionals config.profiles.performance.disableWatchdogs no_watchdog
     ++ lib.optionals config.profiles.performance.idleNoMwait idle_nomwait
     ++ lib.optionals config.profiles.performance.disableUsbAutosuspend usb_noautosuspend
+    ++ [
+      # Prefer modern AMD CPU frequency driver on Zen 3 (5950X)
+      "amd_pstate=active"
+    ]
     # zswap tuning (behind profiles.performance.zswap.enable)
     ++ lib.optionals (config.profiles.performance.zswap.enable or false) [
       "zswap.enabled=1"
