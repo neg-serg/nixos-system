@@ -111,6 +111,8 @@
     ++ [
       # Prefer modern AMD CPU frequency driver on Zen 3 (5950X)
       "amd_pstate=active"
+      # Favor max NVMe performance (disable APST latency limits)
+      "nvme_core.default_ps_max_latency_us=0"
     ]
     # zswap tuning (behind profiles.performance.zswap.enable)
     ++ lib.optionals (config.profiles.performance.zswap.enable or false) [
