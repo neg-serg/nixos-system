@@ -39,6 +39,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Make Cachix caches available to all `nix {build,develop,run}` commands
@@ -114,6 +118,14 @@
       # Lightweight repo checks for `nix flake check`
       checks.${system} = let
         pkgs = nixpkgs.legacyPackages.${system};
+        preCommit = inputs.pre-commit-hooks.lib.${system}.run {
+          src = self;
+          hooks = {
+            alejandra.enable = true;
+            statix.enable = true;
+            deadnix.enable = true;
+          };
+        };
       in {
         fmt-alejandra =
           pkgs.runCommand "fmt-alejandra" {
@@ -141,13 +153,23 @@
             statix check .
             touch "$out"
           '';
+        pre-commit = preCommit;
       };
 
       # Developer shell
       devShells.${system}.default = let
         pkgs = nixpkgs.legacyPackages.${system};
+        preCommit = inputs.pre-commit-hooks.lib.${system}.run {
+          src = self;
+          hooks = {
+            alejandra.enable = true;
+            statix.enable = true;
+            deadnix.enable = true;
+          };
+        };
       in
         pkgs.mkShell {
+          inherit (preCommit) shellHook;
           packages = [
             pkgs.alejandra
             pkgs.deadnix
