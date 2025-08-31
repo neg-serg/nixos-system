@@ -13,6 +13,11 @@ in
     # Disable auto-upgrade by default on this host
     system.autoUpgrade.enable = lib.mkForce false;
 
+    # Disable automatic GC and optimise on this host
+    nix.gc.automatic = lib.mkForce false;
+    nix.optimise.automatic = lib.mkForce false;
+    nix.settings.auto-optimise-store = lib.mkForce false;
+
     # Enable performance profile on this host
     profiles.performance.enable = true;
 

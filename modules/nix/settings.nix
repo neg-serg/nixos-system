@@ -40,11 +40,18 @@
       max-jobs = "auto"; # Use all available cores
       use-xdg-base-directories = true;
       warn-dirty = false; # Disable annoying dirty warn
+      # Deduplicate the Nix store on writes
+      auto-optimise-store = true;
     };
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 21d";
+    };
+    optimise = {
+      # Run nix-store --optimise via systemd timer
+      automatic = true;
+      dates = "weekly";
     };
     registry.nixpkgs.flake = inputs.nixpkgs;
     daemonCPUSchedPolicy = "batch";
