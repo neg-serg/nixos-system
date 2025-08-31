@@ -7,6 +7,7 @@
   imports = [
     ./audio
     ./cpu
+    # Per-host overrides (ACPI quirks, display modes, etc.)
     ./host/telfir.nix
     ./dygma # ergonimic keyboard brand
     ./io

@@ -1,23 +1,26 @@
 {
   lib,
   pkgs,
+  config,
   kexec_enabled,
   ...
 }: let
   inherit (lib.kernel) yes no freeform;
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.modules) mkForce;
+  # Toggle to include aggressive performance parameters; see profiles/performance.nix
+  perfEnabled = (config.profiles.performance.enable or false);
   # Disables all security mitigations. This can significantly improve performance, but it can also make the system very vulnerable to security attacks.
   mitigations_settings = [
     "mitigations=off"
   ];
   silence = [
-    "quiet"
-    "rd.systemd.show_status=auto"
-    "rd.udev.log_priority=3"
-    "splash"
-    "systemd.show_status=false"
-    "vt.global_cursor_default=0"
+    "quiet"                        # Reduce kernel log verbosity during boot
+    "rd.systemd.show_status=auto"  # In initramfs: show status only on failures
+    "rd.udev.log_priority=3"       # In initramfs: udev log level (3=warning)
+    "splash"                       # Allow splash screen instead of text output
+    "systemd.show_status=false"    # Hide systemd unit status messages
+    "vt.global_cursor_default=0"   # Hide blinking cursor on virtual console
   ];
   intel_hda_modules = [
     "snd_hda_codec"
@@ -26,15 +29,18 @@
     "snd_hda_intel"
   ];
   extra_security = [
-    "page_poison=0" # Poison freed memory (hardening) ( too much overhead for production, so set it to zero )
-    "page_alloc.shuffle=1" # Enable page allocator randomization
+    "page_poison=1"         # Overwrite/poison freed memory (helps catch UAF bugs)
+    "page_alloc.shuffle=1"  # Randomize page allocator to reduce predictability
   ];
   idle = [
-    "idle=nomwait" # nomwait: Disable mwait for CPU C-states
-    "usbcore.autosuspend=-1" # disable usb autosuspend
+    "idle=nomwait"            # Avoid MWAIT C-states (favor latency over power)
+    "usbcore.autosuspend=-1"  # Disable USB autosuspend (prevents input/audio hiccups)
   ];
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
-  no_watchdog = ["nowatchdog" "kernel.nmi_watchdog=0"]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
+  no_watchdog = [
+    "nowatchdog"             # Disable soft/hard lockup watchdogs
+    "kernel.nmi_watchdog=0"  # Disable NMI watchdog (lower overhead)
+  ]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
   # -- Blacklist
   obscure_network_protocols = ["ax25" "netrom" "rose"];
   old_rare_insufficiently_audited_fs = [
@@ -64,6 +70,27 @@
     "ufs"
     "vivid"
   ];
+  # Baseline params applied to all builds
+  base_params = [
+    "net.ifnames=0" # Keep traditional predictable names disabled (use eth0/wlan0)
+  ];
+  # Extra params applied only when profiles.performance.enable = true
+  perf_params =
+    [
+      "audit=0"                  # Disable Linux auditing to reduce syscall overhead
+      "cryptomgr.notests"        # Skip crypto self-tests to speed up boot
+      "noreplace-smp"            # Do not patch alternatives at runtime (minor perf gains)
+      "pcie_aspm=performance"    # Prefer performance over power saving for PCIe links
+      "preempt=full"             # Lower latency scheduling (may reduce throughput)
+      "rcupdate.rcu_expedited=1" # Faster RCU grace periods for responsiveness
+      "threadirqs"               # Run IRQ handlers in threads for better scheduling control
+      "tsc=reliable"             # Trust TSC as reliable clocksource
+      "split_lock_detect=off"    # Disable split lock detection (reduces overhead)
+    ]
+    ++ mitigations_settings      # Disable CPU vulnerability mitigations (security trade-off)
+    ++ silence                   # Quieter boot output
+    ++ no_watchdog               # Disable watchdogs to avoid overhead
+    ++ idle;                     # Idle/power knobs (e.g. nomwait, USB autosuspend)
 in {
   # thx to https://github.com/hlissner/dotfiles
   boot = {
@@ -112,23 +139,9 @@ in {
       ++ intel_hda_modules
       ++ old_rare_insufficiently_audited_fs;
     kernelParams =
-      [
-        "audit=0"
-        "cryptomgr.notests"
-        "net.ifnames=0"
-        "noreplace-smp"
-        "pcie_aspm=performance"
-        "preempt=full"
-        "rcupdate.rcu_expedited=1"
-        "threadirqs"
-        "tsc=reliable"
-        "split_lock_detect=off"
-      ]
-      ++ mitigations_settings
-      ++ silence
-      ++ no_watchdog
-      ++ extra_security
-      ++ idle;
+      base_params
+      ++ lib.optionals perfEnabled perf_params
+      ++ extra_security;
     kernelPatches = [
       {
         name = "amd-platform-patches"; # recompile with AMD platform specific optimizations
