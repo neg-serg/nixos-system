@@ -31,6 +31,13 @@ in
     services.caddy = {
       enable = true;
       email = lib.mkDefault "change-me@example.com";
+      # Prevent Caddy from attempting to install the internal CA
+      # into the host trust store (not permitted under NixOS service user)
+      globalConfig = ''
+        pki {
+          install_trust false
+        }
+      '';
       virtualHosts.${domain}.extraConfig = ''
         # Nextcloud on Caddy v2
         encode zstd gzip
@@ -42,6 +49,13 @@ in
           X-Frame-Options "SAMEORIGIN"
           Referrer-Policy "no-referrer"
           X-XSS-Protection "1; mode=block"
+          # Additional hardening
+          Cross-Origin-Opener-Policy "same-origin"
+          Cross-Origin-Resource-Policy "same-origin"
+          X-Permitted-Cross-Domain-Policies "none"
+          X-Download-Options "noopen"
+          X-Robots-Tag "noindex, nofollow"
+          Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), interest-cohort=(), fullscreen=(self), picture-in-picture=(self)"
         }
 
         # Well-known redirects for CalDAV/CardDAV and other discovery endpoints
