@@ -3,11 +3,7 @@
   config,
   pkgs,
   ...
-}: let
-  auto = config.hardware.storage.autoMount;
-in {
-  options.hardware.storage.autoMount.enable =
-    lib.mkEnableOption "Enable removable-media auto-mount via devmon (udisks2).";
+}: {
   imports = [
     ./audio
     ./cpu
@@ -24,8 +20,7 @@ in {
   services = {
     udisks2.enable = true;
     upower.enable = true;
-    # Gate devmon behind a host-togglable flag; default remains off
-    devmon.enable = lib.mkDefault (auto.enable or false);
+    devmon.enable = true; # auto-mount removable media via udisks2
     fwupd.enable = true;
   };
   hardware = {
