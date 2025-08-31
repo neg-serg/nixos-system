@@ -33,4 +33,14 @@ in
 
     # Use fancy zswap option instead of raw kernel param
     profiles.performance.zswap.enable = true;
+
+    # Nextcloud via Caddy on LAN, served as "telfir"
+    services.nextcloud = {
+      hostName = "telfir";
+      caddyProxy.enable = true;
+    };
+    services.caddy.email = "serg.zorg@gmail.com";
+
+    # Local name resolution on this host as well
+    networking.hosts."192.168.2.240" = ["telfir" "telfir.local"];
   }
