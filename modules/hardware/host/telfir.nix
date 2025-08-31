@@ -52,6 +52,16 @@ in
       "acpi_osi=Linux"
       # Force preferred mode for this monitor (4K 240Hz). Adjust per hardware.
       "video=3840x2160@240"
+      # Gaming/low-latency CPU isolation (5950X: 32 threads total)
+      # Reserve two physical cores (SMT siblings are +16): CPUs 14,15 and 30,31
+      # - Prevent scheduler tick on isolated CPUs
+      "nohz_full=14,15,30,31"
+      # - Move RCU callbacks off isolated CPUs
+      "rcu_nocbs=14,15,30,31"
+      # - Isolate from scheduler domains; managed allows cpuset to control placement
+      "isolcpus=managed,domain,14-15,30-31"
+      # - Keep default IRQ affinity off the isolated CPUs (housekeeping on the rest)
+      "irqaffinity=0-13,16-29"
     ];
 
     # Disable zswap and zram on this host to avoid double compression
@@ -79,4 +89,9 @@ in
     # from IRQ balancing. Assumes typical Zen3 numbering where sibling threads
     # are offset by +16: CPUs 14,15 and 30,31. Adjust if your topology differs.
     systemd.services.irqbalance.environment.IRQBALANCE_BANNED_CPUS = "0xC000C000";
+
+    # Keep system/user services on housekeeping CPUs by default; games/tools
+    # can explicitly opt into isolated CPUs via taskset/systemd-run AllowedCPUs
+    # Use list to render space-separated value in systemd.conf
+    systemd.settings.Manager.CPUAffinity = ["0-13" "16-29"];
   }
