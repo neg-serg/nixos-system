@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, lib, ...}: {
   imports = [
     ./nscd.nix
     ./pkgs.nix
@@ -8,18 +8,13 @@
     ./vpn
   ];
   services = {
-    resolved.enable = true;
-    dnsmasq = {
+    resolved = {
       enable = true;
-      settings = {
-        interface = "br0";
-        dhcp-range = "192.168.122.50,192.168.122.150,12h";
-        dhcp-option = [
-          "option:router,192.168.122.1"
-          "option:dns-server,192.168.122.1"
-        ];
-        bind-interfaces = true;
-      };
+      # Forward all DNS queries to local unbound on 127.0.0.1:5353
+      extraConfig = ''
+        DNS=127.0.0.1:5353
+        Domains=~.
+      '';
     };
     udev.extraRules = ''
       KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0e", NAME="net0"
@@ -37,9 +32,8 @@
       "::1" = ["localhost"];
     };
     useNetworkd = true;
-    nameservers = [
-      "127.0.0.1:53"
-    ];
+    # Rely on systemd-resolved to forward to unbound; no direct nameserver needed here.
+    nameservers = [];
   };
 
   environment.systemPackages = with pkgs; [
