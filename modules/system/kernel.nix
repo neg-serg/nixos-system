@@ -26,7 +26,7 @@
     "snd_hda_intel"
   ];
   extra_security = [
-    "page_poison=0" # Overwrite free'd memory
+    "page_poison=0" # Poison freed memory (hardening) ( too much overhead for production, so set it to zero )
     "page_alloc.shuffle=1" # Enable page allocator randomization
   ];
   idle = [
@@ -34,9 +34,7 @@
     "usbcore.autosuspend=-1" # disable usb autosuspend
   ];
   # iommu_on = [ "amd_iommu=on" "iommu=pt" ];
-  acpi_settings = ["acpi_osi=!" "acpi_osi=Linux"];
   no_watchdog = ["nowatchdog" "kernel.nmi_watchdog=0"]; # https://wiki.archlinux.org/title/improving_performance#Watchdogs
-  video_settings = ["video=3840x2160@240"];
   # -- Blacklist
   obscure_network_protocols = ["ax25" "netrom" "rose"];
   old_rare_insufficiently_audited_fs = [
@@ -130,8 +128,6 @@ in {
       ++ silence
       ++ no_watchdog
       ++ extra_security
-      ++ acpi_settings
-      ++ video_settings
       ++ idle;
     kernelPatches = [
       {

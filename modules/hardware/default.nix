@@ -7,6 +7,7 @@
   imports = [
     ./audio
     ./cpu
+    ./host/telfir.nix
     ./dygma # ergonimic keyboard brand
     ./io
     ./keyd # systemwide keyboard manager
