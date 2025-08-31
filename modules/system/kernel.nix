@@ -78,8 +78,7 @@
   ];
   # Extra params applied only when profiles.performance.enable = true
   perf_params =
-    []
-    ++ lib.optionals config.profiles.performance.disableAudit [
+    lib.optionals config.profiles.performance.disableAudit [
       "audit=0"
     ]
     ++ lib.optionals config.profiles.performance.skipCryptoSelftests [
