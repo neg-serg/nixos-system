@@ -7,14 +7,7 @@
     ./vpn
   ];
   services = {
-    resolved = {
-      enable = true;
-      # Forward all DNS queries to local unbound on 127.0.0.1:5353
-      extraConfig = ''
-        DNS=127.0.0.1:5353
-        Domains=~.
-      '';
-    };
+    # systemd-resolved removed; AdGuardHome listens on :53 and forwards to Unbound on :5353
     udev.extraRules = ''
       KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0e", NAME="net0"
       KERNEL=="eth*", ATTR{address}=="fc:34:97:b7:16:0f", NAME="net1"
@@ -31,8 +24,8 @@
       "::1" = ["localhost"];
     };
     useNetworkd = true;
-    # Rely on systemd-resolved to forward to unbound; no direct nameserver needed here.
-    nameservers = [];
+    # Resolve via local AdGuardHome
+    nameservers = ["127.0.0.1"];
   };
 
   environment.systemPackages = with pkgs; [
@@ -69,7 +62,7 @@
           PoolOffset = 50; # start at .50
           PoolSize = 101; # up to .150 inclusive
           EmitDNS = true; # advertise DNS
-          DNS = ["192.168.122.1"]; # host as DNS (resolved→unbound)
+          DNS = ["192.168.122.1"]; # host as DNS (AdGuardHome→Unbound)
           EmitRouter = true; # advertise default route
           Router = "192.168.122.1"; # host as router for guests
           DefaultLeaseTimeSec = 12 * 3600; # 12h (matches previous)
