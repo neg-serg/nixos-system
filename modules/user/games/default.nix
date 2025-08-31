@@ -23,7 +23,7 @@
   # Preset launchers around gamescope-pinned with common flags
   gamescopePerf = pkgs.writeShellApplication {
     name = "gamescope-perf";
-    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity pkgs.jq gawk];
+    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.zenity pkgs.jq pkgs.gawk];
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
@@ -218,7 +218,7 @@
 
   gamescopeTargetFPS = pkgs.writeShellApplication {
     name = "gamescope-targetfps";
-    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.jq gawk pkgs.zenity];
+    runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode pkgs.jq pkgs.gawk pkgs.zenity];
     text = ''
       set -euo pipefail
       CPUSET="${GAME_PIN_CPUSET:-14,15,30,31}"
