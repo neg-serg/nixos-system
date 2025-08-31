@@ -1,4 +1,5 @@
-{pkgs, lib, ...}: let
+{pkgs, lib, config, ...}: let
+  cfg = config.profiles.games or {};
   gamescopePinned = pkgs.writeShellApplication {
     name = "gamescope-pinned";
     runtimeInputs = [pkgs.util-linux pkgs.gamescope pkgs.gamemode];
@@ -324,6 +325,22 @@
     categories = ["Game" "Utility"];
   };
 in {
+  options.profiles.games = {
+    autoscaleDefault = lib.mkEnableOption "Enable autoscale heuristics by default for gamescope-targetfps.";
+    targetFps = lib.mkOption {
+      type = lib.types.int;
+      default = 120;
+      description = "Default target FPS used when autoscale is enabled globally or TARGET_FPS is unset.";
+      example = 240;
+    };
+    nativeBaseFps = lib.mkOption {
+      type = lib.types.int;
+      default = 60;
+      description = "Estimated FPS at native resolution used as baseline for autoscale heuristic.";
+      example = 80;
+    };
+  };
+
   programs = {
     steam = {
       enable = true;
@@ -368,6 +385,13 @@ in {
     gamescopeQualityDesktop
     gamescopeHDRDesktop
   ];
+
+  # Global defaults for target-fps wrapper (opt-in switch)
+  environment.variables = lib.mkIf (cfg.autoscaleDefault or false) {
+    GAMESCOPE_AUTOSCALE = "1";
+    TARGET_FPS = builtins.toString (cfg.targetFps or 120);
+    NATIVE_BASE_FPS = builtins.toString (cfg.nativeBaseFps or 60);
+  };
 
   # System-wide MangoHud defaults
   environment.etc."xdg/MangoHud/MangoHud.conf".text = ''
