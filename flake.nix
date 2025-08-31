@@ -11,14 +11,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # Keep Hyprland-related inputs in lockstep with the pinned Hyprland flake
-    hyprland-protocols.inputs.hyprland.follows = "hyprland";
     hyprland-protocols.follows = "hyprland/hyprland-protocols";
-    hyprland-qt-support.inputs.hyprland.follows = "hyprland";
-    hyprland-qt-support.follows = "hyprland/hyprland-qt-support";
-    hyprland-qtutils.inputs.hyprland.follows = "hyprland";
     hyprland-qtutils.follows = "hyprland/hyprland-qtutils";
-    xdg-desktop-portal-hyprland.inputs.hyprland.follows = "hyprland";
-    xdg-desktop-portal-hyprland.follows = "hyprland/xdg-desktop-portal-hyprland";
+    # qt-support is nested under hyprland-qtutils
+    hyprland-qt-support.follows = "hyprland/hyprland-qtutils/hyprland-qt-support";
+    # xdg-desktop-portal-hyprland is named 'xdph' in Hyprland's flake inputs
+    xdg-desktop-portal-hyprland.follows = "hyprland/xdph";
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
