@@ -10,6 +10,9 @@ let
   isHost = (config.networking.hostName or "") == "telfir";
 in
   lib.mkIf isHost {
+    # Run flake checks on activation for this host
+    flakePreflight.enable = true;
+
     # Disable auto-upgrade by default on this host
     system.autoUpgrade.enable = lib.mkForce false;
 
