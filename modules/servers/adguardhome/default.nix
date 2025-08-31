@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.servicesProfiles.adguardhome;
 in {
   options.servicesProfiles.adguardhome.enable = lib.mkEnableOption "AdGuard Home profile";
@@ -17,8 +20,14 @@ in {
           bootstrap_dns = ["1.1.1.1" "8.8.8.8"];
           # Local rewrites so LAN clients can resolve Nextcloud host
           rewrites = [
-            { domain = "telfir"; answer = "192.168.2.240"; }
-            { domain = "telfir.local"; answer = "192.168.2.240"; }
+            {
+              domain = "telfir";
+              answer = "192.168.2.240";
+            }
+            {
+              domain = "telfir.local";
+              answer = "192.168.2.240";
+            }
           ];
         };
       };

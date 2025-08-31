@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.servicesProfiles.openssh;
 in {
   options.servicesProfiles.openssh.enable = lib.mkEnableOption "OpenSSH + mosh profile";

@@ -8,7 +8,7 @@
   cfg = config.servicesProfiles.nextcloud;
 in {
   # Optional: nginx reverse proxy + ACME integration (guarded by an enable flag)
-  imports = [ ./nginx.nix ./caddy.nix ];
+  imports = [./nginx.nix ./caddy.nix];
 
   options.servicesProfiles.nextcloud.enable = lib.mkEnableOption "Nextcloud server profile";
 

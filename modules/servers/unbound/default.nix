@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.servicesProfiles.unbound;
 in {
   options.servicesProfiles.unbound.enable = lib.mkEnableOption "Unbound DNS resolver profile";

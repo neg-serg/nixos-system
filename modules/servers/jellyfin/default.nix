@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.servicesProfiles.jellyfin;
 in {
   options.servicesProfiles.jellyfin.enable = lib.mkEnableOption "Jellyfin media server profile";

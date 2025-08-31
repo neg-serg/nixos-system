@@ -1,5 +1,9 @@
-{ pkgs, lib, config, ... }:
-let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.hardware.video.amd;
 in {
   options.hardware.video.amd.useMesaGit = lib.mkEnableOption "Enable Chaotic's mesa-git stack (bleeding-edge Mesa).";

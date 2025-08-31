@@ -1,5 +1,8 @@
-{ lib, config, ... }:
-let
+{
+  lib,
+  config,
+  ...
+}: let
   cfg = config.servicesProfiles.avahi;
 in {
   options.servicesProfiles.avahi.enable = lib.mkEnableOption "Avahi (mDNS) profile";
