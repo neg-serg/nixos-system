@@ -755,13 +755,30 @@
       "inputs": {
         "chaotic": "chaotic",
         "hyprland": "hyprland",
+        "hyprland-protocols": [
+          "hyprland",
+          "hyprland-protocols"
+        ],
+        "hyprland-qt-support": [
+          "hyprland",
+          "hyprland-qtutils",
+          "hyprland-qt-support"
+        ],
+        "hyprland-qtutils": [
+          "hyprland",
+          "hyprland-qtutils"
+        ],
         "lanzaboote": "lanzaboote",
         "nh": "nh",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs",
         "raise": "raise",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "xdg-desktop-portal-hyprland": [
+          "hyprland",
+          "xdph"
+        ]
       }
     },
     "rust-overlay": {
