@@ -8,6 +8,9 @@ in {
     services.adguardhome = {
       enable = true;
       openFirewall = true;
+      # Bind the admin web UI away from :80 so Caddy can use it
+      host = "127.0.0.1";
+      port = 3000;
       settings = {
         dns = {
           upstream_dns = ["127.0.0.1:5353"];
