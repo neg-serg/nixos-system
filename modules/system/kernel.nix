@@ -157,6 +157,9 @@ in {
       # Bufferbloat mitigations + slight improvement in throughput & latency
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "fq";
+      # Enable MTU probing to handle PMTU black holes
+      # 0: disabled, 1: enabled on black-hole detection, 2: always
+      "net.ipv4.tcp_mtu_probing" = 1;
     };
     kernelModules = ["kvm-amd" "tcp_bbr" "amdgpu" "ntsync"];
     blacklistedKernelModules =
