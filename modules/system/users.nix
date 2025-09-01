@@ -80,20 +80,20 @@ in
           openssh.authorizedKeys.keys = mainAuthorizedKeys;
           hashedPassword = mainHashedPassword;
           description = mainDesc;
-        extraGroups = groupsIfExist [
-          "audio"
-          "dialout"
-          "docker"
-          "i2c"
-          "input"
-          "libvirtd"
-          "render"
-          "networkmanager"
-          "systemd-journal"
-          "tss"
-          "video"
-          "wheel"
-        ];
+          extraGroups = groupsIfExist [
+            "audio"
+            "dialout"
+            "docker"
+            "i2c"
+            "input"
+            "libvirtd"
+            "render"
+            "networkmanager"
+            "systemd-journal"
+            "tss"
+            "video"
+            "wheel"
+          ];
         };
         defaultUserShell = pkgs.zsh;
         groups.${mainGroup}.gid = mainGid;
