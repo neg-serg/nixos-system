@@ -9,12 +9,14 @@
     (modulesPath + "/virtualisation/qemu-vm.nix")
   ];
   # Fast-build overrides: avoid custom kernel patches/out-of-tree modules
-  boot.kernelPatches = lib.mkForce [];
-  boot.extraModulePackages = lib.mkForce [];
+  boot = {
+    kernelPatches = lib.mkForce [];
+    extraModulePackages = lib.mkForce [];
+    # Prefer upstream latest kernel in VM
+    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+  };
   # Align with qemu-vm module: disable timesyncd to avoid conflicts
   services.timesyncd.enable = lib.mkForce false;
-  # Prefer upstream latest kernel in VM
-  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
   virtualisation = {
     cores = 2;
     diskSize = 10 * 1024;
