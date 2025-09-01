@@ -11,6 +11,8 @@
 }: let
   hasNcSecret = builtins.pathExists (../../.. + "/secrets/nextcloud.sops.yaml");
   cfg = config.servicesProfiles.nextcloud or {enable = false;};
+  chosenPackage =
+    if (cfg ? package) && cfg.package != null then cfg.package else pkgs.nextcloud31;
 in {
   # Optional: nginx reverse proxy + ACME integration (guarded by an enable flag)
   imports = [./nginx.nix ./caddy.nix];
@@ -23,7 +25,7 @@ in {
 
     services.nextcloud = {
       enable = true;
-      package = cfg.package or pkgs.nextcloud31;
+      package = chosenPackage;
       # Default to localhost; override to a FQDN when exposing externally
       hostName = lib.mkDefault "localhost";
       database.createLocally = true;
