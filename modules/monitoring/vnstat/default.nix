@@ -6,9 +6,5 @@
   services = {
     vnstat.enable = true;
   };
-  systemd = {
-    services.vnstat = {
-      serviceConfig.ExecStart = lib.mkForce "${pkgs.vnstat}/bin/vnstatd -n --alwaysadd 1";
-    };
-  };
+  # Keep vnstatd defaults; hosts may override ExecStart if needed.
 }
