@@ -1,6 +1,15 @@
 # Interesting stuff
 
 ```
+
+# Nextcloud: pin major version (package)
+{ pkgs, ... }: {
+  # Use a specific Nextcloud derivation (e.g., 31)
+  servicesProfiles.nextcloud.package = pkgs.nextcloud31;
+  # Or point to a flake-provided package
+  # servicesProfiles.nextcloud.package = inputs.my-nextcloud.packages.${system}.nextcloud;
+}
+```
 nixtheplanet.url = "github:matthewcroughan/NixThePlanet";
 ```
 
