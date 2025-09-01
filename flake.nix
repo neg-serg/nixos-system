@@ -103,7 +103,7 @@
       # Option docs (markdown) for base profiles and roles
       packages.${system} = let
         pkgs = nixpkgs.legacyPackages.${system};
-        # Use nixpkgs.lib to access nixosOptionsDoc (not present in pkgs.lib)
+        # Use nixpkgs.lib to access nixosOptionsDoc if available
         lib = nixpkgs.lib;
         evalBase = lib.evalModules {
           inherit lib;
@@ -119,19 +119,24 @@
             pkgs = pkgs;
           };
         };
-        docsBase = lib.nixosOptionsDoc { options = evalBase.options; };
 
         evalRoles = lib.evalModules {
           inherit lib;
           modules = [ ./modules/roles ];
           specialArgs = { inherit self inputs; pkgs = pkgs; };
         };
-        docsRoles = lib.nixosOptionsDoc { options = evalRoles.options; };
-      in {
-        default = pkgs.zsh;
-        options-base-md = docsBase.optionsCommonMark;
-        options-roles-md = docsRoles.optionsCommonMark;
-      };
+
+        hasOptionsDoc = lib ? nixosOptionsDoc;
+        docsBase = if hasOptionsDoc then lib.nixosOptionsDoc { options = evalBase.options; } else null;
+        docsRoles = if hasOptionsDoc then lib.nixosOptionsDoc { options = evalRoles.options; } else null;
+      in
+        {
+          default = pkgs.zsh;
+        }
+        // lib.optionalAttrs hasOptionsDoc {
+          options-base-md = docsBase.optionsCommonMark;
+          options-roles-md = docsRoles.optionsCommonMark;
+        };
 
       # Make `nix fmt` behave like in home-manager: format repo with alejandra
       formatter.${system} = let
