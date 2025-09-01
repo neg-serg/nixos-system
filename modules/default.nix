@@ -1,5 +1,6 @@
 {
   imports = [
+    ./roles
     ./appimage
     ./cli
     ./dev
