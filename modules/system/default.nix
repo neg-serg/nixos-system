@@ -6,6 +6,7 @@
     ./kernel.nix
     ./profiles/security.nix
     ./profiles/performance.nix
+    ./profiles/aliases.nix
     ./net
     ./oomd.nix
     ./irqbalance.nix

@@ -37,7 +37,7 @@ Auto‑update (optional): if `system.autoUpgrade` with flakes is enabled, you ca
   - `roles.media.enable = true;` → media servers (Jellyfin, Navidrome, MPD, Avahi, SSH).
 - Profiles: feature flags under `modules/system/profiles/`:
   - `profiles.performance.enable` and `profiles.security.enable` are toggled by roles; override per host if needed.
-- Service profiles: toggle per‑service via `servicesProfiles.<name>.enable` (modules in `modules/servers/<service>/`).
+- Service profiles: toggle per‑service via `profiles.services.<name>.enable` (alias to `servicesProfiles.<name>.enable`).
   - Roles set `mkDefault true`; hosts can disable with `lib.mkForce false`.
 - Host‑specific config: keep concrete settings under `hosts/<host>/*.nix`.
   - Examples: Syncthing devices/folders, Nextcloud domain/proxy, NIC names, local DNS rewrites.
@@ -52,7 +52,7 @@ Example (host):
   };
 
   # Disable heavy services for VMs or minimal builds
-  servicesProfiles = {
+  profiles.services = {
     nextcloud.enable = lib.mkForce false;
     adguardhome.enable = lib.mkForce false;
   };
@@ -74,7 +74,7 @@ Example (media role):
 
   # This role enables Jellyfin, Navidrome, MPD, Avahi, SSH by default.
   # Per-host overrides (e.g., disable Jellyfin on this machine):
-  servicesProfiles.jellyfin.enable = lib.mkForce false;
+  profiles.services.jellyfin.enable = lib.mkForce false;
 
   # Media server host-specific tweaks can live here as well (paths, ports, etc.).
 }
