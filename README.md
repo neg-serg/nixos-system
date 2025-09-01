@@ -80,6 +80,34 @@ Example (media role):
 }
 ```
 
+Service override examples
+
+```nix
+# Navidrome: change library path and port
+{
+  services.navidrome.settings = {
+    MusicFolder = "/srv/media/music";
+    Port = 4533;
+  };
+}
+
+# MPD: change music dir/port and append an extra output
+{ lib, ... }: {
+  services.mpd = {
+    musicDirectory = "/srv/media/music";
+    network.port = 6601;
+    # Append to the module's extraConfig (types.lines supports mkAfter)
+    extraConfig = lib.mkAfter ''
+      audio_output {
+        type "alsa"
+        name "USB DAC"
+        device "hw:USB"
+      }
+    '';
+  };
+}
+```
+
 ## Commit message policy and local hook
 
 - Subject style: `[scope] short description` in English, ASCII only.
