@@ -8,7 +8,7 @@
   config,
   ...
 }: let
-  cfg = (config.servicesProfiles.mpd or { enable = false; });
+  cfg = config.servicesProfiles.mpd or { enable = false; };
   myUser = "neg";
   myHome = "/home/${myUser}";
 in {
