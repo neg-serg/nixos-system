@@ -1,3 +1,8 @@
+##
+# Module: system/profiles/vm
+# Purpose: VM profile — simpler kernel/packages and disable Secure Boot by default.
+# Key options: cfg = config.profiles.vm.enable
+# Dependencies: Affects boot.*; complements hosts/*/vm/*.nix.
 { lib, pkgs, config, ... }:
 let
   cfg = config.profiles.vm or { enable = false; };
@@ -13,4 +18,3 @@ in {
     boot.lanzaboote.enable = lib.mkDefault false;
   };
 }
-

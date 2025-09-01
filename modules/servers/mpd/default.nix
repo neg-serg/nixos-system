@@ -1,3 +1,8 @@
+##
+# Module: servers/mpd
+# Purpose: MPD profile; opens port 6600 when enabled.
+# Key options: cfg = config.servicesProfiles.mpd.enable
+# Dependencies: Requires user (myUser) and pkgs.
 {
   lib,
   config,

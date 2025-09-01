@@ -1,3 +1,8 @@
+##
+# Module: system/net/pkgs
+# Purpose: Networking tools; firewall ranges for KDE Connect when enabled.
+# Key options: uses config.programs.kdeconnect.enable
+# Dependencies: pkgs; firewall.
 { lib, config, pkgs, ... }: {
   # Open KDE Connect ports only if the program is enabled
   networking.firewall = lib.mkIf (config.programs.kdeconnect.enable or false) {

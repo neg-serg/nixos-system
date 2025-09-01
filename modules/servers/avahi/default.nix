@@ -1,3 +1,8 @@
+##
+# Module: servers/avahi
+# Purpose: Avahi (mDNS) profile for local discovery.
+# Key options: cfg = config.servicesProfiles.avahi.enable
+# Dependencies: services.avahi.
 {
   lib,
   config,

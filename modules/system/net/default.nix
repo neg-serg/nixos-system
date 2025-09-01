@@ -1,3 +1,8 @@
+##
+# Module: system/net
+# Purpose: Base networking config (iwd, networkd, CLI tools).
+# Key options: none (hostName/udev/bridges live under hosts/*).
+# Dependencies: Imports submodules nscd/pkgs/proxy/ssh/vpn.
 {pkgs, ...}: {
   imports = [
     ./nscd.nix

@@ -1,3 +1,8 @@
+##
+# Module: servers/nextcloud
+# Purpose: Nextcloud profile; optional nginx/caddy imports.
+# Key options: cfg = config.servicesProfiles.nextcloud.enable
+# Dependencies: pkgs.nextcloud*, sops (admin-pass), reverse proxy submodules.
 {
   lib,
   config,

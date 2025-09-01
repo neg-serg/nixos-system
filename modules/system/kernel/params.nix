@@ -1,3 +1,8 @@
+##
+# Module: system/kernel/params
+# Purpose: Compose boot.kernelParams and related kernel package/module settings.
+# Key options: cfg = config.profiles.performance.*, config.profiles.security.enable
+# Dependencies: Uses pkgs; respects kexec_enabled.
 {
   lib,
   pkgs,
@@ -87,4 +92,3 @@ in {
 
   security.protectKernelImage = !kexec_enabled;
 }
-

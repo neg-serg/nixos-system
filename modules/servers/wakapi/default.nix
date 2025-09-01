@@ -1,3 +1,8 @@
+##
+# Module: servers/wakapi
+# Purpose: Wakapi CLI tools profile.
+# Key options: cfg = config.servicesProfiles.wakapi.enable
+# Dependencies: pkgs.wakapi (CLI).
 {
   lib,
   config,

@@ -1,3 +1,8 @@
+##
+# Module: system/boot
+# Purpose: Bootloader (EFI, lanzaboote), initrd modules.
+# Key options: none (uses config.boot.* directly).
+# Dependencies: pkgs (efibootmgr/efivar/os-prober/sbctl), lanzaboote.
 {
   lib,
   pkgs,

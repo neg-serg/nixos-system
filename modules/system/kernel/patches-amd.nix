@@ -1,3 +1,8 @@
+##
+# Module: system/kernel/patches-amd
+# Purpose: structuredExtraConfig for AMD-oriented kernel settings.
+# Key options: none (direct kernel config values).
+# Dependencies: Affects boot.kernelPatches.
 {
   lib,
   ...

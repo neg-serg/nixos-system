@@ -1,3 +1,8 @@
+##
+# Module: servers/openssh
+# Purpose: OpenSSH + mosh profile (restrictive SSH settings).
+# Key options: cfg = config.servicesProfiles.openssh.enable
+# Dependencies: Enables programs.mosh.
 {
   lib,
   config,
