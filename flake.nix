@@ -99,7 +99,6 @@
       timeZone = "Europe/Moscow";
       kexec_enabled = true;
       diffClosures = import ./modules/diff-closures.nix;
-      flakePreflight = import ./modules/flake-preflight.nix;
     }; {
       packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
 
@@ -197,7 +196,6 @@
             chaotic.nixosModules.default
             sops-nix.nixosModules.sops
             diffClosures
-            flakePreflight
             {diffClosures.enable = true;}
           ];
         };
@@ -218,7 +216,6 @@
             chaotic.nixosModules.default
             sops-nix.nixosModules.sops
             # VM-specific adjustments
-            flakePreflight
             ({lib, ...}: {
               # Avoid secure boot integration in quick VM builds
               boot.lanzaboote.enable = lib.mkForce false;
@@ -228,12 +225,6 @@
                 adguardhome.enable = lib.mkForce false;
                 syncthing.enable = lib.mkForce false;
                 unbound.enable = lib.mkForce false;
-              };
-              # Enable preflight checks in VM with short timeout
-              flakePreflight = {
-                enable = true;
-                timeoutSec = 60;
-                extraArgs = ["--show-trace"]; # convenient in VMs
               };
             })
           ];
