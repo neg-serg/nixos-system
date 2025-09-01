@@ -18,8 +18,6 @@
       "::1" = ["localhost"];
     };
     useNetworkd = true;
-    # Resolve via local AdGuardHome
-    nameservers = ["127.0.0.1"];
   };
 
   environment.systemPackages = with pkgs; [
