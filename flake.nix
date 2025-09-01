@@ -103,7 +103,8 @@
       # Option docs (markdown) for base profiles and roles
       packages.${system} = let
         pkgs = nixpkgs.legacyPackages.${system};
-        lib = pkgs.lib;
+        # Use nixpkgs.lib to access nixosOptionsDoc (not present in pkgs.lib)
+        lib = nixpkgs.lib;
         evalBase = lib.evalModules {
           inherit lib;
           modules = [
