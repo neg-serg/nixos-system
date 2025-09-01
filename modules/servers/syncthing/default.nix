@@ -1,3 +1,8 @@
+##
+# Module: servers/syncthing
+# Purpose: Syncthing daemon profile; host-specific devices/folders live under hosts/*.
+# Key options: cfg = config.servicesProfiles.syncthing.enable
+# Dependencies: Optionally sops secrets; folders/devices in host configs.
 {
   lib,
   config,

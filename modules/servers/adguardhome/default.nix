@@ -1,3 +1,8 @@
+##
+# Module: servers/adguardhome
+# Purpose: AdGuardHome profile + DNS rewrite passthrough.
+# Key options: cfg = config.servicesProfiles.adguardhome (enable, rewrites)
+# Dependencies: May integrate with Unbound (upstream_dns).
 {
   lib,
   config,

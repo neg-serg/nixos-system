@@ -1,3 +1,8 @@
+##
+# Module: system/kernel/sysctl
+# Purpose: Network and security sysctls.
+# Key options: none (static values).
+# Dependencies: Applies to boot.kernel.sysctl.
 { ... }: {
   boot.kernel.sysctl = {
     "kernel.sysrq" = 0;
@@ -26,4 +31,3 @@
     "net.ipv4.tcp_mtu_probing" = 1;
   };
 }
-

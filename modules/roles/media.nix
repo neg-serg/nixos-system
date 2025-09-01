@@ -1,3 +1,8 @@
+##
+# Module: roles/media
+# Purpose: Media role (Jellyfin/Navidrome/MPD etc).
+# Key options: cfg = config.roles.media.enable
+# Dependencies: Enables profiles.services.* (jellyfin, navidrome, mpd, avahi, openssh).
 {
   lib,
   config,

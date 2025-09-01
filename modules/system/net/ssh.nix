@@ -1,3 +1,8 @@
+##
+# Module: system/net/ssh
+# Purpose: OpenSSH client basics (agent, PKCS#11).
+# Key options: none.
+# Dependencies: pkgs.openssh, pkgs.opensc.
 {pkgs, ...}: {
   programs = {
     ssh = {

@@ -1,3 +1,8 @@
+##
+# Module: system/profiles/performance
+# Purpose: Performance toggles influencing boot.kernelParams and related behavior.
+# Key options: cfg = config.profiles.performance.*
+# Dependencies: Consumed by kernel/params.nix.
 {lib, ...}:
 # This module defines a feature flag and granular toggles to apply
 # performance-oriented kernel/boot tweaks system-wide.

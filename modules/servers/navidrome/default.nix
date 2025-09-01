@@ -1,3 +1,8 @@
+##
+# Module: servers/navidrome
+# Purpose: Navidrome music server profile.
+# Key options: cfg = config.servicesProfiles.navidrome.enable
+# Dependencies: pkgs.navidrome; music library path.
 {
   lib,
   config,
