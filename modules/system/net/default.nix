@@ -9,6 +9,7 @@
     ./pkgs.nix
     ./proxy.nix
     ./ssh.nix
+    ./bridge.nix
     ./vpn
   ];
   # Base network services; host-specific NIC rules are moved under hosts/*
