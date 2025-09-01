@@ -22,6 +22,8 @@
     "rcu_nocbs=14,15,30,31"
     "isolcpus=managed,domain,14-15,30-31"
     "irqaffinity=0-13,16-29"
+    "lru_gen=1"
+    "lru_gen.min_ttl_ms=1000"
   ];
 
   # Avoid double compression
