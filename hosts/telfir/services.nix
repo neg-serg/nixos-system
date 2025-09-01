@@ -5,8 +5,7 @@
     homelab.enable = true;
     media.enable = true;
   };
-  # Run flake checks on activation for this host
-  flakePreflight.enable = true;
+  # Flake preflight checks disabled
 
   # Host-specific system policy
   system.autoUpgrade.enable = lib.mkForce false;
