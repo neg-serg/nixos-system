@@ -7,6 +7,9 @@
   hardware.storage.autoMount.enable = true;
   hardware.video.amd.useMesaGit = true;
 
+  # Enable AMD-oriented kernel structured config for this host
+  profiles.kernel.amd.enable = true;
+
   # Performance profile comes from the workstation role
 
   # Host-specific kernel parameters
