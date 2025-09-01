@@ -3,4 +3,3 @@ _: {
   # Helpful on high-core CPUs with heavy GPU/NVMe/Network IRQ load (gaming/desktop)
   services.irqbalance.enable = true;
 }
-

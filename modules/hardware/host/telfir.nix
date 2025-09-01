@@ -28,7 +28,20 @@ in
     };
 
     # Enable performance profile on this host
-    profiles.performance.enable = true;
+    # Group profile-related options to avoid repeated-key lint warnings
+    profiles = {
+      performance = {
+        enable = true;
+        # Disable zswap on this host to avoid double compression
+        zswap.enable = lib.mkForce false;
+      };
+      # Games autoscale defaults for this host: prefer 240 Hz targets but keep autoscale off
+      games = {
+        autoscaleDefault = false;
+        targetFps = 240;
+        nativeBaseFps = 240;
+      };
+    };
 
     # Enable server profiles on this host
     servicesProfiles = {
@@ -64,8 +77,7 @@ in
       "irqaffinity=0-13,16-29"
     ];
 
-    # Disable zswap and zram on this host to avoid double compression
-    profiles.performance.zswap.enable = lib.mkForce false;
+    # Disable zram on this host to avoid double compression
     zramSwap.enable = lib.mkForce false;
 
     # Nextcloud via Caddy on LAN, served as "telfir"
@@ -77,13 +89,6 @@ in
 
     # Local name resolution on this host as well
     networking.hosts."192.168.2.240" = ["telfir" "telfir.local"];
-
-    # Games autoscale defaults for this host: prefer 240 Hz targets but keep autoscale off
-    profiles.games = {
-      autoscaleDefault = false;
-      targetFps = 240;
-      nativeBaseFps = 240;
-    };
 
     # Reserve two physical cores (both SMT threads) for gaming by banning them
     # from IRQ balancing. Assumes typical Zen3 numbering where sibling threads
