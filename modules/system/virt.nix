@@ -2,6 +2,9 @@
 let
   vmEnabled = (config.profiles.vm or { enable = false; }).enable;
 in {
+  # Keep imports at top-level; guard heavy config below
+  imports = [ ./virt/pkgs.nix ];
+
   config = lib.mkIf (!vmEnabled) {
     users.users.neg.extraGroups = ["video" "render"];
     virtualisation = {
@@ -47,7 +50,5 @@ in {
 
     programs.virt-manager.enable = true;
     services.spice-webdavd.enable = true;
-
-    imports = [ ./virt/pkgs.nix ];
   };
 }
