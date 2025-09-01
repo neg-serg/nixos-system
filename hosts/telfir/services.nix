@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   # Roles enabled for this host
   roles = {
     workstation.enable = true;
