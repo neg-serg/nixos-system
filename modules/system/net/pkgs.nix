@@ -1,6 +1,6 @@
-{pkgs, ...}: {
-  networking.firewall = {
-    # Generic open ranges (e.g., KDE Connect) can stay here if desired.
+{ lib, config, pkgs, ... }: {
+  # Open KDE Connect ports only if the program is enabled
+  networking.firewall = lib.mkIf (config.programs.kdeconnect.enable or false) {
     allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
     allowedUDPPortRanges = [{ from = 1714; to = 1764; }];
   };
