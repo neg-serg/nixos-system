@@ -198,6 +198,19 @@ The hook rejects commit messages that contain non‑ASCII characters or do not s
 
 - Show CPU mask of current shell: `grep Cpus_allowed_list /proc/$$/status`
 - Check a game run: `game-run bash -lc 'grep Cpus_allowed_list /proc/$$/status; sleep 1'`
+
+## Main User (single source of truth)
+
+- Configure the primary account via `users.main.*` in modules:
+  - `users.main.name`: login name (default `neg`).
+  - `users.main.uid` / `users.main.gid`: IDs for user/group (default `1000`).
+  - `users.main.group`: primary group name (defaults to `users.main.name`).
+  - `users.main.description`, `users.main.opensshAuthorizedKeys`, `users.main.hashedPassword`.
+- Modules use this instead of hardcoded names/IDs:
+  - MPD runs as `users.main.name` and sets `XDG_RUNTIME_DIR` from `users.main.uid`.
+  - Syncthing runs as `users.main.name`.
+  - Filesystem bind mounts under the main home instead of `/home/neg/...`.
+  - Extra groups and PAM limits reference the main user/group.
 - Inspect transient scope: `systemctl --user list-units 'app-*scope' --no-pager`
 
 Notes:

@@ -122,13 +122,22 @@
 
         evalRoles = lib.evalModules {
           inherit lib;
-          modules = [ ./modules/roles ];
-          specialArgs = { inherit self inputs; pkgs = pkgs; };
+          modules = [./modules/roles];
+          specialArgs = {
+            inherit self inputs;
+            pkgs = pkgs;
+          };
         };
 
         hasOptionsDoc = lib ? nixosOptionsDoc;
-        docsBase = if hasOptionsDoc then lib.nixosOptionsDoc { options = evalBase.options; } else null;
-        docsRoles = if hasOptionsDoc then lib.nixosOptionsDoc { options = evalRoles.options; } else null;
+        docsBase =
+          if hasOptionsDoc
+          then lib.nixosOptionsDoc {options = evalBase.options;}
+          else null;
+        docsRoles =
+          if hasOptionsDoc
+          then lib.nixosOptionsDoc {options = evalRoles.options;}
+          else null;
       in
         {
           default = pkgs.zsh;

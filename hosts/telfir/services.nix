@@ -1,4 +1,11 @@
 {lib, ...}: {
+  # Primary user (single source of truth for name/ids)
+  users.main = {
+    name = "neg";
+    uid = 1000;
+    gid = 1000;
+    description = "Neg";
+  };
   # Roles enabled for this host
   roles = {
     workstation.enable = true;
