@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     abduco # CLI session detach
     ast-grep # AST-aware grep
@@ -37,4 +37,3 @@
     ugrep # better grep, rg alternative
   ];
 }
-

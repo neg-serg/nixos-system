@@ -1,4 +1,3 @@
-{ pkgs, ... }: {
-  environment.systemPackages = [ pkgs.appimage-run ];
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.appimage-run];
 }
-

@@ -37,9 +37,31 @@
   ];
   obscure_network_protocols = ["ax25" "netrom" "rose"];
   old_rare_insufficiently_audited_fs = [
-    "adfs" "affs" "befs" "bfs" "cramfs" "efs" "erofs" "exofs" "freevxfs" "gfs2" "hfs"
-    "hfsplus" "hpfs" "jffs2" "jfs" "ksmbd" "minix" "nilfs2" "omfs" "qnx4" "qnx6"
-    "squashfs" "sysv" "ufs" "vivid"
+    "adfs"
+    "affs"
+    "befs"
+    "bfs"
+    "cramfs"
+    "efs"
+    "erofs"
+    "exofs"
+    "freevxfs"
+    "gfs2"
+    "hfs"
+    "hfsplus"
+    "hpfs"
+    "jffs2"
+    "jfs"
+    "ksmbd"
+    "minix"
+    "nilfs2"
+    "omfs"
+    "qnx4"
+    "qnx6"
+    "squashfs"
+    "sysv"
+    "ufs"
+    "vivid"
   ];
 
   base_params = [
@@ -87,7 +109,7 @@ in {
 
     extraModulePackages = [pkgs.linuxPackages_cachyos.amneziawg];
     consoleLogLevel = 3;
-    kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride { mArch = "GENERIC_V4"; };
+    kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {mArch = "GENERIC_V4";};
   };
 
   security.protectKernelImage = !kexec_enabled;

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     blktrace # block layer tracing tools
     dmraid # old-style RAID config utility

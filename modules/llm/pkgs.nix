@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     aichat # Use GPT-4(V), Gemini, LocalAI, Ollama, etc. in terminal
     codex # lightweight coding agent that runs in your terminal

@@ -1,9 +1,13 @@
-{ pkgs, lib, config, ... }:
-let
-  vmEnabled = (config.profiles.vm or { enable = false; }).enable;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  vmEnabled = (config.profiles.vm or {enable = false;}).enable;
 in {
   # Keep imports at top-level; guard heavy config below
-  imports = [ ./virt/pkgs.nix ];
+  imports = [./virt/pkgs.nix];
 
   config = lib.mkIf (!vmEnabled) {
     users.users.neg.extraGroups = ["video" "render"];

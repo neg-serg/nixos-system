@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     chrpath # adjust rpath for ELF
     debugedit # debug info rewrite

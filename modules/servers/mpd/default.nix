@@ -8,7 +8,7 @@
   config,
   ...
 }: let
-  cfg = config.servicesProfiles.mpd or { enable = false; };
+  cfg = config.servicesProfiles.mpd or {enable = false;};
   myUser = "neg";
   myHome = "/home/${myUser}";
 in {
@@ -72,7 +72,7 @@ in {
 
     networking.firewall = {
       enable = lib.mkDefault true;
-      allowedTCPPorts = [ 6600 ];
+      allowedTCPPorts = [6600];
     };
   };
 }

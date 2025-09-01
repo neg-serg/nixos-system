@@ -3,10 +3,7 @@
 # Purpose: structuredExtraConfig for AMD-oriented kernel settings.
 # Key options: none (direct kernel config values).
 # Dependencies: Affects boot.kernelPatches.
-{
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib.kernel) yes no freeform;
   inherit (lib.attrsets) mapAttrs;
 in {

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     alejandra # the uncompromising nix code formatter
     cached-nix-shell # nix-shell with instant startup

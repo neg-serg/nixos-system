@@ -1,5 +1,5 @@
-{ ... }: {
-  imports = [ ./pkgs.nix ];
+{...}: {
+  imports = [./pkgs.nix];
   services.udev.extraRules = ''
     # Atmel DFU
     ### ATmega16U2

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     age
     opensc
@@ -8,4 +8,3 @@
     ssh-to-age
   ];
 }
-

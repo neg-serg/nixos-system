@@ -3,11 +3,26 @@
 # Purpose: Networking tools; firewall ranges for KDE Connect when enabled.
 # Key options: uses config.programs.kdeconnect.enable
 # Dependencies: pkgs; firewall.
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   # Open KDE Connect ports only if the program is enabled
   networking.firewall = lib.mkIf (config.programs.kdeconnect.enable or false) {
-    allowedTCPPortRanges = [{ from = 1714; to = 1764; }];
-    allowedUDPPortRanges = [{ from = 1714; to = 1764; }];
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
   };
 
   environment.systemPackages = with pkgs; [

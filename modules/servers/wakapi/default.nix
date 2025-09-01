@@ -8,9 +8,9 @@
   config,
   ...
 }: let
-  cfg = (config.servicesProfiles.wakapi or { enable = false; });
+  cfg = config.servicesProfiles.wakapi or {enable = false;};
 in {
-  imports = [ ./pkgs.nix ];
+  imports = [./pkgs.nix];
   config = lib.mkIf cfg.enable {
     # Packages moved to ./pkgs.nix
   };

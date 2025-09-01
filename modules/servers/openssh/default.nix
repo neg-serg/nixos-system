@@ -8,7 +8,7 @@
   config,
   ...
 }: let
-  cfg = (config.servicesProfiles.openssh or { enable = false; });
+  cfg = config.servicesProfiles.openssh or {enable = false;};
 in {
   config = lib.mkIf cfg.enable {
     services.openssh = {

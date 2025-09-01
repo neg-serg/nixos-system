@@ -3,8 +3,7 @@
 # Purpose: Central registry of profiles.services.* options (alias servicesProfiles.*).
 # Key options: cfg = config.servicesProfiles.<service> (enable and service-specific settings).
 # Dependencies: Referenced by service modules under modules/servers/*.
-{ lib, ... }:
-let
+{lib, ...}: let
   inherit (lib) mkEnableOption mkOption types;
 in {
   options.servicesProfiles = {

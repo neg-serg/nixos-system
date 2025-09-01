@@ -1,12 +1,9 @@
-{ 
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (builtins) concatStringsSep length;
   inherit (lib.lists) zipListsWith;
   inherit (lib.strings) escapeShellArg;
 in {
-  imports = [ ./pkgs.nix ];
+  imports = [./pkgs.nix];
 
   # Packages moved to ./pkgs.nix
 
