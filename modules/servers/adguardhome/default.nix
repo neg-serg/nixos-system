@@ -12,13 +12,24 @@ in {
     rewrites = mkOption {
       type = types.listOf (types.submodule ({...}: {
         options = {
-          domain = mkOption {type = types.str; description = "Domain to rewrite";};
-          answer = mkOption {type = types.str; description = "Rewrite answer (IP or hostname)";};
+          domain = mkOption {
+            type = types.str;
+            description = "Domain to rewrite";
+          };
+          answer = mkOption {
+            type = types.str;
+            description = "Rewrite answer (IP or hostname)";
+          };
         };
       }));
       default = [];
       description = "List of DNS rewrite rules for AdGuard Home.";
-      example = [ { domain = "nas.local"; answer = "192.168.1.10"; } ];
+      example = [
+        {
+          domain = "nas.local";
+          answer = "192.168.1.10";
+        }
+      ];
     };
   };
 

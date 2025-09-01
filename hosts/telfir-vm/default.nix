@@ -8,6 +8,9 @@
     (modulesPath + "/virtualisation/qemu-vm.nix")
   ];
 
+  # Keep VM lightweight but usable as a workstation
+  roles.workstation.enable = true;
+
   boot = {
     # Fast-build overrides: avoid custom kernel patches/out-of-tree modules
     kernelPatches = lib.mkForce [];
