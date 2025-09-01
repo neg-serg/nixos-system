@@ -66,8 +66,8 @@ in {
     };
 
     networking.firewall = {
-      enable = true;
-      allowedTCPPorts = [6600];
+      enable = lib.mkDefault true;
+      allowedTCPPorts = [ 6600 ];
     };
   };
 }
