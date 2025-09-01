@@ -23,7 +23,7 @@ in {
 
     services.nextcloud = {
       enable = true;
-      package = pkgs.nextcloud31;
+      package = cfg.package or pkgs.nextcloud31;
       # Default to localhost; override to a FQDN when exposing externally
       hostName = lib.mkDefault "localhost";
       database.createLocally = true;

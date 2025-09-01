@@ -3,7 +3,7 @@
 # Purpose: Central registry of profiles.services.* options (alias servicesProfiles.*).
 # Key options: cfg = config.servicesProfiles.<service> (enable and service-specific settings).
 # Dependencies: Referenced by service modules under modules/servers/*.
-{lib, ...}: let
+{lib, pkgs, ...}: let
   inherit (lib) mkEnableOption mkOption types;
 in {
   options.servicesProfiles = {
@@ -38,7 +38,19 @@ in {
     mpd.enable = mkEnableOption "MPD (Music Player Daemon) profile.";
     navidrome.enable = mkEnableOption "Navidrome music server profile.";
     wakapi.enable = mkEnableOption "Wakapi CLI tools profile.";
-    nextcloud.enable = mkEnableOption "Nextcloud server profile (with optional Caddy proxy).";
+    nextcloud = {
+      enable = mkEnableOption "Nextcloud server profile (with optional Caddy proxy).";
+      package = mkOption {
+        type = types.nullOr types.package;
+        default = null; # If null, module will default to a pinned Nextcloud in nixpkgs
+        description = ''
+          Nextcloud package derivation to use for the service.
+          Set to a specific `pkgs.nextcloudXX` or a flake-provided package to pin the major version.
+          When unset, the module uses a sensible default from `pkgs` (currently Nextcloud 31).
+        '';
+        example = pkgs.nextcloud31;
+      };
+    };
     avahi.enable = mkEnableOption "Avahi (mDNS) profile.";
     jellyfin.enable = mkEnableOption "Jellyfin media server profile.";
   };
