@@ -29,6 +29,43 @@ How to update Hyprland (and related deps):
 
 Auto‑update (optional): if `system.autoUpgrade` with flakes is enabled, you can add `--update-input hyprland` to automatically pull newer Hyprland. We typically update it manually to keep compatibility under control.
 
+## Roles & Profiles
+
+- Roles: enable bundles via `modules/roles/{workstation,homelab,media}.nix`.
+  - `roles.workstation.enable = true;` → desktop defaults (performance profile, SSH, Avahi, Syncthing).
+  - `roles.homelab.enable = true;` → self‑hosting defaults (security profile, DNS, SSH, Syncthing, MPD, Navidrome, Wakapi, Nextcloud).
+  - `roles.media.enable = true;` → media servers (Jellyfin, Navidrome, MPD, Avahi, SSH).
+- Profiles: feature flags under `modules/system/profiles/`:
+  - `profiles.performance.enable` and `profiles.security.enable` are toggled by roles; override per host if needed.
+- Service profiles: toggle per‑service via `servicesProfiles.<name>.enable` (modules in `modules/servers/<service>/`).
+  - Roles set `mkDefault true`; hosts can disable with `lib.mkForce false`.
+- Host‑specific config: keep concrete settings under `hosts/<host>/*.nix`.
+  - Examples: Syncthing devices/folders, Nextcloud domain/proxy, NIC names, local DNS rewrites.
+
+Example (host):
+
+```nix
+{ lib, ... }: {
+  roles = {
+    workstation.enable = true;
+    homelab.enable = true;
+  };
+
+  # Disable heavy services for VMs or minimal builds
+  servicesProfiles = {
+    nextcloud.enable = lib.mkForce false;
+    adguardhome.enable = lib.mkForce false;
+  };
+
+  # Host‑specific Syncthing (devices/folders)
+  services.syncthing = {
+    overrideDevices = true;
+    overrideFolders = true;
+    settings.devices."phone" = { id = "AAAA-BBBB-..."; };
+  };
+}
+```
+
 ## Commit message policy and local hook
 
 - Subject style: `[scope] short description` in English, ASCII only.
