@@ -1,4 +1,3 @@
-{ pkgs, ... }: {
-  environment.systemPackages = [ pkgs.flatpak pkgs.flatpak-builder ];
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.flatpak pkgs.flatpak-builder];
 }
-

@@ -1,3 +1,3 @@
-{ ... }: {
-  imports = [ ./pkgs.nix ];
+{...}: {
+  imports = [./pkgs.nix];
 }

@@ -3,9 +3,13 @@
 # Purpose: VM profile — simpler kernel/packages and disable Secure Boot by default.
 # Key options: cfg = config.profiles.vm.enable
 # Dependencies: Affects boot.*; complements hosts/*/vm/*.nix.
-{ lib, pkgs, config, ... }:
-let
-  cfg = config.profiles.vm or { enable = false; };
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
+  cfg = config.profiles.vm or {enable = false;};
 in {
   options.profiles.vm.enable = lib.mkEnableOption "VM profile: prefer generic kernel and trim heavy defaults.";
 

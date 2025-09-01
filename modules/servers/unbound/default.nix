@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  cfg = (config.servicesProfiles.unbound or { enable = false; });
+  cfg = config.servicesProfiles.unbound or {enable = false;};
 in {
   config = lib.mkIf cfg.enable {
     services.unbound = {

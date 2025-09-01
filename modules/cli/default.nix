@@ -1,4 +1,4 @@
-{ ... }: {
-  imports = [ ./tmux ./archives ./pkgs.nix ];
+{...}: {
+  imports = [./tmux ./archives ./pkgs.nix];
   # Packages are in ./pkgs.nix
 }

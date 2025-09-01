@@ -1,5 +1,5 @@
-{ ... }: {
-  imports = [ ./pkgs.nix ];
+{...}: {
+  imports = [./pkgs.nix];
   services.ollama = {
     enable = true;
     acceleration = "rocm";

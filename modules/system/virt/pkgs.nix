@@ -1,6 +1,10 @@
-{ pkgs, lib, config, ... }:
-let
-  vmEnabled = (config.profiles.vm or { enable = false; }).enable;
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  vmEnabled = (config.profiles.vm or {enable = false;}).enable;
 in {
   config = lib.mkIf (!vmEnabled) {
     environment.systemPackages = with pkgs; [

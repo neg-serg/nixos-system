@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     brutefir # FIR filter
     camilladsp # flexible audio DSP

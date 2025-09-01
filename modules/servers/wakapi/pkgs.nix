@@ -1,4 +1,3 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ wakapi ];
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [wakapi];
 }
-
