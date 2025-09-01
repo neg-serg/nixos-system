@@ -3,7 +3,9 @@
     ./boot.nix
     ./environment.nix
     ./filesystems.nix
-    ./kernel.nix
+    ./kernel/params.nix
+    ./kernel/sysctl.nix
+    ./kernel/patches-amd.nix
     ./profiles/security.nix
     ./profiles/performance.nix
     ./profiles/aliases.nix
