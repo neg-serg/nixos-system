@@ -9,7 +9,7 @@
     # but systemd-timesyncd is a part of the systemd
     # ecosystem, which we are already a part of by
     # the virtue of using NixOS.
-    chrony.enable = lib.mkForce false;
+    chrony.enable = lib.mkDefault false;
     timesyncd = {
       enable = true;
       servers = config.networking.timeServers; # default value

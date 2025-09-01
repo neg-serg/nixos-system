@@ -17,9 +17,8 @@
     };
     loader = {
       efi.canTouchEfiVariables = true;
-      # With lanzaboote enabled, ensure systemd-boot is explicitly disabled
-      # and avoid setting unrelated systemd-boot options that would be ignored.
-      systemd-boot.enable = lib.mkForce false;
+      # With lanzaboote enabled, default systemd-boot to disabled; hosts may override.
+      systemd-boot.enable = lib.mkDefault false;
     };
     # Boot-specific options only; no activation scripts touching /boot
     initrd = {

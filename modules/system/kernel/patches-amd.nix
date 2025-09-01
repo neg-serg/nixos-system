@@ -4,13 +4,12 @@
 }: let
   inherit (lib.kernel) yes no freeform;
   inherit (lib.attrsets) mapAttrs;
-  inherit (lib.modules) mkForce;
 in {
   boot.kernelPatches = [
     {
       name = "amd-platform-patches";
       patch = null; # no external patch; apply structured config below
-      structuredExtraConfig = mapAttrs (_: mkForce) {
+      structuredExtraConfig = mapAttrs (_: lib.id) {
         X86_AMD_PSTATE = yes;
         X86_EXTENDED_PLATFORM = no;
         X86_MCE_INTEL = no;
@@ -19,8 +18,8 @@ in {
         CPU_FREQ_STAT = yes;
 
         HZ = freeform "1000";
-        HZ_250 = lib.mkForce no;
-        HZ_1000 = lib.mkForce yes;
+        HZ_250 = no;
+        HZ_1000 = yes;
 
         PREEMPT = yes;
         PREEMPT_BUILD = yes;
@@ -48,4 +47,3 @@ in {
     }
   ];
 }
-
