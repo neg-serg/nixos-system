@@ -3,7 +3,7 @@
   hardware.storage.autoMount.enable = true;
   hardware.video.amd.useMesaGit = true;
 
-  profiles.performance.enable = true;
+  # Performance profile comes from the workstation role
 
   # Host-specific kernel parameters
   boot.kernelParams = [
