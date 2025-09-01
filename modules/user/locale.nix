@@ -18,13 +18,7 @@
     LC_TIME = locale;
   };
 
-  environment.systemPackages = with pkgs; [
-    hunspell
-    hunspellDicts.en_US
-    hunspellDicts.ru_RU
-    hyphen
-    nuspell
-  ];
+  # Packages moved to modules/user/locale-pkgs.nix
 
   location.provider = "geoclue2";
   services.geoclue2.enable = true;

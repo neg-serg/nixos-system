@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   users.users.neg.extraGroups = ["video" "render"];
   virtualisation = {
     containers.enable = true;
@@ -44,18 +44,5 @@
   programs.virt-manager.enable = true;
   services.spice-webdavd.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    ctop # top-like interface for container metrics
-    dive # look into docker image layers
-    dxvk # setup script for dxvk
-    guestfs-tools # virt-sysprep to prepare image for use
-    lima # tool to run linux virtual machines
-    nerdctl # docker compatible cli for containerd
-    podman-compose # start group of containers for dev
-    podman-tui # status of containers in the terminal
-    quickemu # fast and simple vm builder
-    vkd3d # directx 12 support for wine
-    wineWowPackages.staging # tool to run windows packages
-    winetricks # stuff to install dxvk
-  ];
+  imports = [ ./virt/pkgs.nix ];
 }

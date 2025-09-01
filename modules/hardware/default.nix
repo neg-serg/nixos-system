@@ -21,6 +21,7 @@ in {
     ./udev-rules
     ./video
     ./webcam
+    ./pkgs.nix
   ];
 
   config = {
@@ -48,9 +49,7 @@ in {
       enableRedistributableFirmware = true;
     };
 
-    environment.systemPackages = with pkgs; [
-      overskride # bluetooth and obex client
-    ];
+    # Packages moved to ./pkgs.nix
 
     powerManagement.cpuFreqGovernor = "performance";
   };

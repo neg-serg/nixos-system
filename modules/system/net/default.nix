@@ -25,9 +25,7 @@
     useNetworkd = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    impala # tui for wifi management
-  ];
+  # Packages moved to ./pkgs.nix
 
   systemd.network = {
     enable = true;

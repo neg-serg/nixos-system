@@ -3,10 +3,6 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = with pkgs; [
-    inputs.raise.defaultPackage.${pkgs.stdenv.hostPlatform.system} # run-or-raise for hyprland
-    xorg.xeyes # track eyes for the your cursor
-  ];
   programs.hyprland = {
     enable = true;
     withUWSM = true;

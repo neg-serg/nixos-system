@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.flatpak pkgs.flatpak-builder];
+{ ... }: {
+  imports = [ ./pkgs.nix ];
   services.flatpak = {
     enable = true;
     overrides = {

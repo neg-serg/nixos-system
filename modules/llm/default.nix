@@ -1,10 +1,5 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    aichat # Use GPT-4(V), Gemini, LocalAI, Ollama and other LLMs in the terminal
-    codex # lightweight coding agent that runs in your terminal
-    openai # python client library for the OpenAI API
-    voxinput # Voice to text for any Linux app via dotool/uinput and the LocalAI/OpenAI transcription API
-  ];
+{ ... }: {
+  imports = [ ./pkgs.nix ];
   services.ollama = {
     enable = true;
     acceleration = "rocm";
