@@ -3,10 +3,23 @@
 # Purpose: Alias profiles.services.* → servicesProfiles.* for unified naming.
 # Key options: none (option redirection only).
 # Dependencies: lib.mkAliasOptionModule; affects modules referencing profiles.services.*
-{ lib, ... }: {
-  # Provide a unified namespace: profiles.services.* is an alias for servicesProfiles.*
-  # This keeps existing modules working while allowing consistent usage under profiles.*
-  imports = [
-    (lib.mkAliasOptionModule [ "profiles" "services" ] [ "servicesProfiles" ])
+{ lib, ... }:
+let
+  mk = svc: lib.mkAliasOptionModule [ "profiles" "services" svc "enable" ] [ "servicesProfiles" svc "enable" ];
+  # Optional extra alias for service-specific options
+  mkExtra = lib.mkAliasOptionModule [ "profiles" "services" "adguardhome" "rewrites" ] [ "servicesProfiles" "adguardhome" "rewrites" ];
+  services = [
+    "adguardhome"
+    "unbound"
+    "openssh"
+    "syncthing"
+    "mpd"
+    "navidrome"
+    "wakapi"
+    "nextcloud"
+    "avahi"
+    "jellyfin"
   ];
+in {
+  imports = (map mk services) ++ [ mkExtra ];
 }
