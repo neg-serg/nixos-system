@@ -4,13 +4,12 @@
   ...
 }: let
   cfg = config.servicesProfiles.adguardhome;
-  inherit (lib) mkEnableOption mkOption;
-  types = lib.types;
+  inherit (lib) mkEnableOption mkOption types;
 in {
   options.servicesProfiles.adguardhome = {
     enable = mkEnableOption "AdGuard Home profile";
     rewrites = mkOption {
-      type = types.listOf (types.submodule ({...}: {
+      type = types.listOf (types.submodule (_: {
         options = {
           domain = mkOption {
             type = types.str;
@@ -44,7 +43,7 @@ in {
         dns = {
           upstream_dns = ["127.0.0.1:5353"];
           bootstrap_dns = ["1.1.1.1" "8.8.8.8"];
-          rewrites = cfg.rewrites;
+          inherit (cfg) rewrites;
         };
       };
     };
