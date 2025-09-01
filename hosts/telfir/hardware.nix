@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, pkgs, ...}: {
   # Hardware and performance tuning specific to host 'telfir'
   hardware.storage.autoMount.enable = true;
   hardware.video.amd.useMesaGit = true;
@@ -25,4 +25,9 @@
   systemd.settings.Manager.CPUAffinity = ["0-13" "16-29"];
   # Ban isolated CPUs from IRQ balancing (Zen3 mask example)
   systemd.services.irqbalance.environment.IRQBALANCE_BANNED_CPUS = "0xC000C000";
+
+  # Host-specific hardware tools
+  environment.systemPackages = with pkgs; [
+    bazecor # Dygma keyboard configurator
+  ];
 }
