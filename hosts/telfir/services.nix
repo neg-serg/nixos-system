@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   ...
 }: {
   # Roles enabled for this host

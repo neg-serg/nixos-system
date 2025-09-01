@@ -1,6 +1,5 @@
 {
   lib,
-  config,
   ...
 }: {
   # Hardware and performance tuning specific to host 'telfir'
