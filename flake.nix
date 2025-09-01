@@ -223,7 +223,15 @@
           ];
         };
 
-      nixosConfigurations = {
+      nixosConfigurations = let
+        commonModules = [
+          ./init.nix
+          nix-flatpak.nixosModules.nix-flatpak
+          lanzaboote.nixosModules.lanzaboote
+          chaotic.nixosModules.default
+          sops-nix.nixosModules.sops
+        ];
+      in {
         telfir = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
@@ -233,16 +241,13 @@
             inherit self;
             inherit inputs;
           };
-          modules = [
-            ./init.nix
-            ./hosts/telfir
-            nix-flatpak.nixosModules.nix-flatpak
-            lanzaboote.nixosModules.lanzaboote
-            chaotic.nixosModules.default
-            sops-nix.nixosModules.sops
-            diffClosures
-            {diffClosures.enable = true;}
-          ];
+          modules =
+            commonModules
+            ++ [
+              ./hosts/telfir
+              diffClosures
+              {diffClosures.enable = true;}
+            ];
         };
         telfir-vm = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -253,19 +258,16 @@
             inherit self;
             inherit inputs;
           };
-          modules = [
-            ./init.nix
-            ./hosts/telfir-vm
-            nix-flatpak.nixosModules.nix-flatpak
-            lanzaboote.nixosModules.lanzaboote
-            chaotic.nixosModules.default
-            sops-nix.nixosModules.sops
-            # VM-specific adjustments
-            ({lib, ...}: {
-              # Avoid secure boot integration in quick VM builds
-              boot.lanzaboote.enable = lib.mkForce false;
-            })
-          ];
+          modules =
+            commonModules
+            ++ [
+              ./hosts/telfir-vm
+              # VM-specific adjustments
+              ({lib, ...}: {
+                # Avoid secure boot integration in quick VM builds
+                boot.lanzaboote.enable = lib.mkForce false;
+              })
+            ];
         };
       };
     };
