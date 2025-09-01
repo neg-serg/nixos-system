@@ -40,4 +40,3 @@
     networkConfig.DHCP = "ipv4";
   };
 }
-
