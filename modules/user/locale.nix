@@ -1,7 +1,7 @@
 {
   locale,
   timeZone,
-  pkgs,
+  _pkgs,
   ...
 }: {
   time.timeZone = timeZone;
