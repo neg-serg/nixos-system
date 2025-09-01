@@ -21,7 +21,7 @@
       # and avoid setting unrelated systemd-boot options that would be ignored.
       systemd-boot.enable = lib.mkForce false;
     };
-    # boot-specific options only; activation script moved to top-level system.*
+    # Boot-specific options only; no activation scripts touching /boot
     initrd = {
       availableKernelModules = [
         "nvme"
@@ -35,30 +35,5 @@
     };
   };
 
-  # Ensure the boot loader (systemd-boot via lanzaboote) uses the highest
-  # available GOP console mode so the menu/early boot is in 4K.
-  # We set this via an activation script (top-level system.*) to avoid relying on
-  # boot.loader.systemd-boot.* options that are intentionally disabled here.
-  system.activationScripts.setBootConsoleMode = {
-    deps = ["specialfs"]; # ensure /boot is mounted
-    text = let
-      esp = config.boot.loader.efi.efiSysMountPoint or "/boot";
-    in ''
-      set -eu
-      esp_path='${esp}'
-      if [ -d "$esp_path" ]; then
-        mkdir -p "$esp_path/loader"
-        conf="$esp_path/loader/loader.conf"
-        # Remove any existing console-mode lines (case-insensitive)
-        if [ -f "$conf" ]; then
-          awk 'BEGIN{IGNORECASE=1} !/^console-mode[[:space:]]/ {print}' "$conf" > "$conf.tmp"
-          mv "$conf.tmp" "$conf"
-        else
-          : > "$conf"
-        fi
-        # Force highest available text mode in systemd-boot
-        printf '%s\n' 'console-mode max' >> "$conf"
-      fi
-    '';
-  };
+  # Boot-time console mode script removed per request.
 }
