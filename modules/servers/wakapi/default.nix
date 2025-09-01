@@ -6,7 +6,6 @@
 {
   lib,
   config,
-  _pkgs,
   ...
 }: let
   cfg = (config.servicesProfiles.wakapi or { enable = false; });

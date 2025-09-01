@@ -1,6 +1,5 @@
 { 
   lib,
-  _pkgs,
   ...
 }: let
   inherit (builtins) concatStringsSep length;
