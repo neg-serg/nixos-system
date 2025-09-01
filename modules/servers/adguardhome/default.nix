@@ -3,35 +3,8 @@
   config,
   ...
 }: let
-  cfg = config.servicesProfiles.adguardhome;
-  inherit (lib) mkEnableOption mkOption types;
+  cfg = (config.servicesProfiles.adguardhome or { enable = false; rewrites = []; });
 in {
-  options.servicesProfiles.adguardhome = {
-    enable = mkEnableOption "AdGuard Home profile";
-    rewrites = mkOption {
-      type = types.listOf (types.submodule (_: {
-        options = {
-          domain = mkOption {
-            type = types.str;
-            description = "Domain to rewrite";
-          };
-          answer = mkOption {
-            type = types.str;
-            description = "Rewrite answer (IP or hostname)";
-          };
-        };
-      }));
-      default = [];
-      description = "List of DNS rewrite rules for AdGuard Home.";
-      example = [
-        {
-          domain = "nas.local";
-          answer = "192.168.1.10";
-        }
-      ];
-    };
-  };
-
   config = lib.mkIf cfg.enable {
     services.adguardhome = {
       enable = true;
