@@ -216,7 +216,6 @@ in {
           RCU_BOOST_DELAY = freeform "500";
           RCU_NOCB_CPU = yes;
           RCU_LAZY = yes;
-
         };
       }
     ];

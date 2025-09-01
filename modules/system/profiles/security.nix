@@ -7,4 +7,3 @@ in {
     enable = mkEnableOption "Enable security-oriented kernel tweaks (e.g., page poisoning).";
   };
 }
-

@@ -1,541 +1,569 @@
-{pkgs, lib, config, ...}: let
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.profiles.games or {};
   # Helper to strip common leading indentation from a multi-line string
   dedentPy = s: let
     lines = lib.splitString "\n" s;
     nonEmpty = lib.filter (l: l != "") lines;
-    leading = l: let m = builtins.match "^( +)" l; in if m == null then 0 else builtins.stringLength (builtins.elemAt m 0);
-    minIndent = if nonEmpty == [] then 0 else lib.foldl' (a: b: if b < a then b else a) 9999 (map leading nonEmpty);
+    leading = l: let
+      m = builtins.match "^( +)" l;
+    in
+      if m == null
+      then 0
+      else builtins.stringLength (builtins.elemAt m 0);
+    minIndent =
+      if nonEmpty == []
+      then 0
+      else
+        lib.foldl' (a: b:
+          if b < a
+          then b
+          else a)
+        9999 (map leading nonEmpty);
     spaces = lib.concatStrings (builtins.genList (_: " ") minIndent);
-    stripN = l: if lib.hasPrefix spaces l then lib.removePrefix spaces l else l;
-  in lib.concatStringsSep "\n" (map stripN lines);
+    stripN = l:
+      if lib.hasPrefix spaces l
+      then lib.removePrefix spaces l
+      else l;
+  in
+    lib.concatStringsSep "\n" (map stripN lines);
   # Python wrappers to avoid shell/Nix escaping pitfalls
-  gamescopePinned = pkgs.writers.writePython3Bin "gamescope-pinned" {}
+  gamescopePinned =
+    pkgs.writers.writePython3Bin "gamescope-pinned" {}
     (dedentPy ''
-    import os
-    import shlex
-    import subprocess
-    import sys
+      import os
+      import shlex
+      import subprocess
+      import sys
 
-    GAMESCOPE = "gamescope"
-    GAME_RUN = "game-run"
+      GAMESCOPE = "gamescope"
+      GAME_RUN = "game-run"
 
-    flags = os.environ.get("GAMESCOPE_FLAGS", "-f --adaptive-sync")
+      flags = os.environ.get("GAMESCOPE_FLAGS", "-f --adaptive-sync")
 
-    cmd = (
-        [GAME_RUN, GAMESCOPE]
-        + shlex.split(flags)
-        + ["--"]
-        + sys.argv[1:]
-    )
-    raise SystemExit(subprocess.call(cmd))
+      cmd = (
+          [GAME_RUN, GAMESCOPE]
+          + shlex.split(flags)
+          + ["--"]
+          + sys.argv[1:]
+      )
+      raise SystemExit(subprocess.call(cmd))
     '');
 
-  gamePinned = pkgs.writers.writePython3Bin "game-pinned" {}
+  gamePinned =
+    pkgs.writers.writePython3Bin "game-pinned" {}
     (dedentPy ''
-    import subprocess
-    import sys
+      import subprocess
+      import sys
 
-    GAME_RUN = "game-run"
+      GAME_RUN = "game-run"
 
-    cmd = [GAME_RUN] + sys.argv[1:]
-    raise SystemExit(subprocess.call(cmd))
+      cmd = [GAME_RUN] + sys.argv[1:]
+      raise SystemExit(subprocess.call(cmd))
     '');
 
   # (no-op placeholder removed)
 
-  gamescopePerf = pkgs.writers.writePython3Bin "gamescope-perf" {}
+  gamescopePerf =
+    pkgs.writers.writePython3Bin "gamescope-perf" {}
     (dedentPy ''
-    import json
-    import os
-    import shlex
-    import subprocess
-    import sys
+      import json
+      import os
+      import shlex
+      import subprocess
+      import sys
 
-    H = {
-        "HYPRCTL": "hyprctl",
-        "ZENITY": "zenity",
-        "GAME_RUN": "game-run",
-        "GAMESCOPE": "gamescope",
-    }
-
-
-    def get_monitors():
-        try:
-            out = subprocess.check_output(
-                [H["HYPRCTL"], "monitors", "-j"], text=True
-            )
-            return json.loads(out)
-        except Exception:
-            return []
+      H = {
+          "HYPRCTL": "hyprctl",
+          "ZENITY": "zenity",
+          "GAME_RUN": "game-run",
+          "GAMESCOPE": "gamescope",
+      }
 
 
-    def pick_monitor(mon_name, mons):
-        if mons:
-            if mon_name:
-                for m in mons:
-                    if m.get("name") == mon_name:
-                        return m
-            focused = [m for m in mons if m.get("focused")]
-            if focused:
-                return focused[0]
-            # best by refresh then resolution
-            return sorted(
-                mons,
-                key=lambda m: (
-                    m.get("refreshRate", 0),
-                    (m.get("width", 0) * m.get("height", 0)),
-                ),
-                reverse=True,
-            )[0]
-        return None
+      def get_monitors():
+          try:
+              out = subprocess.check_output(
+                  [H["HYPRCTL"], "monitors", "-j"], text=True
+              )
+              return json.loads(out)
+          except Exception:
+              return []
 
 
-    mon_env = os.environ.get("GAMESCOPE_MON")
-    out_w = os.environ.get("GAMESCOPE_OUT_W")
-    out_h = os.environ.get("GAMESCOPE_OUT_H")
-    mons = get_monitors()
-    mon = pick_monitor(mon_env, mons)
-    if not out_w or not out_h:
-        if mon:
-            out_w = out_w or str(mon.get("width", 3840))
-            out_h = out_h or str(mon.get("height", 2160))
-        else:
-            out_w = out_w or "3840"
-            out_h = out_h or "2160"
+      def pick_monitor(mon_name, mons):
+          if mons:
+              if mon_name:
+                  for m in mons:
+                      if m.get("name") == mon_name:
+                          return m
+              focused = [m for m in mons if m.get("focused")]
+              if focused:
+                  return focused[0]
+              # best by refresh then resolution
+              return sorted(
+                  mons,
+                  key=lambda m: (
+                      m.get("refreshRate", 0),
+                      (m.get("width", 0) * m.get("height", 0)),
+                  ),
+                  reverse=True,
+              )[0]
+          return None
 
-    # focus chosen monitor
-    if mon_env:
-        try:
-            subprocess.run(
-                [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-        except Exception:
-            pass
 
-    rate = os.environ.get("GAMESCOPE_RATE")
-    if not rate and mon:
-        rr = mon.get("refreshRate")
-        if rr:
-            rate = str(int(round(rr)))
+      mon_env = os.environ.get("GAMESCOPE_MON")
+      out_w = os.environ.get("GAMESCOPE_OUT_W")
+      out_h = os.environ.get("GAMESCOPE_OUT_H")
+      mons = get_monitors()
+      mon = pick_monitor(mon_env, mons)
+      if not out_w or not out_h:
+          if mon:
+              out_w = out_w or str(mon.get("width", 3840))
+              out_h = out_h or str(mon.get("height", 2160))
+          else:
+              out_w = out_w or "3840"
+              out_h = out_h or "2160"
 
-    game_w = os.environ.get("GAMESCOPE_GAME_W")
-    game_h = os.environ.get("GAMESCOPE_GAME_H")
-    if not game_w or not game_h:
-        game_w = game_w or str(int(int(out_w) * 2 / 3))
-        game_h = game_h or str(int(int(out_h) * 2 / 3))
+      # focus chosen monitor
+      if mon_env:
+          try:
+              subprocess.run(
+                  [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
+                  check=False,
+                  stdout=subprocess.DEVNULL,
+                  stderr=subprocess.DEVNULL,
+              )
+          except Exception:
+              pass
 
-    flags = ["-f", "--adaptive-sync"]
-    if rate:
-        flags += ["-r", rate]
-    flags += [
-        "-w",
-        game_w,
-        "-h",
-        game_h,
-        "-W",
-        out_w,
-        "-H",
-        out_h,
-        "--fsr-sharpness",
-        "3",
-    ]
+      rate = os.environ.get("GAMESCOPE_RATE")
+      if not rate and mon:
+          rr = mon.get("refreshRate")
+          if rr:
+              rate = str(int(round(rr)))
 
-    if len(sys.argv) == 1:
-        try:
-            cmd_str = subprocess.check_output(
-                [
-                    H["ZENITY"],
-                    "--entry",
-                    "--title=Gamescope Performance",
-                    "--text=Command to run:",
-                ],
-                text=True,
-            ).strip()
-        except Exception:
-            cmd_str = ""
-        if not cmd_str:
-            sys.exit(0)
-        args = shlex.split(cmd_str)
-    else:
-        args = sys.argv[1:]
+      game_w = os.environ.get("GAMESCOPE_GAME_W")
+      game_h = os.environ.get("GAMESCOPE_GAME_H")
+      if not game_w or not game_h:
+          game_w = game_w or str(int(int(out_w) * 2 / 3))
+          game_h = game_h or str(int(int(out_h) * 2 / 3))
 
-    cmd = (
-        [H["GAME_RUN"], H["GAMESCOPE"]]
-        + flags
-        + ["--"]
-        + args
-    )
-    raise SystemExit(subprocess.call(cmd))
+      flags = ["-f", "--adaptive-sync"]
+      if rate:
+          flags += ["-r", rate]
+      flags += [
+          "-w",
+          game_w,
+          "-h",
+          game_h,
+          "-W",
+          out_w,
+          "-H",
+          out_h,
+          "--fsr-sharpness",
+          "3",
+      ]
+
+      if len(sys.argv) == 1:
+          try:
+              cmd_str = subprocess.check_output(
+                  [
+                      H["ZENITY"],
+                      "--entry",
+                      "--title=Gamescope Performance",
+                      "--text=Command to run:",
+                  ],
+                  text=True,
+              ).strip()
+          except Exception:
+              cmd_str = ""
+          if not cmd_str:
+              sys.exit(0)
+          args = shlex.split(cmd_str)
+      else:
+          args = sys.argv[1:]
+
+      cmd = (
+          [H["GAME_RUN"], H["GAMESCOPE"]]
+          + flags
+          + ["--"]
+          + args
+      )
+      raise SystemExit(subprocess.call(cmd))
     '');
 
-  gamescopeQuality = pkgs.writers.writePython3Bin "gamescope-quality" {}
+  gamescopeQuality =
+    pkgs.writers.writePython3Bin "gamescope-quality" {}
     (dedentPy ''
-    import json
-    import os
-    import shlex
-    import subprocess
-    import sys
+      import json
+      import os
+      import shlex
+      import subprocess
+      import sys
 
-    H = {
-        "HYPRCTL": "hyprctl",
-        "ZENITY": "zenity",
-        "GAME_RUN": "game-run",
-        "GAMESCOPE": "gamescope",
-    }
-
-
-    def get_monitors():
-        try:
-            out = subprocess.check_output(
-                [H["HYPRCTL"], "monitors", "-j"], text=True
-            )
-            return json.loads(out)
-        except Exception:
-            return []
+      H = {
+          "HYPRCTL": "hyprctl",
+          "ZENITY": "zenity",
+          "GAME_RUN": "game-run",
+          "GAMESCOPE": "gamescope",
+      }
 
 
-    def pick_monitor(mon_name, mons):
-        if mons:
-            if mon_name:
-                for m in mons:
-                    if m.get("name") == mon_name:
-                        return m
-            focused = [m for m in mons if m.get("focused")]
-            if focused:
-                return focused[0]
-            return sorted(
-                mons,
-                key=lambda m: (
-                    m.get("refreshRate", 0),
-                    (m.get("width", 0) * m.get("height", 0)),
-                ),
-                reverse=True,
-            )[0]
-        return None
+      def get_monitors():
+          try:
+              out = subprocess.check_output(
+                  [H["HYPRCTL"], "monitors", "-j"], text=True
+              )
+              return json.loads(out)
+          except Exception:
+              return []
 
 
-    mon_env = os.environ.get("GAMESCOPE_MON")
-    out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
-    out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
-    mons = get_monitors()
-    mon = pick_monitor(mon_env, mons)
-    if not out_w or not out_h:
-        if mon:
-            out_w = out_w or str(mon.get("width", 3840))
-            out_h = out_h or str(mon.get("height", 2160))
-        else:
-            out_w = out_w or "3840"
-            out_h = out_h or "2160"
+      def pick_monitor(mon_name, mons):
+          if mons:
+              if mon_name:
+                  for m in mons:
+                      if m.get("name") == mon_name:
+                          return m
+              focused = [m for m in mons if m.get("focused")]
+              if focused:
+                  return focused[0]
+              return sorted(
+                  mons,
+                  key=lambda m: (
+                      m.get("refreshRate", 0),
+                      (m.get("width", 0) * m.get("height", 0)),
+                  ),
+                  reverse=True,
+              )[0]
+          return None
 
-    if mon_env:
-        try:
-            subprocess.run(
-                [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-        except Exception:
-            pass
 
-    rate = os.environ.get("GAMESCOPE_RATE")
-    if not rate and mon:
-        rr = mon.get("refreshRate")
-        if rr:
-            rate = str(int(round(rr)))
+      mon_env = os.environ.get("GAMESCOPE_MON")
+      out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
+      out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
+      mons = get_monitors()
+      mon = pick_monitor(mon_env, mons)
+      if not out_w or not out_h:
+          if mon:
+              out_w = out_w or str(mon.get("width", 3840))
+              out_h = out_h or str(mon.get("height", 2160))
+          else:
+              out_w = out_w or "3840"
+              out_h = out_h or "2160"
 
-    flags = ["-f", "--adaptive-sync"]
-    if rate:
-        flags += ["-r", rate]
-    flags += [
-        "-W",
-        out_w,
-        "-H",
-        out_h,
-    ]
+      if mon_env:
+          try:
+              subprocess.run(
+                  [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
+                  check=False,
+                  stdout=subprocess.DEVNULL,
+                  stderr=subprocess.DEVNULL,
+              )
+          except Exception:
+              pass
 
-    if len(sys.argv) == 1:
-        try:
-            cmd_str = subprocess.check_output(
-                [
-                    H["ZENITY"],
-                    "--entry",
-                    "--title=Gamescope Quality",
-                    "--text=Command to run:",
-                ],
-                text=True,
-            ).strip()
-        except Exception:
-            cmd_str = ""
-        if not cmd_str:
-            sys.exit(0)
-        args = shlex.split(cmd_str)
-    else:
-        args = sys.argv[1:]
+      rate = os.environ.get("GAMESCOPE_RATE")
+      if not rate and mon:
+          rr = mon.get("refreshRate")
+          if rr:
+              rate = str(int(round(rr)))
 
-    cmd = (
-        [H["GAME_RUN"], H["GAMESCOPE"]]
-        + flags
-        + ["--"]
-        + args
-    )
-    raise SystemExit(subprocess.call(cmd))
+      flags = ["-f", "--adaptive-sync"]
+      if rate:
+          flags += ["-r", rate]
+      flags += [
+          "-W",
+          out_w,
+          "-H",
+          out_h,
+      ]
+
+      if len(sys.argv) == 1:
+          try:
+              cmd_str = subprocess.check_output(
+                  [
+                      H["ZENITY"],
+                      "--entry",
+                      "--title=Gamescope Quality",
+                      "--text=Command to run:",
+                  ],
+                  text=True,
+              ).strip()
+          except Exception:
+              cmd_str = ""
+          if not cmd_str:
+              sys.exit(0)
+          args = shlex.split(cmd_str)
+      else:
+          args = sys.argv[1:]
+
+      cmd = (
+          [H["GAME_RUN"], H["GAMESCOPE"]]
+          + flags
+          + ["--"]
+          + args
+      )
+      raise SystemExit(subprocess.call(cmd))
     '');
 
-  gamescopeHDR = pkgs.writers.writePython3Bin "gamescope-hdr" {}
+  gamescopeHDR =
+    pkgs.writers.writePython3Bin "gamescope-hdr" {}
     (dedentPy ''
-    import json
-    import os
-    import shlex
-    import subprocess
-    import sys
+      import json
+      import os
+      import shlex
+      import subprocess
+      import sys
 
-    H = {
-        "HYPRCTL": "hyprctl",
-        "ZENITY": "zenity",
-        "GAME_RUN": "game-run",
-        "GAMESCOPE": "gamescope",
-    }
-
-
-    def get_monitors():
-        try:
-            out = subprocess.check_output(
-                [H["HYPRCTL"], "monitors", "-j"], text=True
-            )
-            return json.loads(out)
-        except Exception:
-            return []
+      H = {
+          "HYPRCTL": "hyprctl",
+          "ZENITY": "zenity",
+          "GAME_RUN": "game-run",
+          "GAMESCOPE": "gamescope",
+      }
 
 
-    def pick_monitor(mon_name, mons):
-        if mons:
-            if mon_name:
-                for m in mons:
-                    if m.get("name") == mon_name:
-                        return m
-            focused = [m for m in mons if m.get("focused")]
-            if focused:
-                return focused[0]
-            return sorted(
-                mons,
-                key=lambda m: (
-                    m.get("refreshRate", 0),
-                    (m.get("width", 0) * m.get("height", 0)),
-                ),
-                reverse=True,
-            )[0]
-        return None
+      def get_monitors():
+          try:
+              out = subprocess.check_output(
+                  [H["HYPRCTL"], "monitors", "-j"], text=True
+              )
+              return json.loads(out)
+          except Exception:
+              return []
 
 
-    mon_env = os.environ.get("GAMESCOPE_MON")
-    out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
-    out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
-    mons = get_monitors()
-    mon = pick_monitor(mon_env, mons)
-    if not out_w or not out_h:
-        if mon:
-            out_w = out_w or str(mon.get("width", 3840))
-            out_h = out_h or str(mon.get("height", 2160))
-        else:
-            out_w = out_w or "3840"
-            out_h = out_h or "2160"
+      def pick_monitor(mon_name, mons):
+          if mons:
+              if mon_name:
+                  for m in mons:
+                      if m.get("name") == mon_name:
+                          return m
+              focused = [m for m in mons if m.get("focused")]
+              if focused:
+                  return focused[0]
+              return sorted(
+                  mons,
+                  key=lambda m: (
+                      m.get("refreshRate", 0),
+                      (m.get("width", 0) * m.get("height", 0)),
+                  ),
+                  reverse=True,
+              )[0]
+          return None
 
-    if mon_env:
-        try:
-            subprocess.run(
-                [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-        except Exception:
-            pass
 
-    rate = os.environ.get("GAMESCOPE_RATE")
-    if not rate and mon:
-        rr = mon.get("refreshRate")
-        if rr:
-            rate = str(int(round(rr)))
+      mon_env = os.environ.get("GAMESCOPE_MON")
+      out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
+      out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
+      mons = get_monitors()
+      mon = pick_monitor(mon_env, mons)
+      if not out_w or not out_h:
+          if mon:
+              out_w = out_w or str(mon.get("width", 3840))
+              out_h = out_h or str(mon.get("height", 2160))
+          else:
+              out_w = out_w or "3840"
+              out_h = out_h or "2160"
 
-    flags = ["-f", "--adaptive-sync", "--hdr-enabled"]
-    if rate:
-        flags += ["-r", rate]
-    flags += [
-        "-W",
-        out_w,
-        "-H",
-        out_h,
-    ]
+      if mon_env:
+          try:
+              subprocess.run(
+                  [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
+                  check=False,
+                  stdout=subprocess.DEVNULL,
+                  stderr=subprocess.DEVNULL,
+              )
+          except Exception:
+              pass
 
-    if len(sys.argv) == 1:
-        try:
-            cmd_str = subprocess.check_output(
-                [
-                    H["ZENITY"],
-                    "--entry",
-                    "--title=Gamescope HDR",
-                    "--text=Command to run:",
-                ],
-                text=True,
-            ).strip()
-        except Exception:
-            cmd_str = ""
-        if not cmd_str:
-            sys.exit(0)
-        args = shlex.split(cmd_str)
-    else:
-        args = sys.argv[1:]
+      rate = os.environ.get("GAMESCOPE_RATE")
+      if not rate and mon:
+          rr = mon.get("refreshRate")
+          if rr:
+              rate = str(int(round(rr)))
 
-    cmd = (
-        [H["GAME_RUN"], H["GAMESCOPE"]]
-        + flags
-        + ["--"]
-        + args
-    )
-    raise SystemExit(subprocess.call(cmd))
+      flags = ["-f", "--adaptive-sync", "--hdr-enabled"]
+      if rate:
+          flags += ["-r", rate]
+      flags += [
+          "-W",
+          out_w,
+          "-H",
+          out_h,
+      ]
+
+      if len(sys.argv) == 1:
+          try:
+              cmd_str = subprocess.check_output(
+                  [
+                      H["ZENITY"],
+                      "--entry",
+                      "--title=Gamescope HDR",
+                      "--text=Command to run:",
+                  ],
+                  text=True,
+              ).strip()
+          except Exception:
+              cmd_str = ""
+          if not cmd_str:
+              sys.exit(0)
+          args = shlex.split(cmd_str)
+      else:
+          args = sys.argv[1:]
+
+      cmd = (
+          [H["GAME_RUN"], H["GAMESCOPE"]]
+          + flags
+          + ["--"]
+          + args
+      )
+      raise SystemExit(subprocess.call(cmd))
     '');
 
-  gamescopeTargetFPS = pkgs.writers.writePython3Bin "gamescope-targetfps" {}
+  gamescopeTargetFPS =
+    pkgs.writers.writePython3Bin "gamescope-targetfps" {}
     (dedentPy ''
-    import json
-    import math
-    import os
-    import shlex
-    import subprocess
-    import sys
+      import json
+      import math
+      import os
+      import shlex
+      import subprocess
+      import sys
 
-    H = {
-        "HYPRCTL": "hyprctl",
-        "ZENITY": "zenity",
-        "GAME_RUN": "game-run",
-        "GAMESCOPE": "gamescope",
-    }
-
-
-    def get_monitors():
-        try:
-            out = subprocess.check_output(
-                [H["HYPRCTL"], "monitors", "-j"], text=True
-            )
-            return json.loads(out)
-        except Exception:
-            return []
+      H = {
+          "HYPRCTL": "hyprctl",
+          "ZENITY": "zenity",
+          "GAME_RUN": "game-run",
+          "GAMESCOPE": "gamescope",
+      }
 
 
-    def pick_monitor(mon_name, mons):
-        if mons:
-            if mon_name:
-                for m in mons:
-                    if m.get("name") == mon_name:
-                        return m
-            focused = [m for m in mons if m.get("focused")]
-            if focused:
-                return focused[0]
-            return sorted(
-                mons,
-                key=lambda m: (
-                    m.get("refreshRate", 0),
-                    (m.get("width", 0) * m.get("height", 0)),
-                ),
-                reverse=True,
-            )[0]
-        return None
+      def get_monitors():
+          try:
+              out = subprocess.check_output(
+                  [H["HYPRCTL"], "monitors", "-j"], text=True
+              )
+              return json.loads(out)
+          except Exception:
+              return []
 
 
-    mon_env = os.environ.get("GAMESCOPE_MON")
-    target = os.environ.get("TARGET_FPS")
-    base = float(os.environ.get("NATIVE_BASE_FPS", "60"))
-    autoscale = os.environ.get("GAMESCOPE_AUTOSCALE") == "1"
+      def pick_monitor(mon_name, mons):
+          if mons:
+              if mon_name:
+                  for m in mons:
+                      if m.get("name") == mon_name:
+                          return m
+              focused = [m for m in mons if m.get("focused")]
+              if focused:
+                  return focused[0]
+              return sorted(
+                  mons,
+                  key=lambda m: (
+                      m.get("refreshRate", 0),
+                      (m.get("width", 0) * m.get("height", 0)),
+                  ),
+                  reverse=True,
+              )[0]
+          return None
 
-    out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
-    out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
-    mons = get_monitors()
-    mon = pick_monitor(mon_env, mons)
-    if not out_w or not out_h:
-        if mon:
-            out_w = out_w or str(mon.get("width", 3840))
-            out_h = out_h or str(mon.get("height", 2160))
-        else:
-            out_w = out_w or "3840"
-            out_h = out_h or "2160"
 
-    if mon_env:
-        try:
-            subprocess.run(
-                [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-        except Exception:
-            pass
+      mon_env = os.environ.get("GAMESCOPE_MON")
+      target = os.environ.get("TARGET_FPS")
+      base = float(os.environ.get("NATIVE_BASE_FPS", "60"))
+      autoscale = os.environ.get("GAMESCOPE_AUTOSCALE") == "1"
 
-    rate = os.environ.get("GAMESCOPE_RATE")
-    if not rate and mon:
-        rr = mon.get("refreshRate")
-        if rr:
-            rate = str(int(round(rr)))
+      out_w = os.environ.get("GAMESCOPE_OUT_W") or ""
+      out_h = os.environ.get("GAMESCOPE_OUT_H") or ""
+      mons = get_monitors()
+      mon = pick_monitor(mon_env, mons)
+      if not out_w or not out_h:
+          if mon:
+              out_w = out_w or str(mon.get("width", 3840))
+              out_h = out_h or str(mon.get("height", 2160))
+          else:
+              out_w = out_w or "3840"
+              out_h = out_h or "2160"
 
-    # Heuristic autoscale
-    scale = 1.0
-    if target or autoscale:
-        t = float(target or 120)
-        if base > 0 and t > 0:
-            scale = max(0.5, min(1.0, math.sqrt(base / t)))
-    game_w = str(int(round(int(out_w) * scale)))
-    game_h = str(int(round(int(out_h) * scale)))
+      if mon_env:
+          try:
+              subprocess.run(
+                  [H["HYPRCTL"], "dispatch", "focusmonitor", mon_env],
+                  check=False,
+                  stdout=subprocess.DEVNULL,
+                  stderr=subprocess.DEVNULL,
+              )
+          except Exception:
+              pass
 
-    flags = ["-f", "--adaptive-sync"]
-    if rate:
-        flags += ["-r", rate]
-    flags += [
-        "-w",
-        game_w,
-        "-h",
-        game_h,
-        "-W",
-        out_w,
-        "-H",
-        out_h,
-        "--fsr-sharpness",
-        "3",
-    ]
+      rate = os.environ.get("GAMESCOPE_RATE")
+      if not rate and mon:
+          rr = mon.get("refreshRate")
+          if rr:
+              rate = str(int(round(rr)))
 
-    if len(sys.argv) == 1:
-        prompt = f"Command to run (scale {scale:.3f}"
-        if target:
-            prompt += f", target {target} FPS"
-        prompt += "):"
-        try:
-            cmd_str = subprocess.check_output(
-                [
-                    H["ZENITY"],
-                    "--entry",
-                    "--title=Gamescope Target FPS",
-                    f"--text={prompt}",
-                ],
-                text=True,
-            ).strip()
-        except Exception:
-            cmd_str = ""
-        if not cmd_str:
-            sys.exit(0)
-        args = shlex.split(cmd_str)
-    else:
-        args = sys.argv[1:]
+      # Heuristic autoscale
+      scale = 1.0
+      if target or autoscale:
+          t = float(target or 120)
+          if base > 0 and t > 0:
+              scale = max(0.5, min(1.0, math.sqrt(base / t)))
+      game_w = str(int(round(int(out_w) * scale)))
+      game_h = str(int(round(int(out_h) * scale)))
 
-    cmd = (
-        [H["GAME_RUN"], H["GAMESCOPE"]]
-        + flags
-        + ["--"]
-        + args
-    )
-    raise SystemExit(subprocess.call(cmd))
+      flags = ["-f", "--adaptive-sync"]
+      if rate:
+          flags += ["-r", rate]
+      flags += [
+          "-w",
+          game_w,
+          "-h",
+          game_h,
+          "-W",
+          out_w,
+          "-H",
+          out_h,
+          "--fsr-sharpness",
+          "3",
+      ]
+
+      if len(sys.argv) == 1:
+          prompt = f"Command to run (scale {scale:.3f}"
+          if target:
+              prompt += f", target {target} FPS"
+          prompt += "):"
+          try:
+              cmd_str = subprocess.check_output(
+                  [
+                      H["ZENITY"],
+                      "--entry",
+                      "--title=Gamescope Target FPS",
+                      f"--text={prompt}",
+                  ],
+                  text=True,
+              ).strip()
+          except Exception:
+              cmd_str = ""
+          if not cmd_str:
+              sys.exit(0)
+          args = shlex.split(cmd_str)
+      else:
+          args = sys.argv[1:]
+
+      cmd = (
+          [H["GAME_RUN"], H["GAMESCOPE"]]
+          + flags
+          + ["--"]
+          + args
+      )
+      raise SystemExit(subprocess.call(cmd))
     '');
 
   # Desktop entries for convenient launchers
@@ -565,78 +593,80 @@
   };
 
   # Helper: set affinity inside the scope to avoid shell escaping issues
-  gameAffinityExec = pkgs.writers.writePython3Bin "game-affinity-exec" {}
+  gameAffinityExec =
+    pkgs.writers.writePython3Bin "game-affinity-exec" {}
     (dedentPy ''
-    import argparse
-    import os
-    import sys
+      import argparse
+      import os
+      import sys
 
 
-    def parse_cpuset(s: str):
-        cpus = set()
-        for part in s.split(','):
-            part = part.strip()
-            if not part:
-                continue
-            if '-' in part:
-                a, b = part.split('-', 1)
-                cpus.update(range(int(a), int(b) + 1))
-            else:
-                cpus.add(int(part))
-        return sorted(cpus)
+      def parse_cpuset(s: str):
+          cpus = set()
+          for part in s.split(','):
+              part = part.strip()
+              if not part:
+                  continue
+              if '-' in part:
+                  a, b = part.split('-', 1)
+                  cpus.update(range(int(a), int(b) + 1))
+              else:
+                  cpus.add(int(part))
+          return sorted(cpus)
 
 
-    ap = argparse.ArgumentParser()
-    ap.add_argument(
-        '--cpus',
-        default=os.environ.get('GAME_PIN_CPUSET', '14,15,30,31'),
-    )
-    ap.add_argument('cmd', nargs=argparse.REMAINDER)
-    args = ap.parse_args()
+      ap = argparse.ArgumentParser()
+      ap.add_argument(
+          '--cpus',
+          default=os.environ.get('GAME_PIN_CPUSET', '14,15,30,31'),
+      )
+      ap.add_argument('cmd', nargs=argparse.REMAINDER)
+      args = ap.parse_args()
 
-    if not args.cmd or args.cmd[0] != '--':
-        print(
-            'Usage: game-affinity-exec --cpus 14,15,30,31 -- <command> [args...]',
-            file=sys.stderr,
-        )
-        sys.exit(2)
-    cmd = args.cmd[1:]
+      if not args.cmd or args.cmd[0] != '--':
+          print(
+              'Usage: game-affinity-exec --cpus 14,15,30,31 -- <command> [args...]',
+              file=sys.stderr,
+          )
+          sys.exit(2)
+      cmd = args.cmd[1:]
 
-    cpus = parse_cpuset(args.cpus)
-    try:
-        os.sched_setaffinity(0, cpus)
-    except Exception as e:
-        print(f'Warning: failed to set CPU affinity: {e}', file=sys.stderr)
+      cpus = parse_cpuset(args.cpus)
+      try:
+          os.sched_setaffinity(0, cpus)
+      except Exception as e:
+          print(f'Warning: failed to set CPU affinity: {e}', file=sys.stderr)
 
-    use_gamemode = os.environ.get('GAME_RUN_USE_GAMEMODE', '1') not in (
-        '0', 'false', 'no'
-    )
-    if use_gamemode:
-        cmd = ['gamemoderun'] + cmd
+      use_gamemode = os.environ.get('GAME_RUN_USE_GAMEMODE', '1') not in (
+          '0', 'false', 'no'
+      )
+      if use_gamemode:
+          cmd = ['gamemoderun'] + cmd
 
-    os.execvp(cmd[0], cmd)
+      os.execvp(cmd[0], cmd)
     '');
 
   # Helper: run any command in a user cgroup scope with CPU affinity to gaming cores
-  gameRun = pkgs.writers.writePython3Bin "game-run" {}
+  gameRun =
+    pkgs.writers.writePython3Bin "game-run" {}
     (dedentPy ''
-    import os
-    import subprocess
-    import sys
+      import os
+      import subprocess
+      import sys
 
-    CPUSET = os.environ.get('GAME_PIN_CPUSET', '14,15,30,31')
-    if len(sys.argv) <= 1:
-        print('Usage: game-run <command> [args...]', file=sys.stderr)
-        sys.exit(1)
+      CPUSET = os.environ.get('GAME_PIN_CPUSET', '14,15,30,31')
+      if len(sys.argv) <= 1:
+          print('Usage: game-run <command> [args...]', file=sys.stderr)
+          sys.exit(1)
 
-    cmd = [
-        'systemd-run', '--user', '--scope', '--same-dir', '--collect',
-        '-p', 'Slice=games.slice',
-        '-p', 'CPUWeight=10000', '-p', 'IOWeight=10000', '-p', 'TasksMax=infinity',
-        'game-affinity-exec', '--cpus', CPUSET, '--'
-    ] + sys.argv[1:]
+      cmd = [
+          'systemd-run', '--user', '--scope', '--same-dir', '--collect',
+          '-p', 'Slice=games.slice',
+          '-p', 'CPUWeight=10000', '-p', 'IOWeight=10000', '-p', 'TasksMax=infinity',
+          'game-affinity-exec', '--cpus', CPUSET, '--'
+      ] + sys.argv[1:]
 
-    raise SystemExit(subprocess.call(cmd))
+      raise SystemExit(subprocess.call(cmd))
     '');
 in {
   options.profiles.games = {
