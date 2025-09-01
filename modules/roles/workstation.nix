@@ -17,5 +17,8 @@ in {
       avahi.enable = lib.mkDefault true;
       syncthing.enable = lib.mkDefault true;
     };
+
+    # Desktop integrations
+    programs.kdeconnect.enable = lib.mkDefault true;
   };
 }
