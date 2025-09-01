@@ -7,8 +7,6 @@
   myUser = "neg";
   myHome = "/home/${myUser}";
 in {
-  options.servicesProfiles.mpd.enable = lib.mkEnableOption "MPD (Music Player Daemon) profile";
-
   config = lib.mkIf cfg.enable {
     systemd.services.mpd.serviceConfig = {
       Environment = "XDG_RUNTIME_DIR=/run/user/1000";

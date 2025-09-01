@@ -5,8 +5,6 @@
 }: let
   cfg = config.servicesProfiles.unbound;
 in {
-  options.servicesProfiles.unbound.enable = lib.mkEnableOption "Unbound DNS resolver profile";
-
   config = lib.mkIf cfg.enable {
     services.unbound = {
       enable = true;

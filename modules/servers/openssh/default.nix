@@ -5,8 +5,6 @@
 }: let
   cfg = config.servicesProfiles.openssh;
 in {
-  options.servicesProfiles.openssh.enable = lib.mkEnableOption "OpenSSH + mosh profile";
-
   config = lib.mkIf cfg.enable {
     services.openssh = {
       enable = true;

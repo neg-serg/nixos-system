@@ -6,8 +6,6 @@
   hasSynSecret = builtins.pathExists (../../.. + "/secrets/syncthing.sops.yaml");
   cfg = config.servicesProfiles.syncthing;
 in {
-  options.servicesProfiles.syncthing.enable = lib.mkEnableOption "Syncthing profile";
-
   config = lib.mkIf cfg.enable {
     # Register secret only if present to keep evaluation robust without secrets
     sops.secrets."syncthing/gui-pass" = lib.mkIf hasSynSecret {
