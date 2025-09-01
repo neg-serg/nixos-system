@@ -100,7 +100,37 @@
       kexec_enabled = true;
       diffClosures = import ./modules/diff-closures.nix;
     }; {
-      packages.${system}.default = nixpkgs.legacyPackages.${system}.zsh;
+      # Option docs (markdown) for base profiles and roles
+      packages.${system} = let
+        pkgs = nixpkgs.legacyPackages.${system};
+        lib = pkgs.lib;
+        evalBase = lib.evalModules {
+          inherit lib;
+          modules = [
+            ./modules/profiles/services.nix
+            ./modules/system/profiles/security.nix
+            ./modules/system/profiles/performance.nix
+            ./modules/system/profiles/vm.nix
+            ./modules/system/net/bridge.nix
+          ];
+          specialArgs = {
+            inherit self inputs locale timeZone kexec_enabled;
+            pkgs = pkgs;
+          };
+        };
+        docsBase = lib.nixosOptionsDoc { options = evalBase.options; };
+
+        evalRoles = lib.evalModules {
+          inherit lib;
+          modules = [ ./modules/roles ];
+          specialArgs = { inherit self inputs; pkgs = pkgs; };
+        };
+        docsRoles = lib.nixosOptionsDoc { options = evalRoles.options; };
+      in {
+        default = pkgs.zsh;
+        options-base-md = docsBase.optionsCommonMark;
+        options-roles-md = docsRoles.optionsCommonMark;
+      };
 
       # Make `nix fmt` behave like in home-manager: format repo with alejandra
       formatter.${system} = let
