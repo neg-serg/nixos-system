@@ -66,6 +66,20 @@ Example (host):
 }
 ```
 
+Example (media role):
+
+```nix
+{ lib, ... }: {
+  roles.media.enable = true;
+
+  # This role enables Jellyfin, Navidrome, MPD, Avahi, SSH by default.
+  # Per-host overrides (e.g., disable Jellyfin on this machine):
+  servicesProfiles.jellyfin.enable = lib.mkForce false;
+
+  # Media server host-specific tweaks can live here as well (paths, ports, etc.).
+}
+```
+
 ## Commit message policy and local hook
 
 - Subject style: `[scope] short description` in English, ASCII only.
