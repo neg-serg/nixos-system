@@ -5,12 +5,17 @@
   ...
 }: let
   vmEnabled = (config.profiles.vm or {enable = false;}).enable;
+  mainUser = config.users.main.name or "neg";
 in {
   # Keep imports at top-level; guard heavy config below
   imports = [./virt/pkgs.nix];
 
   config = lib.mkIf (!vmEnabled) {
-    users.users.neg.extraGroups = ["video" "render"];
+    users.users = {
+      "${mainUser}" = {
+        extraGroups = ["video" "render"];
+      };
+    };
     virtualisation = {
       containers.enable = true;
 

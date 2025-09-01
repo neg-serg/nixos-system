@@ -1,8 +1,17 @@
 {
   pkgs,
   lib,
+  config,
   ...
-}: {
+}: let
+  mainUser = config.users.main.name or "neg";
+  mainGroup = let
+    g = config.users.main.group or null;
+  in
+    if g == null
+    then mainUser
+    else g;
+in {
   imports = [./firejail.nix];
   services.pcscd.enable = true; # pkcs support
   # Tell p11-kit to load/proxy opensc-pkcs11.so, providing all available slots
@@ -49,13 +58,13 @@
           value = "4194304";
         }
         {
-          domain = "neg";
+          domain = mainUser;
           item = "rtprio";
           type = "-";
           value = "95";
         }
         {
-          domain = "neg";
+          domain = mainUser;
           item = "memlock";
           type = "-";
           value = "4194304";
@@ -129,7 +138,7 @@
               options = ["NOPASSWD"];
             }
           ];
-          groups = ["neg"];
+          groups = [mainGroup];
         }
       ];
       execWheelOnly = true;

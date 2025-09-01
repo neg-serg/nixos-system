@@ -10,6 +10,7 @@
 }: let
   hasSynSecret = builtins.pathExists (../../.. + "/secrets/syncthing.sops.yaml");
   cfg = config.servicesProfiles.syncthing or {enable = false;};
+  mainUser = config.users.main.name or "neg";
 in {
   config = lib.mkIf cfg.enable {
     # Register secret only if present to keep evaluation robust without secrets
@@ -19,9 +20,9 @@ in {
 
     services.syncthing = {
       enable = true;
-      user = "neg";
+      user = mainUser;
       settings.gui = {
-        user = "neg";
+        user = mainUser;
         # Password is managed out-of-band (either already configured in Syncthing
         # or updated manually via GUI/API). Avoid reading secrets at eval time.
       };

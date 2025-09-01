@@ -33,7 +33,7 @@
       ];
       trusted-users = [
         "root"
-        "neg"
+        (config.users.main.name or "neg")
       ];
       connect-timeout = 5; # Bail early on missing cache hits (thx to nyx)
       cores = 0; # Use all available cores per build

@@ -1,4 +1,8 @@
-_: {
+{config, ...}: let
+  mainUser = config.users.main.name or "neg";
+  # Avoid module eval cycles: assume default home path
+  homeDir = "/home/${mainUser}";
+in {
   boot.supportedFilesystems = [
     "exfat"
     "xfs"
@@ -38,23 +42,23 @@ _: {
       options = ["x-systemd.automount" "relatime" "lazytime" "rw"];
     };
 
-    "/home/neg/music" = {
+    "${homeDir}/music" = {
       device = "/one/music";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
-    "/home/neg/torrent" = {
+    "${homeDir}/torrent" = {
       device = "/one/torrent";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
-    "/home/neg/vid" = {
+    "${homeDir}/vid" = {
       device = "/one/vid";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
-    "/home/neg/games" = {
+    "${homeDir}/games" = {
       device = "/one/games";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
-    "/home/neg/doc" = {
+    "${homeDir}/doc" = {
       device = "/one/doc";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
@@ -62,15 +66,15 @@ _: {
       device = "/one/flatpak";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
-    "/home/neg/.local/share/Steam/userdata" = {
+    "${homeDir}/.local/share/Steam/userdata" = {
       device = "/zero/userdata_steam";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
-    "/home/neg/.local/share/wineprefixes" = {
+    "${homeDir}/.local/share/wineprefixes" = {
       device = "/zero/wineprefixes";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
-    "/home/neg/.cache/winetricks" = {
+    "${homeDir}/.cache/winetricks" = {
       device = "/zero/winetricks_cache";
       options = ["bind" "nofail" "x-systemd.automount"];
     };

@@ -35,8 +35,9 @@
     };
 
     extraInit = let
-      user = "neg"; # Load variables from home-manager
-      homedir = config.users.users.${user}.home;
+      user = config.users.main.name or "neg"; # Load variables from home-manager
+      # Avoid evaluation cycles by not dereferencing users.users.<name>.home here
+      homedir = "/home/${user}";
     in ''
       if [ "$(id -un)" = "${user}" ]; then
         . "${homedir}/.local/state/nix/profile/etc/profile.d/hm-session-vars.sh"

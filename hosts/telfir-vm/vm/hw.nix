@@ -1,5 +1,10 @@
-{ pkgs, lib, modulesPath, ... }: {
-  imports = [ (modulesPath + "/virtualisation/qemu-vm.nix") ];
+{
+  pkgs,
+  lib,
+  modulesPath,
+  ...
+}: {
+  imports = [(modulesPath + "/virtualisation/qemu-vm.nix")];
 
   boot = {
     # Fast-build overrides: avoid custom kernel patches/out-of-tree modules
@@ -20,4 +25,3 @@
     nemu # qemu TUI interface
   ];
 }
-
