@@ -219,13 +219,6 @@
             ({lib, ...}: {
               # Avoid secure boot integration in quick VM builds
               boot.lanzaboote.enable = lib.mkForce false;
-              # Slim down services not needed for quick Hyprland testing
-              services = {
-                nextcloud.enable = lib.mkForce false;
-                adguardhome.enable = lib.mkForce false;
-                syncthing.enable = lib.mkForce false;
-                unbound.enable = lib.mkForce false;
-              };
             })
           ];
         };

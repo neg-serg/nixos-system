@@ -67,4 +67,12 @@
     matchConfig.Name = "*";
     networkConfig.DHCP = "ipv4";
   };
+
+  # Slim down heavy services for quick VM builds via role profiles
+  servicesProfiles = {
+    nextcloud.enable = lib.mkForce false;
+    adguardhome.enable = lib.mkForce false;
+    syncthing.enable = lib.mkForce false;
+    unbound.enable = lib.mkForce false;
+  };
 }
