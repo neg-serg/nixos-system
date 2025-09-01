@@ -5,6 +5,11 @@
     adguardhome.enable = lib.mkForce false;
     syncthing.enable = lib.mkForce false;
     unbound.enable = lib.mkForce false;
+    jellyfin.enable = lib.mkForce false;
+    navidrome.enable = lib.mkForce false;
+    wakapi.enable = lib.mkForce false;
   };
-}
 
+  # Lighten system for VM builds (docs off)
+  documentation.enable = lib.mkDefault false;
+}
