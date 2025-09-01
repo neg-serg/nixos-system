@@ -191,6 +191,7 @@
           };
           modules = [
             ./init.nix
+            ./hosts/telfir
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
             chaotic.nixosModules.default
@@ -211,7 +212,7 @@
           };
           modules = [
             ./init.nix
-            ./vm.nix
+            ./hosts/telfir-vm
             nix-flatpak.nixosModules.nix-flatpak
             lanzaboote.nixosModules.lanzaboote
             chaotic.nixosModules.default
