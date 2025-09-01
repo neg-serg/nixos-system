@@ -3,7 +3,11 @@
 # Purpose: structuredExtraConfig for AMD-oriented kernel settings.
 # Key options: profiles.kernel.amd.enable
 # Dependencies: Affects boot.kernelPatches.
-{lib, config, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib.kernel) yes no freeform;
   inherit (lib.attrsets) mapAttrs;
   inherit (lib) mkEnableOption mkIf;
