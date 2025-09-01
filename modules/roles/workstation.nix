@@ -17,7 +17,7 @@ in {
     profiles.performance.enable = lib.mkDefault true;
 
     # Common desktop-friendly services.
-    servicesProfiles = {
+    profiles.services = {
       openssh.enable = lib.mkDefault true;
       avahi.enable = lib.mkDefault true;
       syncthing.enable = lib.mkDefault true;

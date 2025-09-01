@@ -13,7 +13,7 @@ in {
   options.roles.media.enable = lib.mkEnableOption "Enable media role (media servers and discovery).";
 
   config = lib.mkIf cfg.enable {
-    servicesProfiles = {
+    profiles.services = {
       jellyfin.enable = lib.mkDefault true;
       navidrome.enable = lib.mkDefault true;
       mpd.enable = lib.mkDefault true;
