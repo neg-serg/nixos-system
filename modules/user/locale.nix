@@ -1,7 +1,6 @@
 {
   locale,
   timeZone,
-  _pkgs,
   ...
 }: {
   time.timeZone = timeZone;

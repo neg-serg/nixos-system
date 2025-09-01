@@ -5,8 +5,6 @@
 # Dependencies: pkgs (efibootmgr/efivar/os-prober/sbctl), lanzaboote.
 {
   lib,
-  _pkgs,
-  _config,
   ...
 }: {
   imports = [ ./boot/pkgs.nix ];
