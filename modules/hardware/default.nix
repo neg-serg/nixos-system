@@ -1,7 +1,6 @@
 {
   lib,
   config,
-  pkgs,
   ...
 }: let
   auto = config.hardware.storage.autoMount.enable or null;
