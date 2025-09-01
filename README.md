@@ -115,6 +115,42 @@ Service override examples
 - patches-amd: `boot.kernelPatches` with `structuredExtraConfig` for AMD in `modules/system/kernel/patches-amd.nix`.
 - Feature toggles: tune via `profiles.performance.*` and `profiles.security.*`; params derive from these.
 
+## mkForce Policy
+
+- Use `lib.mkForce` only in host/VM overlays (files under `hosts/<host>/*`).
+  - Examples: force-disable heavy services in VMs, set `boot.kernelPackages` for a test host.
+- In shared modules, avoid `mkForce`:
+  - Prefer `mkDefault` for defaults that hosts can override.
+  - Define options and gate config via `mkIf` (e.g., `options.servicesProfiles.<svc>.enable` + `config = lib.mkIf cfg.enable { ... };`).
+- For services managed by roles, toggle with `profiles.services.<name>.enable`.
+  - Hosts can hard-disable via `lib.mkForce false` when needed (e.g., on VMs).
+
+Examples
+
+```nix
+# VM: force-disable heavy services provided by roles
+{ lib, ... }: {
+  profiles.services = {
+    nextcloud.enable = lib.mkForce false;
+    adguardhome.enable = lib.mkForce false;
+    unbound.enable = lib.mkForce false;
+  };
+
+  # VM: force a simpler kernel set
+  boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
+}
+
+# Module pattern (no mkForce):
+{ lib, config, ... }: let
+  cfg = config.servicesProfiles.example;
+in {
+  options.servicesProfiles.example.enable = lib.mkEnableOption "Example service profile";
+  config = lib.mkIf cfg.enable {
+    services.example.enable = lib.mkDefault true; # host can override
+  };
+}
+```
+
 ## Commit message policy and local hook
 
 - Subject style: `[scope] short description` in English, ASCII only.
