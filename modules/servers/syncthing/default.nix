@@ -4,7 +4,7 @@
   ...
 }: let
   hasSynSecret = builtins.pathExists (../../.. + "/secrets/syncthing.sops.yaml");
-  cfg = config.servicesProfiles.syncthing;
+  cfg = (config.servicesProfiles.syncthing or { enable = false; });
 in {
   config = lib.mkIf cfg.enable {
     # Register secret only if present to keep evaluation robust without secrets
