@@ -1,7 +1,4 @@
-{
-  lib,
-  ...
-}: {
+{lib, ...}: {
   networking = {
     hostName = "telfir";
     hosts."192.168.2.240" = ["telfir" "telfir.local"];
@@ -55,4 +52,3 @@
   # Allow DHCP server traffic on br0
   networking.firewall.interfaces.br0.allowedUDPPorts = [67 68];
 }
-

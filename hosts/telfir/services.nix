@@ -3,6 +3,12 @@
   config,
   ...
 }: {
+  # Roles enabled for this host
+  roles = {
+    workstation.enable = true;
+    homelab.enable = true;
+    media.enable = true;
+  };
   # Run flake checks on activation for this host
   flakePreflight.enable = true;
 
@@ -17,6 +23,17 @@
   # Service profiles toggles for this host
   servicesProfiles = {
     adguardhome.enable = true;
+    # Local DNS rewrites for LAN names
+    adguardhome.rewrites = [
+      {
+        domain = "telfir";
+        answer = "192.168.2.240";
+      }
+      {
+        domain = "telfir.local";
+        answer = "192.168.2.240";
+      }
+    ];
     avahi.enable = true;
     jellyfin.enable = false;
     mpd.enable = true;
@@ -42,4 +59,3 @@
     nativeBaseFps = 240;
   };
 }
-

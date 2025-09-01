@@ -4,8 +4,23 @@
   ...
 }: let
   cfg = config.servicesProfiles.adguardhome;
+  inherit (lib) mkEnableOption mkOption;
+  types = lib.types;
 in {
-  options.servicesProfiles.adguardhome.enable = lib.mkEnableOption "AdGuard Home profile";
+  options.servicesProfiles.adguardhome = {
+    enable = mkEnableOption "AdGuard Home profile";
+    rewrites = mkOption {
+      type = types.listOf (types.submodule ({...}: {
+        options = {
+          domain = mkOption {type = types.str; description = "Domain to rewrite";};
+          answer = mkOption {type = types.str; description = "Rewrite answer (IP or hostname)";};
+        };
+      }));
+      default = [];
+      description = "List of DNS rewrite rules for AdGuard Home.";
+      example = [ { domain = "nas.local"; answer = "192.168.1.10"; } ];
+    };
+  };
 
   config = lib.mkIf cfg.enable {
     services.adguardhome = {
@@ -18,17 +33,7 @@ in {
         dns = {
           upstream_dns = ["127.0.0.1:5353"];
           bootstrap_dns = ["1.1.1.1" "8.8.8.8"];
-          # Local rewrites so LAN clients can resolve Nextcloud host
-          rewrites = [
-            {
-              domain = "telfir";
-              answer = "192.168.2.240";
-            }
-            {
-              domain = "telfir.local";
-              answer = "192.168.2.240";
-            }
-          ];
+          rewrites = cfg.rewrites;
         };
       };
     };

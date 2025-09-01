@@ -30,4 +30,3 @@
   # Ban isolated CPUs from IRQ balancing (Zen3 mask example)
   systemd.services.irqbalance.environment.IRQBALANCE_BANNED_CPUS = "0xC000C000";
 }
-
