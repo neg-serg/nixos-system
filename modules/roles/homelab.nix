@@ -17,7 +17,7 @@ in {
     profiles.security.enable = lib.mkDefault true;
 
     # Core self-hosted services commonly used in homelab.
-    servicesProfiles = {
+    profiles.services = {
       adguardhome.enable = lib.mkDefault true;
       unbound.enable = lib.mkDefault true;
       openssh.enable = lib.mkDefault true;
