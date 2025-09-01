@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ ... }: {
   imports = [
     ./vm/hw.nix
     ./vm/network.nix
@@ -35,4 +35,3 @@
     };
   };
 }
-

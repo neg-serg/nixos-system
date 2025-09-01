@@ -3,11 +3,7 @@
 # Purpose: Enable vnstatd with default configuration.
 # Key options: none.
 # Dependencies: pkgs.vnstat (CLI/daemon).
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{ ... }: {
   services = {
     vnstat.enable = true;
   };
