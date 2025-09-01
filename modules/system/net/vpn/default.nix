@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
+{ _pkgs, ... }: {
   imports = [ ./pkgs.nix ];
 }
