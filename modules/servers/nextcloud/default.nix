@@ -10,8 +10,6 @@ in {
   # Optional: nginx reverse proxy + ACME integration (guarded by an enable flag)
   imports = [./nginx.nix ./caddy.nix];
 
-  options.servicesProfiles.nextcloud.enable = lib.mkEnableOption "Nextcloud server profile";
-
   config = lib.mkIf cfg.enable {
     # Register SOPS secret only if the file exists to avoid eval errors
     sops.secrets."nextcloud/admin-pass" = lib.mkIf hasNcSecret {

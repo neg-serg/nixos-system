@@ -5,8 +5,6 @@
 }: let
   cfg = config.servicesProfiles.avahi;
 in {
-  options.servicesProfiles.avahi.enable = lib.mkEnableOption "Avahi (mDNS) profile";
-
   config = lib.mkIf cfg.enable {
     services.avahi = {
       enable = true;

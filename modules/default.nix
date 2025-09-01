@@ -1,5 +1,6 @@
 {
   imports = [
+    ./profiles/services.nix
     ./roles
     ./appimage
     ./cli
