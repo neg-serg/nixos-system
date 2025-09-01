@@ -29,5 +29,11 @@ _: {
     "net.ipv4.tcp_congestion_control" = "bbr";
     "net.core.default_qdisc" = "fq";
     "net.ipv4.tcp_mtu_probing" = 1;
+
+    # Socket and queue sizes
+    "net.core.rmem_max" = 4194304;
+    "net.core.wmem_max" = 4194304;
+    "net.core.netdev_max_backlog" = 32768;
+    "net.core.somaxconn" = 8192;
   };
 }
