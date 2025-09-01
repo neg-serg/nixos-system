@@ -5,7 +5,7 @@
   ...
 }: let
   hasNcSecret = builtins.pathExists (../../.. + "/secrets/nextcloud.sops.yaml");
-  cfg = config.servicesProfiles.nextcloud;
+  cfg = (config.servicesProfiles.nextcloud or { enable = false; });
 in {
   # Optional: nginx reverse proxy + ACME integration (guarded by an enable flag)
   imports = [./nginx.nix ./caddy.nix];
