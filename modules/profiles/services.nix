@@ -1,19 +1,15 @@
 { lib, ... }:
-let
-  mk = name: desc: {
-    options.servicesProfiles.${name}.enable = lib.mkEnableOption desc;
+{
+  options.servicesProfiles = {
+    adguardhome.enable = lib.mkEnableOption "AdGuard Home DNS with rewrites/profile wiring.";
+    unbound.enable = lib.mkEnableOption "Unbound DNS resolver profile.";
+    openssh.enable = lib.mkEnableOption "OpenSSH (and mosh) profile.";
+    syncthing.enable = lib.mkEnableOption "Syncthing device sync profile.";
+    mpd.enable = lib.mkEnableOption "MPD (Music Player Daemon) profile.";
+    navidrome.enable = lib.mkEnableOption "Navidrome music server profile.";
+    wakapi.enable = lib.mkEnableOption "Wakapi CLI tools profile.";
+    nextcloud.enable = lib.mkEnableOption "Nextcloud server profile (with optional Caddy proxy).";
+    avahi.enable = lib.mkEnableOption "Avahi (mDNS) profile.";
+    jellyfin.enable = lib.mkEnableOption "Jellyfin media server profile.";
   };
-in
-  lib.mkMerge [
-    (mk "adguardhome" "AdGuard Home DNS with rewrites/profile wiring.")
-    (mk "unbound" "Unbound DNS resolver profile.")
-    (mk "openssh" "OpenSSH (and mosh) profile.")
-    (mk "syncthing" "Syncthing device sync profile.")
-    (mk "mpd" "MPD (Music Player Daemon) profile.")
-    (mk "navidrome" "Navidrome music server profile.")
-    (mk "wakapi" "Wakapi CLI tools profile.")
-    (mk "nextcloud" "Nextcloud server profile (with optional Caddy proxy).")
-    (mk "avahi" "Avahi (mDNS) profile.")
-    (mk "jellyfin" "Jellyfin media server profile.")
-  ]
-
+}
