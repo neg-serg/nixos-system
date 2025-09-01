@@ -1,40 +1,15 @@
-{
-  pkgs,
-  lib,
-  modulesPath,
-  ...
-}: {
+{ lib, ... }: {
   imports = [
-    (modulesPath + "/virtualisation/qemu-vm.nix")
+    ./vm/hw.nix
+    ./vm/network.nix
+    ./vm/qa.nix
   ];
 
   # Keep VM lightweight but usable as a workstation
   roles.workstation.enable = true;
+  profiles.vm.enable = true;
 
-  boot = {
-    # Fast-build overrides: avoid custom kernel patches/out-of-tree modules
-    kernelPatches = lib.mkForce [];
-    extraModulePackages = lib.mkForce [];
-    # Prefer upstream latest kernel in VM
-    kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
-  };
-
-  # Align with qemu-vm module: disable timesyncd to avoid conflicts
-  services.timesyncd.enable = lib.mkForce false;
-
-  virtualisation = {
-    cores = 2;
-    diskSize = 10 * 1024;
-    memorySize = 4 * 1024;
-    qemu = {
-      options = ["-bios" "${pkgs.OVMF.fd}/FV/OVMF.fd"];
-    };
-  };
-
-  environment.systemPackages = with pkgs; [
-    nemu  # qemu tui interface
-    keyd  # systemwide key manager
-  ];
+  # Usability tweak in VM (optional)
   services.keyd.enable = true;
   services.keyd.keyboards = {
     default = {
@@ -59,20 +34,5 @@
       };
     };
   };
-  networking.firewall.enable = false; # for user convenience
-
-  # Make the VM identifiable and online by default
-  networking.hostName = lib.mkForce "telfir-vm";
-  systemd.network.networks."99-vm-default" = {
-    matchConfig.Name = "*";
-    networkConfig.DHCP = "ipv4";
-  };
-
-  # Slim down heavy services for quick VM builds via role profiles
-  servicesProfiles = {
-    nextcloud.enable = lib.mkForce false;
-    adguardhome.enable = lib.mkForce false;
-    syncthing.enable = lib.mkForce false;
-    unbound.enable = lib.mkForce false;
-  };
 }
+
