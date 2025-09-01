@@ -11,7 +11,8 @@
 }: let
   cfg = (config.servicesProfiles.wakapi or { enable = false; });
 in {
+  imports = [ ./pkgs.nix ];
   config = lib.mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [wakapi];
+    # Packages moved to ./pkgs.nix
   };
 }

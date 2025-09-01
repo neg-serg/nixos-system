@@ -5,10 +5,11 @@
     ./fonts.nix
     ./games
     ./locale.nix
+    ./locale-pkgs.nix
     ./locate.nix
     ./psd # profile sync daemon
     ./session
-    ./session/tools.nix
+    ./session/pkgs.nix
     ./xdg.nix
   ];
 }

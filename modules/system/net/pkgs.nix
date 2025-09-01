@@ -11,6 +11,9 @@
   };
 
   environment.systemPackages = with pkgs; [
+    impala # tui for wifi management
+    v2raya # web-based proxy manager
+    v2ray # cli proxy manager
     bandwhich # display network utilization per process
     cacert # for curl certificate verification
     curlie # feature-rich httpie
