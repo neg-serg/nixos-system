@@ -45,4 +45,36 @@
     targetFps = 240;
     nativeBaseFps = 240;
   };
+
+  # Syncthing host-specific devices and folders
+  services.syncthing = {
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices = {
+        "telfir" = {id = "EZG57BT-TANWJ2R-QDVLV5X-4DKP7GU-HQENUT7-MA43GUU-AV3IN6P-7KKGZA3";};
+        "Pixel 7 Pro" = {id = "OWGOTRT-Q4LV2MR-QLVIFZH-LPWZ4DP-TANYCAM-SXC2W2A-BL4VSHS-KWXLVAB";};
+        "DX180" = {id = "NKSYBIH-G5BV2FK-ZHHL27B-MWZT3OJ-DPTF7TH-O6HE5CM-3CARZ5K-6CIUSQI";};
+        "OPPO X7 Ultra" = {id = "JHDQEDC-YN67IMD-B7WFZTI-Y4CPKMY-MUPRBYK-OAFOMPC-IJVDVOV-AOBILAX";};
+      };
+      folders = {
+        "music-upload" = {
+          path = "/zero/syncthing/music-upload";
+          devices = [
+            "telfir"
+            "Pixel 7 Pro"
+            "DX180"
+            "OPPO X7 Ultra"
+          ];
+        };
+        "picture-upload" = {
+          path = "/zero/syncthing/picture-upload";
+          devices = [
+            "Pixel 7 Pro"
+            "DX180"
+          ];
+        };
+      };
+    };
+  };
 }
