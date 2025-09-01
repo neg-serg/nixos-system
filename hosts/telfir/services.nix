@@ -22,8 +22,7 @@
 
   # Service profiles toggles for this host
   servicesProfiles = {
-    adguardhome.enable = true;
-    # Local DNS rewrites for LAN names
+    # Local DNS rewrites for LAN names (service enable comes from roles)
     adguardhome.rewrites = [
       {
         domain = "telfir";
@@ -34,15 +33,8 @@
         answer = "192.168.2.240";
       }
     ];
-    avahi.enable = true;
+    # Explicitly override media role to keep Jellyfin off on this host
     jellyfin.enable = false;
-    mpd.enable = true;
-    navidrome.enable = true;
-    openssh.enable = true;
-    syncthing.enable = true;
-    unbound.enable = true;
-    wakapi.enable = true;
-    nextcloud.enable = true;
   };
 
   # Nextcloud via Caddy on LAN, served as "telfir"
