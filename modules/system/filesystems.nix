@@ -66,6 +66,10 @@ in {
       device = "/one/flatpak";
       options = ["bind" "nofail" "x-systemd.automount"];
     };
+    "${homeDir}/.local/mail" = {
+      device = "/one/mail";
+      options = ["bind" "nofail" "x-systemd.automount"];
+    };
     "${homeDir}/.local/share/Steam/userdata" = {
       device = "/zero/userdata_steam";
       options = ["bind" "nofail" "x-systemd.automount"];
