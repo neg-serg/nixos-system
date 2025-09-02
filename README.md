@@ -160,6 +160,31 @@ in {
 }
 ```
 
+## AutoFDO (sample-based PGO)
+
+Enable tooling and optional compiler wrappers:
+
+```nix
+{ lib, ... }: {
+  # Install AutoFDO tools
+  dev.gcc.autofdo.enable = true;
+
+  # Provide GCC wrappers `gcc-afdo` and `g++-afdo`
+  # that append -fauto-profile=<path>
+  dev.gcc.autofdo.gccProfile = "/var/lib/afdo/myprofile.afdo";
+
+  # Provide Clang wrappers `clang-afdo` and `clang++-afdo`
+  # that append -fprofile-sample-use=<path>
+  # dev.gcc.autofdo.clangProfile = "/var/lib/afdo/llvm.prof";
+}
+```
+
+Usage:
+
+- GCC: `gcc-afdo main.c -O3 -o app`
+- Clang: `clang-afdo main.c -O3 -o app`
+
+
 ## Commit message policy and local hook
 
 - Subject style: `[scope] short description` in English, ASCII only.
