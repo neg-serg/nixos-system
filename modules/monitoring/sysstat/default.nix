@@ -2,7 +2,11 @@
 # Module: monitoring/sysstat
 # Purpose: Enable sysstat (sar/iostat/mpstat) collectors for ultra-light history.
 # Key options: monitoring.sysstat.enable
-{lib, config, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   inherit (lib) mkIf mkEnableOption;
   cfg = config.monitoring.sysstat;
 in {
@@ -13,4 +17,3 @@ in {
     services.sysstat.enable = true;
   };
 }
-
