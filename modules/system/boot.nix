@@ -3,7 +3,7 @@
 # Purpose: Bootloader (EFI, lanzaboote), initrd modules.
 # Key options: none (uses config.boot.* directly).
 # Dependencies: pkgs (efibootmgr/efivar/os-prober/sbctl), lanzaboote.
-{lib, ...}: {
+{lib, config, ...}: {
   imports = [./boot/pkgs.nix];
   boot = {
     lanzaboote = {
@@ -22,17 +22,27 @@
       };
     };
     # Boot-specific options only; no activation scripts touching /boot
-    initrd = {
-      availableKernelModules = [
-        "nvme"
-        "sd_mod"
-        "usb_storage"
-        "usbhid"
-        "xhci_hcd"
-        "xhci_pci"
-      ];
-      kernelModules = [];
-    };
+    initrd = lib.mkMerge [
+      {
+        availableKernelModules = [
+          "nvme"
+          "sd_mod"
+          "usb_storage"
+          "usbhid"
+          "xhci_hcd"
+          "xhci_pci"
+          # TPM modules for early-boot (TPM2 auto-unlock, etc.)
+          "tpm"
+          "tpm_crb"
+          "tpm_tis"
+        ];
+        kernelModules = [];
+      }
+      (lib.mkIf (config.profiles.performance.optimizeInitrdCompression or false) {
+        compressor = "zstd";
+        compressorArgs = ["-19" "-T0"];
+      })
+    ];
   };
 
   # Boot-time console mode script removed per request.
