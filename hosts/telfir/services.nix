@@ -84,4 +84,7 @@
       };
     };
   };
+
+  # AutoFDO tooling disabled on this host (module kept)
+  dev.gcc.autofdo.enable = false;
 }
