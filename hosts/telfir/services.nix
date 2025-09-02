@@ -11,6 +11,7 @@
     workstation.enable = true;
     homelab.enable = true;
     media.enable = true;
+    monitoring.enable = true;
   };
   # Flake preflight checks disabled
 
@@ -87,4 +88,7 @@
 
   # AutoFDO tooling disabled on this host (module kept)
   dev.gcc.autofdo.enable = false;
+
+  # Monitoring (role enables Netdata + sysstat + atop with light config)
+  # Netdata UI: http://127.0.0.1:19999
 }
