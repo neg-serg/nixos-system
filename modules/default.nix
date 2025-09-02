@@ -1,7 +1,5 @@
 {
   imports = [
-    ./profiles/services.nix
-    ./roles
     ./appimage
     ./cli
     ./dev
@@ -14,6 +12,8 @@
     ./monitoring
     ./nix
     ./nixos
+    ./profiles/services.nix
+    ./roles
     ./secrets
     ./security
     ./servers
