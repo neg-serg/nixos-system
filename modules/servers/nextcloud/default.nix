@@ -12,7 +12,9 @@
   hasNcSecret = builtins.pathExists (../../.. + "/secrets/nextcloud.sops.yaml");
   cfg = config.servicesProfiles.nextcloud or {enable = false;};
   chosenPackage =
-    if (cfg ? package) && cfg.package != null then cfg.package else pkgs.nextcloud31;
+    if (cfg ? package) && cfg.package != null
+    then cfg.package
+    else pkgs.nextcloud31;
 in {
   # Optional: nginx reverse proxy + ACME integration (guarded by an enable flag)
   imports = [./nginx.nix ./caddy.nix];
