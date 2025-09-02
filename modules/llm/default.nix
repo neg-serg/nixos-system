@@ -1,5 +1,8 @@
 {...}: {
-  imports = [./pkgs.nix];
+  imports = [
+    ./pkgs.nix
+    ./codex-config.nix
+  ];
   services.ollama = {
     enable = true;
     acceleration = "rocm";
