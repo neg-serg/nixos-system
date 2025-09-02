@@ -21,6 +21,11 @@ in {
   '';
 
   security = {
+    apparmor = {
+      enable = true;
+      killUnconfinedConfinables = false;
+      packages = with pkgs; [apparmor-utils apparmor-profiles];
+    };
     pki.useCompatibleBundle = true;
     lockKernelModules = false;
     polkit = {
@@ -99,6 +104,13 @@ in {
         login.u2fAuth = false;
         sudo-rs.u2fAuth = false;
         sudo.u2fAuth = false;
+        # Enable AppArmor-aware PAM for common services
+        login.enableAppArmor = true;
+        sshd.enableAppArmor = true;
+        sudo.enableAppArmor = true;
+        sudo-rs.enableAppArmor = true;
+        su.enableAppArmor = true;
+        greetd.enableAppArmor = true;
       };
 
       u2f = {
