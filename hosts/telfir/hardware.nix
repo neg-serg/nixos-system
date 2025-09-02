@@ -30,6 +30,9 @@
   profiles.performance.zswap.enable = lib.mkForce false;
   zramSwap.enable = lib.mkForce false;
 
+  # Optimize initrd compression (smaller image, slower rebuilds)
+  profiles.performance.optimizeInitrdCompression = true;
+
   # Keep services on housekeeping CPUs by default
   systemd.settings.Manager.CPUAffinity = ["0-13" "16-29"];
   # Ban isolated CPUs from IRQ balancing (Zen3 mask example)
