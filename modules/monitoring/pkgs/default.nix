@@ -1,6 +1,7 @@
-{pkgs, ...}: {
+{lib, pkgs, ...}: {
   programs = {
-    atop = {enable = false;};
+    # Keep overridable so roles/monitoring can turn it on
+    atop = {enable = lib.mkDefault false;};
     mtr = {enable = true;};
   };
   environment.systemPackages = with pkgs; [

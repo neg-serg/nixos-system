@@ -322,3 +322,24 @@ Tuning tips:
 - If input lag grows, remove `--rt` and lower FPS cap slightly.
 - If GPU sits at 99% with spikes, reduce render resolution (`-w/-h`) or apply in‑game upscalers (FSR/DLSS/XeSS) while keeping Gamescope output at native.
 - If CPU spikes, reduce background activity, or allow more CPUs in `GAME_PIN_CPUSET`.
+
+## Lightweight Monitoring (Gaming PC)
+
+- Netdata (local, very light):
+  - Enable per-host: set `monitoring.netdata.enable = true;` (see hosts/telfir/services.nix).
+  - Opens a local UI at `http://127.0.0.1:19999` with CPU/GPU/sensors/disks/net.
+  - Service is de‑prioritized (nice/CPU/IO weights) to minimize impact.
+  - Extend via `services.netdata.config` if you need extra collectors.
+
+- Sysstat history (ultra‑light):
+  - Enable per-host: `monitoring.sysstat.enable = true;`.
+  - View later: `sar`, `iostat`, `mpstat`, `pidstat`.
+
+- In‑game overlay (already included):
+  - Use MangoHud: run games with `MANGOHUD=1`.
+  - Toggle logging in-game: `Shift+F2` (CSV saved under `$XDG_DATA_HOME/MangoHud` by default).
+
+- VictoriaMetrics (optional, if you want graphs without Grafana):
+  - Suggested stack: `vmagent -> VictoriaMetrics single -> vmui`.
+  - Very low RAM/CPU at 10–15 s scrape and 7–14 days retention.
+  - Not enabled here by default; can be added later as a separate module if desired.
