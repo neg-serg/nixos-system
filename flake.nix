@@ -104,7 +104,7 @@
       packages.${system} = let
         pkgs = nixpkgs.legacyPackages.${system};
         # Use nixpkgs.lib to access nixosOptionsDoc if available
-        lib = nixpkgs.lib;
+        inherit (nixpkgs) lib;
         evalBase = lib.evalModules {
           inherit lib;
           modules = [
@@ -116,7 +116,7 @@
           ];
           specialArgs = {
             inherit self inputs locale timeZone kexec_enabled;
-            pkgs = pkgs;
+            inherit pkgs;
           };
         };
 
@@ -125,18 +125,18 @@
           modules = [./modules/roles];
           specialArgs = {
             inherit self inputs;
-            pkgs = pkgs;
+            inherit pkgs;
           };
         };
 
         hasOptionsDoc = lib ? nixosOptionsDoc;
         docsBase =
           if hasOptionsDoc
-          then lib.nixosOptionsDoc {options = evalBase.options;}
+          then lib.nixosOptionsDoc {inherit (evalBase) options;}
           else null;
         docsRoles =
           if hasOptionsDoc
-          then lib.nixosOptionsDoc {options = evalRoles.options;}
+          then lib.nixosOptionsDoc {inherit (evalRoles) options;}
           else null;
       in
         {
