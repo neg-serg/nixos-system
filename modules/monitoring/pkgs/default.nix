@@ -1,10 +1,9 @@
-{lib, pkgs, ...}: {
+{pkgs, ...}: {
   programs = {
-    # Keep overridable so roles/monitoring can turn it on
-    atop = {enable = lib.mkDefault false;};
     mtr = {enable = true;};
   };
   environment.systemPackages = with pkgs; [
+    atop # system and process monitor with logging
     btop # even more fancy top
     dool # example use: dool -cdnpmgs --top-bio --top-cpu --top-mem (dstat is not supported as standalone tool anymore)
     iotop # top for iops
