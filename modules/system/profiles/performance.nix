@@ -15,6 +15,13 @@ in {
   options.profiles.performance = {
     enable = mkEnableOption "Performance-oriented kernel/boot tweaks (reduces security; use with care).";
 
+    # Optimize initrd compression (trade build time for smaller image).
+    optimizeInitrdCompression = mkOption {
+      type = types.bool;
+      default = false;
+      description = "Use zstd -19 -T0 for initrd compression (slower builds, smaller initrd).";
+    };
+
     # Granular toggles (all default to true to preserve legacy behavior when
     # profiles.performance.enable = true)
     disableMitigations = mkOption {
