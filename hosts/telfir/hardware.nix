@@ -26,6 +26,9 @@
     "lru_gen.min_ttl_ms=1000"
   ];
 
+  # Load heavy GPU driver early in initrd to reduce userspace module-load time
+  boot.initrd.kernelModules = ["amdgpu"];
+
   # Avoid double compression
   profiles.performance.zswap.enable = lib.mkForce false;
   zramSwap.enable = lib.mkForce false;
