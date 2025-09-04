@@ -65,7 +65,16 @@
   ];
 
   base_params = [
+    # Keep classic interface names for consistency
     "net.ifnames=0"
+    # Kernel and early userspace verbosity
+    "loglevel=7"
+    # Show systemd unit status during boot (stage-1 and stage-2)
+    "rd.systemd.show_status=true"
+    "systemd.show_status=true"
+    # Make udev a bit more chatty (initrd + real root)
+    "rd.udev.log_priority=info"
+    "udev.log_priority=info"
   ];
 
   perf_params =
@@ -108,7 +117,8 @@ in {
       ++ lib.optionals (config.profiles.security.enable or false) ["page_poison=1"];
 
     extraModulePackages = [pkgs.linuxPackages_cachyos.amneziawg];
-    consoleLogLevel = 3;
+    # Increase kernel console verbosity on TTY
+    consoleLogLevel = 7;
     kernelPackages = pkgs.linuxPackages_cachyos.cachyOverride {mArch = "GENERIC_V4";};
   };
 
