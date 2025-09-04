@@ -30,6 +30,8 @@
 
   systemd.network = {
     enable = true;
+    # Do not block boot on wait-online; services should avoid network-online.target unless truly needed
+    wait-online.enable = false;
     wait-online.anyInterface = true;
   };
 }
