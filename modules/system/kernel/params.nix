@@ -103,7 +103,8 @@
     ];
 in {
   boot = {
-    kernelModules = ["kvm-amd" "tcp_bbr" "amdgpu" "ntsync"];
+    # Keep core modules here; amdgpu is moved to initrd on AMD host to avoid userspace load delays
+    kernelModules = ["kvm-amd" "tcp_bbr" "ntsync"];
     blacklistedKernelModules =
       ["sp5100_tco"]
       ++ obscure_network_protocols
