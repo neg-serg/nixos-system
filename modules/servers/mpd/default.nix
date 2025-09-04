@@ -30,7 +30,8 @@ in {
       user = myUser;
       group = myGroup;
 
-      startWhenNeeded = false; # important
+      # Socket-activate MPD so it only starts on first client connect
+      startWhenNeeded = true;
       dataDir = "${myHome}/.config/mpd";
       musicDirectory = "${myHome}/music";
       network = {
