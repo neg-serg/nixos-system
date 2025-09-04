@@ -31,7 +31,7 @@ in {
     };
     quietBoot = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
       description = "Reduce boot verbosity (quiet, splash, hide systemd status).";
     };
     disableWatchdogs = mkOption {
