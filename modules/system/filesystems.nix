@@ -23,6 +23,8 @@ in {
     "/boot" = {
       device = "/dev/disk/by-uuid/C6FE-B058";
       fsType = "vfat";
+      # Mount /boot on-demand to avoid fsck and mount in the critical boot path
+      options = ["x-systemd.automount" "nofail"];
     };
 
     "/zero" = {
