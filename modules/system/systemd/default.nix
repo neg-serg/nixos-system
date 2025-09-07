@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./timesyncd
+    ./post-boot.nix
   ];
 
   # Journald: keep logs across reboots to inspect boot output
