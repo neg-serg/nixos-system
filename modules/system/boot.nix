@@ -3,7 +3,11 @@
 # Purpose: Bootloader (EFI, lanzaboote), initrd modules.
 # Key options: none (uses config.boot.* directly).
 # Dependencies: pkgs (efibootmgr/efivar/os-prober/sbctl), lanzaboote.
-{lib, config, ...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   imports = [./boot/pkgs.nix];
   boot = {
     lanzaboote = {
