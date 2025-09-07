@@ -99,6 +99,8 @@
       timeZone = "Europe/Moscow";
       kexec_enabled = true;
       diffClosures = import ./modules/diff-closures.nix;
+      # Nilla raw-loader compatibility: synthetic type for each input (harmless for normal flakes)
+      nillaInputs = builtins.mapAttrs (_: input: input // {type = "derivation";}) inputs;
     }; {
       # Option docs (markdown) for base profiles and roles
       packages.${system} = let
@@ -239,7 +241,8 @@
             inherit timeZone;
             inherit kexec_enabled;
             inherit self;
-            inherit inputs;
+            # Pass Nilla-friendly inputs (workaround for nilla-nix/nilla#14)
+            inputs = nillaInputs;
           };
           modules =
             commonModules
@@ -256,7 +259,7 @@
             inherit timeZone;
             inherit kexec_enabled;
             inherit self;
-            inherit inputs;
+            inputs = nillaInputs;
           };
           modules =
             commonModules
