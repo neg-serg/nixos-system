@@ -7,8 +7,14 @@
   hardware.storage.autoMount.enable = true;
   hardware.video.amd.useMesaGit = true;
 
-  # Enable AMD-oriented kernel structured config for this host
-  profiles.kernel.amd.enable = true;
+  # Enable AMD-oriented kernel structured config for this host and tune performance
+  profiles = {
+    kernel.amd.enable = true;
+    # Avoid double compression
+    performance.zswap.enable = lib.mkForce false;
+    # Optimize initrd compression (smaller image, slower rebuilds)
+    performance.optimizeInitrdCompression = true;
+  };
 
   # Performance profile comes from the workstation role
 
@@ -29,12 +35,8 @@
   # Load heavy GPU driver early in initrd to reduce userspace module-load time
   boot.initrd.kernelModules = ["amdgpu"];
 
-  # Avoid double compression
-  profiles.performance.zswap.enable = lib.mkForce false;
+  # Avoid double compression for swap
   zramSwap.enable = lib.mkForce false;
-
-  # Optimize initrd compression (smaller image, slower rebuilds)
-  profiles.performance.optimizeInitrdCompression = true;
 
   # Keep services on housekeeping CPUs by default
   systemd.settings.Manager.CPUAffinity = ["0-13" "16-29"];
