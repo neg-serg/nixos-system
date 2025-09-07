@@ -1,4 +1,4 @@
-{...}: {
+_: {
   # System-wide Codex CLI configuration. Tools respecting XDG will read this from /etc/xdg.
   environment.etc."xdg/codex/config.yaml".text = ''
     # main settings
