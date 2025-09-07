@@ -13,4 +13,4 @@ let
   };
 in
   # Workaround for nilla-nix/nilla#14: mark every input with a synthetic type
-  builtins.mapAttrs (_: input: input // { type = "derivation"; }) flake.inputs
+  builtins.mapAttrs (_: input: input // {type = "derivation";}) flake.inputs
