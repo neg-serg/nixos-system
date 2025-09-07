@@ -23,7 +23,11 @@
         # If you need exactly 1920x1080, set a numeric mode ("0".."5") that matches your firmware's 1080p mode.
         # You can try values 0–5 and pick the one that renders at 1920x1080.
         consoleMode = lib.mkDefault "max";
+        # Keep only a few generations in the boot menu to reduce loader work
+        configurationLimit = lib.mkDefault 3;
       };
+      # Skip boot menu unless a key is pressed; speeds up loader phase
+      timeout = lib.mkDefault 0;
     };
     # Boot-specific options only; no activation scripts touching /boot
     initrd = lib.mkMerge [
